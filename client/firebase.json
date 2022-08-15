@@ -12,5 +12,8 @@
         "destination": "/loging.html"
       }
     ]
+  },
+  "database": {
+    "rules": "database.rules.json"
   }
 }
