@@ -11,17 +11,18 @@ body {
   margin: 0;
   padding: 0;
 }
-
-h1 {
-  margin-top: 50px;
+h1{ 
   color:#15c;
+  text-align: center
  }
-
+.h1{
+  margin-top: -15px;
+}
 form {
   background: #fff;
   max-width: 360px;
   width: 100%;
-  height: 500px;
+  height: 525px;
   padding: 50px 44px;   
   border: 1px solid #e1e2f0;
   border-radius: 4px;
@@ -33,12 +34,15 @@ form {
     max-width: 400px;
     height:40%;
     margin-top: -70px;
-    margin-left:50px;
+    margin-left:45px;
 }
-.row {
+.row1{
+  margin-top:-25px;
+}
+.row{
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .row label {
@@ -68,10 +72,10 @@ button {
   width: 100%;
   padding: 12px;
   font-size: 18px;
-  background: #15c;
+  background: #4D47C3;
   color: #fff;
   border: none;
-  border-radius: 100px;
+  border-radius: 10px;
   cursor: pointer;
   font-family: 'Open Sans', sans-serif;
   margin-top: 15px;
@@ -116,4 +120,93 @@ button:hover {
   a{
   text-decoration:none;
     color:white;
+  }
+  .ControlInput {
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(197, 193, 192, 0) inset;
+    color: #6d6665;
+    border: 1px solid #c5c1c0;
+    margin-top: -31px;
+    transition: box-shadow 300ms ease-out;
+  }
+  .ControlInput:hover {
+    box-shadow: 0 1px 3px rgba(197, 193, 192, 40) inset;
+  }
+  .ControlInput:focus {
+    outline: #2bbee7 auto 3px;
+  }
+  
+  .ControlInput--password {
+    order: 0;
+    padding-right: 50px;
+  }
+  .Control-label--password {
+    order: -1;
+    margin-bottom: -32px;
+  }
+  .Control-label--showPassword {
+    width: 32px;
+    position: relative;
+    top: 15px;
+    right:30px;
+    left: 100%;
+    text-align: right;
+    margin-left: -36px;
+    cursor: pointer;
+  }
+  
+  .ControlInput--email:valid ~ .ControlInput--password:valid ~ .Form-submit {
+    cursor: pointer;
+    pointer-events: auto;
+    opacity: 1;
+  }
+  
+  .show-password {
+    display: none;
+  }
+  .show-password:checked ~ .ControlInput--password {
+    -webkit-text-security: disc;
+    -moz-text-security: disc;
+  }
+  .show-password:checked ~ .Control-label--showPassword .svg-toggle-password .closed-eye {
+    opacity: 1;
+    transition: opacity 300ms ease, height 400ms ease;
+    width: 4px;
+    height: 44px;
+  }
+  .svg-toggle-password {
+    fill: rgba(0, 142, 214, 50);
+  }
+  .svg-toggle-password .closed-eye {
+    opacity: 0;
+    height: 0;
+  }
+  
+  .spinner {
+    animation: dash 2s linear infinite;
+    animation-direction: normal;
+  }
+  @keyframes dash {
+    0% {
+      stroke-dashoffset: 0;
+      stroke-dasharray: 150.6 100.4;
+   }
+    50% {
+      stroke-dasharray: 1 250;
+   }
+    100% {
+      stroke-dashoffset: 502;
+      stroke-dasharray: 150.6 100.4;
+   }
+  }
+  @keyframes spinner-in {
+    0% {
+      opacity: 0;
+   }
+    20%, 80% {
+      opacity: 1;
+   }
+    100% {
+      opacity: 0;
+   }
   }
