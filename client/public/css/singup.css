@@ -34,7 +34,8 @@ form {
     max-width: 400px;
     height:40%;
     margin-top: -70px;
-    margin-left:45px;
+    margin-left:auto;
+    margin-right: auto;
 }
 .row1{
   margin-top:-25px;
@@ -58,7 +59,9 @@ form {
   font-size: 16px;
   transition: all 0.2s ease-out;
 }
-
+a{
+  text-decoration : none;
+}
 .row input:focus {
   outline: none;
   box-shadow: inset 2px 2px 5px 0 rgba(12, 92, 173, 0.207);

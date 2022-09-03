@@ -21,7 +21,7 @@
     const firebaseConfig = {
       apiKey: "AIzaSyDJBF8sUiD6n_yl5O8IIX3jSAMZ2UdCjcI",
       authDomain: "gp-police.firebaseapp.com",
-      databaseURL: "https://gp-police-default-rtdb.asia-southeast1.firebasedatabase.app",
+      databaseURL: "https://gp-police-default-rtdb.asia-southeast1.firebasedatabase.app/",
       projectId: "gp-police",
       storageBucket: "gp-police.appspot.com",
       messagingSenderId: "399031635594",
@@ -37,6 +37,58 @@
            from"https://www.gstatic.com/firebasejs/9.9.2/firebase-database.js"
   
   const db = getDatabase();
+
+//------------------------------------The refrences----------------------------------------//
+    const username = document.getElementById('name');
+    const pass     = document.getElementById('password');
+    const email    = document.getElementById('email');
+    const submit   = document.getElementById('submit');
+
+//----------------------------------------Validation--------------------------------------//
+  
+function Validation(){
+  let emailsin    = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;;
+  let usernamesin = /\d+$/g;
+  if(!emailsin.test(email.value)){
+    alert("enter a valid email")
+    return false;
+  }
+  if(!usernamesin.test(username.value)){
+    alert("-username can only be alphanumeric")
+    return false;
+  }
+  return true;
+}
+//------------------------------Register User To Firebase--------------------------------------//
+  function SingingUser(){
+   if(!Validation()){
+      return;
+   };
+    const dbRef = ref(db);
+
+    get(child(dbRef,"UsersList/"+username.value)).then((snapshot)=>{
+      if(snapshot.exists()){
+          alert("Accaunt Already Exist!");
+      }
+
+      else{
+        set(ref(db, "UserList/"+username.value),{
+          email: email.value,
+          username:username.value,
+          password:pass.value
+        })
+        .then(()=>{
+          alert("user added successfully");
+        })
+        .catch((error)=>{
+          alert("error"+error);
+        })
+      }
+    });
+  }
+  //-----------------------Assign The Events------------------------------------------//
+
+    submit.addEventListener('click',SingingUser);
   </script>
     <div class="container">
         <div class="child">
@@ -48,11 +100,11 @@
           </div>
             <div class="row row1">
               <label for="name">User Name:</label>
-              <input type="text" placeholder="User Name" class="fields" size="20">
+              <input id="name" type="text" placeholder="User Name" class="fields" >
             </div>
             <div class="row">
               <label for="email">Email:</label>
-              <input type="text" placeholder="name@gmail.com" class="fields" size="20">
+              <input type="text" id="email" placeholder="name@gmail.com" class="fields" >
             </div>
             <div class="row">
               <label for="password">Password:</label>
@@ -80,7 +132,7 @@
               class="ControlInput ControlInput--password"
           >
             </div>
-            <button><a href="loging.html">Add account</a></button>
+            <button id="submit"><a href="loging.html">Add account</a></button>
           </form>
         </div>
       </div>

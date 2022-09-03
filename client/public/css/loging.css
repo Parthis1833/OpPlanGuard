@@ -34,7 +34,8 @@ form {
     max-width: 400px;
     height:40%;
     margin-top: -70px;
-    margin-left:50px;
+    margin-left:auto;
+    margin-right: auto;
 }
 .row {
   display: flex;
@@ -139,6 +140,10 @@ button:hover {
   order: -1;
   margin-bottom: -32px;
 }
+a{
+  text-decoration : none;
+}
+
 .Control-label--showPassword {
   width: 32px;
   position: relative;
