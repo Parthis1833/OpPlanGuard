@@ -142,6 +142,8 @@ button:hover {
 }
 a{
   text-decoration : none;
+  text-align: center;
+  color: white;
 }
 
 .Control-label--showPassword {

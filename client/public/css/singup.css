@@ -75,7 +75,7 @@ button {
   width: 100%;
   padding: 12px;
   font-size: 18px;
-  background: #4D47C3;
+  background:#4D47C3;
   color: #fff;
   border: none;
   border-radius: 10px;
@@ -86,7 +86,7 @@ button {
 }
 
 button:hover {
-  background:rgb(64, 106, 179);
+  background:#4D47C3;;
 }
 
 @media(max-width: 458px) {
