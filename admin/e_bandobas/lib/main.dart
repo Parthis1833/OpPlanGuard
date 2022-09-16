@@ -4,7 +4,7 @@ import 'package:e_bandobas/responsive/responsive_layout.dart';
 import 'package:e_bandobas/responsive/tablet_scaffold.dart';
 import 'package:flutter/material.dart';
 
-
+ 
 void main() {
   runApp(const MyAPP());
 }
