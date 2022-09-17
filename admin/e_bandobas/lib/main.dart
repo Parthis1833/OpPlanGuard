@@ -5,6 +5,7 @@ import 'package:e_bandobas/responsive/tablet_scaffold.dart';
 import 'package:flutter/material.dart';
 
  
+//  run code from here
 void main() {
   runApp(const MyAPP());
 }

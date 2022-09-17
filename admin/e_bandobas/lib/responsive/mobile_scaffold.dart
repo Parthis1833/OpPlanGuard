@@ -1,3 +1,4 @@
+import 'package:e_bandobas/constants.dart';
 import 'package:flutter/material.dart';
 
 class MobileScaffold extends StatefulWidget {
@@ -11,95 +12,171 @@ class _MobileScaffoldState extends State<MobileScaffold> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.blueAccent[900],
-        ),
-        backgroundColor: Colors.grey[300],
-        drawer: Drawer(
-          child: ListView(
-            // Important: Remove any padding from the ListView.
-            padding: EdgeInsets.zero,
+      appBar:myAppBar,
+      backgroundColor: Colors.grey[300],
+      drawer: Container(
+        width: MediaQuery.of(context).size.width * 0.77,
+        child: Drawer(
+          child: Column(
             children: [
-              const DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                   
+              SizedBox(
+                height: 190,
+                child: DrawerHeader(
+                  decoration: const BoxDecoration(
+                    color: Colors.blue,
+                  ),
+                      child: Stack(
+                        children: [
+                          Align(
+                            alignment: Alignment.topCenter,
+                            child: Image.asset('assets/images/logo.png',
+                              width: 170, height: 125, fit: BoxFit.fill),),
+
+                          const Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Padding(
+                              padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                            child: Text(
+                              'ઈ બંદોબસ્ત ',
+                              style: TextStyle(
+                                fontSize: 23.0,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                         ),
+                        ],
+                      )
                 ),
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(0, 115 , 0, 0),
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                      child: Text(
-                        'ઈ બંદોબસ્ત ',
-                        style: TextStyle(
-                            fontSize: 20.0,
-                            color: Colors.white,
-                        ),
-                      ),
+              ),
+              ListTile(
+                visualDensity: const VisualDensity(vertical: -4),
+                hoverColor: const Color.fromARGB(79, 126, 126, 190),
+                leading: const Icon(
+                  Icons.app_registration,
+                ),
+                 title:const Text('એસેસર્સમેન્ટ',
+                 style :  TextStyle(
+                   fontWeight: FontWeight.w800,
+                   color: Colors.black87,
+                   fontSize: 16.0,
+                 ),
+                 ),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                visualDensity: const VisualDensity(vertical: -4),
+                hoverColor: const Color.fromARGB(79, 126, 126, 190),
+                leading: const Icon(
+                  Icons.add_location_outlined,
+                ),
+                title: const Text('ડ્યુટી પોઈન્ટ',
+                    style :  TextStyle(
+                    fontWeight: FontWeight.w800,
+                    color: Colors.black87,
+                    fontSize: 16.0,
                   ),
                 ),
-              ),
-              ListTile(
-                leading: const Icon(
-                  Icons.home,
-                ),
-                title: const Text('Page 1'),
                 onTap: () {
                   Navigator.pop(context);
                 },
               ),
               ListTile(
+                visualDensity: const VisualDensity(vertical: -4),
+                hoverColor: const Color.fromARGB(79, 126, 126, 190),
                 leading: const Icon(
-                  Icons.train,
+                  Icons.data_usage_rounded,
                 ),
-                title: const Text('Page 2'),
+                title: const Text('કાઉન્ટર',
+                  style :  TextStyle(
+                    fontWeight: FontWeight.w800,
+                    color: Colors.black87,
+                    fontSize: 16.0,
+                  ),
+                ),
                 onTap: () {
                   Navigator.pop(context);
                 },
               ),
               ListTile(
-                leading: const Icon(
-                  Icons.account_box_outlined,
-                ),
-                title: const Text('Page 3'),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
+                visualDensity: const VisualDensity(vertical: -4),
+                hoverColor: const Color.fromARGB(79, 126, 126, 190),
                 leading: const Icon(
                   Icons.add_card_outlined,
                 ),
-                title: const Text('Page 4'),
+                title: const Text('ડ્યુટી પોઇન્ટ અલ્લોકાશન',
+                  style :  TextStyle(
+                    fontWeight: FontWeight.w800,
+                    color: Colors.black87,
+                    fontSize: 16.0,
+                  ),
+                ),
                 onTap: () {
                   Navigator.pop(context);
                 },
               ),
               ListTile(
+                visualDensity: const VisualDensity(vertical: -4),
+                hoverColor: const Color.fromARGB(79, 126, 126, 190),
                 leading: const Icon(
-                  Icons.abc_outlined,
+                  Icons.dashboard_customize,
                 ),
-                title: const Text('Page 5'),
+                title: const Text('અધિકારી ડેટા',
+                  style :  TextStyle(
+                    fontWeight: FontWeight.w800,
+                    color: Colors.black87,
+                    fontSize: 16.0,
+                  ),
+                ),
                 onTap: () {
                   Navigator.pop(context);
                 },
               ),
+              ListTile(
+                visualDensity: const VisualDensity(vertical: -4),
+                hoverColor: const Color.fromARGB(79, 126, 126, 190),
+                leading: const Icon(
+                  Icons.add_road_sharp,
+                ),
+                title: const Text('રોડ બંદોબસ્ત ',
+                  style :  TextStyle(
+                    fontWeight: FontWeight.w800,
+                    color: Colors.black87,
+                    fontSize: 16.0,
+                  ),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              Expanded(
+                child: Align(
+                  alignment: FractionalOffset.bottomCenter,
+                  child: ListTile(
+                    visualDensity: const VisualDensity(vertical: -4),
+                    hoverColor: const Color.fromARGB(79, 126, 126, 190),
+                    leading: const Icon(
+                      Icons.settings,
+                    ),
+                    title: const  Text('સેટટિંગ',
+                      style :  TextStyle(
+                        fontWeight: FontWeight.w800,
+                        color: Colors.black87,
+                        fontSize: 16.0,
+                      ),
+                    ),
+                    onTap: () {},
+                  ),
+                ),
+              ),
             ],
           ),
-        ),
-      body: const Center(child: Text('Press the button below!')),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Add your onPressed code here!
-        },
-        backgroundColor: const Color.fromARGB(128, 73, 89, 110),
-        child: const Icon(
-            Icons.add_circle_outline,
-            color: Colors.deepPurple,
-            size: 56.4,
-
-        ),
-      ),
+        )
+    ),
+      body: CardView,
+    floatingActionButton: floatingbutton,
     );
   }
 }
