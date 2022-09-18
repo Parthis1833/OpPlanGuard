@@ -176,7 +176,18 @@ class _MobileScaffoldState extends State<MobileScaffold> {
         )
     ),
       body: CardView,
-    floatingActionButton: floatingbutton,
+    floatingActionButton: FloatingActionButton(
+      onPressed: () {
+
+      },
+      backgroundColor: const Color.fromARGB(128, 73, 89, 110),
+      child: const Icon(
+        Icons.add_circle_outline,
+        color: Colors.deepPurple,
+        size: 56.4,
+
+      ),
+    ),
     );
   }
 }

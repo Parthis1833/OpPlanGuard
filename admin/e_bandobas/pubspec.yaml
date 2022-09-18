@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: ^4.6.1           
   easy_colors: ^0.0.2
+  collapsible_sidebar: ^2.0.2+2
 
 dev_dependencies:
   flutter_test:

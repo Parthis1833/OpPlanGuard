@@ -19,10 +19,10 @@ size: 56.4,
 var CardView =  Center(
     child: GridView.extent(
       primary: false,
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.all(10),
       crossAxisSpacing: 8,
       mainAxisSpacing: 8,
-      maxCrossAxisExtent: 150.0,
+      maxCrossAxisExtent: 170.0,
       children: <Widget>[
         Container(
           padding: const EdgeInsets.all(4),
