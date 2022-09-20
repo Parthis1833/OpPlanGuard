@@ -9,13 +9,15 @@ class DesktopScaffold extends StatefulWidget {
 }
 
 class _DesktopScaffoldState extends State<DesktopScaffold> {
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     // ignore: prefer_const_constructors
     return Scaffold(
       appBar:myAppBar,
       backgroundColor: Colors.grey[300],
-      body:CardView,
+      body:SizedBox(
+        child: CardView,),
       drawer: Container(
           width: MediaQuery.of(context).size.width * 0.20,
           child: Drawer(
@@ -177,7 +179,67 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
             ),
           )
       ),
-      floatingActionButton: floatingbutton,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  content: Stack(
+                    clipBehavior: Clip.none, children: <Widget>[
+                      Positioned(
+                        left: -24.0,
+                        top: -20.0,
+                        child: InkResponse(
+                          onTap: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Container(
+                              width:40.0,
+                              height:40.0,
+                              decoration: const BoxDecoration(
+                                  color: Color.fromRGBO(
+                                      50, 50, 65, 0.14901960784313725),
+                              ),
+                              child: const Icon(Icons.close,color: Colors.black26,),
+                          ),
+                        ),
+                      ),
+                      Form(
+                        key: _formKey,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: FloatingActionButton(
+                                child: Text("Submitß"),
+                                onPressed: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    _formKey.currentState!.save();
+                                  }
+                                },
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }
+              );
+        },
+        child: const Text("Open Popup"),
+      ),
 
     );
   }

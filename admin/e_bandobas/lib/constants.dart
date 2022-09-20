@@ -16,59 +16,112 @@ size: 56.4,
 ),
 );
 
-var CardView =  Center(
-    child: GridView.extent(
-      primary: false,
-      padding: const EdgeInsets.all(10),
-      crossAxisSpacing: 8,
-      mainAxisSpacing: 8,
-      maxCrossAxisExtent: 170.0,
-      children: <Widget>[
-        Container(
-          padding: const EdgeInsets.all(4),
-          color: Colors.grey,
-          child: const Text('SP', style: TextStyle(fontSize: 20)),
+// ignore: non_constant_identifier_names
+var CardView = GridView.extent(
+    primary: false,
+    padding: const EdgeInsets.all(10),
+    crossAxisSpacing:2,
+    mainAxisSpacing: 2,
+    maxCrossAxisExtent: 170.0,
+    children: <Widget>[
+      ClipRRect (
+        borderRadius: BorderRadius.circular(5.0),
+      child: Container(
+        padding: const EdgeInsets.all(12),
+        color: Colors.grey,
+        child: const Align(
+          alignment: Alignment.center,
+          child: Text('SP', style: TextStyle(fontSize: 20)),
         ),
-        Container(
-          padding: const EdgeInsets.all(4),
+      ),
+    ),
+      ClipRRect (
+        borderRadius: BorderRadius.circular(5.0),
+        child: Container(
+          padding: const EdgeInsets.all(12),
           color: Colors.grey,
-          child: const Text('DYSP', style: TextStyle(fontSize: 20)),
+          child: const Align(
+            alignment: Alignment.center,
+            child: Text('DYSP', style: TextStyle(fontSize: 20)),
+          ),
         ),
-        Container(
-          padding: const EdgeInsets.all(4),
+      ),
+      ClipRRect (
+        borderRadius: BorderRadius.circular(5.0),
+        child: Container(
+          padding: const EdgeInsets.all(12),
           color: Colors.grey,
-          child: const Text('PI', style: TextStyle(fontSize: 20)),
+          child: const Align(
+            alignment: Alignment.center,
+            child: Text('PI', style: TextStyle(fontSize: 20)),
+          ),
         ),
-        Container(
-          padding: const EdgeInsets.all(4),
+      ),
+      ClipRRect (
+        borderRadius: BorderRadius.circular(5.0),
+        child: Container(
+          padding: const EdgeInsets.all(12),
           color: Colors.grey,
-          child: const Text('PSI', style: TextStyle(fontSize: 20)),
+          child: const Align(
+            alignment: Alignment.center,
+            child: Text('PSI', style: TextStyle(fontSize: 20)),
+          ),
         ),
-        Container(
-          padding: const EdgeInsets.all(4),
+      ),
+      ClipRRect (
+        borderRadius: BorderRadius.circular(5.0),
+        child: Container(
+          padding: const EdgeInsets.all(12),
           color: Colors.grey,
-          child: const Text('MEN POLICE', style: TextStyle(fontSize: 20)),
+          child: const Align(
+            alignment: Alignment.center,
+            child: Text('MEN POLICE', style: TextStyle(fontSize: 20)),
+          ),
         ),
-        Container(
-          padding: const EdgeInsets.all(4),
+      ),
+      ClipRRect (
+        borderRadius: BorderRadius.circular(5.0),
+        child: Container(
+          padding: const EdgeInsets.all(12),
           color: Colors.grey,
-          child: const Text('WOMAN POLICE', style: TextStyle(fontSize: 20)),
+          child: const Align(
+            alignment: Alignment.center,
+            child: Text('WOMAN POLICE', style: TextStyle(fontSize: 20)),
+          ),
         ),
-        Container(
-          padding: const EdgeInsets.all(4),
+      ),
+      ClipRRect (
+        borderRadius: BorderRadius.circular(5.0),
+        child: Container(
+          padding: const EdgeInsets.all(12),
           color: Colors.grey,
-          child: const Text('HG', style: TextStyle(fontSize: 20)),
+          child: const Align(
+            alignment: Alignment.center,
+            child: Text('HG', style: TextStyle(fontSize: 20)),
+          ),
         ),
-        Container(
-          padding: const EdgeInsets.all(4),
+      ),
+      ClipRRect (
+        borderRadius: BorderRadius.circular(5.0),
+        child: Container(
+          padding: const EdgeInsets.all(12),
           color: Colors.grey,
-          child: const Text('GRD', style: TextStyle(fontSize: 20)),
+          child: const Align(
+            alignment: Alignment.center,
+            child: Text('GRD', style: TextStyle(fontSize: 20)),
+          ),
         ),
-        Container(
-          padding: const EdgeInsets.all(4),
+      ),
+      ClipRRect (
+        borderRadius: BorderRadius.circular(5.0),
+        child: Container(
+          padding: const EdgeInsets.all(12),
           color: Colors.grey,
-          child: const Text('SRP', style: TextStyle(fontSize: 20)),
+          child: const Align(
+            alignment: Alignment.center,
+            child: Text('SRP', style: TextStyle(fontSize: 20)),
+          ),
         ),
-      ],
-    )
-);
+      ),
+    ],
+  );

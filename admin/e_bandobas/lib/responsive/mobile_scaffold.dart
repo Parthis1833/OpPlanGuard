@@ -20,7 +20,7 @@ class _MobileScaffoldState extends State<MobileScaffold> {
           child: Column(
             children: [
               SizedBox(
-                height: 190,
+                height: 216,
                 child: DrawerHeader(
                   decoration: const BoxDecoration(
                     color: Colors.blue,
@@ -175,7 +175,8 @@ class _MobileScaffoldState extends State<MobileScaffold> {
           ),
         )
     ),
-      body: CardView,
+      body:SizedBox(
+        child: CardView,),
     floatingActionButton: FloatingActionButton(
       onPressed: () {
 

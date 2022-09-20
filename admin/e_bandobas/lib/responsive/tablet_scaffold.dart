@@ -16,7 +16,9 @@ class _TabletScaffoldState extends State<TabletScaffold> {
      return Scaffold(
          appBar:myAppBar,
          backgroundColor: Colors.grey[300],
-         body: CardView,
+         body:
+          SizedBox(
+            child: CardView,),
        drawer: Container(
            width:  MediaQuery.of(context).size.width * 0.30,
            child: Drawer(
