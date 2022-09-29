@@ -18,7 +18,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
       backgroundColor: Colors.grey[300],
       body:SizedBox(
         child: CardView,),
-      drawer: Container(
+      drawer: SizedBox(
           width: MediaQuery.of(context).size.width * 0.20,
           child: Drawer(
             child: Column(
@@ -180,6 +180,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
           )
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.blueGrey,
         onPressed: () {
           showDialog(
               context: context,
@@ -201,36 +202,83 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                   color: Color.fromRGBO(
                                       50, 50, 65, 0.14901960784313725),
                               ),
-                              child: const Icon(Icons.close,color: Colors.black26,),
+                              child: const Icon(Icons.close,),
                           ),
                         ),
                       ),
-                      Form(
+                      SizedBox.fromSize(
+                        size: const Size(1386, 900),
+                        child: Form(
                         key: _formKey,
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: TextFormField(),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: TextFormField(),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: FloatingActionButton(
-                                child: Text("Submitß"),
-                                onPressed: () {
-                                  if (_formKey.currentState!.validate()) {
-                                    _formKey.currentState!.save();
-                                  }
-                                },
+                            Container(
+                              margin: const EdgeInsets.only(left: 30.0),
+                              child: const Align(
+                                alignment: Alignment.topLeft ,
+                                child: Text('એડિટ એસેસર્સમેન્ટ',
+                                  style :  TextStyle(
+                                  fontWeight: FontWeight.w800,
+                                  color: Colors.black87,
+                                  fontSize: 20.0,
+                                ),
+                                ),
                               ),
-                            )
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(),
+                            ),
+                            const Padding(
+                                padding: EdgeInsets.all(10.0)
+
+                            ),
+                            Container(
+                              alignment: Alignment.bottomCenter,
+                              child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: ButtonBar(
+                                    alignment: MainAxisAlignment.center,
+                                    buttonPadding:const EdgeInsets.symmetric(
+                                      horizontal: 30,
+                                      vertical: 15,
+                                    ),
+                                    children: [
+                                      SizedBox(
+                                        width: 150.0,
+                                        height: 36.0,
+                                        child: ElevatedButton(
+                                          onPressed: () { Navigator.of(context).pop(); },
+                                          style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
+                                          child: const Text("Cancel",
+                                            style: TextStyle(color: Colors.black87),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 150.0,
+                                        height: 36.0,
+                                        child: ElevatedButton(
+                                          onPressed: (){},
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: Colors.black87,
+                                          ),
+                                          child: const Text("Save"),
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                              ),
+                              ),
+
                           ],
                         ),
+                      ),
                       ),
                     ],
                   ),
@@ -238,7 +286,11 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
               }
               );
         },
-        child: const Text("Open Popup"),
+        child: const Icon(
+          Icons.add_circle_outline,
+          color: Colors.deepPurple,
+          size: 56.4,
+        ),
       ),
 
     );

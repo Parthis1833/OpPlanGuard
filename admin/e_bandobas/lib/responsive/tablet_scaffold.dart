@@ -17,9 +17,10 @@ class _TabletScaffoldState extends State<TabletScaffold> {
          appBar:myAppBar,
          backgroundColor: Colors.grey[300],
          body:
-          SizedBox(
-            child: CardView,),
-       drawer: Container(
+         Container(
+           child: CardView,),
+
+      drawer:  SizedBox(
            width:  MediaQuery.of(context).size.width * 0.30,
            child: Drawer(
              child: Column(
@@ -180,6 +181,7 @@ class _TabletScaffoldState extends State<TabletScaffold> {
              ),
            )
        ),
+
       floatingActionButton: floatingbutton,
     );
   }

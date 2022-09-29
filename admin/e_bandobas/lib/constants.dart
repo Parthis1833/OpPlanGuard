@@ -5,14 +5,12 @@ backgroundColor: Colors.blueAccent[900],
 );
 var floatingbutton =FloatingActionButton(
 onPressed: () {
-
 },
 backgroundColor: const Color.fromARGB(128, 73, 89, 110),
 child: const Icon(
 Icons.add_circle_outline,
 color: Colors.deepPurple,
 size: 56.4,
-
 ),
 );
 
@@ -24,23 +22,23 @@ var CardView = GridView.extent(
     mainAxisSpacing: 2,
     maxCrossAxisExtent: 170.0,
     children: <Widget>[
-      ClipRRect (
+      ClipRRect(
         borderRadius: BorderRadius.circular(5.0),
-      child: Container(
-        padding: const EdgeInsets.all(12),
-        color: Colors.grey,
-        child: const Align(
-          alignment: Alignment.center,
-          child: Text('SP', style: TextStyle(fontSize: 20)),
+        child: const Card(
+          margin: EdgeInsets.all(2),
+          color: Colors.grey,
+          child: Align(
+            alignment: Alignment.center,
+            child: Text('SP', style: TextStyle(fontSize: 20)),
+          ),
         ),
       ),
-    ),
-      ClipRRect (
+      ClipRRect(
         borderRadius: BorderRadius.circular(5.0),
-        child: Container(
-          padding: const EdgeInsets.all(12),
+        child: const Card(
+          margin: EdgeInsets.all(2),
           color: Colors.grey,
-          child: const Align(
+           child: Align(
             alignment: Alignment.center,
             child: Text('DYSP', style: TextStyle(fontSize: 20)),
           ),
@@ -48,10 +46,10 @@ var CardView = GridView.extent(
       ),
       ClipRRect (
         borderRadius: BorderRadius.circular(5.0),
-        child: Container(
-          padding: const EdgeInsets.all(12),
+        child: const Card(
+          margin:  EdgeInsets.all(2),
           color: Colors.grey,
-          child: const Align(
+          child: Align(
             alignment: Alignment.center,
             child: Text('PI', style: TextStyle(fontSize: 20)),
           ),
@@ -59,10 +57,10 @@ var CardView = GridView.extent(
       ),
       ClipRRect (
         borderRadius: BorderRadius.circular(5.0),
-        child: Container(
-          padding: const EdgeInsets.all(12),
+        child: const Card(
+          margin:  EdgeInsets.all(2),
           color: Colors.grey,
-          child: const Align(
+          child:  Align(
             alignment: Alignment.center,
             child: Text('PSI', style: TextStyle(fontSize: 20)),
           ),
@@ -70,10 +68,10 @@ var CardView = GridView.extent(
       ),
       ClipRRect (
         borderRadius: BorderRadius.circular(5.0),
-        child: Container(
-          padding: const EdgeInsets.all(12),
+        child: const Card(
+          margin:  EdgeInsets.all(2),
           color: Colors.grey,
-          child: const Align(
+          child:  Align(
             alignment: Alignment.center,
             child: Text('MEN POLICE', style: TextStyle(fontSize: 20)),
           ),
@@ -81,10 +79,10 @@ var CardView = GridView.extent(
       ),
       ClipRRect (
         borderRadius: BorderRadius.circular(5.0),
-        child: Container(
-          padding: const EdgeInsets.all(12),
+        child: const Card(
+          margin:  EdgeInsets.all(2),
           color: Colors.grey,
-          child: const Align(
+          child: Align(
             alignment: Alignment.center,
             child: Text('WOMAN POLICE', style: TextStyle(fontSize: 20)),
           ),
@@ -92,10 +90,10 @@ var CardView = GridView.extent(
       ),
       ClipRRect (
         borderRadius: BorderRadius.circular(5.0),
-        child: Container(
-          padding: const EdgeInsets.all(12),
+        child: const Card(
+          margin: EdgeInsets.all(2),
           color: Colors.grey,
-          child: const Align(
+          child: Align(
             alignment: Alignment.center,
             child: Text('HG', style: TextStyle(fontSize: 20)),
           ),
@@ -103,10 +101,10 @@ var CardView = GridView.extent(
       ),
       ClipRRect (
         borderRadius: BorderRadius.circular(5.0),
-        child: Container(
-          padding: const EdgeInsets.all(12),
+        child: const Card(
+          margin: EdgeInsets.all(2),
           color: Colors.grey,
-          child: const Align(
+          child: Align(
             alignment: Alignment.center,
             child: Text('GRD', style: TextStyle(fontSize: 20)),
           ),
@@ -114,10 +112,10 @@ var CardView = GridView.extent(
       ),
       ClipRRect (
         borderRadius: BorderRadius.circular(5.0),
-        child: Container(
-          padding: const EdgeInsets.all(12),
+        child: const Card(
+          margin: EdgeInsets.all(2),
           color: Colors.grey,
-          child: const Align(
+          child: Align(
             alignment: Alignment.center,
             child: Text('SRP', style: TextStyle(fontSize: 20)),
           ),
