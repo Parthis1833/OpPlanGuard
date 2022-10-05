@@ -27,7 +27,7 @@ class AppPages {
       page: () => const DutypointView(),
     ),
     GetPage(name: _Path.duttyPointAllocation,
-      page: () => const DuttyPointAllocationView(),
+      page: () =>  DuttyPointAllocationView(),
     ),
     GetPage(name: _Path.officersData,
         page: () => const OfficersData(),

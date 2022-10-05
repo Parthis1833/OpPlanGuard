@@ -17,6 +17,13 @@ class SettingsView  extends GetView<AssessmentController>{
         title: const Text('Settings '),
         centerTitle: true,
       ),
+      body:Container(
+          alignment: Alignment.center,
+          width: MediaQuery.of(context).size.width * 0.95,
+          child: const Card(
+
+        ),
+      ),
     );
   }
 }

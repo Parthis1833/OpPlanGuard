@@ -1,5 +1,6 @@
 import 'package:e_bandobas1/Resources/Button/AssessmentButton.dart';
 import 'package:e_bandobas1/Resources/Card/Card.dart';
+import 'package:e_bandobas1/Resources/Card/PoliceCard.dart';
 import 'package:e_bandobas1/Resources/drawer/navigation_drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -19,8 +20,10 @@ import '../Controller/assessment_controller.dart';
          title: const Text('Assessment '),
          centerTitle: true,
        ),
-       body:SizedBox(
-         child:CardView,
+       body: Container(
+         margin: EdgeInsets.zero,
+         color: const Color.fromARGB(128, 73, 89, 110),
+         child: PolicCard(margin: const EdgeInsets.all(8), color: Colors.grey, child: const Align(child: Text(''),),),
        ),
        floatingActionButton: AssesmentButton(),
      );
