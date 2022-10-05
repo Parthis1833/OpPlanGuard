@@ -1,4 +1,4 @@
-import 'package:e_bandobas1/Resources/Card/Card.dart';
+
 import 'package:e_bandobas1/Resources/Card/PoliceCard.dart';
 import 'package:e_bandobas1/Resources/drawer/navigation_drawer.dart';
 import 'package:flutter/material.dart';
