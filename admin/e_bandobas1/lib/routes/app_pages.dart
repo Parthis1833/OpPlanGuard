@@ -14,28 +14,34 @@ class AppPages {
 
   static const INITIAL = Routes.assessment;
 
-  static final routes =[
+  static final routes = [
     GetPage(
-        name:_Path.assessment,
-        page: () => const AssessmentView(),
-        binding: AssessmentBinding(),
+      name: _Path.assessment,
+      page: () => const AssessmentView(),
+      binding: AssessmentBinding(),
     ),
-    GetPage(name: _Path.counter,
+    GetPage(
+      name: _Path.counter,
       page: () => const CounterView(),
     ),
-    GetPage(name: _Path.duttyPoint,
+    GetPage(
+      name: _Path.duttyPoint,
       page: () => const DutypointView(),
     ),
-    GetPage(name: _Path.duttyPointAllocation,
-      page: () =>  DuttyPointAllocationView(),
+    GetPage(
+      name: _Path.duttyPointAllocation,
+      page: () => DuttyPointAllocationView(),
     ),
-    GetPage(name: _Path.officersData,
-        page: () => const OfficersData(),
+    GetPage(
+      name: _Path.officersData,
+      page: () => const OfficersData(),
     ),
-    GetPage(name: _Path.roadBandobast,
-        page: () => const RoadBandobast(),
+    GetPage(
+      name: _Path.roadBandobast,
+      page: () => const RoadBandobast(),
     ),
-    GetPage(name: _Path.settings,
+    GetPage(
+      name: _Path.settings,
       page: () => const Settings(),
     ),
   ];

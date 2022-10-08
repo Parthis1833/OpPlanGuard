@@ -55,7 +55,6 @@ class NavigationDrawer extends StatelessWidget {
             ),
             onTap: () => navigate(0),
           ),
-
           ListTile(
             visualDensity: const VisualDensity(vertical: -4),
             hoverColor: const Color.fromARGB(79, 126, 126, 190),
@@ -161,21 +160,22 @@ class NavigationDrawer extends StatelessWidget {
       ),
     );
   }
+
   navigate(int index) {
-    if(index == 0){
+    if (index == 0) {
       Get.toNamed(Routes.assessment);
     } else if (index == 1) {
       Get.toNamed(Routes.counter);
     } else if (index == 2) {
       Get.toNamed(Routes.duttPoint);
-    }  else if (index == 3) {
+    } else if (index == 3) {
       Get.toNamed(Routes.duttyPointAllocation);
-    } else if (index == 4){
+    } else if (index == 4) {
       Get.toNamed(Routes.officersData);
-    } else if (index == 5){
+    } else if (index == 5) {
       Get.toNamed(Routes.roadBandobast);
-    } else if (index == 6){
+    } else if (index == 6) {
       Get.toNamed(Routes.settings);
     }
-}
+  }
 }

@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import '../Controller/assessment_controller.dart';
 
-class CounterView  extends GetView<AssessmentController>{
+class CounterView extends GetView<AssessmentController> {
   const CounterView({super.key});
 
   @override

@@ -5,17 +5,11 @@ import 'package:e_bandobas1/Resources/drawer/navigation_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
-class DuttyPointAllocationView  extends GetView<AssessmentController>{
-   DuttyPointAllocationView({super.key});
-final List<String> entries = <String>['SP', 'DYSP', 'PI','PSI', 'MEN POLICE', 'WOMAN POLICE','HG','GRD','SRP'];
-
-
-
+class DuttyPointAllocationView extends GetView<AssessmentController> {
+  DuttyPointAllocationView({super.key});
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       drawer: const NavigationDrawer(),
       appBar: AppBar(
@@ -23,13 +17,17 @@ final List<String> entries = <String>['SP', 'DYSP', 'PI','PSI', 'MEN POLICE', 'W
         title: const Text('Dutty Point Allocation '),
         centerTitle: true,
       ),
-
       body: Container(
         margin: EdgeInsets.zero,
         color: const Color.fromARGB(128, 73, 89, 110),
-        child: PolicCard(margin: const EdgeInsets.all(8), color: Colors.grey, child: const Align(child: Text(''),),),
+        child: PolicCard(
+          margin: const EdgeInsets.all(8),
+          color: Colors.grey,
+          child: const Align(
+            child: Text(''),
+          ),
+        ),
       ),
-
     );
   }
 }

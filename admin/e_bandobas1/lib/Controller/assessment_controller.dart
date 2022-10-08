@@ -6,6 +6,7 @@ class AssessmentController extends GetxController {
   void onInit() {
     super.onInit();
   }
+
   @override
   void onReady() {
     super.onReady();
@@ -15,7 +16,7 @@ class AssessmentController extends GetxController {
   void onClose() {}
 
   navigateToPage(int index) {
-    if(index == 0){
+    if (index == 0) {
       Get.toNamed(Routes.assessment);
     } else if (index == 1) {
       Get.toNamed(Routes.counter);
@@ -23,11 +24,11 @@ class AssessmentController extends GetxController {
       Get.toNamed(Routes.duttPoint);
     } else if (index == 3) {
       Get.toNamed(Routes.duttyPointAllocation);
-    } else if (index == 4){
+    } else if (index == 4) {
       Get.toNamed(Routes.officersData);
-    } else if (index == 5){
+    } else if (index == 5) {
       Get.toNamed(Routes.roadBandobast);
-    } else if (index == 6){
+    } else if (index == 6) {
       Get.toNamed(Routes.settings);
     }
   }
