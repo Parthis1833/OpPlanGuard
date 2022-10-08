@@ -18,7 +18,7 @@ class RoadBandobastView extends GetView<AssessmentController> {
       ),
       body: Container(
         margin: EdgeInsets.zero,
-        color: const Color.fromARGB(128, 73, 89, 110),
+        color: const Color.fromARGB(88, 73, 89, 110),
         child: PolicCard(
           margin: const EdgeInsets.all(8),
           color: Colors.grey,

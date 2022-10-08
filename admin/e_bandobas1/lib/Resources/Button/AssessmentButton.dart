@@ -38,23 +38,23 @@ class AssesmentButton extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox.fromSize(
-                      size: const Size(1386, 900),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 75.0,
                       child: Form(
                         key: _formKey,
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
                             Container(
-                              margin: const EdgeInsets.only(left: 90.0),
+                              margin: const EdgeInsets.only(left: 95.0),
                               child: const Align(
                                 alignment: Alignment.topLeft,
                                 child: Text(
                                   'સોંપણી ફેરફાર',
                                   style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.black87,
-                                    fontSize: 28.0,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black54,
+                                    fontSize: 38.0,
                                   ),
                                 ),
                               ),
@@ -79,7 +79,7 @@ class AssesmentButton extends StatelessWidget {
                                     padding: const EdgeInsets.only(top: 25.0),
                                     child: SizedBox(
                                       height: 40,
-                                      width: 750,
+                                      width:MediaQuery.of(context).size.width * 0.55,
                                       child: TextField(
                                         controller: textEditingController,
                                         focusNode: myFocusNode,
@@ -614,7 +614,8 @@ class AssesmentButton extends StatelessWidget {
                                         ),
                                       ),
                                     ],
-                                  )),
+                                  )
+                              ),
                             ),
                           ],
                         ),

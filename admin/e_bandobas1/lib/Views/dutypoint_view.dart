@@ -1,3 +1,6 @@
+import 'package:e_bandobas1/Resources/Button/collapsebutton.dart';
+import 'package:e_bandobas1/Resources/Button/dutipointButton.dart';
+import 'package:e_bandobas1/Resources/Button/dutizoneButton.dart';
 import 'package:e_bandobas1/Resources/Card/PoliceCard.dart';
 import 'package:e_bandobas1/Resources/drawer/navigation_drawer.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +23,7 @@ class DutypointView extends GetView<AssessmentController> {
       ),
       body: Container(
         margin: EdgeInsets.zero,
-        color: const Color.fromARGB(128, 73, 89, 110),
+        color: const Color.fromARGB(88, 73, 89, 110),
         child: PolicCard(
           margin: const EdgeInsets.all(8),
           color: Colors.grey,
@@ -29,6 +32,7 @@ class DutypointView extends GetView<AssessmentController> {
           ),
         ),
       ),
+      floatingActionButton: const CollepseButton(),
     );
   }
 }

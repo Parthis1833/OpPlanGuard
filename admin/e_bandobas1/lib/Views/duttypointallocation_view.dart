@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DuttyPointAllocationView extends GetView<AssessmentController> {
-  DuttyPointAllocationView({super.key});
+  const DuttyPointAllocationView({super.key});
 
   @override
   Widget build(BuildContext context) {
