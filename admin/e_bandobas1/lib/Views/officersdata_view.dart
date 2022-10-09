@@ -6,6 +6,28 @@ import '../Controller/assessment_controller.dart';
 
 class OfficersDataView extends GetView<AssessmentController> {
   const OfficersDataView({super.key});
+  double responsiveHeight(BuildContext context){
+    double width = MediaQuery.of(context).size.width;
+    if(width > 950){
+      return 200;
+    }
+    else if(width > 900){
+      return 400;
+    }
+    else if (width > 800){
+      return 400;
+    }
+    else if( width >= 600){
+      return 600;
+    }
+    else if(width <= 600 && width > 480){
+      return 600;
+    }
+    // all phones
+    else{
+      return 850;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,17 +38,24 @@ class OfficersDataView extends GetView<AssessmentController> {
         title: const Text('Officers Data '),
         centerTitle: true,
       ),
-      body: Container(
-        margin: EdgeInsets.zero,
-        color: const Color.fromARGB(88, 73, 89, 110),
-        child: PolicCard(
-          margin: const EdgeInsets.all(8),
-          color: Colors.grey,
-          child: const Align(
-            child: Text(''),
+      body: ListView(
+        children: [
+          Container(
+            height: responsiveHeight(context),
+            child: PolicCard(
+              margin: const EdgeInsets.all(8),
+              color: Colors.grey,
+              child: const Align(
+                child: Text(''),
+              ),
+            ),
           ),
-        ),
+          Container(
+            child: const Text('hey'),
+          ),
+        ],
       ),
+
     );
   }
 }

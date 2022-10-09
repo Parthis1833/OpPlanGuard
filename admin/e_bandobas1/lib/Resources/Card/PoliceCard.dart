@@ -3,6 +3,28 @@ import 'package:flutter/material.dart';
 import 'package:responsive_grid_list/responsive_grid_list.dart';
 
 class PolicCard extends StatelessWidget {
+  double responsiveHeight(BuildContext context){
+    double width = MediaQuery.of(context).size.width;
+    if(width > 950){
+      return 200;
+    }
+    else if(width > 900){
+      return 400;
+    }
+    else if (width > 800){
+      return 400;
+    }
+    else if( width >= 600){
+      return 600;
+    }
+    else if(width <= 600 && width > 480){
+      return 600;
+    }
+    // all phones
+    else{
+      return 850;
+    }
+  }
   PolicCard(
       {super.key,
       required EdgeInsets margin,
@@ -24,7 +46,7 @@ class PolicCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsiveGridList(
         horizontalGridMargin: 0,
-        verticalGridMargin: 20,
+        verticalGridMargin: 10,
         minItemWidth: 148,
         children: List.generate(
             9,

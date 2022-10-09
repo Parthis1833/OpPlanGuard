@@ -5,7 +5,6 @@ import '../Controller/assessment_controller.dart';
 
 class CounterView extends GetView<AssessmentController> {
   const CounterView({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
