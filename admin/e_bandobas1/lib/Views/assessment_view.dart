@@ -14,13 +14,13 @@ class AssessmentView extends GetView<AssessmentController> {
     else if(width > 900){
       return 400;
     }
-    else if (width > 800){
+    else if (width <= 890){
       return 400;
     }
    else if( width >= 600){
      return 600;
     }
-    else if(width <= 600 && width > 480){
+    else if(width <= 640 && width > 480){
       return 600;
     }
     // all phones
