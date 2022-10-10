@@ -10,6 +10,8 @@ abstract class Routes {
   static const officersData = _Path.officersData;
   static const roadBandobast = _Path.roadBandobast;
   static const settings = _Path.settings;
+  static const pointList = _Path.pointList;
+  static const zoneList = _Path.zoneList;
 }
 
 abstract class _Path {
@@ -20,4 +22,7 @@ abstract class _Path {
   static const officersData = '/screens/OfficersData';
   static const roadBandobast = '/screens/RoadBandobast';
   static const settings = '/screens/Settings';
+  static const pointList = '/screens/PointList';
+  static const zoneList = '/screens/ZoneList';
 }
+

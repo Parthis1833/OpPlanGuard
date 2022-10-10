@@ -86,6 +86,25 @@ class NavigationDrawer extends StatelessWidget {
               ),
             ),
             onTap: () => navigate(2),
+
+          ),
+          ExpansionTile(
+            title: const Text("List"),
+            leading: const Icon(Icons.person), //add icon
+            childrenPadding: const EdgeInsets.only(left:60), //children padding
+            children: [
+
+              ListTile(
+                title: const Text("Duty Point List"),
+                onTap: () => navigate(3),
+              ),
+              ListTile(
+                title: const Text("Zone Point List"),
+                onTap: () =>  navigate(4),
+              ),
+
+              //more child menu
+            ],
           ),
           ListTile(
             visualDensity: const VisualDensity(vertical: -4),
@@ -101,7 +120,7 @@ class NavigationDrawer extends StatelessWidget {
                 fontSize: 16.0,
               ),
             ),
-            onTap: () => navigate(3),
+            onTap: () => navigate(5),
           ),
           ListTile(
             visualDensity: const VisualDensity(vertical: -4),
@@ -117,7 +136,7 @@ class NavigationDrawer extends StatelessWidget {
                 fontSize: 16.0,
               ),
             ),
-            onTap: () => navigate(4),
+            onTap: () => navigate(6),
           ),
           ListTile(
             visualDensity: const VisualDensity(vertical: -4),
@@ -133,7 +152,7 @@ class NavigationDrawer extends StatelessWidget {
                 fontSize: 16.0,
               ),
             ),
-            onTap: () => navigate(5),
+            onTap: () => navigate(7),
           ),
           Expanded(
             child: Align(
@@ -152,7 +171,7 @@ class NavigationDrawer extends StatelessWidget {
                     fontSize: 16.0,
                   ),
                 ),
-                onTap: () => navigate(6),
+                onTap: () => navigate(8),
               ),
             ),
           ),
@@ -168,14 +187,21 @@ class NavigationDrawer extends StatelessWidget {
       Get.toNamed(Routes.counter);
     } else if (index == 2) {
       Get.toNamed(Routes.duttPoint);
-    } else if (index == 3) {
+    }else if(index == 3){
+      Get.toNamed(Routes.pointList);
+    }
+    else if(index == 4){
+      Get.toNamed(Routes.zoneList);
+    }
+    else if (index == 5) {
       Get.toNamed(Routes.duttyPointAllocation);
-    } else if (index == 4) {
-      Get.toNamed(Routes.officersData);
-    } else if (index == 5) {
-      Get.toNamed(Routes.roadBandobast);
     } else if (index == 6) {
+      Get.toNamed(Routes.officersData);
+    } else if (index == 7) {
+      Get.toNamed(Routes.roadBandobast);
+    } else if (index == 8) {
       Get.toNamed(Routes.settings);
     }
+
   }
 }

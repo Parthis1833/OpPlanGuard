@@ -4,8 +4,10 @@ import 'package:e_bandobas1/Views/duttypointallocation_view.dart';
 import 'package:e_bandobas1/Views/dutypoint_view.dart';
 import 'package:e_bandobas1/screens/Assessment/bindings/assessment_binding.dart';
 import 'package:e_bandobas1/screens/OfficersData/officersdata.dart';
+import 'package:e_bandobas1/screens/PointList/pointlist.dart';
 import 'package:e_bandobas1/screens/RoadBandobast/roadbandobast.dart';
 import 'package:e_bandobas1/screens/Settings/settings.dart';
+import 'package:e_bandobas1/screens/ZoneList/zonelist.dart';
 import 'package:get/get.dart';
 part 'app_routes.dart';
 
@@ -30,7 +32,7 @@ class AppPages {
     ),
     GetPage(
       name: _Path.duttyPointAllocation,
-      page: () => DuttyPointAllocationView(),
+      page: () => const DuttyPointAllocationView(),
     ),
     GetPage(
       name: _Path.officersData,
@@ -44,5 +46,7 @@ class AppPages {
       name: _Path.settings,
       page: () => const Settings(),
     ),
+    GetPage(name: _Path.pointList, page: () => const PointList()),
+    GetPage(name: _Path.zoneList, page:() => const ZoneList(),)
   ];
 }

@@ -31,5 +31,8 @@ class AssessmentController extends GetxController {
     } else if (index == 6) {
       Get.toNamed(Routes.settings);
     }
+    else if(index == 2.1){
+      Get.toNamed(Routes.pointList);
+    }
   }
 }
