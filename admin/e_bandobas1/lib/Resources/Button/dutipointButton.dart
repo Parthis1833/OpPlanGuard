@@ -1,3 +1,4 @@
+import 'package:e_bandobas1/Resources/POPPage/popdutipointpage.dart';
 import 'package:flutter/material.dart';
 
 class DutiPointButton extends StatelessWidget {
@@ -16,7 +17,15 @@ class DutiPointButton extends StatelessWidget {
         color: Colors.white,
         size: 50.4,
       ),
-      onPressed: () {},// Text()
+      onPressed: (){
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return  AlertDialog(
+                content:  PoPDutipointPage(),
+              );
+            });
+      },// Text()
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:e_bandobas1/Resources/POPPage/popzonepointpage.dart';
 import 'package:flutter/material.dart';
 
 class DutiZoneButton extends StatelessWidget {
@@ -17,7 +18,15 @@ class DutiZoneButton extends StatelessWidget {
         size: 50.4,
       ),
 
-      onPressed: () {},// Text()
+      onPressed: () {
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return  AlertDialog(
+                content:  PoPZonepointPage(),
+              );
+            });
+      },// Text()
     );
   }
 }

@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 
-
 class  PoPAssessmentPage extends StatelessWidget{
   final _formKey = GlobalKey<FormState>();
-  final textEditingController = TextEditingController();
+  TextEditingController assessmentName  = TextEditingController();
+  TextEditingController spValue          = TextEditingController();
+  TextEditingController dyspValue        = TextEditingController();
+  TextEditingController piValue          = TextEditingController();
+  TextEditingController psiValue         = TextEditingController();
+  TextEditingController srpValue         = TextEditingController();
+  TextEditingController munpoliceValue   = TextEditingController();
+  TextEditingController womanpoliceValue = TextEditingController();
+  TextEditingController hgValue          = TextEditingController();
+  TextEditingController grdValue         = TextEditingController();
+  PoPAssessmentPage({super.key});
   get myFocusNode => null;
 
-  PoPAssessmentPage({super.key});
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -43,8 +51,7 @@ class  PoPAssessmentPage extends StatelessWidget{
                   margin: const EdgeInsets.only(left: 95.0),
                   child: const Align(
                     alignment: Alignment.topLeft,
-                    child: Text(
-                      'સોંપણી ફેરફાર',
+                    child: Text('એડિટ સોંપણી',
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
                         color: Colors.black54,
@@ -60,8 +67,7 @@ class  PoPAssessmentPage extends StatelessWidget{
                       Container(
                         margin: const EdgeInsets.only(left: 160.0),
                         padding: const EdgeInsets.only(top: 25.0),
-                        child: const Text(
-                          'સોંપણીનું નામ',
+                        child: const Text('સોંપણીનું નામ',
                           style: TextStyle(
                               fontWeight: FontWeight.w600,
                               color: Colors.black38,
@@ -75,7 +81,7 @@ class  PoPAssessmentPage extends StatelessWidget{
                           height: 40,
                           width:MediaQuery.of(context).size.width * 0.55,
                           child: TextField(
-                            controller: textEditingController,
+                            controller: assessmentName,
                             focusNode: myFocusNode,
                             decoration: const InputDecoration(
                               border: OutlineInputBorder(
@@ -92,11 +98,13 @@ class  PoPAssessmentPage extends StatelessWidget{
                   ),
                 ),
                 Container(
-                  margin: const EdgeInsets.all(20.0),
+                  margin: const EdgeInsets.only(left:50 , right:50),
+                  height: 400,
                   child: Row(
                     children: [
                       Container(
-                        margin: const EdgeInsets.only(left: 20.0),
+                        height: 300,
+                        margin: const EdgeInsets.only( bottom : 30,left: 15.0),
                         padding: const EdgeInsets.all(10.0),
                         child: Column(
                           children: [
@@ -107,12 +115,10 @@ class  PoPAssessmentPage extends StatelessWidget{
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Container(
-                                    margin: const EdgeInsets.only(left:50  ),
-                                    child: const Text(
-                                      'એસ.પી',
+                                    margin: const EdgeInsets.only(left:50 ),
+                                    child: const Text('એસ.પી',
                                       style: TextStyle(
-                                          fontWeight:
-                                          FontWeight.w600,
+                                          fontWeight: FontWeight.w600,
                                           color: Colors.black54,
                                           fontSize: 22.0),
                                     ),
@@ -121,17 +127,13 @@ class  PoPAssessmentPage extends StatelessWidget{
                                     height: 40,
                                     width: 120,
                                     child: TextField(
-                                      controller:
-                                      textEditingController,
+                                      controller: spValue,
                                       focusNode: myFocusNode,
-                                      decoration:
-                                      const InputDecoration(
-                                        border:
-                                        OutlineInputBorder(
+                                      decoration: const InputDecoration(
+                                        border: OutlineInputBorder(
                                           borderSide: BorderSide(
                                               width: 3,
-                                              color: Colors
-                                                  .lightBlueAccent),
+                                              color: Colors.lightBlueAccent),
                                         ),
                                         hintText: '',
                                       ),
@@ -161,8 +163,7 @@ class  PoPAssessmentPage extends StatelessWidget{
                                     height: 40,
                                     width: 120,
                                     child: TextField(
-                                      controller:
-                                      textEditingController,
+                                      controller:dyspValue,
                                       focusNode: myFocusNode,
                                       decoration:
                                       const InputDecoration(
@@ -180,48 +181,35 @@ class  PoPAssessmentPage extends StatelessWidget{
                                 ],
                               ),
                             ),
-
                             Container(
+                              width: 480,
                               padding: const EdgeInsets.all(5.0),
                               child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Container(
-                                    margin: const EdgeInsets.only(
-                                        left: 160.0),
-                                    padding: const EdgeInsets.only(
-                                        top: 25.0),
-                                    child: const Text(
-                                      'પીઆઈ',
+                                    margin: const EdgeInsets.only(left:50 ),
+                                    child: const Text('પીઆઈ',
                                       style: TextStyle(
-                                          fontWeight:
-                                          FontWeight.w600,
+                                          fontWeight: FontWeight.w600,
                                           color: Colors.black54,
                                           fontSize: 22.0),
                                     ),
                                   ),
-                                  Container(
-                                    margin: const EdgeInsets.only(
-                                        left: 160.0),
-                                    padding: const EdgeInsets.only(
-                                        top: 25.0),
-                                    child: SizedBox(
-                                      height: 40,
-                                      width: 120,
-                                      child: TextField(
-                                        controller:
-                                        textEditingController,
-                                        focusNode: myFocusNode,
-                                        decoration:
-                                        const InputDecoration(
-                                          border:
-                                          OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                                width: 3,
-                                                color: Colors
-                                                    .lightBlueAccent),
-                                          ),
-                                          hintText: '',
+                                  SizedBox(
+                                    height: 40,
+                                    width: 120,
+                                    child: TextField(
+                                      controller: piValue,
+                                      focusNode: myFocusNode,
+                                      decoration: const InputDecoration(
+                                        border: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              width: 3,
+                                              color: Colors
+                                                  .lightBlueAccent),
                                         ),
+                                        hintText: '',
                                       ),
                                     ),
                                   ),
@@ -229,46 +217,33 @@ class  PoPAssessmentPage extends StatelessWidget{
                               ),
                             ),
                             Container(
+                              width: 480,
                               padding: const EdgeInsets.all(5.0),
                               child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Container(
-                                    margin: const EdgeInsets.only(
-                                        left: 160.0),
-                                    padding: const EdgeInsets.only(
-                                        top: 25.0),
-                                    child: const Text(
-                                      'પી.એસ.આઈ',
+                                    margin: const EdgeInsets.only(),
+                                    child: const Text('પી.એસ.આઈ',
                                       style: TextStyle(
-                                          fontWeight:
-                                          FontWeight.w600,
+                                          fontWeight: FontWeight.w600,
                                           color: Colors.black54,
                                           fontSize: 22.0),
                                     ),
                                   ),
-                                  Container(
-                                    margin: const EdgeInsets.only(
-                                        left: 105.0),
-                                    padding: const EdgeInsets.only(
-                                        top: 25.0),
-                                    child: SizedBox(
-                                      height: 40,
-                                      width: 120,
-                                      child: TextField(
-                                        controller:
-                                        textEditingController,
-                                        focusNode: myFocusNode,
-                                        decoration:
-                                        const InputDecoration(
-                                          border:
-                                          OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                                width: 3,
-                                                color: Colors
-                                                    .lightBlueAccent),
-                                          ),
-                                          hintText: '',
+                                  SizedBox(
+                                    height: 40,
+                                    width: 120,
+                                    child: TextField(
+                                      controller:psiValue,
+                                      focusNode: myFocusNode,
+                                      decoration: const InputDecoration(
+                                        border: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              width: 3,
+                                              color: Colors.lightBlueAccent),
                                         ),
+                                        hintText: '',
                                       ),
                                     ),
                                   ),
@@ -276,46 +251,33 @@ class  PoPAssessmentPage extends StatelessWidget{
                               ),
                             ),
                             Container(
+                              width: 480,
                               padding: const EdgeInsets.all(5.0),
                               child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Container(
-                                    margin: const EdgeInsets.only(
-                                        left: 160.0),
-                                    padding: const EdgeInsets.only(
-                                        top: 25.0),
-                                    child: const Text(
-                                      'એસ.આર.પી',
+                                    margin: const EdgeInsets.only(),
+                                    child: const Text('એસ.આર.પી',
                                       style: TextStyle(
-                                          fontWeight:
-                                          FontWeight.w600,
+                                          fontWeight: FontWeight.w600,
                                           color: Colors.black54,
                                           fontSize: 22.0),
                                     ),
                                   ),
-                                  Container(
-                                    margin: const EdgeInsets.only(
-                                        left: 105.0),
-                                    padding: const EdgeInsets.only(
-                                        top: 25.0),
-                                    child: SizedBox(
-                                      height: 40,
-                                      width: 120,
-                                      child: TextField(
-                                        controller:
-                                        textEditingController,
-                                        focusNode: myFocusNode,
-                                        decoration:
-                                        const InputDecoration(
-                                          border:
-                                          OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                                width: 3,
-                                                color: Colors
-                                                    .lightBlueAccent),
-                                          ),
-                                          hintText: '',
+                                  SizedBox(
+                                    height: 40,
+                                    width: 120,
+                                    child: TextField(
+                                      controller:srpValue,
+                                      focusNode: myFocusNode,
+                                      decoration: const InputDecoration(
+                                        border: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              width: 3,
+                                              color: Colors.lightBlueAccent),
                                         ),
+                                        hintText: '',
                                       ),
                                     ),
                                   ),
@@ -328,71 +290,45 @@ class  PoPAssessmentPage extends StatelessWidget{
                       Column(
                         children: [
                           Container(
-                            margin:
-                            const EdgeInsets.only(left: 80.0),
-                            padding: const EdgeInsets.only(
-                              left: 20,
-                              top: 25,
-                              right: 0,
-                              bottom: 0,
-                            ),
+                            padding: const EdgeInsets.only(top:40, left: 20,),
                             child: const SizedBox(
-                                height: 320,
+                                height: 260,
                                 width: 2,
-                                child: VerticalDivider(
-                                    color: Color.fromARGB(
-                                        100, 83, 128, 199))),
+                                child: VerticalDivider(color: Color.fromARGB(100, 83, 128, 199))),
                           ),
                         ],
                       ),
-                      SizedBox(
-                        height: 400,
-                        width: 480,
+                      Container(
+                        margin:const EdgeInsets.only(top:30),
                         child: Container(
-                          margin: const EdgeInsets.only(left: 20.0),
                           padding: const EdgeInsets.all(10.0),
                           child: Column(
                             children: [
                               Container(
+                                width: 500,
                                 padding: const EdgeInsets.all(5.0),
                                 child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    Container(
-                                      margin: const EdgeInsets.only(
-                                          left: 50.0),
-                                      padding:
-                                      const EdgeInsets.only(
-                                          top: 25.0),
-                                      child: const Text(
-                                        'પુરૂષ પોલીસ',
-                                        style: TextStyle(
-                                            fontWeight:
-                                            FontWeight.w600,
-                                            color: Colors.black54,
-                                            fontSize: 22.0),
-                                      ),
+                                    const Text('પુરૂષ પોલીસ',
+                                      style: TextStyle(
+                                          fontWeight:FontWeight.w600,
+                                          color: Colors.black54,
+                                          fontSize: 22.0),
                                     ),
                                     Container(
-                                      margin: const EdgeInsets.only(
-                                          left: 105.0),
-                                      padding:
-                                      const EdgeInsets.only(
-                                          top: 25.0),
+                                      margin:const EdgeInsets.only(left:10),
                                       child: SizedBox(
                                         height: 40,
                                         width: 120,
                                         child: TextField(
-                                          controller:
-                                          textEditingController,
+                                          controller: munpoliceValue,
                                           focusNode: myFocusNode,
-                                          decoration:
-                                          const InputDecoration(
-                                            border:
-                                            OutlineInputBorder(
+                                          decoration: const InputDecoration(
+                                            border: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                   width: 3,
-                                                  color: Colors
-                                                      .lightBlueAccent),
+                                                  color: Colors.lightBlueAccent),
                                             ),
                                             hintText: '',
                                           ),
@@ -403,46 +339,30 @@ class  PoPAssessmentPage extends StatelessWidget{
                                 ),
                               ),
                               Container(
+                                width: 500,
                                 padding: const EdgeInsets.all(5.0),
                                 child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: [
-
-                                    Container(
-                                      margin: const EdgeInsets.only(
-                                          left: 50.0),
-                                      padding:
-                                      const EdgeInsets.only(
-                                          top: 25.0),
-                                      child: const Text(
-                                        'મહિલા પોલીસ',
-                                        style: TextStyle(
-                                            fontWeight:
-                                            FontWeight.w600,
-                                            color: Colors.black54,
-                                            fontSize: 22.0),
-                                      ),
+                                    const Text('મહિલા પોલીસ',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.black54,
+                                          fontSize: 22.0),
                                     ),
                                     Container(
-                                      margin: const EdgeInsets.only(
-                                          left: 95.0),
-                                      padding:
-                                      const EdgeInsets.only(
-                                          top: 25.0),
+                                      margin: const EdgeInsets.only(left:5),
                                       child: SizedBox(
                                         height: 40,
                                         width: 120,
                                         child: TextField(
-                                          controller:
-                                          textEditingController,
+                                          controller:womanpoliceValue,
                                           focusNode: myFocusNode,
-                                          decoration:
-                                          const InputDecoration(
-                                            border:
-                                            OutlineInputBorder(
+                                          decoration: const InputDecoration(
+                                            border: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                   width: 3,
-                                                  color: Colors
-                                                      .lightBlueAccent),
+                                                  color: Colors.lightBlueAccent),
                                             ),
                                             hintText: '',
                                           ),
@@ -453,45 +373,31 @@ class  PoPAssessmentPage extends StatelessWidget{
                                 ),
                               ),
                               Container(
+                                width: 500,
                                 padding: const EdgeInsets.all(5.0),
                                 child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    Container(
-                                      margin: const EdgeInsets.only(
-                                          left: 50.0),
-                                      padding:
-                                      const EdgeInsets.only(
-                                          top: 25.0),
-                                      child: const Text(
-                                        'એચજી',
-                                        style: TextStyle(
-                                            fontWeight:
-                                            FontWeight.w600,
-                                            color: Colors.black54,
-                                            fontSize: 22.0),
-                                      ),
+                                    const Text('એચજી',
+                                      style: TextStyle(
+                                          fontWeight:
+                                          FontWeight.w600,
+                                          color: Colors.black54,
+                                          fontSize: 22.0),
                                     ),
                                     Container(
-                                      margin: const EdgeInsets.only(
-                                          left: 170.0),
-                                      padding:
-                                      const EdgeInsets.only(
-                                          top: 25.0),
+                                      margin: const EdgeInsets.only(left:75),
                                       child: SizedBox(
                                         height: 40,
                                         width: 120,
                                         child: TextField(
-                                          controller:
-                                          textEditingController,
+                                          controller:hgValue,
                                           focusNode: myFocusNode,
-                                          decoration:
-                                          const InputDecoration(
-                                            border:
-                                            OutlineInputBorder(
+                                          decoration: const InputDecoration(
+                                            border:OutlineInputBorder(
                                               borderSide: BorderSide(
                                                   width: 3,
-                                                  color: Colors
-                                                      .lightBlueAccent),
+                                                  color: Colors.lightBlueAccent),
                                             ),
                                             hintText: '',
                                           ),
@@ -502,45 +408,30 @@ class  PoPAssessmentPage extends StatelessWidget{
                                 ),
                               ),
                               Container(
+                                width: 500,
                                 padding: const EdgeInsets.all(5.0),
                                 child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    Container(
-                                      margin: const EdgeInsets.only(
-                                          left: 50.0),
-                                      padding:
-                                      const EdgeInsets.only(
-                                          top: 25.0),
-                                      child: const Text(
-                                        'જીઆરડી',
-                                        style: TextStyle(
-                                            fontWeight:
-                                            FontWeight.w600,
-                                            color: Colors.black54,
-                                            fontSize: 22.0),
-                                      ),
+                                    const Text('જીઆરડી',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.black54,
+                                          fontSize: 22.0),
                                     ),
                                     Container(
-                                      margin: const EdgeInsets.only(
-                                          left: 145.0),
-                                      padding:
-                                      const EdgeInsets.only(
-                                          top: 25.0),
+                                      margin: const EdgeInsets.only(left:55),
                                       child: SizedBox(
                                         height: 40,
                                         width: 120,
                                         child: TextField(
-                                          controller:
-                                          textEditingController,
+                                          controller:grdValue,
                                           focusNode: myFocusNode,
-                                          decoration:
-                                          const InputDecoration(
-                                            border:
-                                            OutlineInputBorder(
+                                          decoration: const InputDecoration(
+                                            border: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                   width: 3,
-                                                  color: Colors
-                                                      .lightBlueAccent),
+                                                  color: Colors.lightBlueAccent),
                                             ),
                                             hintText: '',
                                           ),
@@ -571,11 +462,10 @@ class  PoPAssessmentPage extends StatelessWidget{
                         },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white),
-                            child:  const Text(
-                              "Cancel",
-                              style: TextStyle(
-                                  color: Colors.black87),
-                            ),),
+                            child:  const Text("Cancel",
+                              style: TextStyle(color: Colors.black87),
+                            ),
+                        ),
                       ),
                       SizedBox(
                         width: 150,
@@ -584,10 +474,8 @@ class  PoPAssessmentPage extends StatelessWidget{
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.black87,
                           ),
-                           child: const Text(
-                          "Save",
-                          style: TextStyle(
-                              color: Colors.white),
+                           child: const Text("Save",
+                          style: TextStyle(color: Colors.white),
                         ),
                         ),
                       )
