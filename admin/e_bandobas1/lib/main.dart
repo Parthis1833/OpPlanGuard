@@ -1,6 +1,5 @@
 import 'package:e_bandobas1/routes/app_pages.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 
