@@ -10,81 +10,29 @@ class NavigationDrawer extends StatelessWidget {
     return Drawer(
       child: Column(
         children: [
-          SizedBox(
-            height: 216,
-            child: DrawerHeader(
-                decoration: const BoxDecoration(
-                  color: Color.fromARGB(100, 28, 54, 105),
-                ),
-                child: Stack(
-                  children: [
-                    Align(
-                      alignment: Alignment.topCenter,
-                      child: Image.asset('assets/images/logo.png',
-                          width: 170, height: 125, fit: BoxFit.fill),
-                    ),
-                    const Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Padding(
-                        padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
-                        child: Text(
-                          'ઈ બંદોબસ્ત ',
-                          style: TextStyle(
-                            fontSize: 23.0,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                )),
-          ),
-          ListTile(
-            visualDensity: const VisualDensity(vertical: -4),
-            hoverColor: const Color.fromARGB(79, 126, 126, 190),
-            leading: const Icon(
-              Icons.app_registration,
-            ),
-            title: const Text(
-              'એસેસર્સમેન્ટ',
-              style: TextStyle(
-                fontWeight: FontWeight.w800,
-                color: Colors.black87,
-                fontSize: 16.0,
-              ),
-            ),
-            onTap: () => navigate(0),
-          ),
-          ListTile(
-            visualDensity: const VisualDensity(vertical: -4),
-            hoverColor: const Color.fromARGB(79, 126, 126, 190),
-            leading: const Icon(
-              Icons.data_usage_rounded,
-            ),
-            title: const Text(
-              'કાઉન્ટર',
-              style: TextStyle(
-                fontWeight: FontWeight.w800,
-                color: Colors.black87,
-                fontSize: 16.0,
-              ),
-            ),
+          buidDrawerHeader(),
+          buildDrawerItem(
+              text: 'એસેસર્સમેન્ટ',
+              icon: Icons.app_registration,
+              tileColor:Get.currentRoute == Routes.ASSESMENT ? Colors.blue : null,
+              textIconColor: Get.currentRoute == Routes.ASSESMENT
+                  ? Colors.white : Colors.black87,
+              onTap: () => navigate(0)),
+
+          buildDrawerItem(
+            text: 'કાઉન્ટર',
+            icon: Icons.data_usage_rounded,
+            tileColor:Get.currentRoute == Routes.COUNTER ? Colors.blue : null,
+            textIconColor: Get.currentRoute == Routes.COUNTER
+                ? Colors.white : Colors.black87,
             onTap: () => navigate(1),
           ),
-          ListTile(
-            visualDensity: const VisualDensity(vertical: -4),
-            hoverColor: const Color.fromARGB(79, 126, 126, 190),
-            leading: const Icon(
-              Icons.add_location_outlined,
-            ),
-            title: const Text(
-              'ડ્યુટી પોઈન્ટ',
-              style: TextStyle(
-                fontWeight: FontWeight.w800,
-                color: Colors.black87,
-                fontSize: 16.0,
-              ),
-            ),
+          buildDrawerItem(
+            text: 'ડ્યુટી પોઈન્ટ',
+            icon: Icons.add_location_outlined,
+            tileColor:Get.currentRoute == Routes.DUTYPOINT ? Colors.blue : null,
+            textIconColor: Get.currentRoute == Routes.DUTYPOINT
+                ? Colors.white : Colors.black87,
             onTap: () => navigate(2),
           ),
           ExpansionTile(
@@ -97,82 +45,61 @@ class NavigationDrawer extends StatelessWidget {
             childrenPadding: const EdgeInsets.only(left: 60), //children padding
             children: [
               ListTile(
-                title: const Text("ડ્યુટી પોઈન્ટ યાદી"),
+                title: const Text("ડ્યુટી પોઈન્ટ યાદી",
+                  style: TextStyle(
+                  fontWeight: FontWeight.w800,
+                  color: Colors.black87,
+                  fontSize: 16.0,
+                ),),
                 onTap: () => navigate(3),
               ),
               ListTile(
-                title: const Text("ઝોન પોઈન્ટ યાદી"),
+                title: const Text("ઝોન પોઈન્ટ યાદી",
+                  style: TextStyle(
+                  fontWeight: FontWeight.w800,
+                  color: Colors.black87,
+                  fontSize: 16.0,
+                ),
+                ),
                 onTap: () => navigate(4),
               ),
 
               //more child menu
             ],
           ),
-          ListTile(
-            visualDensity: const VisualDensity(vertical: -4),
-            hoverColor: const Color.fromARGB(79, 126, 126, 190),
-            leading: const Icon(
-              Icons.add_card_outlined,
-            ),
-            title: const Text(
-              'ડ્યુટી પોઇન્ટ અલ્લોકાશન',
-              style: TextStyle(
-                fontWeight: FontWeight.w800,
-                color: Colors.black87,
-                fontSize: 16.0,
-              ),
-            ),
+          buildDrawerItem(
+            text: 'ડ્યુટી પોઇન્ટ અલ્લોકાશન',
+            icon: Icons.add_card_outlined,
+            tileColor:Get.currentRoute == Routes.DUTYPOINTALLOCATION ? Colors.blue : null,
+            textIconColor: Get.currentRoute == Routes.DUTYPOINTALLOCATION
+                ? Colors.white : Colors.black87,
             onTap: () => navigate(5),
           ),
-          ListTile(
-            visualDensity: const VisualDensity(vertical: -4),
-            hoverColor: const Color.fromARGB(79, 126, 126, 190),
-            leading: const Icon(
-              Icons.dashboard_customize,
-            ),
-            title: const Text(
-              'અધિકારી ડેટા',
-              style: TextStyle(
-                fontWeight: FontWeight.w800,
-                color: Colors.black87,
-                fontSize: 16.0,
-              ),
-            ),
+          buildDrawerItem(
+            text: 'અધિકારી ડેટા',
+            icon: Icons.dashboard_customize,
+            tileColor:Get.currentRoute == Routes.OFFICERDATA ? Colors.blue : null,
+            textIconColor: Get.currentRoute == Routes.OFFICERDATA
+                ? Colors.white : Colors.black87,
             onTap: () => navigate(6),
           ),
-          ListTile(
-            visualDensity: const VisualDensity(vertical: -4),
-            hoverColor: const Color.fromARGB(79, 126, 126, 190),
-            leading: const Icon(
-              Icons.add_road_sharp,
-            ),
-            title: const Text(
-              'રોડ બંદોબસ્ત ',
-              style: TextStyle(
-                fontWeight: FontWeight.w800,
-                color: Colors.black87,
-                fontSize: 16.0,
-              ),
-            ),
+          buildDrawerItem(
+            text: 'રોડ બંદોબસ્ત',
+            icon: Icons.add_card_outlined,
+            tileColor:Get.currentRoute == Routes.ROADBANDOBAST ? Colors.blue : null,
+            textIconColor: Get.currentRoute == Routes.ROADBANDOBAST
+                ? Colors.white : Colors.black87,
             onTap: () => navigate(7),
           ),
           Expanded(
             child: Align(
               alignment: FractionalOffset.bottomCenter,
-              child: ListTile(
-                visualDensity: const VisualDensity(vertical: -4),
-                hoverColor: const Color.fromARGB(79, 126, 126, 190),
-                leading: const Icon(
-                  Icons.settings,
-                ),
-                title: const Text(
-                  'સેટટિંગ',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w800,
-                    color: Colors.black87,
-                    fontSize: 16.0,
-                  ),
-                ),
+              child: buildDrawerItem(
+                text: 'સેટટિંગ',
+                icon: Icons.settings,
+                tileColor:Get.currentRoute == Routes.SETTING ? Colors.blue : null,
+                textIconColor: Get.currentRoute == Routes.SETTING
+                    ? Colors.white : Colors.black87,
                 onTap: () => navigate(8),
               ),
             ),
@@ -181,7 +108,60 @@ class NavigationDrawer extends StatelessWidget {
       ),
     );
   }
-
+  Widget buidDrawerHeader(){
+    return SizedBox(
+      height: 210,
+      child: DrawerHeader(
+        margin: const EdgeInsets.only(top:0.5),
+          decoration: const BoxDecoration(
+            color: Color.fromARGB(100, 28, 54, 105),
+          ),
+          child: Stack(
+            children: [
+              Align(
+                alignment: Alignment.topCenter,
+                child: Image.asset('assets/images/logo.png',
+                    width: 170, height: 140, fit: BoxFit.fill),
+              ),
+              const Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                  child: Text(
+                    'ઈ બંદોબસ્ત ',
+                    style: TextStyle(
+                      fontSize: 23.0,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          )),
+    );
+  }
+  Widget buildDrawerItem({
+    required String text,
+    required IconData icon,
+    required Color textIconColor,
+    required Color? tileColor,
+    required VoidCallback onTap,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.all( 2.0),
+      child: ListTile(
+        visualDensity: const VisualDensity(vertical: -2),
+        hoverColor: const Color.fromARGB(79, 126, 126, 190),
+        leading: Icon(icon, color: textIconColor),
+        title: Text(text,
+            style: TextStyle(color: textIconColor,
+            fontWeight: FontWeight.w800,),
+        ),
+        tileColor: tileColor,
+        onTap: onTap,
+      ),
+    );
+  }
   navigate(int index) {
     if (index == 0) {
       Get.toNamed(Routes.ASSESMENT);
