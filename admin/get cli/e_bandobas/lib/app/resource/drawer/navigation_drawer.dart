@@ -92,15 +92,19 @@ class NavigationDrawer extends StatelessWidget {
             onTap: () => navigate(7),
           ),
           Expanded(
-            child: Align(
-              alignment: FractionalOffset.bottomCenter,
-              child: buildDrawerItem(
-                text: 'સેટટિંગ',
-                icon: Icons.settings,
-                tileColor:Get.currentRoute == Routes.SETTING ? Colors.blue : null,
-                textIconColor: Get.currentRoute == Routes.SETTING
-                    ? Colors.white : Colors.black87,
-                onTap: () => navigate(8),
+
+            child: Padding(
+              padding: const EdgeInsets.only(bottom:8.0),
+              child: Align(
+                alignment: FractionalOffset.bottomCenter,
+                child: buildDrawerItem(
+                  text: 'સેટટિંગ',
+                  icon: Icons.settings,
+                  tileColor:Get.currentRoute == Routes.SETTING ? Colors.blue : null,
+                  textIconColor: Get.currentRoute == Routes.SETTING
+                      ? Colors.white : Colors.black87,
+                  onTap: () => navigate(8),
+                ),
               ),
             ),
           ),

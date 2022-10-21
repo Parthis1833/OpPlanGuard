@@ -1,3 +1,5 @@
+import 'package:e_bandobas/app/resource/button/assessmentbutton.dart';
+import 'package:e_bandobas/app/resource/card/PoliceCard.dart';
 import 'package:e_bandobas/app/resource/drawer/navigation_drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -15,12 +17,19 @@ class AssesmentView extends GetView<AssesmentController> {
         title: const Text('AssesmentView'),
         centerTitle: true,
       ),
-      body: const Center(
-        child: Text(
-          'AssesmentView is working',
-          style: TextStyle(fontSize: 20),
-        ),
+      body: ListView(
+        children: [
+          PolicCard(
+            margin: const EdgeInsets.all(8),
+            color: Colors.grey,
+            child: const Align(
+              child: Text(''),
+            ),
+          ),
+          const Text('hey'),
+        ],
       ),
+      floatingActionButton: AssesmentButton(),
     );
   }
 }

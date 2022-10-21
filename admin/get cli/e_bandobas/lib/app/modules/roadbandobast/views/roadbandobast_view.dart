@@ -1,3 +1,4 @@
+import 'package:e_bandobas/app/resource/card/PoliceCard.dart';
 import 'package:e_bandobas/app/resource/drawer/navigation_drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -15,11 +16,19 @@ class RoadbandobastView extends GetView<RoadbandobastController> {
         title: const Text('RoadbandobastView'),
         centerTitle: true,
       ),
-      body: Center(
-        child: Text(
-          'RoadbandobastView is working',
-          style: TextStyle(fontSize: 20),
-        ),
+      body: ListView(
+        children: [
+          PolicCard(
+            margin: const EdgeInsets.all(8),
+            color: Colors.grey,
+            child: const Align(
+              child: Text(''),
+            ),
+          ),
+          Container(
+            child: const Text('hey'),
+          ),
+        ],
       ),
     );
   }

@@ -38,24 +38,7 @@ class AssessmentView extends GetView<AssessmentController> {
         centerTitle: true,
       ),
       body:
-
-              ListView(
-                children: [
-                  Container(
-                    height: responsiveHeight(context),
-                    child: PolicCard(
-                        margin: const EdgeInsets.all(8),
-                        color: Colors.grey,
-                        child: const Align(
-                          child: Text(''),
-                        ),
-                    ),
-                  ),
-                  Container(
-                    child: const Text('hey'),
-                  ),
-                ],
-              ),
+g
 
 
       floatingActionButton: AssesmentButton(),
