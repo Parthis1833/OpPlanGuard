@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class DutyzonePOPPage  extends  StatelessWidget{
   final _formKey = GlobalKey<FormState>();
-  final textEditingController = TextEditingController();
+  final zoneName = TextEditingController();
   get myFocusNode => null;
   @override
   Widget build(BuildContext context) {
@@ -47,6 +47,48 @@ class DutyzonePOPPage  extends  StatelessWidget{
                         fontSize: 38.0,
                       ),
                     ),
+                  ),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.95,
+                  height: 200.0,
+                  margin: const EdgeInsets.all(10),
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        margin:  const EdgeInsets.only(top:60.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            const Text(
+                              'ઝોનનું નામ',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black38,
+                                  fontSize: 26.0),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.only(top: 2.0),
+                              child: SizedBox(
+                                height: 40,
+                                width: MediaQuery.of(context).size.width * 0.50,
+                                child: TextField(
+                                  controller: zoneName,
+                                  focusNode: myFocusNode,
+                                  decoration: const InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          width: 3, color: Colors.lightBlueAccent),
+                                    ),
+                                    hintText: '',
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Container(

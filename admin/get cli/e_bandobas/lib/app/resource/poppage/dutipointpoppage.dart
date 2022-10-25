@@ -205,7 +205,5 @@ class DutipointPOPPage extends StatelessWidget{
         ),
       ],
     );
-
   }
-
 }
