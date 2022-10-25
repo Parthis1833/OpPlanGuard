@@ -43,7 +43,7 @@ class AssessmentPOPPage extends StatelessWidget {
           ),
         ),
         SizedBox(
-          width: MediaQuery.of(context).size.width * 75.0,
+          width: MediaQuery.of(context).size.width * 95.0,
           child: Form(
             key: _formKey,
             child: Column(

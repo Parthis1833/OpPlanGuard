@@ -29,14 +29,14 @@ class DutyzonePOPPage  extends  StatelessWidget{
           ),
         ),
         SizedBox(
-          width: MediaQuery.of(context).size.width * 75.0,
+          width: MediaQuery.of(context).size.width * 85.0,
           child: Form(
             key: _formKey,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Container(
-                  margin: const EdgeInsets.only(left: 95.0),
+                  margin: const EdgeInsets.only(left: 75.0),
                   child: const Align(
                     alignment: Alignment.topLeft,
                     child: Text(
@@ -47,6 +47,44 @@ class DutyzonePOPPage  extends  StatelessWidget{
                         fontSize: 38.0,
                       ),
                     ),
+                  ),
+                ),
+                Container(
+                  alignment: FractionalOffset.center,
+                  width: 580,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      SizedBox(
+                        width: 150,
+                        height: 36,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white),
+                          child: const Text(
+                            "Cancel",
+                            style: TextStyle(color: Colors.black87),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 150,
+                        height: 36,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.black87,
+                          ),
+                          child: const Text(
+                            "Save",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                 ),
               ],

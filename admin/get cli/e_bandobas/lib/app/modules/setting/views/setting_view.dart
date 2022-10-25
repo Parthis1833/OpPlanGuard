@@ -13,7 +13,7 @@ class SettingView extends GetView<SettingController> {
         title: const Text('SettingView'),
         centerTitle: true,
       ),
-      body: Center(
+      body: const Center(
         child: Text(
           'SettingView is working',
           style: TextStyle(fontSize: 20),
