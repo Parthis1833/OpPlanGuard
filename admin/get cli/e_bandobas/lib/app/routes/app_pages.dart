@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 
 import '../modules/assesment/bindings/assesment_binding.dart';
 import '../modules/assesment/views/assesment_view.dart';
-import '../modules/counter/bindings/counter_binding.dart';
 import '../modules/counter/views/counter_view.dart';
 import '../modules/dutypoint/bindings/dutypoint_binding.dart';
 import '../modules/dutypoint/views/dutypoint_view.dart';
@@ -17,8 +16,6 @@ import '../modules/roadbandobast/views/roadbandobast_view.dart';
 import '../modules/setting/bindings/setting_binding.dart';
 import '../modules/setting/views/setting_view.dart';
 import '../modules/zonelist/bindings/zonelist_binding.dart';
-import '../modules/zonelist/bindings/zonelist_binding.dart';
-import '../modules/zonelist/views/zonelist_view.dart';
 import '../modules/zonelist/views/zonelist_view.dart';
 
 part 'app_routes.dart';
@@ -26,7 +23,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.ASSESMENT;
+  static String INITIAL = Routes.ASSESMENT;
 
   static final routes = [
     GetPage(

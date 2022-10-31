@@ -13,7 +13,6 @@ abstract class Routes {
   static const ROADBANDOBAST = _Paths.ROADBANDOBAST;
   static const SETTING = _Paths.SETTING;
 }
-
 abstract class _Paths {
   _Paths._();
   static const ASSESMENT = '/assesment';
