@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:e_bandobas/app/jsondata/officersdata/Officers.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
@@ -115,8 +113,9 @@ class OfficerDataGrid extends StatelessWidget {
   Future<List<Officers>> generateOfficersList() async {
     var response = await http
         .get(Uri.parse('https://gujarat-police-backend.herokuapp.com/police/'));
-    var decodedOfficerss =
-    json.decode(response.body).cast<Map<String, dynamic>>();
+
+    // json.decode(response.body).cast<Map<String, dynamic>>();
+    var decodedOfficerss = jsonDecode(utf8.decode(response.bodyBytes));
     List<Officers> officersList = await decodedOfficerss
         .map<Officers>((json) => Officers.fromJson(json))
         .toList();
