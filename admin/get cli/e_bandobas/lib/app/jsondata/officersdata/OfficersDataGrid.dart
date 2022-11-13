@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:e_bandobas/app/jsondata/officersdata/Officers.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
@@ -99,6 +101,14 @@ class OfficerDataGrid extends StatelessWidget {
               alignment: Alignment.center,
               child: const Text('Gender',
                   overflow: TextOverflow.clip, softWrap: true))),
+      GridColumn(
+          columnName: '',
+          width: 50,
+          label: Container(
+              padding: const EdgeInsets.all(8),
+              alignment: Alignment.center,
+              child: const Text('',
+                  overflow: TextOverflow.clip, softWrap: true))),
     ];
   }
 
@@ -189,7 +199,20 @@ class OffficerDataGridSource extends DataGridSource {
           row.getCells()[8].value,
         ),
       ),
-      Container(),
+      Container(
+        margin: const EdgeInsets.all(4),
+        child: RawMaterialButton(
+          onPressed: () {},
+          elevation: 8.0,
+          fillColor: Colors.lightBlue,
+          padding: const EdgeInsets.all(5.0),
+          child: const Icon(
+            Icons.delete_forever_outlined,
+            size: 30.0,
+            color: Colors.white,
+          ),
+        ),
+      )
     ]);
   }
 
