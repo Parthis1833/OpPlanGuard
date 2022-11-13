@@ -8,7 +8,7 @@ class PolicCard extends StatelessWidget {
     if(width > 950){
       return 200;
     }
-    else if(width > 900){
+    else if(width > 850){
       return 400;
     }
     else if (width > 800){
@@ -51,8 +51,7 @@ class PolicCard extends StatelessWidget {
           horizontalGridMargin: 0,
           verticalGridMargin: 10,
           minItemWidth: 148,
-          children: List.generate(
-              9,
+          children: List.generate(9,
                   (index) => SizedBox(
                 height: 180,
                 child: Card(

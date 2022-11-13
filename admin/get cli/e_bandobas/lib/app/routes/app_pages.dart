@@ -64,7 +64,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.OFFICERDATA,
-      page: () => const OfficerdataView(),
+      page: () =>  OfficerdataView(),
       binding: OfficerdataBinding(),
     ),
     GetPage(
