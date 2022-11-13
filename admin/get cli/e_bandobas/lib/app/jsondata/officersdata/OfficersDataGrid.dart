@@ -116,7 +116,7 @@ class OfficerDataGrid extends StatelessWidget {
     var response = await http
         .get(Uri.parse('https://gujarat-police-backend.herokuapp.com/police/'));
     var decodedOfficerss =
-    json.decode(response.body).cast<Map<String, dynamic>>();
+    json.decode(utf8.decode(response.bodyBytes)).cast<Map<String, dynamic>>();
     List<Officers> officersList = await decodedOfficerss
         .map<Officers>((json) => Officers.fromJson(json))
         .toList();
