@@ -8,12 +8,12 @@ class CounterView extends GetView<CounterController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const NavigationDrawer(),
+      drawer: const Navigation_Drawer(),
       appBar: AppBar(
         title: const Text('CounterView'),
         centerTitle: true,
       ),
-      body: Center(
+      body: const Center(
         child: Text(
           'CounterView is working',
           style: TextStyle(fontSize: 20),

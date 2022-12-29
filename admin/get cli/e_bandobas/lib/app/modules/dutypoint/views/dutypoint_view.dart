@@ -12,7 +12,7 @@ class DutypointView extends GetView<DutypointController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const NavigationDrawer(),
+      drawer: const  Navigation_Drawer(),
       appBar: AppBar(
         title: const Text('DutypointView'),
         centerTitle: true,

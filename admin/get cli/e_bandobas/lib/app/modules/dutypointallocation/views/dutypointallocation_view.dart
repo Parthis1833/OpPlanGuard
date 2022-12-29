@@ -11,7 +11,7 @@ class DutypointallocationView extends GetView<DutypointallocationController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const NavigationDrawer(),
+      drawer: const  Navigation_Drawer(),
       appBar: AppBar(
         title: const Text('DutypointallocationView'),
         centerTitle: true,

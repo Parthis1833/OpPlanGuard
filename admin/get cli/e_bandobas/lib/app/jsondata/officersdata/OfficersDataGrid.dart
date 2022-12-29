@@ -4,25 +4,26 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
-
 class OfficerDataGrid extends StatelessWidget {
   @override
   Widget build(Object context) {
     return FutureBuilder<Object>(
       future: getOfficersDataSource(),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-        return snapshot.hasData? SfDataGrid(source: snapshot.data, columns: getColumns()) : const Center(
-          child: CircularProgressIndicator(
-            strokeWidth: 3,
-          ),
-        );
+        return snapshot.hasData
+            ? SfDataGrid(source: snapshot.data, columns: getColumns())
+            : const Center(
+                child: CircularProgressIndicator(
+                  strokeWidth: 3,
+                ),
+              );
       },
     );
   }
 
   Future<OffficerDataGridSource> getOfficersDataSource() async {
-    var officersList = await generateOfficersList();
-    return OffficerDataGridSource(officersList);
+    List<Police> contentList = await generatecontentList();
+    return OffficerDataGridSource(contentList);
   }
 
   List<GridColumn> getColumns() {
@@ -105,30 +106,47 @@ class OfficerDataGrid extends StatelessWidget {
           label: Container(
               padding: const EdgeInsets.all(8),
               alignment: Alignment.center,
-              child: const Text('',
-                  overflow: TextOverflow.clip, softWrap: true))),
+              child:
+                  const Text('', overflow: TextOverflow.clip, softWrap: true))),
     ];
   }
 
-  Future<List<Officers>> generateOfficersList() async {
-    var response = await http
-        .get(Uri.parse('https://gujarat-police-backend.herokuapp.com/police/'));
+  Future<Officers> fetchPost() async {
+    String url =
+        'http://gujaratpolicebackend-env.eba-bpbkpxau.us-east-1.elasticbeanstalk.com/police/';
+    var response = await http.get(Uri.parse(url), headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    });
+    if (response.statusCode == 200) {
+      return Officers.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Failed to load post');
+    }
+  }
 
-    // json.decode(response.body).cast<Map<String, dynamic>>();
+  Future<List<Police>> generatecontentList() async {
+    var response = await http.get(Uri.parse(
+        'http://gujaratpolicebackend-env.eba-bpbkpxau.us-east-1.elasticbeanstalk.com/police/'));
     var decodedOfficerss = jsonDecode(utf8.decode(response.bodyBytes));
-    List<Officers> officersList = await decodedOfficerss
-        .map<Officers>((json) => Officers.fromJson(json))
-        .toList();
-    return officersList;
+    var contentList = null;
+    List<Police> policeListFromContent = [];
+    if (decodedOfficerss['content'] != null) {
+      decodedOfficerss['content'].forEach((policeData) {
+        policeListFromContent.add(Police.fromJson(policeData));
+      });
+    }
+    policeListFromContent[0];
+    return policeListFromContent;
   }
 }
 
 class OffficerDataGridSource extends DataGridSource {
-  OffficerDataGridSource(this.officersList) {
+  OffficerDataGridSource(this.contentList) {
     buildDataGridRow();
   }
   late List<DataGridRow> dataGridRows;
-  late List<Officers> officersList;
+  late List<Police> contentList;
 
   @override
   DataGridRowAdapter? buildRow(DataGridRow row) {
@@ -219,7 +237,7 @@ class OffficerDataGridSource extends DataGridSource {
   List<DataGridRow> get rows => dataGridRows;
 
   void buildDataGridRow() {
-    dataGridRows = officersList.map<DataGridRow>((dataGridRow) {
+    dataGridRows = contentList.map<DataGridRow>((dataGridRow) {
       return DataGridRow(cells: [
         DataGridCell<num>(columnName: 'ID', value: dataGridRow.id),
         DataGridCell<String>(
