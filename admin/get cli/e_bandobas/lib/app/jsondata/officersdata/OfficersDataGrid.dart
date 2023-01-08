@@ -4,20 +4,26 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
+
 class OfficerDataGrid extends StatelessWidget {
+  const OfficerDataGrid({super.key});
+
   @override
   Widget build(Object context) {
-    return FutureBuilder<Object>(
-      future: getOfficersDataSource(),
-      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-        return snapshot.hasData
-            ? SfDataGrid(source: snapshot.data, columns: getColumns())
-            : const Center(
-                child: CircularProgressIndicator(
-                  strokeWidth: 3,
-                ),
-              );
-      },
+    return SizedBox(
+      height: 900,
+      child: FutureBuilder<Object>(
+        future: getOfficersDataSource(),
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          return snapshot.hasData
+              ? SfDataGrid(source: snapshot.data, columns: getColumns())
+              : const Center(
+                  child: CircularProgressIndicator(
+                    strokeWidth: 3,
+                  ),
+                );
+        },
+      ),
     );
   }
 
@@ -112,8 +118,7 @@ class OfficerDataGrid extends StatelessWidget {
   }
 
   Future<Officers> fetchPost() async {
-    String url =
-        'http://gujaratpolicebackend-env.eba-bpbkpxau.us-east-1.elasticbeanstalk.com/police/';
+    String url = 'http://gujaratpolicebackend-env.eba-bpbkpxau.us-east-1.elasticbeanstalk.com/police/';
     var response = await http.get(Uri.parse(url), headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -124,12 +129,9 @@ class OfficerDataGrid extends StatelessWidget {
       throw Exception('Failed to load post');
     }
   }
-
   Future<List<Police>> generatecontentList() async {
-    var response = await http.get(Uri.parse(
-        'http://gujaratpolicebackend-env.eba-bpbkpxau.us-east-1.elasticbeanstalk.com/police/'));
+    var response = await http.get(Uri.parse('http://gujaratpolicebackend-env.eba-bpbkpxau.us-east-1.elasticbeanstalk.com/police/'));
     var decodedOfficerss = jsonDecode(utf8.decode(response.bodyBytes));
-    var contentList = null;
     List<Police> policeListFromContent = [];
     if (decodedOfficerss['content'] != null) {
       decodedOfficerss['content'].forEach((policeData) {
@@ -235,7 +237,6 @@ class OffficerDataGridSource extends DataGridSource {
 
   @override
   List<DataGridRow> get rows => dataGridRows;
-
   void buildDataGridRow() {
     dataGridRows = contentList.map<DataGridRow>((dataGridRow) {
       return DataGridRow(cells: [
