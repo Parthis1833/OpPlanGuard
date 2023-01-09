@@ -1,4 +1,4 @@
-import 'package:e_bandobas/app/routes/app_pages.dart';
+import 'package:e_bandobas/app/Config/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';

@@ -1,4 +1,4 @@
-import 'package:e_bandobas/app/routes/app_pages.dart';
+import 'package:e_bandobas/app/Config/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 class AssesmentController extends GetxController {
