@@ -1,5 +1,5 @@
-import 'package:e_bandobas/app/jsondata/officersdata/Officers.dart';
-import 'package:e_bandobas/constants/API.dart';
+import 'package:e_bandobas/app/Api/models/Police/Officers.dart';
+import 'package:e_bandobas/app/Api/API.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;

@@ -1,4 +1,4 @@
-import 'Designation.dart';
+import 'package:e_bandobas/app/Api/models/Police/Designation.dart';
 import 'PoliceStation.dart';
 
 class Police {
