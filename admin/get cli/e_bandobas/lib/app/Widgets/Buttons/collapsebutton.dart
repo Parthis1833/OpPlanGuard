@@ -1,5 +1,5 @@
-import 'package:e_bandobas/app/resource/button/dutipointbutton.dart';
-import 'package:e_bandobas/app/resource/button/dutizonebutton.dart';
+import 'package:e_bandobas/app/Widgets/Buttons/dutipointbutton.dart';
+import 'package:e_bandobas/app/Widgets/Buttons/dutizonebutton.dart';
 import 'package:flutter/material.dart';
 
 

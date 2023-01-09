@@ -1,6 +1,6 @@
-import 'package:e_bandobas/app/resource/button/collapsebutton.dart';
+import 'package:e_bandobas/app/Widgets/Buttons/collapsebutton.dart';
 import 'package:e_bandobas/app/resource/card/PoliceCard.dart';
-import 'package:e_bandobas/app/resource/drawer/navigation_drawer.dart';
+import 'package:e_bandobas/app/Widgets/navigation_drawer.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
