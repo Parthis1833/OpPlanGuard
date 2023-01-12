@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 
 class AssesmentButton extends StatelessWidget {
   AssesmentButton({super.key});
-  final _formKey = GlobalKey<FormState>();
   final textEditingController = TextEditingController();
-
   get myFocusNode => null;
 
   @override
