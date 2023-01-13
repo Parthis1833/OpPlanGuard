@@ -133,7 +133,10 @@ class OfficerDataGrid extends StatelessWidget {
 
   Future<List<Police>> generatecontentList() async {
     var response = await http.get(Uri.parse(
-        'http://gujaratpolicebackend-env.eba-bpbkpxau.us-east-1.elasticbeanstalk.com/police/'));
+        // 'http://gujaratpolicebackend-env.eba-bpbkpxau.us-east-1.elasticbeanstalk.com/police/'
+      APIConstants.POLICE_URL
+    )
+    );
     var decodedOfficerss = jsonDecode(utf8.decode(response.bodyBytes));
     List<Police> policeListFromContent = [];
     if (decodedOfficerss['content'] != null) {

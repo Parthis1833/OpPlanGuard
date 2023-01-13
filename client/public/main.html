@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,11 +14,12 @@
 
 <body>  
     <script id=&quot;rendered-js&quot;>
+        
        var app=angular.module("tabel", []);
         angular.module("tabel").controller("tabelCtrl", function ($scope) {      
             $scope.array = [];
             $scope.mobile="+91";
-            $scope.onBtnAddClicked = function () {
+            $scope.onBtnAddClicked = function (){
                 var insert = {};
                 insert.name = $scope.name;
                 insert.bakal_number = $scope.bakal_number;
@@ -32,7 +32,7 @@
                 $scope.array.push(insert);
                 $scope.name = "";
                 $scope.bakal_number = "";
-                $scope.mobile = "+91";
+                $scope.mobile ="";
                 $scope.designation = "";
                 $scope.gender = "";
                 $scope.policestname = "";
@@ -42,7 +42,7 @@
                 $scope.array.splice($index, 1)
             };
         })
-    </script>
+   </script>
 
     <div ng-app="tabel">
         <div ng-controller="tabelCtrl">
@@ -70,47 +70,43 @@
                                 <td>{{ row.gender }}</td>
                                 <td>{{ row.policestname }}</td>
                                 <td>{{ row.namedistric }}</td>
-
-
                                 <td> <a class="btn btn-danger btn-xl fa fa-trash" ng-click="onBtnDeleteClicked($index)">
                                     </a></td>
                             </tr>
-                                <tr >
+                            <form>
+                                <tr>
                                     <td></td>
                                     <td>
-                                        <input class="form-control" type="text" placeholder="Name" ng-model="name" />
+                                        <input class="form-control" type="text" placeholder="Name" ng-model="name" required/>
+                                    </td>   
+                                    <td>
+                                        <input class="form-control" type="text" placeholder="Bakal_Number" ng-model="bakal_number"min="1" max="5" required/>
                                     </td>
                                     <td>
-                                        <input class="form-control" type="text" placeholder="Bakal_Number" ng-model="bakal_number"min="1" max="5"/>
+                                        <input class="form-control" type="tel" placeholder="Mobile" ng-model="mobile" required />
                                     </td>
                                     <td>
-                                        <input class="form-control" type="tel" placeholder="Mobile" ng-model="mobile" />
+                                        <input class="form-control" type="text" placeholder="Designation" ng-model="designation" required/>
                                     </td>
                                     <td>
-                                        <input class="form-control" type="text" placeholder="Designation"
-                                            ng-model="designation" />
+                                        <input class="form-control" type="text" placeholder="Gender" ng-model="gender" required />
                                     </td>
                                     <td>
-                                        
-                                        <input class="form-control" type="text" placeholder="Gender"
-                                            ng-model="gender" />
-                                    
+                                        <input class="form-control" type="text" placeholder="Police-ST-Name" ng-model="policestname" required/>
                                     </td>
                                     <td>
-                                        <input class="form-control" type="text" placeholder="Police-ST-Name"
-                                            ng-model="policestname" />
+                                        <input class="form-control" type="text" placeholder="District" ng-model="namedistric" required/>
                                     </td>
-                                    <td>
-                                        <input class="form-control" type="text" placeholder="District"
-                                            ng-model="namedistric" />
-                                    </td>
-                                    <td><a class="btn btn-success fa fa-plus active" ng-click="onBtnAddClicked()" style="background-color: #4D47C3;;">
-                                            Add</a>
+                                    <td><input type="submit" class="btn btn-success fa fa-plus active" ng-click="onBtnAddClicked()" style="background-color: #4D47C3;;">
+                                            </input>
                                     </td>
                                 </tr>
+                            </form>
                         </table>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 </body>
 </html>

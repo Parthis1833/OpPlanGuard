@@ -35,6 +35,7 @@ class PolicCard extends StatelessWidget {
     'DYSP',
     'PI',
     'PSI',
+    "WPSI",
     'MEN POLICE',
     'WOMAN POLICE',
     'HG',
@@ -51,7 +52,7 @@ class PolicCard extends StatelessWidget {
           horizontalGridMargin: 0,
           verticalGridMargin: 10,
           minItemWidth: 148,
-          children: List.generate(9,
+          children: List.generate(10,
                   (index) => SizedBox(
                 height: 180,
                 child: Card(
