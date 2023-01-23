@@ -1,6 +1,7 @@
 import 'package:e_bandobas/app/jsondata/ZoneData/Zone.dart';
 import 'package:e_bandobas/app/jsondata/ZoneData/ZoneApi.dart';
 import 'package:e_bandobas/app/resource/poppage/dutipointpoppage.dart';
+import 'package:e_bandobas/constants/enums.dart';
 import 'package:flutter/material.dart';
 
 class DutiPointButton extends StatefulWidget {
@@ -33,21 +34,24 @@ class _DutiPointButtonState extends State<DutiPointButton> {
       onPressed: () {
         _obtainZones();
         if (isZoneObtained) {
+          // print("done");
           showDialog(
               context: context,
               builder: (BuildContext context) {
                 return AlertDialog(
-                  content: DutipointPOPPage(),
+                  content: DutipointPOPPage(zones),
                 );
               });
+        } else {
+          
         }
       }, // Text()
     );
   }
 
   Future<bool> _obtainZones() async {
-    List<Zone> obtainedZones = await ZoneApi.obtainZones();
-    if (zones.length > 0) {
+    List<Zone> obtainedZones = await ZoneApi.obtainZones(API_Decision.Only_Failure);
+    if (obtainedZones.isNotEmpty) {
       setState(() {
         zones = obtainedZones;
         isZoneObtained = true;
