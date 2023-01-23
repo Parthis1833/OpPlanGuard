@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 
 class DutipointPOPPage extends StatelessWidget{
-  final _formKey = GlobalKey<FormState>();
-  final pointName = TextEditingController();
-  final accessories = TextEditingController();
-  final remarks =  TextEditingController();
-  get myFocusNode => null;
   DutipointPOPPage({super.key});
+
+  final _formKey = GlobalKey<FormState>();
+
+  final pointName = TextEditingController();
+
+  final accessories = TextEditingController();
+
+  final remarks =  TextEditingController();
+
+  get myFocusNode => null;
 
   @override
   Widget build(BuildContext context) {
@@ -156,6 +161,41 @@ class DutipointPOPPage extends StatelessWidget{
                           ),
                         ],
                       ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.only( top: 10.0) ,
+                            child: const Text(
+                              'Zone ',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black38,
+                                  fontSize: 26.0),
+                            ),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.only(top: 20.0 ,left: 55.0),
+                            child: SizedBox(
+                              height: 40,
+                              width: MediaQuery.of(context).size.width * 0.50,
+                              child: TextField(
+                                controller: accessories,
+                                focusNode: myFocusNode,
+                                decoration: const InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 3, color: Colors.lightBlueAccent),
+                                  ),
+                                  hintText: '',
+                                ),
+                              ),
+                            ),
+                          ),
+           
+                        ],
+                      ),
+ 
                     ],
                   ),
                 ),
