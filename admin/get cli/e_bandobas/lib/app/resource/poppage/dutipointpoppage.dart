@@ -1,21 +1,41 @@
+import 'package:e_bandobas/app/jsondata/PointData/PointApi.dart';
+import 'package:e_bandobas/app/jsondata/ZoneData/Zone.dart';
+import 'package:e_bandobas/constants/enums.dart';
 import 'package:flutter/material.dart';
 
-class DutipointPOPPage extends StatelessWidget{
-  DutipointPOPPage({super.key});
+class DutipointPOPPage extends StatefulWidget {
+  DutipointPOPPage(this.zones);
+  List<Zone> zones;
 
+  @override
+  State<DutipointPOPPage> createState() => _DutipointPOPPageState();
+}
+
+class _DutipointPOPPageState extends State<DutipointPOPPage> {
   final _formKey = GlobalKey<FormState>();
 
-  final pointName = TextEditingController();
+  final talukaController = TextEditingController();
+  final districtController = TextEditingController();
 
-  final accessories = TextEditingController();
+  final pointNameController = TextEditingController();
 
-  final remarks =  TextEditingController();
+  final accessoriesController = TextEditingController();
+
+  final remarksController = TextEditingController();
 
   get myFocusNode => null;
 
+  num? _dropDownValue;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _dropDownValue = widget.zones[0].id;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return  Stack(
+    return Stack(
       clipBehavior: Clip.none,
       children: <Widget>[
         Positioned(
@@ -67,6 +87,76 @@ class DutipointPOPPage extends StatelessWidget{
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Container(
+                            margin: const EdgeInsets.only(top: 10.0),
+                            child: const Text(
+                              'Taluka ',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black38,
+                                  fontSize: 26.0),
+                            ),
+                          ),
+                          Container(
+                            padding:
+                                const EdgeInsets.only(top: 20.0, left: 55.0),
+                            child: SizedBox(
+                              height: 40,
+                              width: MediaQuery.of(context).size.width * 0.50,
+                              child: TextField(
+                                controller: talukaController,
+                                focusNode: myFocusNode,
+                                decoration: const InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 3,
+                                        color: Colors.lightBlueAccent),
+                                  ),
+                                  hintText: '',
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.only(top: 10.0),
+                            child: const Text(
+                              'District ',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black38,
+                                  fontSize: 26.0),
+                            ),
+                          ),
+                          Container(
+                            padding:
+                                const EdgeInsets.only(top: 20.0, left: 55.0),
+                            child: SizedBox(
+                              height: 40,
+                              width: MediaQuery.of(context).size.width * 0.50,
+                              child: TextField(
+                                controller: districtController,
+                                focusNode: myFocusNode,
+                                decoration: const InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 3,
+                                        color: Colors.lightBlueAccent),
+                                  ),
+                                  hintText: '',
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
                             child: const Text(
                               'પોઈન્ટનું નામ',
                               style: TextStyle(
@@ -81,12 +171,13 @@ class DutipointPOPPage extends StatelessWidget{
                               height: 40,
                               width: MediaQuery.of(context).size.width * 0.50,
                               child: TextField(
-                                controller: pointName,
+                                controller: pointNameController,
                                 focusNode: myFocusNode,
                                 decoration: const InputDecoration(
                                   border: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                        width: 3, color: Colors.lightBlueAccent),
+                                        width: 3,
+                                        color: Colors.lightBlueAccent),
                                   ),
                                   hintText: '',
                                 ),
@@ -99,7 +190,7 @@ class DutipointPOPPage extends StatelessWidget{
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Container(
-                            margin: const EdgeInsets.only( top: 10.0) ,
+                            margin: const EdgeInsets.only(top: 10.0),
                             child: const Text(
                               'એક્સેસરીઝ',
                               style: TextStyle(
@@ -109,17 +200,19 @@ class DutipointPOPPage extends StatelessWidget{
                             ),
                           ),
                           Container(
-                            padding: const EdgeInsets.only(top: 20.0 ,left: 25.0),
+                            padding:
+                                const EdgeInsets.only(top: 20.0, left: 25.0),
                             child: SizedBox(
                               height: 40,
                               width: MediaQuery.of(context).size.width * 0.50,
                               child: TextField(
-                                controller: accessories,
+                                controller: accessoriesController,
                                 focusNode: myFocusNode,
                                 decoration: const InputDecoration(
                                   border: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                        width: 3, color: Colors.lightBlueAccent),
+                                        width: 3,
+                                        color: Colors.lightBlueAccent),
                                   ),
                                   hintText: '',
                                 ),
@@ -132,7 +225,7 @@ class DutipointPOPPage extends StatelessWidget{
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Container(
-                            margin: const EdgeInsets.only( top: 10.0) ,
+                            margin: const EdgeInsets.only(top: 10.0),
                             child: const Text(
                               'રિમાર્કસ ',
                               style: TextStyle(
@@ -142,17 +235,19 @@ class DutipointPOPPage extends StatelessWidget{
                             ),
                           ),
                           Container(
-                            padding: const EdgeInsets.only(top: 20.0 ,left: 55.0),
+                            padding:
+                                const EdgeInsets.only(top: 20.0, left: 55.0),
                             child: SizedBox(
                               height: 40,
                               width: MediaQuery.of(context).size.width * 0.50,
                               child: TextField(
-                                controller: accessories,
+                                controller: accessoriesController,
                                 focusNode: myFocusNode,
                                 decoration: const InputDecoration(
                                   border: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                        width: 3, color: Colors.lightBlueAccent),
+                                        width: 3,
+                                        color: Colors.lightBlueAccent),
                                   ),
                                   hintText: '',
                                 ),
@@ -165,7 +260,7 @@ class DutipointPOPPage extends StatelessWidget{
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Container(
-                            margin: const EdgeInsets.only( top: 10.0) ,
+                            margin: const EdgeInsets.only(top: 10.0),
                             child: const Text(
                               'Zone ',
                               style: TextStyle(
@@ -175,33 +270,32 @@ class DutipointPOPPage extends StatelessWidget{
                             ),
                           ),
                           Container(
-                            padding: const EdgeInsets.only(top: 20.0 ,left: 55.0),
+                            padding:
+                                const EdgeInsets.only(top: 20.0, left: 55.0),
                             child: SizedBox(
                               height: 40,
                               width: MediaQuery.of(context).size.width * 0.50,
-                              child: TextField(
-                                controller: accessories,
-                                focusNode: myFocusNode,
-                                decoration: const InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        width: 3, color: Colors.lightBlueAccent),
-                                  ),
-                                  hintText: '',
-                                ),
-                              ),
+                              child: DropdownButton(
+                                  value: _dropDownValue,
+                                  items: widget.zones.map((zone) {
+                                    return DropdownMenuItem(
+                                        value: zone.id,
+                                        child: Text(zone.name.toString()));
+                                  }).toList(),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _dropDownValue = value;
+                                    });
+                                  }),
                             ),
                           ),
-           
                         ],
                       ),
- 
                     ],
                   ),
                 ),
-
                 Container(
-                  margin: const EdgeInsets.only(top : 25.0),
+                  margin: const EdgeInsets.only(top: 25.0),
                   alignment: FractionalOffset.center,
                   width: 580,
                   child: Row(
@@ -226,7 +320,16 @@ class DutipointPOPPage extends StatelessWidget{
                         width: 150,
                         height: 36,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            PointApi.createPoint(
+                                API_Decision.Only_Success,
+                                talukaController.text,
+                                districtController.text,
+                                pointNameController.text,
+                                accessoriesController.text,
+                                remarksController.text,
+                                _dropDownValue);
+                          },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.black87,
                           ),

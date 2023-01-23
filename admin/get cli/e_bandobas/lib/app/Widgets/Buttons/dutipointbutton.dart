@@ -23,7 +23,7 @@ class DutiPointButton extends StatelessWidget {
             context: context,
             builder: (BuildContext context) {
               return   AlertDialog(
-                content:DutipointPOPPage(),
+                content:DutipointPOPPage([]),
               );
             });
       },// Text()
