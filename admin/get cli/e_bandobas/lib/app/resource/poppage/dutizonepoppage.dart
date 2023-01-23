@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
-class DutyzonePOPPage  extends  StatelessWidget{
+class DutyzonePOPPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final zoneName = TextEditingController();
   get myFocusNode => null;
@@ -56,7 +59,7 @@ class DutyzonePOPPage  extends  StatelessWidget{
                   child: Column(
                     children: <Widget>[
                       Container(
-                        margin:  const EdgeInsets.only(top:60.0),
+                        margin: const EdgeInsets.only(top: 60.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -78,7 +81,8 @@ class DutyzonePOPPage  extends  StatelessWidget{
                                   decoration: const InputDecoration(
                                     border: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                          width: 3, color: Colors.lightBlueAccent),
+                                          width: 3,
+                                          color: Colors.lightBlueAccent),
                                     ),
                                     hintText: '',
                                   ),
@@ -116,7 +120,9 @@ class DutyzonePOPPage  extends  StatelessWidget{
                         width: 150,
                         height: 36,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            _createZone();
+                          },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.black87,
                           ),
@@ -135,5 +141,41 @@ class DutyzonePOPPage  extends  StatelessWidget{
         ),
       ],
     );
+  }
+
+  void _createZone() async {
+    final response = await http.post(
+      Uri.parse('http://localhost:8080/zone/'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'name': zoneName.text.trim(),
+      }),
+    );
+    // print(response.body);
+    final responseJson = jsonDecode(response.body);
+    print(responseJson['response']['message']);
+
+    // successful response
+    if (responseJson['response']['error'] == 0) {
+      // print(responseJson['content']);
+      Get.snackbar(
+              "Success",
+               "Zone created successfully with name '" + responseJson['content']['name'],
+               icon: Icon(Icons.add_task_sharp, color: Colors.white),
+               snackPosition: SnackPosition.BOTTOM,
+               backgroundColor: Colors.green,
+               );
+    } else {
+      // print(responseJson['response']['message']);
+      Get.snackbar(
+              "Failed",
+               responseJson['response']['message'],
+               icon: Icon(Icons.cancel_presentation_sharp, color: Colors.white),
+               snackPosition: SnackPosition.BOTTOM,
+               backgroundColor: Colors.red,
+               );
+    }
   }
 }
