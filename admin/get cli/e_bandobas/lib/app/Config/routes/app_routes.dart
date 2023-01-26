@@ -12,7 +12,9 @@ abstract class Routes {
   static const OFFICERDATA = _Paths.OFFICERDATA;
   static const ROADBANDOBAST = _Paths.ROADBANDOBAST;
   static const SETTING = _Paths.SETTING;
+  static const ASSESMENT_CREATE = _Paths.ASSESMENT_CREATE;
 }
+
 abstract class _Paths {
   _Paths._();
   static const ASSESMENT = '/assesment';
@@ -24,4 +26,5 @@ abstract class _Paths {
   static const OFFICERDATA = '/officerdata';
   static const ROADBANDOBAST = '/roadbandobast';
   static const SETTING = '/setting';
+  static const ASSESMENT_CREATE = '/assesment-create';
 }

@@ -14,6 +14,12 @@ class AssessmentPOPPage extends StatelessWidget {
   TextEditingController hgValue = TextEditingController(); // 14
   TextEditingController grdValue = TextEditingController(); // 15
 
+
+  TextEditingController startdate = TextEditingController(); 
+  TextEditingController enddate = TextEditingController();
+  TextEditingController manpoliceValue = TextEditingController(); // 15
+  TextEditingController wpiValue = TextEditingController();
+
   AssessmentPOPPage({super.key});
   get myFocusNode => null;
 
