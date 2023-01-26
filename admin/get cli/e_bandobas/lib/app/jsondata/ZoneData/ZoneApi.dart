@@ -1,3 +1,4 @@
+import 'package:e_bandobas/app/Api/API.dart';
 import 'package:e_bandobas/app/jsondata/ZoneData/Zone.dart';
 import 'package:e_bandobas/constants/enums.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,7 @@ class ZoneApi {
   static Future<List<Zone>> obtainZones(API_Decision showStatus) async {
     List<Zone> zones = <Zone>[];
     final response = await http.get(
-      Uri.parse('http://localhost:8080/zone/'),
+      Uri.parse(APIConstants.ZONE_READ_ALL),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },

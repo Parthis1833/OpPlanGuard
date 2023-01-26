@@ -57,7 +57,7 @@ class PointApi {
       String accessories,
       String remarks,
       num? zone) async {
-    Point point = new Point();
+    // Point point = new Point();
     Map data = {
       'taluka': taluka,
       'district': district,
@@ -72,7 +72,7 @@ class PointApi {
           'Content-Type': 'application/json; charset=UTF-8',
         },
         body: jsonEncode(data));
-
+    
     if (response.statusCode == 200) {
       final responseJson = jsonDecode(response.body);
 

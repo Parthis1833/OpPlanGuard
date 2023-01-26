@@ -1,3 +1,4 @@
+import 'package:e_bandobas/app/resource/drawer/navigation_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -11,7 +12,9 @@ class AssesmentCreateView extends GetView<AssesmentCreateController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const Navigation_Drawer(),
       appBar: AppBar(
+        
         title: const Text('AssesmentCreateView'),
         centerTitle: true,
       ),

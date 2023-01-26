@@ -5,6 +5,7 @@ import 'package:e_bandobas/app/jsondata/DesignationData/DesignationApi.dart';
 import 'package:e_bandobas/app/jsondata/EventData/Event.dart';
 import 'package:e_bandobas/app/jsondata/EventData/EventApi.dart';
 import 'package:e_bandobas/app/jsondata/EventPoliceCount/EventPolceCountModel.dart';
+import 'package:e_bandobas/app/jsondata/EventPoliceCount/EventPoliceCountAPI.dart';
 import 'package:e_bandobas/constants/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -43,7 +44,7 @@ class AssesmentCreateController extends GetxController {
     update();
   }
 
-  void saveEventAssignment() {
+  void saveEventAssignment() async {
     Map<String, String> designationsData = {};
 
     for (int i = 0; i < designations.value!.length; i++) {
@@ -60,8 +61,10 @@ class AssesmentCreateController extends GetxController {
     print(eventPoliceCountData);
     EventPoliceCountModel e = EventPoliceCountModel(
         eventId: selectedEventId.value, designations: designationsData);
-    print(e.eventId);
-    print(e.designations);
+
+    bool result = await EventPoliceCountAPI.createAssignment(
+        API_Decision.BOTH, eventPoliceCountData);
+    print(result);
     // print()
   }
 
