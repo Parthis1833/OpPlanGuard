@@ -49,7 +49,7 @@ class PointApi {
     return points;
   }
 
-  static Future<Point> createPoint(
+  static Future<bool> createPoint(
       API_Decision showStatus,
       String taluka,
       String district,
@@ -86,7 +86,9 @@ class PointApi {
             backgroundColor: Colors.green,
           );
         }
-        point = Point.fromJson(responseJson['content']);
+        // TODO: we are not saving it in json format as we need it, will code it further
+        // point = Point.fromJson(responseJson['content']);
+        return true;
       } // api error to be displayed
       else {
         if (showStatus == API_Decision.Only_Failure) {
@@ -100,6 +102,6 @@ class PointApi {
         }
       }
     }
-    return point;
+    return false;
   }
 }

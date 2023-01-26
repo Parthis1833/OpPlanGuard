@@ -4,18 +4,16 @@ import 'package:flutter/services.dart';
 class AssessmentPOPPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   TextEditingController assessmentName = TextEditingController();
-  TextEditingController spValue = TextEditingController();
-  TextEditingController dyspValue = TextEditingController();
-  TextEditingController piValue = TextEditingController();
-  TextEditingController wpiValue = TextEditingController();
-  TextEditingController psiValue = TextEditingController();
-  TextEditingController srpValue = TextEditingController();
-  TextEditingController manpoliceValue = TextEditingController();
-  TextEditingController womanpoliceValue = TextEditingController();
-  TextEditingController hgValue = TextEditingController();
-  TextEditingController grdValue = TextEditingController();
-  TextEditingController startdate = TextEditingController();
-  TextEditingController enddate =   TextEditingController();
+  TextEditingController spValue = TextEditingController(); // id 7
+  TextEditingController dyspValue = TextEditingController(); // 8
+  TextEditingController piValue = TextEditingController(); // 9
+  TextEditingController psiValue = TextEditingController(); // 10
+  TextEditingController srpValue = TextEditingController(); // 11
+  TextEditingController munpoliceValue = TextEditingController(); // 12
+  TextEditingController womanpoliceValue = TextEditingController(); // 13
+  TextEditingController hgValue = TextEditingController(); // 14
+  TextEditingController grdValue = TextEditingController(); // 15
+
   AssessmentPOPPage({super.key});
   get myFocusNode => null;
 

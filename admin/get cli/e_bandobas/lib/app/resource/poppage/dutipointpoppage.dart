@@ -241,7 +241,7 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                               height: 40,
                               width: MediaQuery.of(context).size.width * 0.50,
                               child: TextField(
-                                controller: accessoriesController,
+                                controller: remarksController,
                                 focusNode: myFocusNode,
                                 decoration: const InputDecoration(
                                   border: OutlineInputBorder(
