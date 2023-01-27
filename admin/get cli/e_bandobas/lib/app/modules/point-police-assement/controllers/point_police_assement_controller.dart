@@ -2,10 +2,9 @@ import 'package:e_bandobas/app/jsondata/DesignationData/Designation.dart';
 import 'package:e_bandobas/app/jsondata/DesignationData/DesignationApi.dart';
 import 'package:e_bandobas/app/jsondata/EventData/Event.dart';
 import 'package:e_bandobas/app/jsondata/EventData/EventApi.dart';
-import 'package:e_bandobas/app/jsondata/EventPoliceCount/EventPolceCountModel.dart';
-import 'package:e_bandobas/app/jsondata/EventPoliceCount/EventPoliceCountAPI.dart';
-import 'package:e_bandobas/app/jsondata/PointData/Point.dart';
 import 'package:e_bandobas/app/jsondata/PointData/PointApi.dart';
+import 'package:e_bandobas/app/jsondata/PointData/Point.dart';
+import 'package:e_bandobas/app/jsondata/PointPoliceCount/PoinPoliceCountApi.dart';
 import 'package:e_bandobas/constants/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -42,11 +41,13 @@ class PointPoliceAssementController extends GetxController {
   }
 
   void loadPoints() async {
+    print("done");
     points.value = await PointApi.obtainPoints(API_Decision.Only_Failure);
     if (points.value != null && points.value!.length > 0) {
       selectedPointId.value = points.value!.elementAt(0).id!.toInt();
     }
-    print(points.value![0].pointName);
+    
+    print(points.value![0].zone);
     update();
   }
 
@@ -65,11 +66,8 @@ class PointPoliceAssementController extends GetxController {
       "point-id": selectedPointId.value,
       "designations": designationsData,
     };
-    print(eventPoliceCountData);
-    EventPoliceCountModel e = EventPoliceCountModel(
-        eventId: selectedEventId.value, designations: designationsData);
 
-    bool result = await EventPoliceCountAPI.createAssignment(
+    bool result = await PointPoliceCountApi.createAssignment(
         API_Decision.BOTH, eventPoliceCountData);
     print(result);
 
