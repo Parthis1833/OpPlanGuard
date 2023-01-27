@@ -11,6 +11,8 @@ import '../../modules/dutypointallocation/bindings/dutypointallocation_binding.d
 import '../../modules/dutypointallocation/views/dutypointallocation_view.dart';
 import '../../modules/officerdata/bindings/officerdata_binding.dart';
 import '../../modules/officerdata/views/officerdata_view.dart';
+import '../../modules/point-police-assement/bindings/point_police_assement_binding.dart';
+import '../../modules/point-police-assement/views/point_police_assement_view.dart';
 import '../../modules/pointlist/bindings/pointlist_binding.dart';
 import '../../modules/pointlist/views/pointlist_view.dart';
 import '../../modules/roadbandobast/bindings/roadbandobast_binding.dart';
@@ -83,6 +85,11 @@ class AppPages {
       name: _Paths.ASSESMENT_CREATE,
       page: () => AssesmentCreateView(),
       binding: AssesmentCreateBinding(),
+    ),
+    GetPage(
+      name: _Paths.POINT_POLICE_ASSEMENT,
+      page: () => const PointPoliceAssementView(),
+      binding: PointPoliceAssementBinding(),
     ),
   ];
 }

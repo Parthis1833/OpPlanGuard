@@ -1,22 +1,24 @@
-import 'dart:convert';
-
 import 'package:e_bandobas/app/jsondata/DesignationData/Designation.dart';
 import 'package:e_bandobas/app/jsondata/DesignationData/DesignationApi.dart';
 import 'package:e_bandobas/app/jsondata/EventData/Event.dart';
 import 'package:e_bandobas/app/jsondata/EventData/EventApi.dart';
 import 'package:e_bandobas/app/jsondata/EventPoliceCount/EventPolceCountModel.dart';
 import 'package:e_bandobas/app/jsondata/EventPoliceCount/EventPoliceCountAPI.dart';
+import 'package:e_bandobas/app/jsondata/PointData/Point.dart';
+import 'package:e_bandobas/app/jsondata/PointData/PointApi.dart';
 import 'package:e_bandobas/constants/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AssesmentCreateController extends GetxController {
-  //TODO: Implement AssesmentCreateController
+class PointPoliceAssementController extends GetxController {
+  //TODO: Implement PointPoliceAssementController
 
   var designationTextEditingControllers = <TextEditingController>[];
   late final selectedEventId = 0.obs;
+  late final selectedPointId = 0.obs;
   final designations = Rxn<List<Designation>>();
   final events = Rxn<List<Event>>();
+  final points = Rxn<List<Point>>();
 
   void loadDesignations() async {
     designations.value =
@@ -39,7 +41,16 @@ class AssesmentCreateController extends GetxController {
     update();
   }
 
-  void saveEventAssignment() async {
+  void loadPoints() async {
+    points.value = await PointApi.obtainPoints(API_Decision.Only_Failure);
+    if (points.value != null && points.value!.length > 0) {
+      selectedPointId.value = points.value!.elementAt(0).id!.toInt();
+    }
+    print(points.value![0].pointName);
+    update();
+  }
+
+  void savePointAssignment() async {
     Map<String, String> designationsData = {};
 
     for (int i = 0; i < designations.value!.length; i++) {
@@ -51,7 +62,8 @@ class AssesmentCreateController extends GetxController {
     }
     Map eventPoliceCountData = {
       "event-id": selectedEventId.value,
-      "designations": designationsData
+      "point-id": selectedPointId.value,
+      "designations": designationsData,
     };
     print(eventPoliceCountData);
     EventPoliceCountModel e = EventPoliceCountModel(
@@ -60,7 +72,18 @@ class AssesmentCreateController extends GetxController {
     bool result = await EventPoliceCountAPI.createAssignment(
         API_Decision.BOTH, eventPoliceCountData);
     print(result);
+
     // print()
+  }
+
+  void changeSelectedEvent(num? value) {
+    selectedEventId.value = value!.toInt();
+    update();
+  }
+
+  void changeSelectedPoint(num? value) {
+    selectedPointId.value = value!.toInt();
+    update();
   }
 
   @override
@@ -68,6 +91,7 @@ class AssesmentCreateController extends GetxController {
     super.onInit();
     loadDesignations();
     loadEvents();
+    loadPoints();
   }
 
   @override
@@ -79,11 +103,4 @@ class AssesmentCreateController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  void changeSelectedEvent(num? value) {
-    selectedEventId.value = value!.toInt();
-    update();
-  }
-
-  // void increment() => count.value++;
 }

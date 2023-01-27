@@ -41,17 +41,53 @@ class AssesmentView extends GetView<AssesmentController> {
   }
 
   Widget assementButton() {
-    return FloatingActionButton(
-      heroTag: const Text("AssessmentButton"),
-      backgroundColor: const Color.fromARGB(100, 28, 54, 105),
-      onPressed: () {
-        Get.toNamed("/assesment-create");
-      },
-      child: const Icon(
-        Icons.add_circle_outline,
-        color: Colors.deepPurple,
-        size: 56.4,
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              FloatingActionButton(
+                heroTag: const Text("Event Assement"),
+                backgroundColor: const Color.fromARGB(100, 28, 54, 105),
+                onPressed: () {
+                  Get.toNamed("/assesment-create");
+                },
+                child: const Icon(
+                  Icons.add_circle_outline,
+                  color: Colors.deepPurple,
+                  size: 56.4,
+                ),
+              ),
+              const Text("Event Assement")
+            ],
+          ),
+        ),
+
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              FloatingActionButton(
+                heroTag: const Text("Point Assement"),
+                backgroundColor: Colors.green,
+                onPressed: () {
+                  Get.toNamed("/point-police-assement");
+                },
+                child: const Icon(
+                  Icons.add_circle_outline,
+                  color: Colors.deepPurple,
+                  size: 56.4,
+                ),
+              ),
+              const Text("Point Assement")
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
