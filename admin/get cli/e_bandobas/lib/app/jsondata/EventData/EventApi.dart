@@ -1,6 +1,3 @@
-
-import 'dart:html';
-
 import 'package:e_bandobas/app/Api/API.dart';
 import 'package:e_bandobas/app/jsondata/EventData/Event.dart';
 import 'package:e_bandobas/constants/enums.dart';
@@ -18,6 +15,7 @@ class EventApi {
         'Content-Type': 'application/json; charset=UTF-8',
       },
     );
+
     if (response.statusCode == 200) {
       final responseJson = jsonDecode(response.body);
 
@@ -26,7 +24,7 @@ class EventApi {
           Get.snackbar(
             "Success",
             "Event Obtained successfully",
-            icon: Icon(Icons.add_task_sharp, color: Colors.white),
+            icon: const Icon(Icons.add_task_sharp, color: Colors.white),
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.green,
           );
@@ -41,7 +39,7 @@ class EventApi {
           Get.snackbar(
             "Failed",
             responseJson['response']['message'],
-            icon: Icon(Icons.cancel_presentation_sharp, color: Colors.white),
+            icon: const Icon(Icons.cancel_presentation_sharp, color: Colors.white),
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.red,
           );

@@ -1,11 +1,10 @@
-import 'dart:html';
+
 
 import 'package:e_bandobas/app/Api/API.dart';
 import 'package:e_bandobas/app/jsondata/DesignationData/Designation.dart';
 import 'package:e_bandobas/constants/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:e_bandobas/app/jsondata/DesignationData/Designation.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
