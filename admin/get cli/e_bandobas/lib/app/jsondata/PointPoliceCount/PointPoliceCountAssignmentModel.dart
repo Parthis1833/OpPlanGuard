@@ -14,11 +14,11 @@ class PointPoliceCountAssignment {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['event-id'] = this.eventId;
-    data['point-id'] = this.pointId;
-    data['event-name'] = this.eventName;
-    data['assignments'] = this.assignments;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['event-id'] = eventId;
+    data['point-id'] = pointId;
+    data['event-name'] = eventName;
+    data['assignments'] = assignments;
     return data;
   }
 }
@@ -37,10 +37,10 @@ class Assignment {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['designation-id'] = this.designationId;
-    data['designation-name'] = this.designationName;
-    data['designation-count'] = this.designationCount;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['designation-id'] = designationId;
+    data['designation-name'] = designationName;
+    data['designation-count'] = designationCount;
     return data;
   }
 }

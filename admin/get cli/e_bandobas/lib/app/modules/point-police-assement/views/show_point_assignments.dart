@@ -62,7 +62,9 @@ class ShowPointAssigment extends GetView<ShowPointPoliceAssementController> {
   }
 
   Widget designationListWidget() {
-    return ListView.builder(
+     return controller.isPointPoliceCountAssigned.value
+        ? 
+    ListView.builder(
       scrollDirection: Axis.vertical,
       shrinkWrap: true,
       itemCount:
@@ -105,55 +107,52 @@ class ShowPointAssigment extends GetView<ShowPointPoliceAssementController> {
           ],
         );
       },
-    );
+    ) : Container();
   }
 
   Widget viewUpdateContainerRow() {
-    return controller.isPointPoliceCountAssigned.value
-        ? Container(
-            alignment: FractionalOffset.center,
-            width: 580,
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  SizedBox(
-                    width: 150,
-                    height: 36,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        controller.loadPointPoliceAssignmentData();
-                      },
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white),
-                      child: const Text(
-                        "View",
-                        style: TextStyle(color: Colors.black87),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 150,
-                    height: 36,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        // TODO: make update ui and send event id and point id to it.
-                        // controller.savePointAssignment();
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black87,
-                      ),
-                      child: const Text(
-                        "Update",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  )
-                ],
+    return Container(
+      alignment: FractionalOffset.center,
+      width: 580,
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            SizedBox(
+              width: 150,
+              height: 36,
+              child: ElevatedButton(
+                onPressed: () {
+                  controller.loadPointPoliceAssignmentData();
+                },
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
+                child: const Text(
+                  "View",
+                  style: TextStyle(color: Colors.black87),
+                ),
               ),
             ),
-          )
-        : Container();
+            SizedBox(
+              width: 150,
+              height: 36,
+              child: ElevatedButton(
+                onPressed: () {
+                  // TODO: make update ui and send event id and point id to it.
+                  // controller.savePointAssignment();
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black87,
+                ),
+                child: const Text(
+                  "Update",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }

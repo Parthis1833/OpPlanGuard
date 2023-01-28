@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 
 import 'PointPoliceCountAssignmentModel.dart';
 
@@ -42,7 +43,8 @@ class PointPoliceCountApi {
           Get.snackbar(
             "Failed",
             responseJson['response']['message'] ?? "No message available",
-            icon: const Icon(Icons.cancel_presentation_sharp, color: Colors.white),
+            icon: const Icon(Icons.cancel_presentation_sharp,
+                color: Colors.white),
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.red,
           );
@@ -57,13 +59,12 @@ class PointPoliceCountApi {
     int obtainedEventId, obtainedPointId;
     String eventName;
     List<Assignment> assignments = [];
-    Map modelApiData = {
+    final modelApiData = {
       'event-id': eventId,
       'point-id': pointId,
     };
 
-    final response =
-        await http.post(Uri.parse(APIConstants.POINT_POLICE_COUNT_CREATE),
+    final response = await http.post(Uri.parse(APIConstants.POINT_POLICE_COUNT_DESIGNATION_COUNTS),
             headers: <String, String>{
               'Content-Type': 'application/json; charset=UTF-8',
             },
@@ -78,7 +79,7 @@ class PointPoliceCountApi {
           Get.snackbar(
             "Success",
             "Police Assignement noted for point successfully",
-            icon: Icon(Icons.add_task_sharp, color: Colors.white),
+            icon: const Icon(Icons.add_task_sharp, color: Colors.white),
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.green,
           );

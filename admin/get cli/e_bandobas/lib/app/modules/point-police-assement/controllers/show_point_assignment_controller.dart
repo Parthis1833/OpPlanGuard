@@ -28,6 +28,7 @@ class ShowPointPoliceAssementController extends GetxController {
     if (events.value != null && events.value!.length > 0) {
       selectedEventId.value = events.value!.elementAt(0).id!.toInt();
     }
+    print(events.value?.length);
     update();
   }
 
@@ -38,7 +39,7 @@ class ShowPointPoliceAssementController extends GetxController {
       selectedPointId.value = points.value!.elementAt(0).id!.toInt();
     }
 
-    print(points.value![0].zone);
+    print(points.value?.length);
     update();
   }
 
@@ -53,15 +54,6 @@ class ShowPointPoliceAssementController extends GetxController {
   }
 
   void loadPointPoliceAssignmentData() async {
-    // designations.value =
-    //     await DesignationApi.obtainDesignations(API_Decision.Only_Failure);
-    // if (designations.value != null) {
-    //   for (var i in designations.value!) {
-    //     var textEditingController = TextEditingController(text: "");
-    //     designationTextEditingControllers.add(textEditingController);
-    //     // return textFields.add(new TextField(controller: textEditingController));
-    //   }
-    // }
     pointPoliceCountAssignment.value =
         await PointPoliceCountApi.obtainPointPoliceAssignments(
             API_Decision.BOTH, selectedEventId.value, selectedPointId.value);
@@ -73,8 +65,12 @@ class ShowPointPoliceAssementController extends GetxController {
         designationTextEditingControllers.add(textEditingController);
       }
     }
-    print(pointPoliceCountAssignment.value?.eventName ?? "");
-    isPointPoliceCountAssigned.value = true;
+
+    isPointPoliceCountAssigned.value =
+        pointPoliceCountAssignment.value?.assignments?.length != 0;
+    // if (isPointPoliceCountAssigned.value == false) {
+    //   pointPoliceCountAssignment.value?.assignments = [];
+    // }
     update();
   }
 

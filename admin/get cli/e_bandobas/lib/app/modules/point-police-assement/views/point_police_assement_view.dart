@@ -46,7 +46,7 @@ class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
           )
         ],
       ),
-      body: Obx(() => (controller.designations.value == null &&
+      body: Obx(() => (controller.designations.value!.isEmpty &&
               controller.events.value == null &&
               controller.points.value == null)
           ? const CircularProgressIndicator()

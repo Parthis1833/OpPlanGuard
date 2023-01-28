@@ -108,11 +108,11 @@ class APIConstants {
   // point police count
   static const POINT_POLICE_COUNT = "/point_police_count/";
   static const POINT_POLICE_COUNT_CREATE = BASE_URL + "/point_police_count/";
-  static const POINT_POLICE_COUNT_UPDATE = BASE_URL + "/point_police_count/";
+  static const POINT_POLICE_COUNT_UPDATE = BASE_URL + "/point_police_count/"; // need to append id
   static const POINT_POLICE_COUNT_READ_ALL = BASE_URL + "/point_police_count/";
   static const POINT_POLICE_COUNT_READ_ALL_SPECIFIC_POINT = BASE_URL + "/point_police_count/"; // APPEND POINT ID
-  static const POINT_POLICE_COUNT_DESIGNATION_COUNTS = BASE_URL + "/point_police_count/";
-  static const POINT_POLICE_COUNT_CREATE_ASSIGNMENTS = BASE_URL + "/point_police_count/";
+  static const POINT_POLICE_COUNT_DESIGNATION_COUNTS = BASE_URL + "/point_police_count/" + "designation-counts";
+  // static const POINT_POLICE_COUNT_CREATE_ASSIGNMENTS = BASE_URL + "/point_police_count/" + "assignments";
 
 
 
