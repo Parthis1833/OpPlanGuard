@@ -5,32 +5,23 @@ import 'package:e_bandobas/app/jsondata/EventData/EventApi.dart';
 import 'package:e_bandobas/app/jsondata/PointData/PointApi.dart';
 import 'package:e_bandobas/app/jsondata/PointData/Point.dart';
 import 'package:e_bandobas/app/jsondata/PointPoliceCount/PointPoliceCountApi.dart';
+import 'package:e_bandobas/app/jsondata/PointPoliceCount/PointPoliceCountAssignmentModel.dart';
 import 'package:e_bandobas/constants/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class PointPoliceAssementController extends GetxController {
+class ShowPointPoliceAssementController extends GetxController {
   //TODO: Implement PointPoliceAssementController
-
   var designationTextEditingControllers = <TextEditingController>[];
   late final selectedEventId = 0.obs;
   late final selectedPointId = 0.obs;
-  final designations = Rxn<List<Designation>>();
   final events = Rxn<List<Event>>();
   final points = Rxn<List<Point>>();
 
-  void loadDesignations() async {
-    designations.value =
-        await DesignationApi.obtainDesignations(API_Decision.Only_Failure);
-    if (designations.value != null) {
-      for (var i in designations.value!) {
-        var textEditingController = TextEditingController(text: "");
-        designationTextEditingControllers.add(textEditingController);
-        // return textFields.add(new TextField(controller: textEditingController));
-      }
-    }
-    update();
-  }
+  final pointPoliceCountAssignment = Rxn<PointPoliceCountAssignment>();
+
+  // flag variables
+  var isPointPoliceCountAssigned = false.obs;
 
   void loadEvents() async {
     events.value = await EventApi.obtainEvents(API_Decision.Only_Failure);
@@ -46,32 +37,9 @@ class PointPoliceAssementController extends GetxController {
     if (points.value != null && points.value!.length > 0) {
       selectedPointId.value = points.value!.elementAt(0).id!.toInt();
     }
-    
+
     print(points.value![0].zone);
     update();
-  }
-
-  void savePointAssignment() async {
-    Map<String, String> designationsData = {};
-
-    for (int i = 0; i < designations.value!.length; i++) {
-      if (designationTextEditingControllers[i].text.isNotEmpty &&
-          int.parse(designationTextEditingControllers[i].text) > 0) {
-        designationsData[designations.value![i].id.toString()] =
-            designationTextEditingControllers[i].text;
-      }
-    }
-    Map eventPoliceCountData = {
-      "event-id": selectedEventId.value,
-      "point-id": selectedPointId.value,
-      "designations": designationsData,
-    };
-
-    bool result = await PointPoliceCountApi.createAssignment(
-        API_Decision.BOTH, eventPoliceCountData);
-    print(result);
-
-    // print()
   }
 
   void changeSelectedEvent(num? value) {
@@ -84,10 +52,35 @@ class PointPoliceAssementController extends GetxController {
     update();
   }
 
+  void loadPointPoliceAssignmentData() async {
+    // designations.value =
+    //     await DesignationApi.obtainDesignations(API_Decision.Only_Failure);
+    // if (designations.value != null) {
+    //   for (var i in designations.value!) {
+    //     var textEditingController = TextEditingController(text: "");
+    //     designationTextEditingControllers.add(textEditingController);
+    //     // return textFields.add(new TextField(controller: textEditingController));
+    //   }
+    // }
+    pointPoliceCountAssignment.value =
+        await PointPoliceCountApi.obtainPointPoliceAssignments(
+            API_Decision.BOTH, selectedEventId.value, selectedPointId.value);
+    if (pointPoliceCountAssignment.value?.assignments != null) {
+      for (var i in pointPoliceCountAssignment.value!.assignments!) {
+        var textEditingController = TextEditingController(
+          text: i.designationCount.toString(),
+        );
+        designationTextEditingControllers.add(textEditingController);
+      }
+    }
+    print(pointPoliceCountAssignment.value?.eventName ?? "");
+    isPointPoliceCountAssigned.value = true;
+    update();
+  }
+
   @override
   void onInit() {
     super.onInit();
-    loadDesignations();
     loadEvents();
     loadPoints();
   }

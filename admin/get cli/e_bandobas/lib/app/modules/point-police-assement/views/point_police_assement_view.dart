@@ -1,3 +1,4 @@
+import 'package:e_bandobas/app/Config/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -8,25 +9,52 @@ import 'package:e_bandobas/app/resource/drawer/navigation_drawer.dart';
 
 class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
   const PointPoliceAssementView({Key? key}) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const Navigation_Drawer(),
       appBar: AppBar(
-        
         title: const Text('AssesmentCreateView'),
         centerTitle: true,
+        actions: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    FloatingActionButton(
+                      heroTag: const Text("Show Point Assesment"),
+                      backgroundColor: Colors.green,
+                      onPressed: () {
+                        Get.toNamed(PATHS.SHOW_POINTS_ASSESMENT);
+                      },
+                      child: const Icon(
+                        Icons.add_circle_outline,
+                        color: Colors.deepPurple,
+                        size: 45.4,
+                      ),
+                    ),
+                    const Text("Show Point Assesment")
+                  ],
+                ),
+              ),
+            ],
+          )
+        ],
       ),
       body: Obx(() => (controller.designations.value == null &&
               controller.events.value == null &&
               controller.points.value == null)
           ? const CircularProgressIndicator()
-          : popUpPageDataWidget()),
+          : eventPoliceAssementWidget()),
     );
   }
 
-  Widget popUpPageDataWidget() {
+  Widget eventPoliceAssementWidget() {
     return ListView(
       children: [
         eventSelectionDropDownWidget(),
@@ -138,7 +166,7 @@ class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
             }));
   }
 
-  Widget pointSelectionDropDownWidget(){
+  Widget pointSelectionDropDownWidget() {
     return Container(
         child: DropdownButton(
             value: controller.selectedPointId.value,

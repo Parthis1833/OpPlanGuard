@@ -3,21 +3,21 @@ part of 'app_pages.dart';
 
 abstract class Routes {
   Routes._();
-  static const ASSESMENT = _Paths.ASSESMENT;
-  static const COUNTER = _Paths.COUNTER;
-  static const DUTYPOINT = _Paths.DUTYPOINT;
-  static const POINTLIST = _Paths.POINTLIST;
-  static const ZONELIST = _Paths.ZONELIST;
-  static const DUTYPOINTALLOCATION = _Paths.DUTYPOINTALLOCATION;
-  static const OFFICERDATA = _Paths.OFFICERDATA;
-  static const ROADBANDOBAST = _Paths.ROADBANDOBAST;
-  static const SETTING = _Paths.SETTING;
-  static const ASSESMENT_CREATE = _Paths.ASSESMENT_CREATE;
-  static const POINT_POLICE_ASSEMENT = _Paths.POINT_POLICE_ASSEMENT;
+  static const ASSESMENT = PATHS.ASSESMENT;
+  static const COUNTER = PATHS.COUNTER;
+  static const DUTYPOINT = PATHS.DUTYPOINT;
+  static const POINTLIST = PATHS.POINTLIST;
+  static const ZONELIST = PATHS.ZONELIST;
+  static const DUTYPOINTALLOCATION = PATHS.DUTYPOINTALLOCATION;
+  static const OFFICERDATA = PATHS.OFFICERDATA;
+  static const ROADBANDOBAST = PATHS.ROADBANDOBAST;
+  static const SETTING = PATHS.SETTING;
+  static const ASSESMENT_CREATE = PATHS.ASSESMENT_CREATE;
+  static const POINT_POLICE_ASSEMENT = PATHS.POINT_POLICE_ASSESMENET;
 }
 
-abstract class _Paths {
-  _Paths._();
+class PATHS {
+  PATHS._();
   static const ASSESMENT = '/assesment';
   static const COUNTER = '/counter';
   static const DUTYPOINT = '/dutypoint';
@@ -28,5 +28,7 @@ abstract class _Paths {
   static const ROADBANDOBAST = '/roadbandobast';
   static const SETTING = '/setting';
   static const ASSESMENT_CREATE = '/assesment-create';
-  static const POINT_POLICE_ASSEMENT = '/point-police-assement';
+  static const POINT_POLICE_ASSESMENET = '/point-police-assesment';
+
+  static const SHOW_POINTS_ASSESMENT = "/show-point-assesment";
 }

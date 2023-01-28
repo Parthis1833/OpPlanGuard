@@ -53,7 +53,7 @@ class AssesmentView extends GetView<AssesmentController> {
                 heroTag: const Text("Event Assement"),
                 backgroundColor: const Color.fromARGB(100, 28, 54, 105),
                 onPressed: () {
-                  Get.toNamed("/assesment-create");
+                  Get.toNamed(PATHS.ASSESMENT_CREATE);
                 },
                 child: const Icon(
                   Icons.add_circle_outline,
@@ -75,7 +75,7 @@ class AssesmentView extends GetView<AssesmentController> {
                 heroTag: const Text("Point Assement"),
                 backgroundColor: Colors.green,
                 onPressed: () {
-                  Get.toNamed("/point-police-assement");
+                  Get.toNamed(PATHS.POINT_POLICE_ASSESMENET);
                 },
                 child: const Icon(
                   Icons.add_circle_outline,
