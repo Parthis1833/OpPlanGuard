@@ -61,7 +61,7 @@ class EventApi {
       'event-end-date': eventEndDate
     };
 
-    final response = await http.post(Uri.parse(APIConstants.EVENT_URL),
+    final response = await http.post(Uri.parse(APIConstants.EVENT_URL_CREATE),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
