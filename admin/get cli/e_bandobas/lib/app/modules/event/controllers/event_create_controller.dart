@@ -96,3 +96,12 @@ class EventCreateController extends GetxController {
     }
   }
 }
+
+
+// now creating ui of 
+
+// assignedPolice in points.
+
+// UI parts:
+
+// 1. 
