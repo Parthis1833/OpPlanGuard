@@ -14,6 +14,7 @@ abstract class Routes {
   static const SETTING = PATHS.SETTING;
   static const ASSESMENT_CREATE = PATHS.ASSESMENT_CREATE;
   static const POINT_POLICE_ASSEMENT = PATHS.POINT_POLICE_ASSESMENET;
+  static const EVENT = PATHS.EVENT_CREATE;
 }
 
 class PATHS {
@@ -31,4 +32,6 @@ class PATHS {
   static const POINT_POLICE_ASSESMENET = '/point-police-assesment';
 
   static const SHOW_POINTS_ASSESMENT = "/show-point-assesment";
+
+  static const EVENT_CREATE = "/event";
 }

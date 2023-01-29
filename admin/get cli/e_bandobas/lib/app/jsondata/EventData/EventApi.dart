@@ -20,7 +20,8 @@ class EventApi {
       final responseJson = jsonDecode(response.body);
 
       if (responseJson['response']['error'] == 0) {
-        if (showStatus == API_Decision.Only_Success) {
+        if (showStatus == API_Decision.Only_Success ||
+            showStatus == API_Decision.BOTH) {
           Get.snackbar(
             "Success",
             "Event Obtained successfully",
@@ -35,11 +36,13 @@ class EventApi {
         }
       } // api error to be displayed
       else {
-        if (showStatus == API_Decision.Only_Failure) {
+        if (showStatus == API_Decision.Only_Failure ||
+            showStatus == API_Decision.BOTH) {
           Get.snackbar(
             "Failed",
             responseJson['response']['message'],
-            icon: const Icon(Icons.cancel_presentation_sharp, color: Colors.white),
+            icon: const Icon(Icons.cancel_presentation_sharp,
+                color: Colors.white),
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.red,
           );
@@ -48,5 +51,52 @@ class EventApi {
     }
     return events;
   }
-  
+
+  static Future<bool> createEvent(API_Decision showStatus, String eventName,
+      String eventDetails, String eventStartDate, String eventEndDate) async {
+    final modelApiData = {
+      'event-name': eventName,
+      'event-details': eventDetails,
+      'event-start-date': eventStartDate,
+      'event-end-date': eventEndDate
+    };
+
+    final response = await http.post(Uri.parse(APIConstants.EVENT_URL),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(modelApiData));
+
+    if (response.statusCode == 200) {
+      final responseJson = jsonDecode(response.body);
+
+      if (responseJson['response']['error'] == 0) {
+        if (showStatus == API_Decision.Only_Success ||
+            showStatus == API_Decision.BOTH) {
+          Get.snackbar(
+            "Success",
+            "Event Created successfully",
+            icon: const Icon(Icons.add_task_sharp, color: Colors.white),
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.green,
+          );
+        }
+        return true;
+      } // api error to be displayed
+      else {
+        if (showStatus == API_Decision.Only_Failure ||
+            showStatus == API_Decision.BOTH) {
+          Get.snackbar(
+            "Failed",
+            responseJson['response']['message'],
+            icon: const Icon(Icons.cancel_presentation_sharp,
+                color: Colors.white),
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.red,
+          );
+        }
+      }
+    }
+    return false;
+  }
 }

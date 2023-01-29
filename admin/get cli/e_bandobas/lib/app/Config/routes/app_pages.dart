@@ -9,11 +9,14 @@ import '../../modules/dutypoint/bindings/dutypoint_binding.dart';
 import '../../modules/dutypoint/views/dutypoint_view.dart';
 import '../../modules/dutypointallocation/bindings/dutypointallocation_binding.dart';
 import '../../modules/dutypointallocation/views/dutypointallocation_view.dart';
+import '../../modules/event/bindings/event_binding.dart';
+import '../../modules/event/views/event_view.dart';
 import '../../modules/officerdata/bindings/officerdata_binding.dart';
 import '../../modules/officerdata/views/officerdata_view.dart';
 import '../../modules/point-police-assement/bindings/point_police_assement_binding.dart';
 import '../../modules/point-police-assement/bindings/show_point_assignment_binding.dart';
 import '../../modules/point-police-assement/views/point_police_assement_view.dart';
+import '../../modules/point-police-assement/views/show_point_assignments.dart';
 import '../../modules/pointlist/bindings/pointlist_binding.dart';
 import '../../modules/pointlist/views/pointlist_view.dart';
 import '../../modules/roadbandobast/bindings/roadbandobast_binding.dart';
@@ -22,7 +25,6 @@ import '../../modules/setting/bindings/setting_binding.dart';
 import '../../modules/setting/views/setting_view.dart';
 import '../../modules/zonelist/bindings/zonelist_binding.dart';
 import '../../modules/zonelist/views/zonelist_view.dart';
-import '../../modules/point-police-assement/views/show_point_assignments.dart';
 
 part 'app_routes.dart';
 
@@ -97,6 +99,11 @@ class AppPages {
       name: PATHS.SHOW_POINTS_ASSESMENT,
       page: () => const ShowPointAssigment(),
       binding: ShowPointPoliceAssementBinding(),
+    ),
+    GetPage(
+      name: Routes.EVENT,
+      page: () => const EventView(),
+      binding: EventBinding(),
     ),
   ];
 }

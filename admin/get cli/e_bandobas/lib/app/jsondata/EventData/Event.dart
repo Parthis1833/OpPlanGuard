@@ -8,10 +8,10 @@ class Event {
 
   Event.fromJson(dynamic json) {
     id = json['id'];
-    eventName = json['eventName'];
-    eventDetails = json['eventDetails'];
-    eventStartDate = json['eventStartDate'];
-    eventEndDate = json['eventEndDate'];
+    eventName = json['event-name'];
+    eventDetails = json['event-details'];
+    eventStartDate = json['event-start-date'];
+    eventEndDate = json['event-end-date'];
   }
   num? id;
   String? eventName;
@@ -22,10 +22,10 @@ class Event {
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['id'] = id;
-    map['eventName'] = eventName;
-    map['eventDetails'] = eventDetails;
-    map['eventStartDate'] = eventStartDate;
-    map['eventEndDate'] = eventEndDate;
+    map['event-name'] = eventName;
+    map['event-details'] = eventDetails;
+    map['event-start-date'] = eventStartDate;
+    map['event-end-date'] = eventEndDate;
     return map;
   }
 }
