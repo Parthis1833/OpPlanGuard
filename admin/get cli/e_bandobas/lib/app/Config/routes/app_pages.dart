@@ -1,18 +1,26 @@
-import 'package:e_bandobas/app/modules/event/bindings/event_create_binding.dart';
-import 'package:e_bandobas/app/modules/event/bindings/event_update_binding.dart';
-import 'package:e_bandobas/app/modules/event/views/event_create.dart';
+import 'package:e_bandobas/app/modules/assigned-police/bindings/assigned_police_delete_binding.dart';
+import 'package:e_bandobas/app/modules/assigned-police/bindings/assigned_police_update_binding.dart';
+import 'package:e_bandobas/app/modules/assigned-police/views/assigned_police_delete.dart';
+import 'package:e_bandobas/app/modules/assigned-police/views/assigned_police_update.dart';
 import 'package:get/get.dart';
 
 import '../../modules/assesment-create/bindings/assesment_create_binding.dart';
 import '../../modules/assesment-create/views/assesment_create_view.dart';
 import '../../modules/assesment/bindings/assesment_binding.dart';
 import '../../modules/assesment/views/assesment_view.dart';
+import '../../modules/assigned-police/bindings/assigned_police_add_binding.dart';
+import '../../modules/assigned-police/bindings/assigned_police_binding.dart';
+import '../../modules/assigned-police/views/assigned_police_add.dart';
+import '../../modules/assigned-police/views/assigned_police_view.dart';
 import '../../modules/counter/views/counter_view.dart';
 import '../../modules/dutypoint/bindings/dutypoint_binding.dart';
 import '../../modules/dutypoint/views/dutypoint_view.dart';
 import '../../modules/dutypointallocation/bindings/dutypointallocation_binding.dart';
 import '../../modules/dutypointallocation/views/dutypointallocation_view.dart';
 import '../../modules/event/bindings/event_binding.dart';
+import '../../modules/event/bindings/event_create_binding.dart';
+import '../../modules/event/bindings/event_update_binding.dart';
+import '../../modules/event/views/event_create.dart';
 import '../../modules/event/views/event_update.dart';
 import '../../modules/event/views/event_view.dart';
 import '../../modules/officerdata/bindings/officerdata_binding.dart';
@@ -118,6 +126,29 @@ class AppPages {
       name: PATHS.EVENT_UPDATE,
       page: () => const EventUpdateView(),
       binding: EventUpdateBinding(),
+    ),
+    GetPage(
+      name: Routes.ASSIGNED_POLICE,
+      page: () => const AssignedPoliceView(),
+      binding: AssignedPoliceBinding(),
+    ),
+
+    GetPage(
+      name: PATHS.ASSIGNED_POLICE_ADD,
+      page: () => const AssignedPoliceAddView(),
+      binding: AssignedPoliceAddBinding(),
+    ),
+
+    GetPage(
+      name: Routes.ASSIGNED_POLICE_DELETE,
+      page: () => const AssignedPoliceDeleteView(),
+      binding: AssignedPoliceDeleteBinding(),
+    ),
+
+    GetPage(
+      name: Routes.ASSIGNED_POLICE_UPDATE,
+      page: () => const AssignedPoliceUpdateView(),
+      binding: AssignedPoliceUpdateBinding(),
     ),
   ];
 }

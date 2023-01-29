@@ -15,6 +15,10 @@ abstract class Routes {
   static const ASSESMENT_CREATE = PATHS.ASSESMENT_CREATE;
   static const POINT_POLICE_ASSEMENT = PATHS.POINT_POLICE_ASSESMENET;
   static const EVENT_SHOW = PATHS.EVENT_SHOW;
+  static const ASSIGNED_POLICE = PATHS.ASSIGNED_POLICE;
+  static const ASSIGNED_POLICE_ADD = PATHS.ASSIGNED_POLICE_ADD;
+  static const ASSIGNED_POLICE_UPDATE = PATHS.ASSIGNED_POLICE_UPDATE;
+  static const ASSIGNED_POLICE_DELETE = PATHS.ASSIGNED_POLICE_DELETE;
 }
 
 class PATHS {
@@ -35,4 +39,8 @@ class PATHS {
   static const EVENT_CREATE = "/event-create";
   static const EVENT_UPDATE = "/event-update";
 
+  static const ASSIGNED_POLICE = "/assigned-police";
+  static const ASSIGNED_POLICE_ADD = "/assigned-police-add";
+  static const ASSIGNED_POLICE_UPDATE = "/assigned-police-update";
+  static const ASSIGNED_POLICE_DELETE = "/assigned-police-delete";
 }
