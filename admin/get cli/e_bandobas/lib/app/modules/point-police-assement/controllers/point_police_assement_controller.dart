@@ -1,3 +1,4 @@
+import 'package:e_bandobas/app/Exceptions/ValidationException.dart';
 import 'package:e_bandobas/app/jsondata/DesignationData/Designation.dart';
 import 'package:e_bandobas/app/jsondata/DesignationData/DesignationApi.dart';
 import 'package:e_bandobas/app/jsondata/EventData/Event.dart';
@@ -46,7 +47,7 @@ class PointPoliceAssementController extends GetxController {
     if (points.value != null && points.value!.length > 0) {
       selectedPointId.value = points.value!.elementAt(0).id!.toInt();
     }
-    
+
     print(points.value![0].zone);
     update();
   }
@@ -66,6 +67,10 @@ class PointPoliceAssementController extends GetxController {
       "point-id": selectedPointId.value,
       "designations": designationsData,
     };
+
+    if (designationsData.isEmpty) {
+      throw ValidationException().validationSnackBar;
+    }
 
     bool result = await PointPoliceCountApi.createAssignment(
         API_Decision.BOTH, eventPoliceCountData);
