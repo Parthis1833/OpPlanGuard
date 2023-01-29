@@ -4,8 +4,9 @@ import 'package:e_bandobas/app/jsondata/ZoneData/Zone.dart';
 import 'package:e_bandobas/constants/enums.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class DutipointPOPPage extends StatefulWidget {
-  DutipointPOPPage(this.zones);
+  DutipointPOPPage(this.zones, {super.key});
   List<Zone> zones;
 
   @override
@@ -39,6 +40,7 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
         accessoriesController.text,
         remarksController.text,
         _dropDownValue);
+    // ignore: use_build_context_synchronously
     Navigator.of(context).pop();
     }else{
       ValidationException().validationSnackBar;

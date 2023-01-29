@@ -1,3 +1,4 @@
+import 'package:e_bandobas/app/Exceptions/ValidationException.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:convert';
@@ -122,7 +123,11 @@ class DutyzonePOPPage extends StatelessWidget {
                         child: ElevatedButton(
                           onPressed: () {
                             _createZone();
-                            Navigator.of(context).pop();
+                            if(zoneName.text.isNotEmpty){
+                              Navigator.of(context).pop();
+                            }else{
+                              ValidationException().validationSnackBar;
+                            }
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.black87,
@@ -162,21 +167,21 @@ class DutyzonePOPPage extends StatelessWidget {
     if (responseJson['response']['error'] == 0) {
       // print(responseJson['content']);
       Get.snackbar(
-              "Success",
-               "Zone created successfully with name '" + responseJson['content']['name'],
-               icon: Icon(Icons.add_task_sharp, color: Colors.white),
-               snackPosition: SnackPosition.BOTTOM,
-               backgroundColor: Colors.green,
-               );
+        "Success",
+        "Zone created successfully with name '" + responseJson['content']['name'],
+        icon: Icon(Icons.add_task_sharp, color: Colors.white),
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.green,
+      );
     } else {
       // print(responseJson['response']['message']);
       Get.snackbar(
-              "Failed",
-               responseJson['response']['message'],
-               icon: Icon(Icons.cancel_presentation_sharp, color: Colors.white),
-               snackPosition: SnackPosition.BOTTOM,
-               backgroundColor: Colors.red,
-               );
+        "Failed",
+        responseJson['response']['message'],
+        icon: Icon(Icons.cancel_presentation_sharp, color: Colors.white),
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+      );
     }
   }
 }
