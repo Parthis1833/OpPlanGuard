@@ -13,16 +13,11 @@ class DutipointPOPPage extends StatefulWidget {
 
 class _DutipointPOPPageState extends State<DutipointPOPPage> {
   final _formKey = GlobalKey<FormState>();
-
   final talukaController = TextEditingController();
   final districtController = TextEditingController();
-
   final pointNameController = TextEditingController();
-
   final accessoriesController = TextEditingController();
-
   final remarksController = TextEditingController();
-
   get myFocusNode => null;
 
   num? _dropDownValue;
