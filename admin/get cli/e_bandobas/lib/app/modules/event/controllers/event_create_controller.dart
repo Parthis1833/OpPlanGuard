@@ -31,20 +31,27 @@ class EventCreateController extends GetxController {
   }
 
   void saveEvent() async {
+    bool result = false;
     if (eventNameTextEditController.text.isNotEmpty &&
         eventDetailsTextEditingController.text.isNotEmpty) {
-      bool result = await EventApi.createEvent(
+      result = await EventApi.createEvent(
           API_Decision.BOTH,
           eventNameTextEditController.text,
           eventDetailsTextEditingController.text,
-          DateFormat("dd-MM-yyyy").format(startDate.value).toString(),
-          DateFormat("dd-MM-yyyy").format(endDate.value).toString());
+          startDate.value,
+          endDate.value);
 
       print(result);
     } else {
       // validationSnackBar;
       ValidationException().validationSnackBar;
     }
+
+    if (result) {
+      eventDetailsTextEditingController.text = "";
+      eventNameTextEditController.text = "";
+    }
+    update();
   }
 
   void chooseStartDate() async {

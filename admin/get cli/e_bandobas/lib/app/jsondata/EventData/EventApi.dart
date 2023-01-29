@@ -4,6 +4,7 @@ import 'package:e_bandobas/constants/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'dart:convert';
 
 class EventApi {
@@ -53,12 +54,12 @@ class EventApi {
   }
 
   static Future<bool> createEvent(API_Decision showStatus, String eventName,
-      String eventDetails, String eventStartDate, String eventEndDate) async {
+      String eventDetails, DateTime eventStartDate, DateTime eventEndDate) async {
     final modelApiData = {
       'event-name': eventName,
       'event-details': eventDetails,
-      'event-start-date': eventStartDate,
-      'event-end-date': eventEndDate
+      'event-start-date': DateFormat("dd/MM/yyyy").format(eventStartDate).toString(),
+      'event-end-date': DateFormat("dd/MM/yyyy").format(eventEndDate).toString()
     };
 
     final response = await http.post(Uri.parse(APIConstants.EVENT_URL_CREATE),
@@ -97,6 +98,8 @@ class EventApi {
         }
       }
     }
+    print(response.request?.url.toString());
+    print(modelApiData);
     print(response.body);
     return false;
   }
