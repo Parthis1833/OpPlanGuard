@@ -57,7 +57,7 @@ class AssesmentCreateController extends GetxController {
     print(eventPoliceCountData);
     EventPoliceCountModel e = EventPoliceCountModel(
         eventId: selectedEventId.value, designations: designationsData);
-
+    
     bool result = await EventPoliceCountAPI.createAssignment(
         API_Decision.BOTH, eventPoliceCountData);
     // print()

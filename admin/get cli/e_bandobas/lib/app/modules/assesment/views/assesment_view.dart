@@ -109,6 +109,28 @@ class AssesmentView extends GetView<AssesmentController> {
             ],
           ),
         ),
+
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              FloatingActionButton(
+                heroTag: const Text("Assigned Police"),
+                backgroundColor: Colors.lightGreen,
+                onPressed: () {
+                  Get.toNamed(PATHS.ASSIGNED_POLICE);
+                },
+                child: const Icon(
+                  Icons.add_circle_outline,
+                  color: Colors.deepPurple,
+                  size: 56.4,
+                ),
+              ),
+              const Text("Assigned Page")
+            ],
+          ),
+        ),
       ],
     );
   }

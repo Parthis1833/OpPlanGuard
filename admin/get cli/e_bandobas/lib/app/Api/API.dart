@@ -83,6 +83,10 @@ class APIConstants {
       BASE_URL + ASSIGNPOLICE + "count-police-in-event";
   static const ASSIGNPOLICE_COUNT_IN_POINT_AND_EVENT =
       BASE_URL + ASSIGNPOLICE + "count-police-in-point-event";
+  static const ASSIGNPOLICE_POLICE_IN_POINT_AND_EVENT =
+      BASE_URL + ASSIGNPOLICE + "police-in-point-event";
+
+  
 
   // zone
   static const ZONE = "/zone/";

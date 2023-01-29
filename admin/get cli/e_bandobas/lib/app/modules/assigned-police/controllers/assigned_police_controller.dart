@@ -1,5 +1,8 @@
+import 'package:e_bandobas/app/Exceptions/ValidationException.dart';
 import 'package:e_bandobas/app/jsondata/EventData/Event.dart';
 import 'package:e_bandobas/app/jsondata/EventData/EventApi.dart';
+import 'package:e_bandobas/app/jsondata/EventPointAssignmentData/eventPointAssignmentApi.dart';
+import 'package:e_bandobas/app/jsondata/EventPointAssignmentData/eventPointAssignmentModel.dart';
 import 'package:e_bandobas/app/jsondata/PointData/Point.dart';
 import 'package:e_bandobas/app/jsondata/PointData/PointApi.dart';
 import 'package:e_bandobas/constants/enums.dart';
@@ -12,12 +15,15 @@ class AssignedPoliceController extends GetxController {
   late final selectedPointId = 0.obs;
   final events = Rxn<List<Event>>();
   final points = Rxn<List<Point>>();
-
+  late EventPointAssignmentModel eventPointAssignmentModel;
+  final isAssignmentLoaded = false.obs;
 
   final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
+    loadEvents();
+    loadPoints();
   }
 
   @override
@@ -32,23 +38,47 @@ class AssignedPoliceController extends GetxController {
 
   void increment() => count.value++;
 
-
   void loadPoints() async {
     print("done");
     points.value = await PointApi.obtainPoints(API_Decision.Only_Failure);
     if (points.value != null && points.value!.length > 0) {
       selectedPointId.value = points.value!.elementAt(0).id!.toInt();
     }
-
-    print(points.value![0].zone);
+    // points.value!.forEach((element) {
+    //   print(element.id);
+    //   print(element.pointName);
+    // });
+    // print(points.value![0].pointName);
     update();
   }
-
 
   void loadEvents() async {
     events.value = await EventApi.obtainEvents(API_Decision.Only_Failure);
     if (events.value != null && events.value!.length > 0) {
       selectedEventId.value = events.value!.elementAt(0).id!.toInt();
+    }
+    update();
+  }
+
+  void changeSelectedEvent(num? value) {
+    selectedEventId.value = value!.toInt();
+    update();
+  }
+
+  void changeSelectedPoint(num? value) {
+    selectedPointId.value = value!.toInt();
+    update();
+  }
+
+  showAssignments() async {
+    eventPointAssignmentModel =
+        await EventPointAssignmentModelApi.obtainEventPointAssignments(
+            API_Decision.BOTH, selectedEventId.value, selectedPointId.value);
+    print(eventPointAssignmentModel.assignedPoliceList);
+    if (eventPointAssignmentModel != null) {
+      isAssignmentLoaded.value = true;
+    } else {
+      isAssignmentLoaded.value = false;
     }
     update();
   }
