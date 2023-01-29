@@ -68,8 +68,7 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                   margin: const EdgeInsets.only(left: 95.0),
                   child: const Align(
                     alignment: Alignment.topLeft,
-                    child: Text(
-                      'એડિટ પોઇન્ટ',
+                    child: Text('એડિટ પોઇન્ટ',
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
                         color: Colors.black54,
@@ -88,8 +87,7 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                         children: [
                           Container(
                             margin: const EdgeInsets.only(top: 10.0),
-                            child: const Text(
-                              'તાલુકો',
+                            child: const Text('તાલુકો',
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   color: Colors.black38,
@@ -122,8 +120,7 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                         children: [
                           Container(
                             margin: const EdgeInsets.only(top: 10.0),
-                            child: const Text(
-                              'જિલ્લો',
+                            child: const Text('જિલ્લો',
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   color: Colors.black38,
@@ -154,14 +151,11 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Container(
-                            child: const Text(
-                              'પોઈન્ટનું નામ',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black38,
-                                  fontSize: 26.0),
-                            ),
+                          const Text('પોઈન્ટનું નામ',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black38,
+                                fontSize: 26.0),
                           ),
                           Container(
                             padding: const EdgeInsets.only(top:10.0),
@@ -189,8 +183,7 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                         children: [
                           Container(
                             margin: const EdgeInsets.only(top: 10.0),
-                            child: const Text(
-                              'એક્સેસરીઝ',
+                            child: const Text('એક્સેસરીઝ',
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   color: Colors.black38,
@@ -223,8 +216,7 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                         children: [
                           Container(
                             margin: const EdgeInsets.only(top: 10.0),
-                            child: const Text(
-                              'રિમાર્કસ ',
+                            child: const Text('રિમાર્કસ',
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   color: Colors.black38,
@@ -257,8 +249,7 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                         children: [
                           Container(
                             margin: const EdgeInsets.only(top: 10.0),
-                            child: const Text(
-                              'ઝોન',
+                            child: const Text('ઝોન',
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   color: Colors.black38,
@@ -305,8 +296,7 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                           },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white),
-                          child: const Text(
-                            "Cancel",
+                          child: const Text("Cancel",
                             style: TextStyle(color: Colors.black87),
                           ),
                         ),
@@ -328,8 +318,7 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.black87,
                           ),
-                          child: const Text(
-                            "Save",
+                          child: const Text("Save",
                             style: TextStyle(color: Colors.white),
                           ),
                         ),

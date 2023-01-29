@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
-class ValidationException {
+class ValidationException implements Exception{
 
   final validationSnackBar = Get.snackbar(
     "warning",
@@ -11,6 +11,8 @@ class ValidationException {
     snackPosition: SnackPosition.BOTTOM,
     backgroundColor: Colors.yellow,
   );
+
+  
 }
 
 // final validationSnackBar = Get.snackbar(

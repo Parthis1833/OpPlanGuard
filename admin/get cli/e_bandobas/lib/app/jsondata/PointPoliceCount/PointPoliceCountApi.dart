@@ -14,6 +14,8 @@ class PointPoliceCountApi {
   // static Future<List<EventPoliceCountModel>> obtainA
   static Future<bool> createAssignment(
       API_Decision showStatus, Map modelApiData) async {
+        
+    print(modelApiData);
     final response =
         await http.post(Uri.parse(APIConstants.POINT_POLICE_COUNT_CREATE),
             headers: <String, String>{
@@ -64,11 +66,12 @@ class PointPoliceCountApi {
       'point-id': pointId,
     };
 
-    final response = await http.post(Uri.parse(APIConstants.POINT_POLICE_COUNT_DESIGNATION_COUNTS),
-            headers: <String, String>{
-              'Content-Type': 'application/json; charset=UTF-8',
-            },
-            body: jsonEncode(modelApiData));
+    final response = await http.post(
+        Uri.parse(APIConstants.POINT_POLICE_COUNT_DESIGNATION_COUNTS),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(modelApiData));
 
     if (response.statusCode == 200) {
       final responseJson = jsonDecode(response.body);
