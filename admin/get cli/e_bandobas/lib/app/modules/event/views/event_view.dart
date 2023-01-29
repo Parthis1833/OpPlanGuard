@@ -22,7 +22,7 @@ class EventView extends GetView<EventController> {
         centerTitle: true,
       ),
       body: Obx(() => (controller.events.value == null &&
-              controller.events.value?.length == 0)
+              controller.events.value!.isEmpty)
           ? const CircularProgressIndicator()
           : eventsPageData()),
       floatingActionButton: createEventButton(),

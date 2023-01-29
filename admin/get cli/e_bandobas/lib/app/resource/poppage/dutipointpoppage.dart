@@ -1,3 +1,4 @@
+import 'package:e_bandobas/app/Exceptions/ValidationException.dart';
 import 'package:e_bandobas/app/jsondata/PointData/PointApi.dart';
 import 'package:e_bandobas/app/jsondata/ZoneData/Zone.dart';
 import 'package:e_bandobas/constants/enums.dart';
@@ -26,6 +27,22 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
     // TODO: implement initState
     super.initState();
     _dropDownValue = widget.zones[0].id;
+  }
+  void savePoint() async{
+    bool result = false;
+    if(pointNameController.text.isNotEmpty ){
+    result = await PointApi.createPoint(
+        API_Decision.Only_Success,
+        talukaController.text,
+        districtController.text,
+        pointNameController.text,
+        accessoriesController.text,
+        remarksController.text,
+        _dropDownValue);
+    Navigator.of(context).pop();
+    }else{
+      ValidationException().validationSnackBar;
+    }
   }
 
   @override
@@ -301,15 +318,7 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                         height: 36,
                         child: ElevatedButton(
                           onPressed: () {
-                            PointApi.createPoint(
-                                API_Decision.Only_Success,
-                                talukaController.text,
-                                districtController.text,
-                                pointNameController.text,
-                                accessoriesController.text,
-                                remarksController.text,
-                                _dropDownValue);
-                            Navigator.of(context).pop();
+                            savePoint();
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.black87,

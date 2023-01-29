@@ -113,11 +113,11 @@ class EventCreateView extends GetView<EventCreateController> {
     return Column(
       children: [
         TextField(
-          decoration: InputDecoration(hintText: "Event Name"),
+          decoration: const InputDecoration(hintText: "Event Name"),
           controller: controller.eventNameTextEditController,
         ),
         TextField(
-          decoration: InputDecoration(hintText: "Event Details"),
+          decoration: const InputDecoration(hintText: "Event Details"),
           controller: controller.eventDetailsTextEditingController,
         ),
       ],

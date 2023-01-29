@@ -30,9 +30,7 @@ class PATHS {
   static const SETTING = '/setting';
   static const ASSESMENT_CREATE = '/assesment-create';
   static const POINT_POLICE_ASSESMENET = '/point-police-assesment';
-
   static const SHOW_POINTS_ASSESMENT = "/show-point-assesment";
-
   static const EVENT_SHOW = "/event";
   static const EVENT_CREATE = "/event-create";
   static const EVENT_UPDATE = "/event-update";

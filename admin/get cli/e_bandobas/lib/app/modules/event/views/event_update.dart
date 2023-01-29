@@ -14,7 +14,7 @@ class EventUpdateView extends GetView<EventUpdateController> {
         title: const Text('EventView'),
         centerTitle: true,
       ),
-      body: Center(
+      body: const Center(
         child: Text(
           'EventView is working',
           style: TextStyle(fontSize: 20),

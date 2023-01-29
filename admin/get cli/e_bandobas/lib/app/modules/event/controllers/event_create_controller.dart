@@ -29,7 +29,6 @@ class EventCreateController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
   void saveEvent() async {
     bool result = false;
     if (eventNameTextEditController.text.isNotEmpty &&
@@ -40,7 +39,6 @@ class EventCreateController extends GetxController {
           eventDetailsTextEditingController.text,
           startDate.value,
           endDate.value);
-
       print(result);
     } else {
       // validationSnackBar;
@@ -96,7 +94,6 @@ class EventCreateController extends GetxController {
     }
   }
 }
-
 
 // now creating ui of 
 
