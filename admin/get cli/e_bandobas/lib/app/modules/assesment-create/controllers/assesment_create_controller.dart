@@ -36,6 +36,7 @@ class AssesmentCreateController extends GetxController {
     if (events.value != null && events.value!.length > 0) {
       selectedEventId.value = events.value!.elementAt(0).id!.toInt();
     }
+    print(events.value);
     update();
   }
 
@@ -59,7 +60,6 @@ class AssesmentCreateController extends GetxController {
 
     bool result = await EventPoliceCountAPI.createAssignment(
         API_Decision.BOTH, eventPoliceCountData);
-    print(result);
     // print()
   }
 

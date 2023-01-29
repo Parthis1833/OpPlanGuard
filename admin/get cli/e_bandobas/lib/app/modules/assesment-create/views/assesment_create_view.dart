@@ -14,7 +14,6 @@ class AssesmentCreateView extends GetView<AssesmentCreateController> {
     return Scaffold(
       drawer: const Navigation_Drawer(),
       appBar: AppBar(
-        
         title: const Text('AssesmentCreateView'),
         centerTitle: true,
       ),
@@ -124,15 +123,21 @@ class AssesmentCreateView extends GetView<AssesmentCreateController> {
   }
 
   Widget eventSelectionDropDownWidget() {
-    return Container(
-        child: DropdownButton(
-            value: controller.selectedEventId.value,
-            items: controller.events.value!.map((event) {
-              return DropdownMenuItem(
-                  value: event.id, child: Text(event.eventName.toString()));
-            }).toList(),
-            onChanged: (value) {
-              controller.changeSelectedEvent(value);
-            }));
+    print("length = " +  controller.events.value!.length.toString());
+    return controller.events.value!.length > 0
+        ? Container(
+            child: DropdownButton(
+                hint: Text("select event"),
+                value: controller.selectedEventId.value == 0
+                    ? null
+                    : controller.selectedEventId.value,
+                items: controller.events.value?.map((event) {
+                  return DropdownMenuItem(
+                      value: event.id, child: Text(event.eventName.toString()));
+                }).toList(),
+                onChanged: (value) {
+                  controller.changeSelectedEvent(value);
+                }))
+        : Container();
   }
 }

@@ -1,3 +1,6 @@
+import 'package:e_bandobas/app/modules/event/bindings/event_create_binding.dart';
+import 'package:e_bandobas/app/modules/event/bindings/event_update_binding.dart';
+import 'package:e_bandobas/app/modules/event/views/event_create.dart';
 import 'package:get/get.dart';
 
 import '../../modules/assesment-create/bindings/assesment_create_binding.dart';
@@ -10,6 +13,7 @@ import '../../modules/dutypoint/views/dutypoint_view.dart';
 import '../../modules/dutypointallocation/bindings/dutypointallocation_binding.dart';
 import '../../modules/dutypointallocation/views/dutypointallocation_view.dart';
 import '../../modules/event/bindings/event_binding.dart';
+import '../../modules/event/views/event_update.dart';
 import '../../modules/event/views/event_view.dart';
 import '../../modules/officerdata/bindings/officerdata_binding.dart';
 import '../../modules/officerdata/views/officerdata_view.dart';
@@ -101,9 +105,19 @@ class AppPages {
       binding: ShowPointPoliceAssementBinding(),
     ),
     GetPage(
-      name: Routes.EVENT,
+      name: Routes.EVENT_SHOW,
       page: () => const EventView(),
       binding: EventBinding(),
+    ),
+    GetPage(
+      name: PATHS.EVENT_CREATE,
+      page: () => const EventCreateView(),
+      binding: EventCreateBinding(),
+    ),
+    GetPage(
+      name: PATHS.EVENT_UPDATE,
+      page: () => const EventUpdateView(),
+      binding: EventUpdateBinding(),
     ),
   ];
 }

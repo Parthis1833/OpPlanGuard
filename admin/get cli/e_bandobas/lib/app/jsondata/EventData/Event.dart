@@ -7,7 +7,7 @@ class Event {
       this.eventEndDate});
 
   Event.fromJson(dynamic json) {
-    id = json['id'];
+    id = json['event-id'];
     eventName = json['event-name'];
     eventDetails = json['event-details'];
     eventStartDate = json['event-start-date'];
@@ -21,7 +21,7 @@ class Event {
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    map['id'] = id;
+    map['event-id'] = id;
     map['event-name'] = eventName;
     map['event-details'] = eventDetails;
     map['event-start-date'] = eventStartDate;
