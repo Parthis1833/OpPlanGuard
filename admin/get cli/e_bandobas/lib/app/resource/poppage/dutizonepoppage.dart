@@ -122,6 +122,7 @@ class DutyzonePOPPage extends StatelessWidget {
                         child: ElevatedButton(
                           onPressed: () {
                             _createZone();
+                            Navigator.of(context).pop();
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.black87,

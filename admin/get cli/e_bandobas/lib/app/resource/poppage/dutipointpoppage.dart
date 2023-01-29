@@ -314,6 +314,7 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                                 accessoriesController.text,
                                 remarksController.text,
                                 _dropDownValue);
+                            Navigator.of(context).pop();
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.black87,
