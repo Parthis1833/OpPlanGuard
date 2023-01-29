@@ -97,6 +97,7 @@ class EventApi {
         }
       }
     }
+    print(response.body);
     return false;
   }
 }

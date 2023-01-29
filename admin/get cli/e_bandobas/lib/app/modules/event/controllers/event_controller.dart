@@ -32,4 +32,6 @@ class EventController extends GetxController {
     }
     update();
   }
+
+  void saveEvent() {}
 }

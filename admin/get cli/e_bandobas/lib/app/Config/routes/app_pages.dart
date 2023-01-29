@@ -111,7 +111,7 @@ class AppPages {
     ),
     GetPage(
       name: PATHS.EVENT_CREATE,
-      page: () => const EventCreateView(),
+      page: () => EventCreateView(),
       binding: EventCreateBinding(),
     ),
     GetPage(
