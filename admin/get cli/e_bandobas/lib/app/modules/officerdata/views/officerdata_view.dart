@@ -25,7 +25,7 @@ class OfficerdataView extends GetView<OfficerdataController> {
               child: Text(''),
             ),
           ),
-          OfficerDataGrid(),
+          const OfficerDataGrid(),
         ],
       ),
     );

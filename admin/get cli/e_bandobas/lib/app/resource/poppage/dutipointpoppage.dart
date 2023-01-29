@@ -89,7 +89,7 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                           Container(
                             margin: const EdgeInsets.only(top: 10.0),
                             child: const Text(
-                              'Taluka ',
+                              'તાલુકો',
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   color: Colors.black38,
@@ -97,8 +97,7 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                             ),
                           ),
                           Container(
-                            padding:
-                                const EdgeInsets.only(top: 20.0, left: 55.0),
+                            padding: const EdgeInsets.only(top:10.0,left: 50.0),
                             child: SizedBox(
                               height: 40,
                               width: MediaQuery.of(context).size.width * 0.50,
@@ -124,7 +123,7 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                           Container(
                             margin: const EdgeInsets.only(top: 10.0),
                             child: const Text(
-                              'District ',
+                              'જિલ્લો',
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   color: Colors.black38,
@@ -132,8 +131,7 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                             ),
                           ),
                           Container(
-                            padding:
-                                const EdgeInsets.only(top: 20.0, left: 55.0),
+                            padding: const EdgeInsets.only(top:10.0,left: 50.0),
                             child: SizedBox(
                               height: 40,
                               width: MediaQuery.of(context).size.width * 0.50,
@@ -166,7 +164,7 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                             ),
                           ),
                           Container(
-                            padding: const EdgeInsets.only(top: 2.0),
+                            padding: const EdgeInsets.only(top:10.0),
                             child: SizedBox(
                               height: 40,
                               width: MediaQuery.of(context).size.width * 0.50,
@@ -200,8 +198,7 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                             ),
                           ),
                           Container(
-                            padding:
-                                const EdgeInsets.only(top: 20.0, left: 25.0),
+                            padding: const EdgeInsets.only(top:10.0),
                             child: SizedBox(
                               height: 40,
                               width: MediaQuery.of(context).size.width * 0.50,
@@ -235,8 +232,7 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                             ),
                           ),
                           Container(
-                            padding:
-                                const EdgeInsets.only(top: 20.0, left: 55.0),
+                            padding: const EdgeInsets.only(top:10.0,left: 30.0),
                             child: SizedBox(
                               height: 40,
                               width: MediaQuery.of(context).size.width * 0.50,
@@ -262,7 +258,7 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                           Container(
                             margin: const EdgeInsets.only(top: 10.0),
                             child: const Text(
-                              'Zone ',
+                              'ઝોન',
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   color: Colors.black38,
@@ -270,8 +266,7 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                             ),
                           ),
                           Container(
-                            padding:
-                                const EdgeInsets.only(top: 20.0, left: 55.0),
+                            padding: const EdgeInsets.only(top: 10.0, left: 65.0),
                             child: SizedBox(
                               height: 40,
                               width: MediaQuery.of(context).size.width * 0.50,
