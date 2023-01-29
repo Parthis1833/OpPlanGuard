@@ -12,7 +12,6 @@ class AssesmentCreateView extends GetView<AssesmentCreateController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const Navigation_Drawer(),
       appBar: AppBar(
         title: const Text('AssesmentCreateView'),
         centerTitle: true,
