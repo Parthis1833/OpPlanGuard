@@ -15,7 +15,7 @@ class AssignedPoliceController extends GetxController {
   late final selectedPointId = 0.obs;
   final events = Rxn<List<Event>>();
   final points = Rxn<List<Point>>();
-  late EventPointAssignmentModel eventPointAssignmentModel;
+  final eventPointAssignmentModel = Rxn<EventPointAssignmentModel>();
   final isAssignmentLoaded = false.obs;
 
   final count = 0.obs;
@@ -71,11 +71,11 @@ class AssignedPoliceController extends GetxController {
   }
 
   showAssignments() async {
-    eventPointAssignmentModel =
+    eventPointAssignmentModel.value =
         await EventPointAssignmentModelApi.obtainEventPointAssignments(
             API_Decision.BOTH, selectedEventId.value, selectedPointId.value);
-    print(eventPointAssignmentModel.assignedPoliceList);
-    if (eventPointAssignmentModel != null) {
+    print(eventPointAssignmentModel.value?.assignedPoliceList!.length);
+    if (eventPointAssignmentModel.value?.assignedPoliceList != null) {
       isAssignmentLoaded.value = true;
     } else {
       isAssignmentLoaded.value = false;

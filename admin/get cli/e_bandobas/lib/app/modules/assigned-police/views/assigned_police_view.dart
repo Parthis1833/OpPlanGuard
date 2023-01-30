@@ -29,23 +29,22 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
             showAssignmentButton(),
           ],
         ),
-        Obx(()=> controller.isAssignmentLoaded.value 
+        controller.isAssignmentLoaded.value 
         ? Container(
           child: Column(
             children: [
-              Text(controller.eventPointAssignmentModel.assignmentCount.toString() ?? "")
+              Text(controller.eventPointAssignmentModel.value!.assignmentCount.toString() ?? "")
             ],
           ),
         )
-        : const CircularProgressIndicator()),
+        : const CircularProgressIndicator(),
         
-        
-        Obx(() => controller.isAssignmentLoaded.value
+        controller.isAssignmentLoaded.value
             ? ListView.builder(
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 itemCount: controller
-                    .eventPointAssignmentModel.assignedPoliceList?.length,
+                    .eventPointAssignmentModel.value?.assignedPoliceList?.length,
                 itemBuilder: (context, index) {
                   return SizedBox(
                     height: 50,
@@ -54,21 +53,21 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
                       shrinkWrap: true,
                       
                       children: [
-                        Text(controller.eventPointAssignmentModel.assignedPoliceList?[index].buckleNumber ?? ""),
-                        Text(controller.eventPointAssignmentModel.assignedPoliceList?[index].policeName ?? ""),
-                        Text(controller.eventPointAssignmentModel.assignedPoliceList?[index].district ?? ""),
-                        Text(controller.eventPointAssignmentModel.assignedPoliceList?[index].policeStationName ?? ""),
-                        Text(controller.eventPointAssignmentModel.assignedPoliceList?[index].age ?? ""),
-                        Text(controller.eventPointAssignmentModel.assignedPoliceList?[index].gender ?? ""),
-                        Text(controller.eventPointAssignmentModel.assignedPoliceList?[index].number ?? ""),
-                        Text(controller.eventPointAssignmentModel.assignedPoliceList?[index].dutyStartDate ?? ""),
-                        Text(controller.eventPointAssignmentModel.assignedPoliceList?[index].dutyEndDate ?? ""),
-                        Text(controller.eventPointAssignmentModel.assignedPoliceList?[index].number ?? ""),
+                        Text(controller.eventPointAssignmentModel.value?.assignedPoliceList?[index].buckleNumber ?? ""),
+                        Text(controller.eventPointAssignmentModel.value?.assignedPoliceList?[index].policeName ?? ""),
+                        Text(controller.eventPointAssignmentModel.value?.assignedPoliceList?[index].district ?? ""),
+                        Text(controller.eventPointAssignmentModel.value?.assignedPoliceList?[index].policeStationName ?? ""),
+                        Text(controller.eventPointAssignmentModel.value?.assignedPoliceList?[index].age ?? ""),
+                        Text(controller.eventPointAssignmentModel.value?.assignedPoliceList?[index].gender ?? ""),
+                        Text(controller.eventPointAssignmentModel.value?.assignedPoliceList?[index].number ?? ""),
+                        Text(controller.eventPointAssignmentModel.value?.assignedPoliceList?[index].dutyStartDate ?? ""),
+                        Text(controller.eventPointAssignmentModel.value?.assignedPoliceList?[index].dutyEndDate ?? ""),
+                        Text(controller.eventPointAssignmentModel.value?.assignedPoliceList?[index].number ?? ""),
                       ],
                     ),
                   );
                 })
-            : Container())
+            : Container()
       
       ],
     );
@@ -78,7 +77,7 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
     return Container(
         child: DropdownButton(
             value: controller.selectedEventId.value,
-            items: controller.events.value!.map((event) {
+            items: controller.events.value?.map((event) {
               return DropdownMenuItem(
                   value: event.id, child: Text(event.eventName.toString()));
             }).toList(),
@@ -91,7 +90,7 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
     return Container(
         child: DropdownButton(
             value: controller.selectedPointId.value,
-            items: controller.points.value!.map((point) {
+            items: controller.points.value?.map((point) {
               return DropdownMenuItem(
                   value: point.id, 
                   child: Text(point.pointName.toString()));

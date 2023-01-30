@@ -6,9 +6,9 @@ class EventPointAssignmentModel {
     pointId = json['point-id'];
     assignmentCount = json['assignment-count'];
     // assignedPoliceList = json['assigned-Police-list'];
-    if (json['assigned-Police-list'] != null) {
+    if (json['assigned-police-list'] != null) {
       assignedPoliceList = <Assignment>[];
-      json['assigned-Police-list'].forEach((assignment) {
+      json['assigned-police-list'].forEach((assignment) {
         assignedPoliceList!.add(Assignment.fromJson(assignment));
       });
     }

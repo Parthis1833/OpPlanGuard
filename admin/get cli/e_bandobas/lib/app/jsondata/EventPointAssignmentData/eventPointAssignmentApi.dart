@@ -38,7 +38,7 @@ class EventPointAssignmentModelApi {
         }
 
         model = EventPointAssignmentModel.fromJson(responseJson['content']);
-        print(responseJson['content']);
+        // print(responseJson['content']);
         print(model.eventId);
         print(model.pointId);
         print(model.assignedPoliceList?.length);
