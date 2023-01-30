@@ -63,7 +63,7 @@ class _AssementPopupPageV2State extends State<AssementPopupPageV2> {
               padding: const EdgeInsets.only(top: 25.0),
               child: Text(
                 designations[index].name.toString(),
-                style: TextStyle(
+                style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     color: Colors.black38,
                     fontSize: 26.0),

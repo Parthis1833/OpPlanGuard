@@ -10,9 +10,14 @@ class Officertable extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return SfDataGrid(
-        columns: getColumns(),
-        source:OfficersDataSouce(polices: []),
+    return Center(
+      child: SizedBox(
+        child: SfDataGrid(
+            headerRowHeight: 10,
+            columns: getColumns(),
+            source:OfficersDataSouce(polices: []),
+        ),
+      ),
     );
   }
 }

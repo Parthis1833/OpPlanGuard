@@ -1,4 +1,5 @@
 import 'package:e_bandobas/app/Config/routes/app_pages.dart';
+import 'package:e_bandobas/app/Widgets/Buttons/assessmentbutton.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -25,7 +26,7 @@ class EventView extends GetView<EventController> {
               controller.events.value!.isEmpty)
           ? const CircularProgressIndicator()
           : eventsPageData()),
-      floatingActionButton: createEventButton(),
+      floatingActionButton: AssesmentButton(),
     );
   }
 

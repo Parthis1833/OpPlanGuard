@@ -31,17 +31,17 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
   }
   void savePoint() async{
     bool result = false;
-    if(pointNameController.text.isNotEmpty ){
-    result = await PointApi.createPoint(
-        API_Decision.Only_Success,
-        talukaController.text,
-        districtController.text,
-        pointNameController.text,
-        accessoriesController.text,
-        remarksController.text,
-        _dropDownValue);
-    // ignore: use_build_context_synchronously
-    Navigator.of(context).pop();
+    if(pointNameController.text.isNotEmpty){
+      result = await PointApi.createPoint(
+          API_Decision.Only_Success,
+          talukaController.text,
+          districtController.text,
+          pointNameController.text,
+          accessoriesController.text,
+          remarksController.text,
+          _dropDownValue);
+      // ignore: use_build_context_synchronously
+      Navigator.of(context).pop();
     }else{
       ValidationException().validationSnackBar;
     }

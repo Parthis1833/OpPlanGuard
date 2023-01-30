@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import '../controllers/event_controller.dart';
 
 class EventCreateView extends GetView<EventCreateController> {
   EventCreateView({Key? key}) : super(key: key);
@@ -34,7 +33,7 @@ class EventCreateView extends GetView<EventCreateController> {
                   DateFormat("dd-MM-yyyy")
                       .format(controller.startDate.value)
                       .toString(),
-                  style: TextStyle(fontSize: 25),
+                  style: const TextStyle(fontSize: 25),
                 ),
                 ElevatedButton(
                   onPressed: () {
@@ -50,7 +49,7 @@ class EventCreateView extends GetView<EventCreateController> {
                   DateFormat("dd-MM-yyyy")
                       .format(controller.endDate.value)
                       .toString(),
-                  style: TextStyle(fontSize: 25),
+                  style: const TextStyle(fontSize: 25),
                 ),
                 ElevatedButton(
                   onPressed: () {

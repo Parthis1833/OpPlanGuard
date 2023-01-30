@@ -1,31 +1,83 @@
+import 'package:e_bandobas/app/Exceptions/ValidationException.dart';
+import 'package:e_bandobas/app/jsondata/EventData/EventApi.dart';
+import 'package:e_bandobas/constants/enums.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:intl/intl.dart';
 
-class AssessmentPOPPage extends StatelessWidget {
+
+class AssessmentPOPPage extends  StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _AssessmentPoPPageState();
+
+}
+class _AssessmentPoPPageState extends State<AssessmentPOPPage>{
   final _formKey = GlobalKey<FormState>();
-  TextEditingController assessmentName = TextEditingController();
-  TextEditingController spValue = TextEditingController(); // id 7
-  TextEditingController dyspValue = TextEditingController(); // 8
-  TextEditingController piValue = TextEditingController(); // 9
-  TextEditingController psiValue = TextEditingController(); // 10
-  TextEditingController srpValue = TextEditingController(); // 11
-  TextEditingController munpoliceValue = TextEditingController(); // 12
-  TextEditingController womanpoliceValue = TextEditingController(); // 13
-  TextEditingController hgValue = TextEditingController(); // 14
-  TextEditingController grdValue = TextEditingController(); // 15
+  final eventNameTextEdit = TextEditingController();
+  final eventDetailsTextEditingController = TextEditingController();
+  final startDate = DateTime.now().obs;
+  final endDate = DateTime.now().obs;
 
 
-  TextEditingController startdate = TextEditingController(); 
-  TextEditingController enddate = TextEditingController();
-  TextEditingController manpoliceValue = TextEditingController(); // 15
-  TextEditingController wpiValue = TextEditingController();
+  void chooseStartDate() async {
+    DateTime? pickedDate = await showDatePicker(
+      context: Get.context!,
+      initialDate: startDate.value,
+      firstDate: DateTime(2023),
+      lastDate: DateTime(2025),
+      //initialEntryMode: DatePickerEntryMode.input,
+      // initialDatePickerMode: DatePickerMode.year,
+      helpText: 'Select event start date',
+      cancelText: 'Close',
+      confirmText: 'Confirm',
+      errorFormatText: 'Enter valid date',
+      errorInvalidText: 'Enter valid date range',
+      fieldLabelText: 'Event Start Date',
+      fieldHintText: 'Month/Date/Year',
+    );
+    if (pickedDate != null && pickedDate != startDate.value) {
+      startDate.value = pickedDate;
+    }
+  }
 
-  AssessmentPOPPage({super.key});
+  void chooseEndDate() async {
+    DateTime? pickedDate = await showDatePicker(
+      context: Get.context!,
+      initialDate: endDate.value,
+      firstDate: DateTime(2023),
+      lastDate: DateTime(2025),
+      //initialEntryMode: DatePickerEntryMode.input,
+      // initialDatePickerMode: DatePickerMode.year,
+      helpText: 'Select event end date',
+      cancelText: 'Close',
+      confirmText: 'Confirm',
+      errorFormatText: 'Enter valid date',
+      errorInvalidText: 'Enter valid date range',
+      fieldLabelText: 'Event end Date',
+      fieldHintText: 'Month/Date/Year',
+    );
+    if (pickedDate != null && pickedDate != endDate.value) {
+      endDate.value = pickedDate;
+    }
+  }
   get myFocusNode => null;
-
+  void savePoint() async{
+    bool result = false;
+    if(eventNameTextEdit.text.isNotEmpty){
+      result = await EventApi.createEvent(
+          API_Decision.Only_Success,
+          eventNameTextEdit.text,
+          eventDetailsTextEditingController.text,
+          startDate.value,
+          endDate.value
+      );
+    }else{
+      ValidationException().validationSnackBar;
+    }
+  }
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Stack(
       clipBehavior: Clip.none,
       children: <Widget>[
@@ -91,7 +143,7 @@ class AssessmentPOPPage extends StatelessWidget {
                           height: 40,
                           width: MediaQuery.of(context).size.width * 0.55,
                           child: TextField(
-                            controller: assessmentName,
+                            controller: eventNameTextEdit,
                             focusNode: myFocusNode,
                             decoration: const InputDecoration(
                               border: OutlineInputBorder(
@@ -107,493 +159,79 @@ class AssessmentPOPPage extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  margin: const EdgeInsets.only(left: 75,right: 75),
-                  height: 400,
-                  width:  MediaQuery.of(context).size.width * 75.0,
+                  padding: const EdgeInsets.all(10.0),
                   child: Row(
                     children: [
                       Container(
-                        height: 400,
-                        width:  MediaQuery.of(context).size.width * 0.35,
-                        margin: const EdgeInsets.only(left: 15),
-                        child: Column(
-                          children: [
-                            Column(
-                              children: [
-                                SizedBox(
-                                  height: 55,
-                                  width: MediaQuery.of(context).size.width * 0.35,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Container(
-                                        margin: const EdgeInsets.only(left: 10),
-                                        child: const Text(
-                                          'આરંભ તારીખ',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black54,
-                                              fontSize: 22.0),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 45,
-                                        width: 120,
-                                        child: TextField(
-                                          controller: startdate,
-                                          focusNode: myFocusNode,
-                                          decoration: const InputDecoration(
-                                            border: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  width: 3,
-                                                  color: Colors.lightBlueAccent),
-                                            ),
-                                            hintText: '',
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 55,
-                                  width: MediaQuery.of(context).size.width * 0.35,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Container(
-                                        margin: const EdgeInsets.only(left: 10),
-                                        child: const Text(
-                                          'એસ.પી',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black54,
-                                              fontSize: 22.0),
-                                        ),
-                                      ),
-                                      Container(
-                                        margin: const EdgeInsets.only(left: 40),
-                                        height: 45,
-                                        width: 120,
-                                        child: TextField(
-                                          controller: spValue,
-                                          focusNode: myFocusNode,
-                                          decoration: const InputDecoration(
-                                            border: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  width: 3,
-                                                  color: Colors.lightBlueAccent),
-                                            ),
-                                            hintText: '',
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 55,
-                                  width: MediaQuery.of(context).size.width * 0.35,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Container(
-                                        margin: const EdgeInsets.only(left: 10),
-                                        child: const Text(
-                                          'ડીવાયએસપી',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black54,
-                                              fontSize: 22.0),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 45,
-                                        width: 120,
-                                        child: TextField(
-                                          controller: dyspValue,
-                                          focusNode: myFocusNode,
-                                          decoration: const InputDecoration(
-                                            border: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  width: 3,
-                                                  color: Colors.lightBlueAccent),
-                                            ),
-                                            hintText: '',
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 55,
-                                  width: MediaQuery.of(context).size.width * 0.35,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Container(
-                                        margin: const EdgeInsets.only(left: 10),
-                                        child: const Text(
-                                          'પીઆઈ',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black54,
-                                              fontSize: 22.0),
-                                        ),
-                                      ),
-                                      Container(
-                                        margin: const EdgeInsets.only(left: 40),
-                                        height: 45,
-                                        width: 120,
-                                        child: TextField(
-                                          controller: piValue,
-                                          focusNode: myFocusNode,
-                                          decoration: const InputDecoration(
-                                            border: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  width: 3,
-                                                  color: Colors.lightBlueAccent),
-                                            ),
-                                            hintText: '',
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 55,
-                                  width: MediaQuery.of(context).size.width * 0.35,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Container(
-                                        margin: const EdgeInsets.only(left: 10),
-                                        child: const Text(
-                                          'પી.એસ.આઈ',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black54,
-                                              fontSize: 22.0),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 45,
-                                        width: 120,
-                                        child: TextField(
-                                          controller: psiValue,
-                                          focusNode: myFocusNode,
-                                          decoration: const InputDecoration(
-                                            border: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  width: 3,
-                                                  color: Colors.lightBlueAccent),
-                                            ),
-                                            hintText: '',
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 55,
-                                  width: MediaQuery.of(context).size.width * 0.35,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Container(
-                                        margin: const EdgeInsets.only(left: 10),
-                                        child: const Text(
-                                          'એસ.આર.પી',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black54,
-                                              fontSize: 22.0),
-                                        ),
-                                      ),
-                                      Container(
-                                        height: 45,
-                                        width: 120,
-                                        child: TextField(
-                                          controller: piValue,
-                                          focusNode: myFocusNode,
-                                          decoration: const InputDecoration(
-                                            border: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  width: 3,
-                                                  color: Colors.lightBlueAccent),
-                                            ),
-                                            hintText: '',
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
+                        margin: const EdgeInsets.only(left: 160.0),
+                        child: const Text(
+                          'સોંપણી વિગત',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black38,
+                              fontSize: 26.0),
                         ),
                       ),
-                      Column(
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.only(
-                              left: 20,
-                            ),
-                            child: const SizedBox(
-                                height: 360,
-                                width: 3,
-                                child: VerticalDivider(
-                                    color: Color.fromARGB(100, 83, 128, 199))),
-                          ),
-                        ],
-                      ),
                       Container(
-                        height: 400,
-                        width:  MediaQuery.of(context).size.width * 0.35,
-                        margin: const EdgeInsets.only(left: 15),
-                        child: Column(
-                          children: [
-                            Column(
-                              children: [
-                                SizedBox(
-                                  height: 55,
-                                  width: MediaQuery.of(context).size.width * 0.35,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Container(
-                                        margin: const EdgeInsets.only(left: 10),
-                                        child: const Text(
-                                          'અંતિમ તારીખ',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black54,
-                                              fontSize: 22.0),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 45,
-                                        width: 120,
-                                        child: TextField(
-                                          controller: enddate,
-                                          focusNode: myFocusNode,
-                                          decoration: const InputDecoration(
-                                            border: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  width: 3,
-                                                  color: Colors.lightBlueAccent),
-                                            ),
-                                            hintText: '',
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 55,
-                                  width: MediaQuery.of(context).size.width * 0.35,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Container(
-                                        margin: const EdgeInsets.only(left: 10),
-                                        child: const Text(
-                                          'પુરૂષ પોલીસ',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black54,
-                                              fontSize: 22.0),
-                                        ),
-                                      ),
-                                      Container(
-                                        height: 45,
-                                        width: 120,
-                                        margin: const EdgeInsets.only(left: 10),
-                                        child: TextField(
-                                          controller:manpoliceValue,
-                                          focusNode: myFocusNode,
-                                          decoration: const InputDecoration(
-                                            border: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  width: 3,
-                                                  color: Colors.lightBlueAccent),
-                                            ),
-                                            hintText: '',
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 55,
-                                  width: MediaQuery.of(context).size.width * 0.35,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Container(
-                                        margin: const EdgeInsets.only(left: 10),
-                                        child: const Text(
-                                          'મહિલા પોલીસ',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black54,
-                                              fontSize: 22.0),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 45,
-                                        width: 120,
-                                        child: TextField(
-                                          controller: womanpoliceValue,
-                                          focusNode: myFocusNode,
-                                          decoration: const InputDecoration(
-                                            border: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  width: 3,
-                                                  color: Colors.lightBlueAccent),
-                                            ),
-                                            hintText: '',
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 55,
-                                  width: MediaQuery.of(context).size.width * 0.35,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Container(
-                                        margin: const EdgeInsets.only(left: 10),
-                                        child: const Text(
-                                          'ડબલ્યુ પી આઈ',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black54,
-                                              fontSize: 22.0),
-                                        ),
-                                      ),
-                                      Container(
-                                        height: 45,
-                                        width: 120,
-                                        child: TextField(
-                                          controller: wpiValue,
-                                          focusNode: myFocusNode,
-                                          decoration: const InputDecoration(
-                                            border: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  width: 3,
-                                                  color: Colors.lightBlueAccent),
-                                            ),
-                                            hintText: '',
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 55,
-                                  width: MediaQuery.of(context).size.width * 0.35,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Container(
-                                        margin: const EdgeInsets.only(left: 10),
-                                        child: const Text(
-                                          'એચજી',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black54,
-                                              fontSize: 22.0),
-                                        ),
-                                      ),
-                                      Container(
-                                        margin: const EdgeInsets.only(left: 60),
-                                        height: 45,
-                                        width: 120,
-                                        child: TextField(
-                                          controller: hgValue,
-                                          focusNode: myFocusNode,
-                                          decoration: const InputDecoration(
-                                            border: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  width: 3,
-                                                  color: Colors.lightBlueAccent),
-                                            ),
-                                            hintText: '',
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 55,
-                                  width: MediaQuery.of(context).size.width * 0.35,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Container(
-                                        margin: const EdgeInsets.only(left: 10),
-                                        child: const Text(
-                                          'જીઆરડી',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black54,
-                                              fontSize: 22.0),
-                                        ),
-                                      ),
-                                      Container(
-                                        margin: const EdgeInsets.only(left: 40),
-                                        height: 45,
-                                        width: 120,
-                                        child: TextField(
-                                          controller: grdValue,
-                                          focusNode: myFocusNode,
-                                          decoration: const InputDecoration(
-                                            border: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  width: 3,
-                                                  color: Colors.lightBlueAccent),
-                                            ),
-                                            hintText: '',
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
+                        margin: const EdgeInsets.only(left: 55.0),
+                        child: SizedBox(
+                          height: 40,
+                          width: MediaQuery.of(context).size.width * 0.55,
+                          child: TextField(
+                            controller: eventDetailsTextEditingController ,
+                            focusNode: myFocusNode,
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    width: 3, color: Colors.lightBlueAccent),
+                              ),
+                              hintText: '',
                             ),
-                          ],
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
-
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Obx(() => Column(
+                      children: [
+                        Text(
+                          DateFormat("dd-MM-yyyy")
+                              .format(startDate.value)
+                              .toString(),
+                          style: const TextStyle(fontSize: 25),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            chooseStartDate();
+                          },
+                          child: const Text("Choose a start date"),
+                        )
+                      ],
+                    )),
+                    Obx(() => Column(
+                      children: [
+                        Text(
+                          DateFormat("dd-MM-yyyy")
+                              .format(endDate.value)
+                              .toString(),
+                          style: const TextStyle(fontSize: 25),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            chooseEndDate();
+                          },
+                          child: const Text("Choose a End date"),
+                        )
+                      ],
+                    ))
+                  ],
+                ),
                 Container(
+                  margin: const EdgeInsets.only(top: 16.0),
                   alignment: FractionalOffset.center,
                   width: 580,
                   child: Row(
@@ -618,7 +256,9 @@ class AssessmentPOPPage extends StatelessWidget {
                         width: 150,
                         height: 36,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            savePoint();
+                          },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.black87,
                           ),
