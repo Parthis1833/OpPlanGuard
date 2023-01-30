@@ -38,7 +38,21 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
           ),
         )
         : const CircularProgressIndicator(),
-        
+        Wrap(
+                      spacing: 5.0,
+                      
+                      children: const [
+                        Text("buckle number"),
+                        Text("police name"),
+                        Text("district"),
+                        Text("police station name"),
+                        Text("age"),
+                        Text("gender"),
+                        Text("number"),
+                        Text("duty starting date"),
+                        Text("duty ending date"),
+                      ],
+                    ),
         controller.isAssignmentLoaded.value
             ? ListView.builder(
                 scrollDirection: Axis.vertical,
@@ -48,9 +62,10 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
                 itemBuilder: (context, index) {
                   return SizedBox(
                     height: 50,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      shrinkWrap: true,
+                    child: Wrap(
+                      spacing: 5.0,
+                      // scrollDirection: Axis.horizontal,
+                      // shrinkWrap: true,
                       
                       children: [
                         Text(controller.eventPointAssignmentModel.value?.assignedPoliceList?[index].buckleNumber ?? ""),
@@ -62,7 +77,6 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
                         Text(controller.eventPointAssignmentModel.value?.assignedPoliceList?[index].number ?? ""),
                         Text(controller.eventPointAssignmentModel.value?.assignedPoliceList?[index].dutyStartDate ?? ""),
                         Text(controller.eventPointAssignmentModel.value?.assignedPoliceList?[index].dutyEndDate ?? ""),
-                        Text(controller.eventPointAssignmentModel.value?.assignedPoliceList?[index].number ?? ""),
                       ],
                     ),
                   );
