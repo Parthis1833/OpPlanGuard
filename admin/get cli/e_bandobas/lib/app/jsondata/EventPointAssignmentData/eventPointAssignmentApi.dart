@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'dart:convert' show utf8;
 
 class EventPointAssignmentModelApi {
   static Future<EventPointAssignmentModel> obtainEventPointAssignments(
@@ -23,7 +24,7 @@ class EventPointAssignmentModelApi {
         },
         body: jsonEncode(modelApiData));
     if (response.statusCode == 200) {
-      final responseJson = jsonDecode(response.body);
+      final responseJson = jsonDecode(utf8.decode(response.bodyBytes));
 
       if (responseJson['response']['error'] == 0) {
         if (showStatus == API_Decision.Only_Success ||
