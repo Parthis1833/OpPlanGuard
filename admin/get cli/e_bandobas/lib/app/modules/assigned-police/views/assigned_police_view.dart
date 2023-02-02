@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../Config/routes/app_pages.dart';
 import '../controllers/assigned_police_controller.dart';
 
 class AssignedPoliceView extends GetView<AssignedPoliceController> {
@@ -9,14 +10,51 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('AssignedPoliceView'),
-        centerTitle: true,
-      ),
-      body: Obx(() => ( controller.events.value == null && controller.points.value == null )
-      ? const CircularProgressIndicator() 
-      : assesmentDataWidget())
-    );
+        appBar: AppBar(
+          title: const Text('AssignedPoliceView'),
+          centerTitle: true,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton(
+                  style: ButtonStyle(
+                    // iconColor: Colors.black,
+                    backgroundColor:
+                        MaterialStateProperty.resolveWith((states) {
+                      // If the button is pressed, return green, otherwise blue
+                      if (states.contains(MaterialState.pressed)) {
+                        return Colors.green;
+                      }
+                      return Colors.blue;
+                    }),
+                    textStyle: MaterialStateProperty.resolveWith((states) {
+                      // If the button is pressed, return size 40, otherwise 20
+                      if (states.contains(MaterialState.pressed)) {
+                        return TextStyle(fontSize: 40);
+                      }
+                      return TextStyle(fontSize: 20);
+                    }),
+                  ),
+                  onPressed: () {
+                    Get.toNamed(PATHS.ASSIGNED_POLICE_ADD);
+                  },
+                  child: Row(
+                    children: const [
+                      Icon(
+                        Icons.add_circle_outline,
+                        color: Colors.deepPurple,
+                        size: 25,
+                      ),
+                      Text("Add"),
+                    ],
+                  )),
+            ),
+          ],
+        ),
+        body: Obx(() =>
+            (controller.events.value == null && controller.points.value == null)
+                ? const CircularProgressIndicator()
+                : assesmentDataWidget()));
   }
 
   Widget assesmentDataWidget() {
@@ -29,36 +67,38 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
             showAssignmentButton(),
           ],
         ),
-        controller.isAssignmentLoaded.value 
-        ? Container(
-          child: Column(
-            children: [
-              Text(controller.eventPointAssignmentModel.value!.assignmentCount.toString() ?? "")
-            ],
-          ),
-        )
-        : const CircularProgressIndicator(),
+        controller.isAssignmentLoaded.value
+            ? Container(
+                child: Column(
+                  children: [
+                    Text(controller
+                            .eventPointAssignmentModel.value!.assignmentCount
+                            .toString() ??
+                        "")
+                  ],
+                ),
+              )
+            : const CircularProgressIndicator(),
         Wrap(
-                      spacing: 5.0,
-                      
-                      children: const [
-                        Text("buckle number"),
-                        Text("police name"),
-                        Text("district"),
-                        Text("police station name"),
-                        Text("age"),
-                        Text("gender"),
-                        Text("number"),
-                        Text("duty starting date"),
-                        Text("duty ending date"),
-                      ],
-                    ),
+          spacing: 5.0,
+          children: const [
+            Text("buckle number"),
+            Text("police name"),
+            Text("district"),
+            Text("police station name"),
+            Text("age"),
+            Text("gender"),
+            Text("number"),
+            Text("duty starting date"),
+            Text("duty ending date"),
+          ],
+        ),
         controller.isAssignmentLoaded.value
             ? ListView.builder(
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
-                itemCount: controller
-                    .eventPointAssignmentModel.value?.assignedPoliceList?.length,
+                itemCount: controller.eventPointAssignmentModel.value
+                    ?.assignedPoliceList?.length,
                 itemBuilder: (context, index) {
                   return SizedBox(
                     height: 50,
@@ -66,23 +106,43 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
                       spacing: 5.0,
                       // scrollDirection: Axis.horizontal,
                       // shrinkWrap: true,
-                      
+
                       children: [
-                        Text(controller.eventPointAssignmentModel.value?.assignedPoliceList?[index].buckleNumber ?? ""),
-                        Text(controller.eventPointAssignmentModel.value?.assignedPoliceList?[index].policeName ?? ""),
-                        Text(controller.eventPointAssignmentModel.value?.assignedPoliceList?[index].district ?? ""),
-                        Text(controller.eventPointAssignmentModel.value?.assignedPoliceList?[index].policeStationName ?? ""),
-                        Text(controller.eventPointAssignmentModel.value?.assignedPoliceList?[index].age ?? ""),
-                        Text(controller.eventPointAssignmentModel.value?.assignedPoliceList?[index].gender ?? ""),
-                        Text(controller.eventPointAssignmentModel.value?.assignedPoliceList?[index].number ?? ""),
-                        Text(controller.eventPointAssignmentModel.value?.assignedPoliceList?[index].dutyStartDate ?? ""),
-                        Text(controller.eventPointAssignmentModel.value?.assignedPoliceList?[index].dutyEndDate ?? ""),
+                        Text(controller.eventPointAssignmentModel.value
+                                ?.assignedPoliceList?[index].buckleNumber ??
+                            ""),
+                        Text(controller.eventPointAssignmentModel.value
+                                ?.assignedPoliceList?[index].policeName ??
+                            ""),
+                        Text(controller.eventPointAssignmentModel.value
+                                ?.assignedPoliceList?[index].district ??
+                            ""),
+                        Text(controller
+                                .eventPointAssignmentModel
+                                .value
+                                ?.assignedPoliceList?[index]
+                                .policeStationName ??
+                            ""),
+                        Text(controller.eventPointAssignmentModel.value
+                                ?.assignedPoliceList?[index].age ??
+                            ""),
+                        Text(controller.eventPointAssignmentModel.value
+                                ?.assignedPoliceList?[index].gender ??
+                            ""),
+                        Text(controller.eventPointAssignmentModel.value
+                                ?.assignedPoliceList?[index].number ??
+                            ""),
+                        Text(controller.eventPointAssignmentModel.value
+                                ?.assignedPoliceList?[index].dutyStartDate ??
+                            ""),
+                        Text(controller.eventPointAssignmentModel.value
+                                ?.assignedPoliceList?[index].dutyEndDate ??
+                            ""),
                       ],
                     ),
                   );
                 })
             : Container()
-      
       ],
     );
   }
@@ -106,8 +166,7 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
             value: controller.selectedPointId.value,
             items: controller.points.value?.map((point) {
               return DropdownMenuItem(
-                  value: point.id, 
-                  child: Text(point.pointName.toString()));
+                  value: point.id, child: Text(point.pointName.toString()));
             }).toList(),
             onChanged: (value) {
               controller.changeSelectedPoint(value);
