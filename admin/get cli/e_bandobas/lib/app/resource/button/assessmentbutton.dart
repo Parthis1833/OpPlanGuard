@@ -1,4 +1,3 @@
-import 'package:e_bandobas/app/resource/poppage/AssementPopupPageV2.dart';
 import 'package:e_bandobas/app/resource/poppage/assementpoppage.dart';
 import 'package:flutter/material.dart';
 

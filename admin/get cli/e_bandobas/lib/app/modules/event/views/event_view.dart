@@ -1,8 +1,12 @@
+import 'dart:convert';
+import 'package:e_bandobas/app/Api/API.dart';
 import 'package:e_bandobas/app/Config/routes/app_pages.dart';
 import 'package:e_bandobas/app/Widgets/Buttons/assessmentbutton.dart';
+import 'package:e_bandobas/app/jsondata/EventData/Event.dart';
 import 'package:flutter/material.dart';
-
+import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
+import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 import '../controllers/event_controller.dart';
 
@@ -15,6 +19,21 @@ import '../controllers/event_controller.dart';
 
 class EventView extends GetView<EventController> {
   const EventView({Key? key}) : super(key: key);
+  Future<List<Event>> generatecontentList() async{
+    var response = await http.get(Uri.parse(
+      // 'http://gujaratpolicebackend-env.eba-bpbkpxau.us-east-1.elasticbeanstalk.com/police/'
+        APIConstants.EVENT_URL)
+    );
+    var decodedOfficerss = jsonDecode(utf8.decode(response.bodyBytes));
+    List<Event> policeListFromContent = [];
+    if (decodedOfficerss['content'] != null) {
+      decodedOfficerss['content'].forEach((EventData) {
+        policeListFromContent.add(Event.fromJson(EventData));
+      });
+    }
+    policeListFromContent[0];
+    return policeListFromContent;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,26 +74,141 @@ class EventView extends GetView<EventController> {
       ),
     ]);
   }
-
+  List<GridColumn> getColumns() {
+  return <GridColumn>[
+    GridColumn(
+        columnName: 'Event-Id',
+        width: 50,
+        label: Container(
+            padding: const EdgeInsets.all(8),
+            alignment: Alignment.centerLeft,
+            child: const Text('ID',
+                overflow: TextOverflow.clip, softWrap: true))),
+     GridColumn(
+        columnName: 'Event-Name',
+        width: 150,
+        label: Container(
+            padding: const EdgeInsets.all(8),
+            alignment: Alignment.centerLeft,
+            child: const Text('Event-Name',
+                overflow: TextOverflow.clip, softWrap: true))),
+    GridColumn(
+        columnName: 'Event-Details',
+        width: 150,
+        label: Container(
+            padding: const EdgeInsets.all(8),
+            alignment: Alignment.centerLeft,
+            child: const Text('Event-Details',
+                overflow: TextOverflow.clip, softWrap: true))),
+    GridColumn(
+        columnName: 'Event-Start-Date',
+        width: 150,
+        label: Container(
+            padding: const EdgeInsets.all(8),
+            alignment: Alignment.centerLeft,
+            child: const Text('Event-Start-Date',
+                overflow: TextOverflow.clip, softWrap: true))),
+    GridColumn(
+        columnName: 'Event-End-Date',
+        width: 150,
+        label: Container(
+            padding: const EdgeInsets.all(8),
+            alignment: Alignment.centerLeft,
+            child: const Text('Event-End-Date',
+                overflow: TextOverflow.clip, softWrap: true))),
+  ];
+  }
   Widget eventsPageData() {
-    return ListView.builder(
-        scrollDirection: Axis.vertical,
-        shrinkWrap: true,
-        itemCount: controller.events.value?.length,
-        itemBuilder: (context, index) {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              // event name,
-              Text(controller.events.value?[index].eventName ?? ""),
-              // event details,
-              Text(controller.events.value?[index].eventDetails ?? ""),
-              // event startdate
-              Text(controller.events.value?[index].eventStartDate ?? ""),
-              // event enddate
-              Text(controller.events.value?[index].eventEndDate ?? ""),
-            ],
+    return SizedBox(
+      height: 900,
+      child: FutureBuilder<Object>(
+        future: getEventDataSource(),
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          return snapshot.hasData
+              ? SfDataGrid(source: snapshot.data, columns: getColumns())
+              : const Center(
+            child: CircularProgressIndicator(
+              strokeWidth: 3,
+            ),
           );
-        });
+        },
+      ),
+    );
+  }
+
+  Future<EventDataGridSource>getEventDataSource() async {
+    List<Event> eventList = await generatecontentList();
+    return  EventDataGridSource(eventList);
+  }
+
+}
+
+class EventDataGridSource extends DataGridSource{
+  late List<DataGridRow> dataGridRows;
+  late List<Event> eventList;
+  EventDataGridSource(this.eventList){
+    buildDataGridRow();
+  }
+
+
+  @override
+  DataGridRowAdapter? buildRow(DataGridRow row) {
+    return DataGridRowAdapter(cells: [
+      Container(
+      alignment: Alignment.centerLeft,
+      padding: const EdgeInsets.all(8.0),
+      child: Text(
+        row.getCells()[0].value.toString(),
+        overflow: TextOverflow.ellipsis,
+      ),
+    ),
+      Container(
+        alignment: Alignment.centerLeft,
+        padding: const EdgeInsets.all(8.0),
+        child: Text(
+          row.getCells()[1].value.toString(),
+          overflow: TextOverflow.ellipsis,
+        ),
+      ),
+      Container(
+        alignment: Alignment.centerLeft,
+        padding: const EdgeInsets.all(8.0),
+        child: Text(
+          row.getCells()[2].value.toString(),
+          overflow: TextOverflow.ellipsis,
+        ),
+      ),
+      Container(
+        alignment: Alignment.centerLeft,
+        padding: const EdgeInsets.all(8.0),
+        child: Text(
+          row.getCells()[3].value.toString(),
+          overflow: TextOverflow.ellipsis,
+        ),
+      ),
+      Container(
+        alignment: Alignment.centerLeft,
+        padding: const EdgeInsets.all(8.0),
+        child: Text(
+          row.getCells()[4].value.toString(),
+          overflow: TextOverflow.ellipsis,
+        ),
+      ),
+    ]
+    );
+  }
+  @override
+  List<DataGridRow> get rows => dataGridRows;
+  void buildDataGridRow() {
+    dataGridRows = eventList.map<DataGridRow>((dataGridRow) {
+      return DataGridRow(cells: [
+        DataGridCell<num>(columnName: 'Event-ID', value: dataGridRow.id),
+        DataGridCell<String>(columnName: 'Event-Name', value: dataGridRow.eventName),
+        DataGridCell<String>(columnName: 'Event-Details', value: dataGridRow.eventDetails),
+        DataGridCell(columnName: 'Start-Date', value: dataGridRow.eventStartDate),
+        DataGridCell(columnName: 'End-Date', value: dataGridRow.eventEndDate),
+      ]);
+
+    }).toList(growable: false);
   }
 }

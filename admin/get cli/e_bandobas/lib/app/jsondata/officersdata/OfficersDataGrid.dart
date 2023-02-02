@@ -26,12 +26,10 @@ class OfficerDataGrid extends StatelessWidget {
       ),
     );
   }
-
   Future<OffficerDataGridSource> getOfficersDataSource() async {
     List<Police> contentList = await generatecontentList();
     return OffficerDataGridSource(contentList);
   }
-
   List<GridColumn> getColumns() {
     return <GridColumn>[
       GridColumn(
@@ -116,21 +114,6 @@ class OfficerDataGrid extends StatelessWidget {
                   const Text('', overflow: TextOverflow.clip, softWrap: true))),
     ];
   }
-
-  Future<Officers> fetchPost() async {
-    // String url = 'http://gujaratpolicebackend-env.eba-bpbkpxau.us-east-1.elasticbeanstalk.com/police/';
-    String url = APIConstants.POLICE_URL;
-    var response = await http.get(Uri.parse(url), headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-    });
-    if (response.statusCode == 200) {
-      return Officers.fromJson(json.decode(response.body));
-    } else {
-      throw Exception('Failed to load post');
-    }
-  }
-
   Future<List<Police>> generatecontentList() async {
     var response = await http.get(Uri.parse(
         // 'http://gujaratpolicebackend-env.eba-bpbkpxau.us-east-1.elasticbeanstalk.com/police/'
@@ -148,7 +131,6 @@ class OfficerDataGrid extends StatelessWidget {
     return policeListFromContent;
   }
 }
-
 class OffficerDataGridSource extends DataGridSource {
   OffficerDataGridSource(this.contentList) {
     buildDataGridRow();

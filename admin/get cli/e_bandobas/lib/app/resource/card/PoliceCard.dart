@@ -25,6 +25,7 @@ class PolicCard extends StatelessWidget {
       return 850;
     }
   }
+
   PolicCard(
       {super.key,
         required EdgeInsets margin,

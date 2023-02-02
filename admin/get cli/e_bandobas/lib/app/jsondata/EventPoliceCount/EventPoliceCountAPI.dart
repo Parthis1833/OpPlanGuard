@@ -25,7 +25,7 @@ class EventPoliceCountAPI {
           Get.snackbar(
             "Success",
             "Police Assignement noted for event successfully",
-            icon: Icon(Icons.add_task_sharp, color: Colors.white),
+            icon: const Icon(Icons.add_task_sharp, color: Colors.white),
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.green,
           );
@@ -38,8 +38,8 @@ class EventPoliceCountAPI {
             showStatus == API_Decision.BOTH) {
           Get.snackbar(
             "Failed",
-            responseJson['response']['message'] == null ? "No message available" : responseJson['response']['message'],
-            icon: Icon(Icons.cancel_presentation_sharp, color: Colors.white),
+            responseJson['response']['message'] ?? "No message available",
+            icon: const Icon(Icons.cancel_presentation_sharp, color: Colors.white),
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.red,
           );
