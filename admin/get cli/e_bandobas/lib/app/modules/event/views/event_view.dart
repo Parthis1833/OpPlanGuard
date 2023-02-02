@@ -44,7 +44,7 @@ class EventView extends GetView<EventController> {
       body: Obx(() => (controller.events.value == null &&
               controller.events.value!.isEmpty)
           ? const CircularProgressIndicator()
-          : eventsPageData()),
+          : Center(child: eventsPageData())),
       floatingActionButton: AssesmentButton(),
     );
   }
@@ -121,6 +121,7 @@ class EventView extends GetView<EventController> {
   Widget eventsPageData() {
     return SizedBox(
       height: 900,
+
       child: FutureBuilder<Object>(
         future: getEventDataSource(),
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
