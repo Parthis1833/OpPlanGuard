@@ -77,7 +77,7 @@ class EventView extends GetView<EventController> {
   return <GridColumn>[
     GridColumn(
         columnName: 'Event-Id',
-        width: 50,
+        width: 70,
         label: Container(
             padding: const EdgeInsets.all(8),
             alignment: Alignment.centerLeft,
@@ -85,7 +85,7 @@ class EventView extends GetView<EventController> {
                 overflow: TextOverflow.clip, softWrap: true))),
      GridColumn(
         columnName: 'Event-Name',
-        width: 150,
+        width: 200,
         label: Container(
             padding: const EdgeInsets.all(8),
             alignment: Alignment.centerLeft,
@@ -93,7 +93,7 @@ class EventView extends GetView<EventController> {
                 overflow: TextOverflow.clip, softWrap: true))),
     GridColumn(
         columnName: 'Event-Details',
-        width: 150,
+        width: 200,
         label: Container(
             padding: const EdgeInsets.all(8),
             alignment: Alignment.centerLeft,
@@ -101,7 +101,7 @@ class EventView extends GetView<EventController> {
                 overflow: TextOverflow.clip, softWrap: true))),
     GridColumn(
         columnName: 'Event-Start-Date',
-        width: 150,
+        width: 200,
         label: Container(
             padding: const EdgeInsets.all(8),
             alignment: Alignment.centerLeft,
@@ -109,7 +109,7 @@ class EventView extends GetView<EventController> {
                 overflow: TextOverflow.clip, softWrap: true))),
     GridColumn(
         columnName: 'Event-End-Date',
-        width: 150,
+        width: 200,
         label: Container(
             padding: const EdgeInsets.all(8),
             alignment: Alignment.centerLeft,
@@ -118,38 +118,40 @@ class EventView extends GetView<EventController> {
   ];
   }
   Widget eventsPageData() {
-    return SizedBox(
-      height: 900,
-
-      child: FutureBuilder<Object>(
-        future: getEventDataSource(),
-        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-          return snapshot.hasData
-              ? SfDataGrid(source: snapshot.data, columns: getColumns())
-              : const Center(
-            child: CircularProgressIndicator(
-              strokeWidth: 3,
+    return  FutureBuilder<Object>(
+      future: getEventDataSource(),
+      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+        return snapshot.hasData ? Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: 950,
+              height: 940,
+              child: SfDataGrid(
+                  source: snapshot.data,
+                  columns: getColumns()),
             ),
-          );
-        },
-      ),
+          ],
+        )
+            : const Center(
+          child: CircularProgressIndicator(
+            strokeWidth: 3,
+          ),
+        );
+      },
     );
   }
-
   Future<EventDataGridSource>getEventDataSource() async {
     List<Event> eventList = await generatecontentList();
     return  EventDataGridSource(eventList);
   }
-
 }
-
 class EventDataGridSource extends DataGridSource{
   late List<DataGridRow> dataGridRows;
   late List<Event> eventList;
   EventDataGridSource(this.eventList){
     buildDataGridRow();
   }
-
 
   @override
   DataGridRowAdapter? buildRow(DataGridRow row) {
