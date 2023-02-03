@@ -3,11 +3,11 @@ import 'package:e_bandobas/app/Api/API.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 class OfficerDataGrid extends StatelessWidget {
-  const OfficerDataGrid({super.key});
-
+   OfficerDataGrid({super.key});
   @override
   Widget build(Object context) {
     return FutureBuilder<Object>(
@@ -18,6 +18,9 @@ class OfficerDataGrid extends StatelessWidget {
           children: [
                 SizedBox(
                   height: 700,
+                  child: SfDataGridTheme(
+                    data: SfDataGridThemeData(
+                        headerColor:  Colors.lightBlueAccent),
                   child: SfDataGrid(
                   source: snapshot.data,
                       showCheckboxColumn: true,
@@ -27,10 +30,11 @@ class OfficerDataGrid extends StatelessWidget {
                       onQueryRowHeight: (details) {
                         return details.rowIndex == 0 ? 70.0 : 49.0;
                       },
+                      columnWidthMode: ColumnWidthMode.auto,
                       shrinkWrapColumns: true,
                   columns: getColumns(),
                   ),
-
+                   ),
                 ),
               ],
             )
@@ -56,6 +60,11 @@ class OfficerDataGrid extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               alignment: Alignment.centerLeft,
               child: const Text('ID',
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                      fontStyle: FontStyle.italic
+                  ),
                   overflow: TextOverflow.clip, softWrap: true))),
       GridColumn(
           columnName: 'Designation',
@@ -65,6 +74,11 @@ class OfficerDataGrid extends StatelessWidget {
               margin:  const EdgeInsets.only(left:15.0),
               alignment: Alignment.center,
               child: const Text('Designation',
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                      fontStyle: FontStyle.italic
+                  ),
                   overflow: TextOverflow.clip, softWrap: true))),
       GridColumn(
           allowFiltering: false,
@@ -74,6 +88,11 @@ class OfficerDataGrid extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               alignment: Alignment.center,
               child: const Text('Officers Name',
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                      fontStyle: FontStyle.italic
+                  ),
                   overflow: TextOverflow.clip, softWrap: true))),
       GridColumn(
           allowFiltering: false,
@@ -83,6 +102,11 @@ class OfficerDataGrid extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               alignment: Alignment.center,
               child: const Text('Buckle Number',
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                      fontStyle: FontStyle.italic
+                  ),
                   overflow: TextOverflow.clip, softWrap: true))),
       GridColumn(
           allowFiltering: false,
@@ -92,6 +116,11 @@ class OfficerDataGrid extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               alignment: Alignment.center,
               child: const Text('Number',
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                      fontStyle: FontStyle.italic
+                  ),
                   overflow: TextOverflow.clip, softWrap: true))),
       GridColumn(
           columnName: 'Police Station ',
@@ -100,6 +129,11 @@ class OfficerDataGrid extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               alignment: Alignment.center,
               child: const Text('Police Station',
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                      fontStyle: FontStyle.italic
+                  ),
                   overflow: TextOverflow.clip, softWrap: true))),
       GridColumn(
           allowFiltering: false,
@@ -109,6 +143,11 @@ class OfficerDataGrid extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               alignment: Alignment.center,
               child: const Text('Distric',
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                      fontStyle: FontStyle.italic
+                  ),
                   overflow: TextOverflow.clip, softWrap: true))),
       GridColumn(
           allowFiltering: false,
@@ -118,6 +157,11 @@ class OfficerDataGrid extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               alignment: Alignment.center,
               child: const Text('Age',
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                      fontStyle: FontStyle.italic
+                  ),
                   overflow: TextOverflow.clip, softWrap: true))),
       GridColumn(
           allowFiltering: false,
@@ -127,6 +171,11 @@ class OfficerDataGrid extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               alignment: Alignment.center,
               child: const Text('Gender',
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                      fontStyle: FontStyle.italic
+                  ),
                   overflow: TextOverflow.clip, softWrap: true)))
     ];
   }
@@ -223,6 +272,7 @@ class OffficerDataGridSource extends DataGridSource {
 
   @override
   List<DataGridRow> get rows => dataGridRows;
+
   void buildDataGridRow() {
     dataGridRows = contentList.map<DataGridRow>((dataGridRow) {
       return DataGridRow(cells: [

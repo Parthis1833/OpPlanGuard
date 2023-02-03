@@ -31,7 +31,7 @@ class OfficerdataView extends GetView<OfficerdataController> {
           Container(
             alignment: Alignment.center,
             margin: const EdgeInsets.only(left: 300 ,right: 300),
-            child: const OfficerDataGrid(),
+            child:  OfficerDataGrid(),
           ),
         ],
       ),
