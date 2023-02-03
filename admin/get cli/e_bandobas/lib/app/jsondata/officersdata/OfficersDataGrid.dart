@@ -21,6 +21,16 @@ class OfficerDataGrid extends StatelessWidget {
                   height: 700,
                   child: SfDataGrid(
                   source: snapshot.data,
+                      showCheckboxColumn: true,
+                      checkboxShape: CircleBorder(),
+                      selectionMode: SelectionMode.multiple,
+                      allowSorting: true,
+                      allowMultiColumnSorting: true,
+                      allowTriStateSorting: true,
+                      onQueryRowHeight: (details) {
+                        return details.rowIndex == 0 ? 70.0 : 49.0;
+                      },
+                      shrinkWrapColumns: true,
                   columns: getColumns()),
                 ),
               ],
