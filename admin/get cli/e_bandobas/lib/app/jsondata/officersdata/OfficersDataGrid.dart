@@ -10,20 +10,27 @@ class OfficerDataGrid extends StatelessWidget {
 
   @override
   Widget build(Object context) {
-    return SizedBox(
-      height: 900,
-      child: FutureBuilder<Object>(
-        future: getOfficersDataSource(),
-        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-          return snapshot.hasData
-              ? SfDataGrid(source: snapshot.data, columns: getColumns())
-              : const Center(
-                  child: CircularProgressIndicator(
-                    strokeWidth: 3,
-                  ),
-                );
-        },
-      ),
+    return FutureBuilder<Object>(
+      future: getOfficersDataSource(),
+      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+        return snapshot.hasData
+            ? Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+                SizedBox(
+                  height: 700,
+                  child: SfDataGrid(
+                  source: snapshot.data,
+                  columns: getColumns()),
+                ),
+              ],
+            )
+            : const Center(
+                child: CircularProgressIndicator(
+                  strokeWidth: 3,
+                ),
+              );
+      },
     );
   }
   Future<OffficerDataGridSource> getOfficersDataSource() async {
@@ -34,7 +41,7 @@ class OfficerDataGrid extends StatelessWidget {
     return <GridColumn>[
       GridColumn(
           columnName: 'ID',
-          width: 50,
+          width: 60,
           label: Container(
               padding: const EdgeInsets.all(8),
               alignment: Alignment.centerLeft,
@@ -42,7 +49,7 @@ class OfficerDataGrid extends StatelessWidget {
                   overflow: TextOverflow.clip, softWrap: true))),
       GridColumn(
           columnName: 'Designation',
-          width: 100,
+          width: 150,
           label: Container(
               padding: const EdgeInsets.all(8),
               alignment: Alignment.center,
@@ -50,7 +57,7 @@ class OfficerDataGrid extends StatelessWidget {
                   overflow: TextOverflow.clip, softWrap: true))),
       GridColumn(
           columnName: 'Officers Name',
-          width: 250,
+          width: 290,
           label: Container(
               padding: const EdgeInsets.all(8),
               alignment: Alignment.center,
@@ -58,7 +65,7 @@ class OfficerDataGrid extends StatelessWidget {
                   overflow: TextOverflow.clip, softWrap: true))),
       GridColumn(
           columnName: 'Buckle Number',
-          width: 65,
+          width: 100,
           label: Container(
               padding: const EdgeInsets.all(8),
               alignment: Alignment.center,
@@ -66,7 +73,7 @@ class OfficerDataGrid extends StatelessWidget {
                   overflow: TextOverflow.clip, softWrap: true))),
       GridColumn(
           columnName: 'Number',
-          width: 150,
+          width: 160,
           label: Container(
               padding: const EdgeInsets.all(8),
               alignment: Alignment.center,
@@ -74,7 +81,7 @@ class OfficerDataGrid extends StatelessWidget {
                   overflow: TextOverflow.clip, softWrap: true))),
       GridColumn(
           columnName: 'Police Station ',
-          width: 150,
+          width: 160,
           label: Container(
               padding: const EdgeInsets.all(8),
               alignment: Alignment.center,
@@ -82,7 +89,7 @@ class OfficerDataGrid extends StatelessWidget {
                   overflow: TextOverflow.clip, softWrap: true))),
       GridColumn(
           columnName: 'Distric',
-          width: 150,
+          width: 170,
           label: Container(
               padding: const EdgeInsets.all(8),
               alignment: Alignment.center,
@@ -90,7 +97,7 @@ class OfficerDataGrid extends StatelessWidget {
                   overflow: TextOverflow.clip, softWrap: true))),
       GridColumn(
           columnName: 'Age',
-          width: 50,
+          width: 60,
           label: Container(
               padding: const EdgeInsets.all(8),
               alignment: Alignment.center,
@@ -98,28 +105,16 @@ class OfficerDataGrid extends StatelessWidget {
                   overflow: TextOverflow.clip, softWrap: true))),
       GridColumn(
           columnName: 'Gender',
-          width: 65,
+          width:75 ,
           label: Container(
               padding: const EdgeInsets.all(8),
               alignment: Alignment.center,
               child: const Text('Gender',
-                  overflow: TextOverflow.clip, softWrap: true))),
-      GridColumn(
-          columnName: '',
-          width: 50,
-          label: Container(
-              padding: const EdgeInsets.all(8),
-              alignment: Alignment.center,
-              child:
-                  const Text('', overflow: TextOverflow.clip, softWrap: true))),
+                  overflow: TextOverflow.clip, softWrap: true)))
     ];
   }
   Future<List<Police>> generatecontentList() async {
-    var response = await http.get(Uri.parse(
-        // 'http://gujaratpolicebackend-env.eba-bpbkpxau.us-east-1.elasticbeanstalk.com/police/'
-      APIConstants.POLICE_URL
-    )
-    );
+    var response = await http.get(Uri.parse(APIConstants.POLICE_URL));
     var decodedOfficerss = jsonDecode(utf8.decode(response.bodyBytes));
     List<Police> policeListFromContent = [];
     if (decodedOfficerss['content'] != null) {
@@ -206,20 +201,6 @@ class OffficerDataGridSource extends DataGridSource {
           row.getCells()[8].value,
         ),
       ),
-      Container(
-        margin: const EdgeInsets.all(4),
-        child: RawMaterialButton(
-          onPressed: () {},
-          elevation: 8.0,
-          fillColor: Colors.lightBlue,
-          padding: const EdgeInsets.all(5.0),
-          child: const Icon(
-            Icons.delete_forever_outlined,
-            size: 30.0,
-            color: Colors.white,
-          ),
-        ),
-      )
     ]);
   }
 

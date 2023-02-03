@@ -3,11 +3,12 @@ import 'package:e_bandobas/app/jsondata/EventData/EventApi.dart';
 import 'package:e_bandobas/constants/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:intl/intl.dart';
 
 
 class AssessmentPOPPage extends  StatefulWidget {
+  const AssessmentPOPPage({super.key});
+
   @override
   State<StatefulWidget> createState() => _AssessmentPoPPageState();
 

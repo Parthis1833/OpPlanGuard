@@ -14,17 +14,6 @@ class EventController extends GetxController {
     loadEvents();
   }
   
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  
   void loadEvents() async {
     events.value = await EventApi.obtainEvents(API_Decision.Only_Failure);
     if (events.value != null && events.value!.isNotEmpty) {

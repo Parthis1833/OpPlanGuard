@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/officerdata_controller.dart';
 
+
 class OfficerdataView extends GetView<OfficerdataController> {
-   OfficerdataView({Key? key}) : super(key: key);
+   const OfficerdataView({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,12 @@ class OfficerdataView extends GetView<OfficerdataController> {
               child: Text(''),
             ),
           ),
-          const OfficerDataGrid(),
+
+          Container(
+            alignment: Alignment.center,
+            margin: const EdgeInsets.only(left: 300 ,right: 300),
+            child: const OfficerDataGrid(),
+          ),
         ],
       ),
     );

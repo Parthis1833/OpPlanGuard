@@ -1,16 +1,11 @@
 import 'package:e_bandobas/app/Config/routes/app_pages.dart';
-import 'package:e_bandobas/app/resource/button/assessmentbutton.dart';
 import 'package:e_bandobas/app/resource/card/PoliceCard.dart';
 import 'package:e_bandobas/app/resource/drawer/navigation_drawer.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
 import '../controllers/assesment_controller.dart';
 
-/**
- * This page is intended to show existing assements as per events
- */
+
 
 class AssesmentView extends GetView<AssesmentController> {
   const AssesmentView({Key? key}) : super(key: key);
@@ -31,7 +26,6 @@ class AssesmentView extends GetView<AssesmentController> {
               child: Text(''),
             ),
           ),
-          const Text('hey'),
         ],
       ),
       // floatingActionButton: AssesmentButton(),
