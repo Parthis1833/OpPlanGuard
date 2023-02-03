@@ -17,7 +17,7 @@ class AssignedPoliceAddView extends GetView<AssignedPoliceAddController> {
           centerTitle: true,
         ),
         // body: selectPoliceByTypingName()
-        body: const TestPage2(),
+        body: TestPage2(),
         );
   }
 
