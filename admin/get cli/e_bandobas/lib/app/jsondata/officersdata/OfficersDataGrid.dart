@@ -15,7 +15,6 @@ class OfficerDataGrid extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         return snapshot.hasData
             ? Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
                 SizedBox(
                   height: 700,
@@ -23,15 +22,15 @@ class OfficerDataGrid extends StatelessWidget {
                   source: snapshot.data,
                       showCheckboxColumn: true,
                       checkboxShape: CircleBorder(),
+                      allowFiltering: true,
                       selectionMode: SelectionMode.multiple,
-                      allowSorting: true,
-                      allowMultiColumnSorting: true,
-                      allowTriStateSorting: true,
                       onQueryRowHeight: (details) {
                         return details.rowIndex == 0 ? 70.0 : 49.0;
                       },
                       shrinkWrapColumns: true,
-                  columns: getColumns()),
+                  columns: getColumns(),
+                  ),
+
                 ),
               ],
             )
@@ -50,6 +49,7 @@ class OfficerDataGrid extends StatelessWidget {
   List<GridColumn> getColumns() {
     return <GridColumn>[
       GridColumn(
+          allowFiltering: false,
           columnName: 'ID',
           width: 60,
           label: Container(
@@ -59,29 +59,33 @@ class OfficerDataGrid extends StatelessWidget {
                   overflow: TextOverflow.clip, softWrap: true))),
       GridColumn(
           columnName: 'Designation',
-          width: 150,
+          width: 170,
           label: Container(
               padding: const EdgeInsets.all(8),
+              margin:  const EdgeInsets.only(left:15.0),
               alignment: Alignment.center,
               child: const Text('Designation',
                   overflow: TextOverflow.clip, softWrap: true))),
       GridColumn(
+          allowFiltering: false,
           columnName: 'Officers Name',
-          width: 290,
+          width: 250,
           label: Container(
               padding: const EdgeInsets.all(8),
               alignment: Alignment.center,
               child: const Text('Officers Name',
                   overflow: TextOverflow.clip, softWrap: true))),
       GridColumn(
+          allowFiltering: false,
           columnName: 'Buckle Number',
-          width: 100,
+          width: 150,
           label: Container(
               padding: const EdgeInsets.all(8),
               alignment: Alignment.center,
               child: const Text('Buckle Number',
                   overflow: TextOverflow.clip, softWrap: true))),
       GridColumn(
+          allowFiltering: false,
           columnName: 'Number',
           width: 160,
           label: Container(
@@ -98,6 +102,7 @@ class OfficerDataGrid extends StatelessWidget {
               child: const Text('Police Station',
                   overflow: TextOverflow.clip, softWrap: true))),
       GridColumn(
+          allowFiltering: false,
           columnName: 'Distric',
           width: 170,
           label: Container(
@@ -106,6 +111,7 @@ class OfficerDataGrid extends StatelessWidget {
               child: const Text('Distric',
                   overflow: TextOverflow.clip, softWrap: true))),
       GridColumn(
+          allowFiltering: false,
           columnName: 'Age',
           width: 60,
           label: Container(
@@ -114,6 +120,7 @@ class OfficerDataGrid extends StatelessWidget {
               child: const Text('Age',
                   overflow: TextOverflow.clip, softWrap: true))),
       GridColumn(
+          allowFiltering: false,
           columnName: 'Gender',
           width:75 ,
           label: Container(
