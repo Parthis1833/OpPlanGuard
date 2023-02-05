@@ -7,7 +7,7 @@ import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 class OfficerDataGrid extends StatelessWidget {
-   OfficerDataGrid({super.key});
+   const OfficerDataGrid({super.key});
   @override
   Widget build(Object context) {
     return FutureBuilder<Object>(
@@ -22,9 +22,10 @@ class OfficerDataGrid extends StatelessWidget {
                     data: SfDataGridThemeData(
                         headerColor:  Colors.lightBlueAccent),
                   child: SfDataGrid(
+
                   source: snapshot.data,
                       showCheckboxColumn: true,
-                      checkboxShape: CircleBorder(),
+                      checkboxShape: const CircleBorder(),
                       allowFiltering: true,
                       selectionMode: SelectionMode.multiple,
                       onQueryRowHeight: (details) {

@@ -8,10 +8,10 @@ import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import '../controllers/event_controller.dart';
-
+import 'package:syncfusion_flutter_core/theme.dart';
 /**
- * This page will show all existing events 
- * and have 2 redirects, 
+ * This page will show all existing events
+ * and have 2 redirects,
  * 1. redirect to create event page
  * 2. redirect to update event page
  */
@@ -40,8 +40,8 @@ class EventView extends GetView<EventController> {
         title: const Text('EventView'),
         centerTitle: true,
       ),
-      body: Obx(() => (controller.events.value == null &&
-              controller.events.value!.isEmpty)
+      body: Obx(() => (controller.events.value != null &&
+          controller.events.value!.isEmpty)
           ? const CircularProgressIndicator()
           : Center(child: eventsPageData())),
       floatingActionButton: AssesmentButton(),
@@ -74,68 +74,80 @@ class EventView extends GetView<EventController> {
     ]);
   }
   List<GridColumn> getColumns() {
-  return <GridColumn>[
-    GridColumn(
-        columnName: 'Event-Id',
-        width: 70,
-        label: Container(
-            padding: const EdgeInsets.all(8),
-            alignment: Alignment.centerLeft,
-            child: const Text('ID',
-                overflow: TextOverflow.clip, softWrap: true))),
-     GridColumn(
-        columnName: 'Event-Name',
-        width: 200,
-        label: Container(
-            padding: const EdgeInsets.all(8),
-            alignment: Alignment.centerLeft,
-            child: const Text('Event-Name',
-                overflow: TextOverflow.clip, softWrap: true))),
-    GridColumn(
-        columnName: 'Event-Details',
-        width: 200,
-        label: Container(
-            padding: const EdgeInsets.all(8),
-            alignment: Alignment.centerLeft,
-            child: const Text('Event-Details',
-                overflow: TextOverflow.clip, softWrap: true))),
-    GridColumn(
-        columnName: 'Event-Start-Date',
-        width: 200,
-        label: Container(
-            padding: const EdgeInsets.all(8),
-            alignment: Alignment.centerLeft,
-            child: const Text('Event-Start-Date',
-                overflow: TextOverflow.clip, softWrap: true))),
-    GridColumn(
-        columnName: 'Event-End-Date',
-        width: 200,
-        label: Container(
-            padding: const EdgeInsets.all(8),
-            alignment: Alignment.centerLeft,
-            child: const Text('Event-End-Date',
-                overflow: TextOverflow.clip, softWrap: true))),
-  ];
+    return <GridColumn>[
+      GridColumn(
+          columnName: 'Event-Id',
+          width: 70,
+          label: Container(
+              padding: const EdgeInsets.all(8),
+              alignment: Alignment.centerLeft,
+              child: const Text('ID',
+                  overflow: TextOverflow.clip, softWrap: true))),
+      GridColumn(
+          columnName: 'Event-Name',
+          width: 200,
+          label: Container(
+              padding: const EdgeInsets.all(8),
+              alignment: Alignment.centerLeft,
+              child: const Text('Event-Name',
+                  overflow: TextOverflow.clip, softWrap: true))),
+      GridColumn(
+          columnName: 'Event-Details',
+          width: 200,
+          label: Container(
+              padding: const EdgeInsets.all(8),
+              alignment: Alignment.centerLeft,
+              child: const Text('Event-Details',
+                  overflow: TextOverflow.clip, softWrap: true))),
+      GridColumn(
+          columnName: 'Event-Start-Date',
+          width: 200,
+          label: Container(
+              padding: const EdgeInsets.all(8),
+              alignment: Alignment.centerLeft,
+              child: const Text('Event-Start-Date',
+                  overflow: TextOverflow.clip, softWrap: true))),
+      GridColumn(
+          columnName: 'Event-End-Date',
+          width: 200,
+          label: Container(
+              padding: const EdgeInsets.all(8),
+              alignment: Alignment.centerLeft,
+              child: const Text('Event-End-Date',
+                  overflow: TextOverflow.clip, softWrap: true))),
+    ];
   }
   Widget eventsPageData() {
     return  FutureBuilder<Object>(
       future: getEventDataSource(),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         return snapshot.hasData ? Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: 950,
-              height: 940,
-              child: SfDataGrid(
-                  source: snapshot.data,
-                  columns: getColumns()),
-            ),
-          ],
+        children: [
+        SizedBox(
+        height: 700,
+        child: SfDataGridTheme(
+        data: SfDataGridThemeData(
+        headerColor:  Colors.lightBlueAccent),
+        child: SfDataGrid(
+        source: snapshot.data,
+        showCheckboxColumn: true,
+        checkboxShape: const CircleBorder(),
+        allowFiltering: true,
+        selectionMode: SelectionMode.multiple,
+        onQueryRowHeight: (details) {
+        return details.rowIndex == 0 ? 70.0 : 49.0;
+        },
+        columnWidthMode: ColumnWidthMode.auto,
+        shrinkWrapColumns: true,
+        columns: getColumns(),
+        ),
+        ),
+        ),
+        ],
         )
             : const Center(
-          child: CircularProgressIndicator(
-            strokeWidth: 3,
+             child: CircularProgressIndicator(
+             strokeWidth: 3,
           ),
         );
       },
@@ -157,13 +169,13 @@ class EventDataGridSource extends DataGridSource{
   DataGridRowAdapter? buildRow(DataGridRow row) {
     return DataGridRowAdapter(cells: [
       Container(
-      alignment: Alignment.centerLeft,
-      padding: const EdgeInsets.all(8.0),
-      child: Text(
-        row.getCells()[0].value.toString(),
-        overflow: TextOverflow.ellipsis,
+        alignment: Alignment.centerLeft,
+        padding: const EdgeInsets.all(8.0),
+        child: Text(
+          row.getCells()[0].value.toString(),
+          overflow: TextOverflow.ellipsis,
+        ),
       ),
-    ),
       Container(
         alignment: Alignment.centerLeft,
         padding: const EdgeInsets.all(8.0),

@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../controllers/point_police_assement_controller.dart';
-import 'package:e_bandobas/app/resource/drawer/navigation_drawer.dart';
+
 
 class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
   const PointPoliceAssementView({Key? key}) : super(key: key);
@@ -16,40 +16,13 @@ class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
       appBar: AppBar(
         title: const Text('AssesmentCreateView'),
         centerTitle: true,
-        actions: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    FloatingActionButton(
-                      heroTag: const Text("Show Point Assesment"),
-                      backgroundColor: Colors.green,
-                      onPressed: () {
-                        Get.toNamed(PATHS.SHOW_POINTS_ASSESMENT);
-                      },
-                      child: const Icon(
-                        Icons.add_circle_outline,
-                        color: Colors.deepPurple,
-                        size: 45.4,
-                      ),
-                    ),
-                    const Text("Show Point Assesment")
-                  ],
-                ),
-              ),
-            ],
-          )
-        ],
       ),
       body: Obx(() => (controller.designations.value!.isEmpty &&
-              controller.events.value == null &&
-              controller.points.value == null)
+              controller.events.value !.length <= 0 &&
+              controller.points.value !.length <= 0)
           ? const CircularProgressIndicator()
           : eventPoliceAssementWidget()),
+
     );
   }
 
@@ -59,7 +32,7 @@ class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
         eventSelectionDropDownWidget(),
         pointSelectionDropDownWidget(),
         designationListWidget(),
-        saveCancelContainerRow()
+        saveCancelContainerRow(),
       ],
     );
   }
@@ -68,40 +41,87 @@ class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
     return ListView.builder(
       scrollDirection: Axis.vertical,
       shrinkWrap: true,
-      itemCount: controller.designations.value!.length,
+      itemCount: (controller.designations.value!.length / 2).ceil(),
       itemBuilder: (context, index) {
-        return Row(
-          children: [
-            Container(
-              margin: const EdgeInsets.only(left: 160.0),
-              padding: const EdgeInsets.only(top: 25.0),
-              child: Text(
-                controller.designations.value![index].name.toString(),
-                style: const TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black38,
-                    fontSize: 26.0),
-              ),
-            ),
-            SizedBox(
-              height: 45,
-              width: 120,
-              child: TextField(
-                keyboardType: TextInputType.number,
-                inputFormatters: <TextInputFormatter>[
-                  FilteringTextInputFormatter.digitsOnly
-                ], // Only numbers can be entered
-                controller: controller.designationTextEditingControllers[index],
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(width: 3, color: Colors.lightBlueAccent),
+        return Center(
+          child: Container(
+            width: double.infinity,
+            height: 50,
+            margin: const EdgeInsets.only(bottom: 10.0),
+            child: Row(
+              children: [
+                Container(
+                  width: 200,
+                  height: 70,
+                  margin: const EdgeInsets.only(left: 40.0),
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: Text(
+                    controller.designations.value![index * 2].name.toString(),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black38,
+                        fontSize: 26.0),
                   ),
-                  hintText: '',
                 ),
-              ),
+                Container(
+                  width: 150,
+                  height: 45,
+                  child: TextField(
+                    keyboardType: TextInputType.number,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.digitsOnly
+                    ], // Only numbers can be entered
+                    controller:
+                    controller.designationTextEditingControllers[index * 2],
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            width: 3, color: Colors.lightBlueAccent),
+                      ),
+                      hintText: '',
+                    ),
+                  ),
+                ),
+                Container(
+                  width: 200,
+                  height: 70,
+                  margin: const EdgeInsets.only(left: 40.0),
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: Text(
+                    (index * 2 + 1 < controller.designations.value!.length)
+                        ? controller.designations.value![index * 2 + 1].name
+                        .toString()
+                        : '',
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black38,
+                        fontSize: 26.0),
+                  ),
+                ),
+                Container(
+                  width: 150,
+                  height: 45,
+                  child: TextField(
+                    keyboardType: TextInputType.number,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.digitsOnly
+                    ], // Only numbers can be entered
+                    controller: (index * 2 + 1 <
+                        controller.designations.value!.length)
+                        ? controller.designationTextEditingControllers[index * 2 + 1]
+                        : null,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            width: 3, color: Colors.lightBlueAccent),
+                      ),
+                      hintText: '',
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         );
       },
     );

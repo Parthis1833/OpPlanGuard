@@ -16,6 +16,8 @@ class AssesmentCreateView extends GetView<AssesmentCreateController> {
         title: const Text('AssesmentCreateView'),
         centerTitle: true,
       ),
+        // controller.events.value !.length > 0 &&
+        //     controller.points.value !.length > 0
       body: Obx(() => (controller.designations.value == null &&
               controller.events.value == null)
           ? const CircularProgressIndicator()
@@ -37,40 +39,87 @@ class AssesmentCreateView extends GetView<AssesmentCreateController> {
     return ListView.builder(
       scrollDirection: Axis.vertical,
       shrinkWrap: true,
-      itemCount: controller.designations.value!.length,
+      itemCount: (controller.designations.value!.length / 2).ceil(),
       itemBuilder: (context, index) {
-        return Row(
-          children: [
-            Container(
-              margin: const EdgeInsets.only(left: 160.0),
-              padding: const EdgeInsets.only(top: 25.0),
-              child: Text(
-                controller.designations.value![index].name.toString(),
-                style: const TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black38,
-                    fontSize: 26.0),
-              ),
-            ),
-            SizedBox(
-              height: 45,
-              width: 120,
-              child: TextField(
-                keyboardType: TextInputType.number,
-                inputFormatters: <TextInputFormatter>[
-                  FilteringTextInputFormatter.digitsOnly
-                ], // Only numbers can be entered
-                controller: controller.designationTextEditingControllers[index],
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(width: 3, color: Colors.lightBlueAccent),
+        return Center(
+          child: Container(
+            width: double.infinity,
+            height: 50,
+            margin: const EdgeInsets.only(bottom: 10.0),
+            child: Row(
+              children: [
+                Container(
+                  width: 200,
+                  height: 70,
+                  margin: const EdgeInsets.only(left: 40.0),
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: Text(
+                    controller.designations.value![index * 2].name.toString(),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black38,
+                        fontSize: 26.0),
                   ),
-                  hintText: '',
                 ),
-              ),
+                Container(
+                  width: 150,
+                  height: 45,
+                  child: TextField(
+                    keyboardType: TextInputType.number,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.digitsOnly
+                    ], // Only numbers can be entered
+                    controller:
+                    controller.designationTextEditingControllers[index * 2],
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            width: 3, color: Colors.lightBlueAccent),
+                      ),
+                      hintText: '',
+                    ),
+                  ),
+                ),
+                Container(
+                  width: 200,
+                  height: 70,
+                  margin: const EdgeInsets.only(left: 40.0),
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: Text(
+                    (index * 2 + 1 < controller.designations.value!.length)
+                        ? controller.designations.value![index * 2 + 1].name
+                        .toString()
+                        : '',
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black38,
+                        fontSize: 26.0),
+                  ),
+                ),
+                Container(
+                  width: 150,
+                  height: 45,
+                  child: TextField(
+                    keyboardType: TextInputType.number,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.digitsOnly
+                    ], // Only numbers can be entered
+                    controller: (index * 2 + 1 <
+                        controller.designations.value!.length)
+                        ? controller.designationTextEditingControllers[index * 2 + 1]
+                        : null,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            width: 3, color: Colors.lightBlueAccent),
+                      ),
+                      hintText: '',
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         );
       },
     );
@@ -100,7 +149,7 @@ class AssesmentCreateView extends GetView<AssesmentCreateController> {
               ),
             ),
             SizedBox(
-              width: 150,
+              width: 140,
               height: 36,
               child: ElevatedButton(
                 onPressed: () {
@@ -122,11 +171,11 @@ class AssesmentCreateView extends GetView<AssesmentCreateController> {
   }
 
   Widget eventSelectionDropDownWidget() {
-    print("length = " +  controller.events.value!.length.toString());
+    print("length = ${controller.events.value!.length}");
     return controller.events.value!.length > 0
         ? Container(
             child: DropdownButton(
-                hint: Text("select event"),
+                hint: const Text("select event"),
                 value: controller.selectedEventId.value == 0
                     ? null
                     : controller.selectedEventId.value,
