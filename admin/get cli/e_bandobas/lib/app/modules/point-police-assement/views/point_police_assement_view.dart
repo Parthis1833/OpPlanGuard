@@ -23,6 +23,7 @@ class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
           ? const CircularProgressIndicator()
           : eventPoliceAssementWidget()),
 
+
     );
   }
 
@@ -31,20 +32,44 @@ class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
       children: [
         eventSelectionDropDownWidget(),
         pointSelectionDropDownWidget(),
+
         designationListWidget(),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            alignment: Alignment.bottomRight,
+            child: Column(
+              children: [
+                FloatingActionButton(
+                  heroTag: const Text("Show Point Assesment"),
+                  backgroundColor: Colors.green,
+                  onPressed: () {
+                    Get.toNamed(PATHS.SHOW_POINTS_ASSESMENT);
+                  },
+                  child: const Icon(
+                    Icons.add_circle_outline,
+                    color: Colors.deepPurple,
+                    size: 45.4,
+                  ),
+                ),
+                const Text("Show Point Assesment")
+              ],
+            ),
+          ),
+        ),
         saveCancelContainerRow(),
       ],
     );
   }
 
   Widget designationListWidget() {
-    return ListView.builder(
-      scrollDirection: Axis.vertical,
-      shrinkWrap: true,
-      itemCount: (controller.designations.value!.length / 2).ceil(),
-      itemBuilder: (context, index) {
-        return Center(
-          child: Container(
+    return Center(
+      child: ListView.builder(
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
+        itemCount: (controller.designations.value!.length / 2).ceil(),
+        itemBuilder: (context, index) {
+          return Container(
             width: double.infinity,
             height: 50,
             margin: const EdgeInsets.only(bottom: 10.0),
@@ -98,6 +123,7 @@ class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
                   ),
                 )
                     : Container(),
+
                 (index * 2 + 1 < controller.designations.value!.length)
                     ? Container(
                   width: 150,
@@ -120,9 +146,9 @@ class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
                 ) : Container(),
               ],
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 
