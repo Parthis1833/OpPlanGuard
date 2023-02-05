@@ -51,10 +51,10 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
             ),
           ],
         ),
-        body: Obx(() =>
-            (controller.events.value == null && controller.points.value == null)
-                ? const CircularProgressIndicator()
-                : assesmentDataWidget()));
+        body: Obx(() => (controller.events.value!.isEmpty &&
+                controller.points.value!.isEmpty)
+            ? const CircularProgressIndicator()
+            : assesmentDataWidget()));
   }
 
   Widget assesmentDataWidget() {
@@ -67,18 +67,17 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
             showAssignmentButton(),
           ],
         ),
-        controller.isAssignmentLoaded.value
+        Obx(()=>controller.isAssignmentLoaded.value
             ? Container(
                 child: Column(
                   children: [
                     Text(controller
                             .eventPointAssignmentModel.value!.assignmentCount
-                            .toString() ??
-                        "")
+                            .toString())
                   ],
                 ),
               )
-            : const CircularProgressIndicator(),
+            : Container()),
         Wrap(
           spacing: 5.0,
           children: const [

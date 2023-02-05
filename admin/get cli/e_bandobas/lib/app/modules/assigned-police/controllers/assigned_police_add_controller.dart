@@ -5,15 +5,19 @@ import '../../../jsondata/EventData/Event.dart';
 import '../../../jsondata/EventData/EventApi.dart';
 import '../../../jsondata/EventPointAssignmentData/eventPointAssignmentApi.dart';
 import '../../../jsondata/EventPointAssignmentData/eventPointAssignmentModel.dart';
+import '../../../jsondata/EventPoliceCount/EventPoliceCountAPI.dart';
 import '../../../jsondata/PointData/Point.dart';
 import '../../../jsondata/PointData/PointApi.dart';
+import '../../../jsondata/PoliceData/PoliceIdNameModel.dart';
 
 class AssignedPoliceAddController extends GetxController {
   //TODO: Implement AssignedPoliceController
-late final selectedEventId = 0.obs;
+  late final selectedEventId = 0.obs;
   late final selectedPointId = 0.obs;
   final events = Rxn<List<Event>>();
   final points = Rxn<List<Point>>();
+  final policeNames = Rxn<List<PoliceIdName>>();
+
   final eventPointAssignmentModel = Rxn<EventPointAssignmentModel>();
   final isAssignmentLoaded = false.obs;
 
@@ -23,6 +27,7 @@ late final selectedEventId = 0.obs;
     super.onInit();
     loadEvents();
     loadPoints();
+    // loadPolice(); // police will be loaded once when events are loaded completely
   }
 
   @override
@@ -56,11 +61,19 @@ late final selectedEventId = 0.obs;
     if (events.value != null && events.value!.length > 0) {
       selectedEventId.value = events.value!.elementAt(0).id!.toInt();
     }
+    loadPolice();
+    update();
+  }
+
+  void loadPolice() async {
+    policeNames.value = await EventPoliceCountAPI.getUnAssignedPoliceList(
+        API_Decision.Only_Failure, selectedEventId.value);
     update();
   }
 
   void changeSelectedEvent(num? value) {
     selectedEventId.value = value!.toInt();
+    loadPolice();
     update();
   }
 
@@ -68,6 +81,4 @@ late final selectedEventId = 0.obs;
     selectedPointId.value = value!.toInt();
     update();
   }
-
-  
 }

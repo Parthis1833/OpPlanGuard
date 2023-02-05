@@ -135,7 +135,7 @@ class AppPages {
 
     GetPage(
       name: PATHS.ASSIGNED_POLICE_ADD,
-      page: () => const AssignedPoliceAddView(),
+      page: () => AssignedPoliceAddView(),
       binding: AssignedPoliceAddBinding(),
     ),
 
