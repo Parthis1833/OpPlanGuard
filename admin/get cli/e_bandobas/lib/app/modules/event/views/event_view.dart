@@ -9,12 +9,7 @@ import 'package:get/get.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import '../controllers/event_controller.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
-/**
- * This page will show all existing events
- * and have 2 redirects,
- * 1. redirect to create event page
- * 2. redirect to update event page
- */
+
 
 class EventView extends GetView<EventController> {
   const EventView({Key? key}) : super(key: key);
@@ -76,6 +71,7 @@ class EventView extends GetView<EventController> {
   List<GridColumn> getColumns() {
     return <GridColumn>[
       GridColumn(
+          allowSorting: false,
           columnName: 'Event-Id',
           width: 70,
           label: Container(
@@ -84,6 +80,7 @@ class EventView extends GetView<EventController> {
               child: const Text('ID',
                   overflow: TextOverflow.clip, softWrap: true))),
       GridColumn(
+          allowSorting: false,
           columnName: 'Event-Name',
           width: 200,
           label: Container(
@@ -92,6 +89,7 @@ class EventView extends GetView<EventController> {
               child: const Text('Event-Name',
                   overflow: TextOverflow.clip, softWrap: true))),
       GridColumn(
+          allowSorting: false,
           columnName: 'Event-Details',
           width: 200,
           label: Container(
@@ -132,7 +130,7 @@ class EventView extends GetView<EventController> {
         source: snapshot.data,
         showCheckboxColumn: true,
         checkboxShape: const CircleBorder(),
-        allowFiltering: true,
+        allowSorting: true,
         selectionMode: SelectionMode.multiple,
         onQueryRowHeight: (details) {
         return details.rowIndex == 0 ? 70.0 : 49.0;
