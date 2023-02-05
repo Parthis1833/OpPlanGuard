@@ -82,23 +82,24 @@ class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
                     ),
                   ),
                 ),
-                Container(
+                (index * 2 + 1 < controller.designations.value!.length)
+                    ? Container(
                   width: 200,
                   height: 70,
                   margin: const EdgeInsets.only(left: 40.0),
                   padding: const EdgeInsets.only(top: 10.0),
                   child: Text(
-                    (index * 2 + 1 < controller.designations.value!.length)
-                        ? controller.designations.value![index * 2 + 1].name
-                        .toString()
-                        : '',
+                    controller.designations.value![index * 2 + 1].name
+                        .toString(),
                     style: const TextStyle(
                         fontWeight: FontWeight.w600,
                         color: Colors.black38,
                         fontSize: 26.0),
                   ),
-                ),
-                Container(
+                )
+                    : Container(),
+                (index * 2 + 1 < controller.designations.value!.length)
+                    ? Container(
                   width: 150,
                   height: 45,
                   child: TextField(
@@ -106,10 +107,8 @@ class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
                     inputFormatters: <TextInputFormatter>[
                       FilteringTextInputFormatter.digitsOnly
                     ], // Only numbers can be entered
-                    controller: (index * 2 + 1 <
-                        controller.designations.value!.length)
-                        ? controller.designationTextEditingControllers[index * 2 + 1]
-                        : null,
+                    controller:
+                    controller.designationTextEditingControllers[index * 2 + 1],
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(
                         borderSide: BorderSide(
@@ -118,7 +117,7 @@ class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
                       hintText: '',
                     ),
                   ),
-                ),
+                ) : Container(),
               ],
             ),
           ),
