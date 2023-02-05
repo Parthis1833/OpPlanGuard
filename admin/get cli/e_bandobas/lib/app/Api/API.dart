@@ -112,7 +112,7 @@ class APIConstants {
       "unassigned_police_list/"; // append event id
       static const EVENT_POLICE_COUNT_UNASSIGNED_POLICE_ID_NAME_DESIG_NUMB_LIST = BASE_URL +
       EVENT_POLICE_COUNT +
-      "unassigned_police_list_with_details/"; // append event id
+      "unassigned_police_list_with_details"; // post api 
   static const EVENT_POLICE_COUNT_OF_POLICE_BY_DESIGNATION = BASE_URL +
       EVENT_POLICE_COUNT +
       "count_police_in_event_by_designation/"; // append event id

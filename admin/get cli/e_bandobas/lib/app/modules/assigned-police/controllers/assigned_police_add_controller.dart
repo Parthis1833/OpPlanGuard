@@ -66,10 +66,10 @@ class AssignedPoliceAddController extends GetxController {
     update();
   }
 
-  void loadPolice() async {
+  void loadPolice({String searchTerm = ''}) async {
     policeNames.value =
         await EventPoliceCountAPI.getUnAssignedPoliceIdNameDesigNumbList(
-            API_Decision.Only_Failure, selectedEventId.value);
+            API_Decision.Only_Failure, selectedEventId.value, searchTerm);
     update();
   }
 
@@ -84,7 +84,7 @@ class AssignedPoliceAddController extends GetxController {
     update();
   }
 
-  Future<List<PoliceIdName>> getData(filter) async {
+  Future<List<PoliceIdNameDesigNumb>> getData(String filter) async {
     // var response = await Dio().get(
     //   "https://5d85ccfb1e61af001471bf60.mockapi.io/user",
     //   queryParameters: {"filter": filter},
@@ -94,6 +94,11 @@ class AssignedPoliceAddController extends GetxController {
     // if (data != null) {
     //   return UserModel.fromJsonList(data);
     // }
+    loadPolice(searchTerm: filter);
+    if (policeNames.value != null) {
+      return policeNames.value!;
+    }
+    update();
     return [];
   }
 }

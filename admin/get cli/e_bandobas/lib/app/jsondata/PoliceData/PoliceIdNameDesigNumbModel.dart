@@ -3,7 +3,8 @@ class PoliceIdNameDesigNumb {
     this.id,
     this.name,
     this.designation,
-    this.number
+    this.number,
+    this.district
   });
 
   PoliceIdNameDesigNumb.fromJson(dynamic json) {
@@ -11,11 +12,13 @@ class PoliceIdNameDesigNumb {
     name = json['police-name'] ?? '';
     designation = json['police-designation'] ?? '';
     number = json['police-number'] ?? '';
+    district = json['police-district'] ?? '';
   }
   num? id;
   String? name;
   String? designation;
   String? number;
+  String? district;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -23,6 +26,21 @@ class PoliceIdNameDesigNumb {
     map['police-name'] = name;
     map['police-designation'] = designation;
     map['police-number'] = number;
+    map['police-district'] = district;
     return map;
   }
+
+
+  ///this method will prevent the override of toString
+  String userAsString() {
+    return '#${this.name}';
+  }
+
+  ///custom comparing function to check if two users are equal
+  bool isEqual(PoliceIdNameDesigNumb model) {
+    return this.id == model.id;
+  }
+
+  @override
+  String toString() => name.toString();
 }

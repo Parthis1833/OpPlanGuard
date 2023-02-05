@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:dropdown_textfield/dropdown_textfield.dart';
+import 'package:e_bandobas/app/jsondata/PoliceData/PoliceIdNameDesigNumbModel.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -218,6 +219,8 @@ class _MyHomePageState extends State<MyHomePage> {
   final _popupCustomValidationKey = GlobalKey<DropdownSearchState<int>>();
   final _userEditTextController = TextEditingController(text: 'Mrs');
   final myKey = GlobalKey<DropdownSearchState<MultiLevelString>>();
+  final controller = Get.put(AssignedPoliceAddController());
+
   final List<MultiLevelString> myItems = [
     MultiLevelString(level1: "1"),
     MultiLevelString(level1: "2"),
@@ -381,17 +384,20 @@ class _MyHomePageState extends State<MyHomePage> {
                   // TODO: Implement this shit
                   Padding(padding: EdgeInsets.all(4)),
                   Expanded(
-                    child: DropdownSearch<UserModel>.multiSelection(
-                      asyncItems: (filter) => getData(filter),
+                    child: DropdownSearch<PoliceIdNameDesigNumb>.multiSelection(
+                      asyncItems: (filter) {
+                        print(filter);
+                        return controller.getData(filter);
+                      },
                       compareFn: (i, s) => i.isEqual(s),
                       popupProps: PopupPropsMultiSelection.modalBottomSheet(
-
-                        title: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: const Text("Select Police to assign in event and point"),
+                        title: const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text(
+                              "Select Police to assign in event and point"),
                         ),
                         showSearchBox: true,
-                        itemBuilder: _customPopupItemBuilderExample2,
+                        itemBuilder: _customPopupItemBuilderForPolice,
                         favoriteItemProps: FavoriteItemProps(
                           showFavoriteItems: true,
                           // favoriteItems: (us) {
@@ -410,7 +416,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               child: Row(
                                 children: [
                                   Text(
-                                    "${item.name}",
+                                    "${item.name}", // Todo policeName here
                                     textAlign: TextAlign.center,
                                     style: TextStyle(color: Colors.indigo),
                                   ),
@@ -464,337 +470,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
 
-              ///************************[custom popup background examples]********************************///
-              Padding(padding: EdgeInsets.all(8)),
-              Text("[custom popup background examples]"),
-              Divider(),
-              DropdownSearch<String>(
-                items: List.generate(5, (index) => "$index"),
-                popupProps: PopupProps.menu(
-                  fit: FlexFit.loose,
-                  menuProps: MenuProps(
-                    backgroundColor: Colors.transparent,
-                    elevation: 0,
-                  ),
-                  containerBuilder: (ctx, popupWidget) {
-                    return Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 12),
-                          child: Image.asset(
-                            'assets/images/arrow-up.png',
-                            color: Color(0xFF2F772A),
-                            height: 12,
-                          ),
-                        ),
-                        Flexible(
-                          child: Container(
-                            child: popupWidget,
-                            color: Color(0xFF2F772A),
-                          ),
-                        ),
-                      ],
-                    );
-                  },
-                ),
-              ),
-              Padding(padding: EdgeInsets.all(8)),
-              Row(
-                children: [
-                  Expanded(
-                    child: DropdownSearch<String>.multiSelection(
-                      key: _popupBuilderKey,
-                      items: List.generate(30, (index) => "$index"),
-                      popupProps: PopupPropsMultiSelection.dialog(
-                        onItemAdded: (l, s) => _handleCheckBoxState(),
-                        onItemRemoved: (l, s) => _handleCheckBoxState(),
-                        showSearchBox: true,
-                        containerBuilder: (ctx, popupWidget) {
-                          return _CheckBoxWidget(
-                            child: popupWidget,
-                            isSelected: _popupBuilderSelection,
-                            onChanged: (v) {
-                              if (v == true)
-                                _popupBuilderKey.currentState!
-                                    .popupSelectAllItems();
-                              else if (v == false)
-                                _popupBuilderKey.currentState!
-                                    .popupDeselectAllItems();
-                              _handleCheckBoxState();
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                  Padding(padding: EdgeInsets.all(4)),
-                  Expanded(
-                    child: DropdownSearch<String>.multiSelection(
-                      key: _multiKey,
-                      items: List.generate(30, (index) => "$index"),
-                      popupProps: PopupPropsMultiSelection.dialog(
-                        onItemAdded: (l, s) => _handleCheckBoxState(),
-                        onItemRemoved: (l, s) => _handleCheckBoxState(),
-                        showSearchBox: true,
-                        containerBuilder: (ctx, popupWidget) {
-                          return Column(
-                            children: [
-                              Row(
-                                mainAxisSize: MainAxisSize.min,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.all(8),
-                                    child: OutlinedButton(
-                                      onPressed: () {
-                                        // How should I unselect all items in the list?
-                                        _multiKey.currentState
-                                            ?.closeDropDownSearch();
-                                      },
-                                      child: const Text('Cancel'),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.all(8),
-                                    child: OutlinedButton(
-                                      onPressed: () {
-                                        // How should I select all items in the list?
-                                        _multiKey.currentState
-                                            ?.popupSelectAllItems();
-                                      },
-                                      child: const Text('All'),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.all(8),
-                                    child: OutlinedButton(
-                                      onPressed: () {
-                                        // How should I unselect all items in the list?
-                                        _multiKey.currentState
-                                            ?.popupDeselectAllItems();
-                                      },
-                                      child: const Text('None'),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Expanded(child: popupWidget),
-                            ],
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              ///************************[dropdownBuilder examples]********************************///
-              Padding(padding: EdgeInsets.all(8)),
-              Text("[DropDownSearch builder examples]"),
-              Divider(),
-              Row(
-                children: [
-                  Expanded(
-                    child: DropdownSearch<UserModel>.multiSelection(
-                      asyncItems: (String? filter) => getData(filter),
-                      clearButtonProps: ClearButtonProps(isVisible: true),
-                      popupProps: PopupPropsMultiSelection.modalBottomSheet(
-                        showSelectedItems: true,
-                        itemBuilder: _customPopupItemBuilderExample2,
-                        showSearchBox: true,
-                        searchFieldProps: TextFieldProps(
-                          controller: _userEditTextController,
-                          decoration: InputDecoration(
-                            suffixIcon: IconButton(
-                              icon: Icon(Icons.clear),
-                              onPressed: () {
-                                _userEditTextController.clear();
-                              },
-                            ),
-                          ),
-                        ),
-                      ),
-                      compareFn: (item, selectedItem) =>
-                          item.id == selectedItem.id,
-                      dropdownDecoratorProps: DropDownDecoratorProps(
-                        dropdownSearchDecoration: InputDecoration(
-                          labelText: 'Users *',
-                          filled: true,
-                          fillColor:
-                              Theme.of(context).inputDecorationTheme.fillColor,
-                        ),
-                      ),
-                      dropdownBuilder: _customDropDownExampleMultiSelection,
-                    ),
-                  ),
-                  Padding(padding: EdgeInsets.all(4)),
-                  Expanded(
-                    child: DropdownSearch<UserModel>(
-                      asyncItems: (String? filter) => getData(filter),
-                      popupProps: PopupPropsMultiSelection.modalBottomSheet(
-                        showSelectedItems: true,
-                        itemBuilder: _customPopupItemBuilderExample2,
-                        showSearchBox: true,
-                      ),
-                      compareFn: (item, sItem) => item.id == sItem.id,
-                      dropdownDecoratorProps: DropDownDecoratorProps(
-                        dropdownSearchDecoration: InputDecoration(
-                          labelText: 'User *',
-                          filled: true,
-                          fillColor:
-                              Theme.of(context).inputDecorationTheme.fillColor,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              ///************************[Dynamic height depending on items number]********************************///
-              Padding(padding: EdgeInsets.all(8)),
-              Text("[popup dynamic height examples]"),
-              Divider(),
-              Row(
-                children: [
-                  Expanded(
-                    child: DropdownSearch<int>(
-                      items: List.generate(50, (i) => i),
-                      popupProps: PopupProps.menu(
-                        showSearchBox: true,
-                        title: Text('default fit'),
-                      ),
-                    ),
-                  ),
-                  Padding(padding: EdgeInsets.all(4)),
-                  Expanded(
-                    child: DropdownSearch<int>(
-                      items: List.generate(50, (i) => i),
-                      popupProps: PopupProps.menu(
-                        title: Text('With fit to loose and no constraints'),
-                        showSearchBox: true,
-                        fit: FlexFit.loose,
-                        //comment this if you want that the items do not takes all available height
-                        constraints: BoxConstraints.tightFor(),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              Padding(padding: EdgeInsets.all(4)),
-              Row(
-                children: [
-                  Expanded(
-                    child: DropdownSearch<int>(
-                      items: List.generate(50, (i) => i),
-                      popupProps: PopupProps.menu(
-                        showSearchBox: true,
-                        fit: FlexFit.loose,
-                        title: Text('fit to a specific max height'),
-                        constraints: BoxConstraints(maxHeight: 300),
-                      ),
-                    ),
-                  ),
-                  Padding(padding: EdgeInsets.all(4)),
-                  Expanded(
-                    child: DropdownSearch<int>(
-                      items: List.generate(50, (i) => i),
-                      popupProps: PopupProps.menu(
-                        title: Text('fit to a specific width and height'),
-                        showSearchBox: true,
-                        fit: FlexFit.loose,
-                        constraints: BoxConstraints.tightFor(
-                          width: 300,
-                          height: 300,
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-
-              ///************************[Handle dropdown programmatically]********************************///
-              Padding(padding: EdgeInsets.all(8)),
-              Text("[handle dropdown programmatically]"),
-              Divider(),
-              DropdownSearch<int>(
-                key: _openDropDownProgKey,
-                items: [1, 2, 3],
-              ),
-              Padding(padding: EdgeInsets.all(4)),
-              ElevatedButton(
-                onPressed: () {
-                  _openDropDownProgKey.currentState?.changeSelectedItem(100);
-                },
-                child: Text('set to 100'),
-              ),
-              Padding(padding: EdgeInsets.all(4)),
-              ElevatedButton(
-                onPressed: () {
-                  _openDropDownProgKey.currentState?.openDropDownSearch();
-                },
-                child: Text('open popup'),
-              ),
-
-              ///************************[multiLevel items example]********************************///
-              Padding(padding: EdgeInsets.all(8)),
-              Text("[multiLevel items example]"),
-              Divider(),
-              DropdownSearch<MultiLevelString>(
-                key: myKey,
-                items: myItems,
-                compareFn: (i1, i2) => i1.level1 == i2.level1,
-                popupProps: PopupProps.menu(
-                  showSelectedItems: true,
-                  interceptCallBacks: true, //important line
-                  itemBuilder: (ctx, item, isSelected) {
-                    return ListTile(
-                      selected: isSelected,
-                      title: Text(item.level1),
-                      trailing: item.subLevel.isEmpty
-                          ? null
-                          : (item.isExpanded
-                              ? IconButton(
-                                  icon: Icon(Icons.arrow_drop_down),
-                                  onPressed: () {
-                                    item.isExpanded = !item.isExpanded;
-                                    myKey.currentState?.updatePopupState();
-                                  },
-                                )
-                              : IconButton(
-                                  icon: Icon(Icons.arrow_right),
-                                  onPressed: () {
-                                    item.isExpanded = !item.isExpanded;
-                                    myKey.currentState?.updatePopupState();
-                                  },
-                                )),
-                      subtitle: item.subLevel.isNotEmpty && item.isExpanded
-                          ? Container(
-                              height: item.subLevel.length * 50,
-                              child: ListView(
-                                children: item.subLevel
-                                    .map(
-                                      (e) => ListTile(
-                                        selected: myKey.currentState
-                                                ?.getSelectedItem?.level1 ==
-                                            e.level1,
-                                        title: Text(e.level1),
-                                        onTap: () {
-                                          myKey.currentState
-                                              ?.popupValidate([e]);
-                                        },
-                                      ),
-                                    )
-                                    .toList(),
-                              ),
-                            )
-                          : null,
-                      onTap: () => myKey.currentState?.popupValidate([item]),
-                    );
-                  },
-                ),
-              ),
             ],
           ),
         ),
@@ -860,6 +535,40 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  Widget _customPopupItemBuilderForPolice(
+      BuildContext context, PoliceIdNameDesigNumb? item, bool isSelected) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 8),
+      decoration: !isSelected
+          ? null
+          : BoxDecoration(
+              border: Border.all(color: Theme.of(context).primaryColor),
+              borderRadius: BorderRadius.circular(5),
+              color: Colors.white,
+            ),
+      child: ListTile(
+        selected: isSelected,
+        title: Row(
+          children: [
+            Text(item?.name ?? ''),
+            Text(item?.designation ?? '',
+                style: TextStyle(color: Colors.amberAccent, fontSize: 16)),
+          ],
+        ),
+        subtitle: Row(
+          children: [
+            Text(item?.district ?? ''),
+            Text(item?.number ?? ''),
+          ],
+        ),
+        leading: CircleAvatar(
+            // this does not work - throws 404 error
+            // backgroundImage: NetworkImage(item.avatar ?? ''),
+            ),
+      ),
+    );
+  }
+
   Future<List<UserModel>> getData(filter) async {
     var response = await Dio().get(
       "https://5d85ccfb1e61af001471bf60.mockapi.io/user",
@@ -869,6 +578,20 @@ class _MyHomePageState extends State<MyHomePage> {
     final data = response.data;
     if (data != null) {
       return UserModel.fromJsonList(data);
+    }
+    return [];
+  }
+
+  Future<List<PoliceIdNameDesigNumb>> getDataV2(filter) async {
+    // var response = await Dio().get(
+    //   "https://5d85ccfb1e61af001471bf60.mockapi.io/user",
+    //   queryParameters: {"filter": filter},
+    // );
+
+    // final data = response.data;
+
+    if (controller.policeNames.value != null) {
+      return controller.policeNames.value!;
     }
     return [];
   }
@@ -964,6 +687,7 @@ class MultiLevelString {
   @override
   String toString() => level1;
 }
+
 class UserModel {
   final String id;
   final DateTime? createdAt;

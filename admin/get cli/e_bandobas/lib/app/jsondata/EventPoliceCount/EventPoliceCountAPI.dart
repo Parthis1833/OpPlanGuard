@@ -107,17 +107,20 @@ class EventPoliceCountAPI {
         "Data not found from server api hit : event_police_count/unassigned_police_list$eventId");
   }
 
-
-  static Future<List<PoliceIdNameDesigNumb>> getUnAssignedPoliceIdNameDesigNumbList(
-      API_Decision showStatus, num eventId) async {
+  static Future<List<PoliceIdNameDesigNumb>>
+      getUnAssignedPoliceIdNameDesigNumbList(
+          API_Decision showStatus, num eventId, String searchName) async {
     print("inside getUnAssignedPoliceIdNameDesigNumbList $eventId");
-    final response = await http.get(
-      Uri.parse(APIConstants.EVENT_POLICE_COUNT_UNASSIGNED_POLICE_ID_NAME_DESIG_NUMB_LIST +
-          eventId.toString()),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-    );
+    final modelApiData = {'event-id': eventId, 'search-police': searchName};
+    print(modelApiData);
+    final response = await http.post(
+        Uri.parse(APIConstants
+            .EVENT_POLICE_COUNT_UNASSIGNED_POLICE_ID_NAME_DESIG_NUMB_LIST),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(modelApiData));
+
     if (response.statusCode == 200) {
       final responseJson = jsonDecode(utf8.decode(response.bodyBytes));
 
