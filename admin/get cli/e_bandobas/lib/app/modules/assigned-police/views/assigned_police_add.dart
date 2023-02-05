@@ -260,127 +260,33 @@ class _MyHomePageState extends State<MyHomePage> {
           child: ListView(
             padding: EdgeInsets.all(4),
             children: <Widget>[
-              ///************************[simple examples for single and multi selection]************///
-              Text("[simple examples for single and multi selection]"),
-              Divider(),
-              Row(
-                children: [
-                  Expanded(
-                    child: DropdownSearch<int>(
-                      items: [1, 2, 3, 4, 5, 6, 7],
-                    ),
-                  ),
-                  Padding(padding: EdgeInsets.all(4)),
-                  Expanded(
-                    child: DropdownSearch<int>.multiSelection(
-                      clearButtonProps: ClearButtonProps(isVisible: true),
-                      items: [1, 2, 3, 4, 5, 6, 7],
-                    ),
-                  )
-                ],
-              ),
-
-              ///************************[simple examples for each mode]*************************///
-              Padding(padding: EdgeInsets.all(8)),
-              Text("[simple examples for each mode]"),
-              Divider(),
-              Row(
-                children: [
-                  Expanded(
-                    child: DropdownSearch<int>(
-                      items: [1, 2, 3, 4, 5, 6, 7],
-                    ),
-                  ),
-                  Padding(padding: EdgeInsets.all(4)),
-                  Expanded(
-                    child: DropdownSearch<int>.multiSelection(
-                      key: _popupCustomValidationKey,
-                      items: [1, 2, 3, 4, 5, 6, 7],
-                      popupProps: PopupPropsMultiSelection.dialog(
-                        validationWidgetBuilder: (ctx, selectedItems) {
-                          return Container(
-                            color: Colors.blue[200],
-                            height: 56,
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: MaterialButton(
-                                child: Text('OK'),
-                                onPressed: () {
-                                  _popupCustomValidationKey.currentState
-                                      ?.popupOnValidate();
-                                },
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              Padding(padding: EdgeInsets.all(4)),
-              Row(
-                children: [
-                  Expanded(
-                    child: DropdownSearch<int>(
-                      items: [1, 2, 3, 4, 5, 6, 7],
-                      dropdownDecoratorProps: DropDownDecoratorProps(
-                        dropdownSearchDecoration: InputDecoration(
-                          labelText: "BottomSheet mode",
-                          hintText: "Select an Int",
-                        ),
-                      ),
-                      popupProps: PopupProps.bottomSheet(
-                          bottomSheetProps: BottomSheetProps(
-                              elevation: 16,
-                              backgroundColor: Color(0xFFAADCEE))),
-                    ),
-                  ),
-                  Padding(padding: EdgeInsets.all(4)),
-                  Expanded(
-                    child: DropdownSearch<int>(
-                      items: [1, 2, 3, 4, 5, 6, 7],
-                      dropdownDecoratorProps: DropDownDecoratorProps(
-                        dropdownSearchDecoration: InputDecoration(
-                          labelText: "Modal mode",
-                          hintText: "Select an Int",
-                          filled: true,
-                        ),
-                      ),
-                      popupProps: PopupPropsMultiSelection.modalBottomSheet(
-                        disabledItemFn: (int i) => i <= 3,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-
+              
               ///************************[Favorites examples]**********************************///
               Padding(padding: EdgeInsets.all(8)),
               Text("[Favorites examples]"),
               Divider(),
               Row(
                 children: [
-                  Expanded(
-                    child: DropdownSearch<UserModel>(
-                      asyncItems: (filter) => getData(filter),
-                      compareFn: (i, s) => i.isEqual(s),
-                      popupProps: PopupPropsMultiSelection.modalBottomSheet(
-                        isFilterOnline: true,
-                        showSelectedItems: true,
-                        showSearchBox: true,
-                        itemBuilder: _customPopupItemBuilderExample2,
-                        favoriteItemProps: FavoriteItemProps(
-                          showFavoriteItems: true,
-                          favoriteItems: (us) {
-                            return us
-                                .where((e) => e.name.contains("Mrs"))
-                                .toList();
-                          },
-                        ),
-                      ),
-                    ),
-                  ),
+                  // Expanded(
+                  //   child: DropdownSearch<UserModel>(
+                  //     asyncItems: (filter) => getData(filter),
+                  //     compareFn: (i, s) => i.isEqual(s),
+                  //     popupProps: PopupPropsMultiSelection.modalBottomSheet(
+                  //       isFilterOnline: true,
+                  //       showSelectedItems: true,
+                  //       showSearchBox: true,
+                  //       itemBuilder: _customPopupItemBuilderExample2,
+                  //       favoriteItemProps: FavoriteItemProps(
+                  //         showFavoriteItems: true,
+                  //         favoriteItems: (us) {
+                  //           return us
+                  //               .where((e) => e.name.contains("Mrs"))
+                  //               .toList();
+                  //         },
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                   // TODO: Implement this shit
                   Padding(padding: EdgeInsets.all(4)),
                   Expanded(
@@ -435,40 +341,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
 
-              ///************************[validation examples]********************************///
-              Padding(padding: EdgeInsets.all(8)),
-              Text("[validation examples]"),
-              Divider(),
-              Row(
-                children: [
-                  Expanded(
-                    child: DropdownSearch<int>(
-                      items: [1, 2, 3, 4, 5, 6, 7],
-                      autoValidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (int? i) {
-                        if (i == null)
-                          return 'required filed';
-                        else if (i >= 5) return 'value should be < 5';
-                        return null;
-                      },
-                      clearButtonProps: ClearButtonProps(isVisible: true),
-                    ),
-                  ),
-                  Padding(padding: EdgeInsets.all(4)),
-                  Expanded(
-                    child: DropdownSearch<int>.multiSelection(
-                      items: [1, 2, 3, 4, 5, 6, 7],
-                      validator: (List<int>? items) {
-                        if (items == null || items.isEmpty)
-                          return 'required filed';
-                        else if (items.length > 3)
-                          return 'only 1 to 3 items are allowed';
-                        return null;
-                      },
-                    ),
-                  )
-                ],
-              ),
+              
 
             ],
           ),
