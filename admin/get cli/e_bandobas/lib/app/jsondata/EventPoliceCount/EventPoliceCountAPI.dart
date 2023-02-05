@@ -8,6 +8,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'dart:convert' show utf8;
 
+import '../PoliceData/PoliceIdNameDesigNumbModel.dart';
 import '../PoliceData/PoliceIdNameModel.dart';
 
 class EventPoliceCountAPI {
@@ -86,6 +87,58 @@ class EventPoliceCountAPI {
           policeIdNameList.add(police);
         }
         return policeIdNameList;
+      } // api error to be displayed
+      else {
+        if (showStatus == API_Decision.Only_Failure ||
+            showStatus == API_Decision.BOTH) {
+          Get.snackbar(
+            "Failed",
+            responseJson['response']['message'] ?? "No message available",
+            icon: const Icon(Icons.cancel_presentation_sharp,
+                color: Colors.white),
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.red,
+          );
+        }
+      }
+    }
+    print(response.body);
+    throw DataNotFoundException(
+        "Data not found from server api hit : event_police_count/unassigned_police_list$eventId");
+  }
+
+
+  static Future<List<PoliceIdNameDesigNumb>> getUnAssignedPoliceIdNameDesigNumbList(
+      API_Decision showStatus, num eventId) async {
+    print("inside getUnAssignedPoliceIdNameDesigNumbList $eventId");
+    final response = await http.get(
+      Uri.parse(APIConstants.EVENT_POLICE_COUNT_UNASSIGNED_POLICE_ID_NAME_DESIG_NUMB_LIST +
+          eventId.toString()),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+    if (response.statusCode == 200) {
+      final responseJson = jsonDecode(utf8.decode(response.bodyBytes));
+
+      if (responseJson['response']['error'] == 0) {
+        if (showStatus == API_Decision.Only_Success ||
+            showStatus == API_Decision.BOTH) {
+          Get.snackbar(
+            "Success",
+            "Police obtained successfully",
+            icon: const Icon(Icons.add_task_sharp, color: Colors.white),
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.green,
+          );
+        }
+        List<PoliceIdNameDesigNumb> policeIdNameDesigNumberList = [];
+        for (int i = 0; i < responseJson['content'].length; i++) {
+          PoliceIdNameDesigNumb police =
+              PoliceIdNameDesigNumb.fromJson(responseJson['content'][i]);
+          policeIdNameDesigNumberList.add(police);
+        }
+        return policeIdNameDesigNumberList;
       } // api error to be displayed
       else {
         if (showStatus == API_Decision.Only_Failure ||

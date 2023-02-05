@@ -378,21 +378,27 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                   ),
+                  // TODO: Implement this shit
                   Padding(padding: EdgeInsets.all(4)),
                   Expanded(
                     child: DropdownSearch<UserModel>.multiSelection(
                       asyncItems: (filter) => getData(filter),
                       compareFn: (i, s) => i.isEqual(s),
                       popupProps: PopupPropsMultiSelection.modalBottomSheet(
+
+                        title: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: const Text("Select Police to assign in event and point"),
+                        ),
                         showSearchBox: true,
                         itemBuilder: _customPopupItemBuilderExample2,
                         favoriteItemProps: FavoriteItemProps(
                           showFavoriteItems: true,
-                          favoriteItems: (us) {
-                            return us
-                                .where((e) => e.name.contains("Mrs"))
-                                .toList();
-                          },
+                          // favoriteItems: (us) {
+                          //   return us
+                          //       .where((e) => e.name.contains("Mrs"))
+                          //       .toList();
+                          // },
                           favoriteItemBuilder: (context, item, isSelected) {
                             return Container(
                               padding: EdgeInsets.symmetric(
@@ -864,7 +870,6 @@ class _MyHomePageState extends State<MyHomePage> {
     if (data != null) {
       return UserModel.fromJsonList(data);
     }
-
     return [];
   }
 }

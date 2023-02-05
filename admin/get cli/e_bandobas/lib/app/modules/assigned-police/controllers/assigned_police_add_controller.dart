@@ -1,3 +1,4 @@
+import 'package:e_bandobas/app/jsondata/PoliceData/PoliceIdNameDesigNumbModel.dart';
 import 'package:get/get.dart';
 
 import '../../../../constants/enums.dart';
@@ -16,7 +17,7 @@ class AssignedPoliceAddController extends GetxController {
   late final selectedPointId = 0.obs;
   final events = Rxn<List<Event>>();
   final points = Rxn<List<Point>>();
-  final policeNames = Rxn<List<PoliceIdName>>();
+  final policeNames = Rxn<List<PoliceIdNameDesigNumb>>();
 
   final eventPointAssignmentModel = Rxn<EventPointAssignmentModel>();
   final isAssignmentLoaded = false.obs;
@@ -66,8 +67,9 @@ class AssignedPoliceAddController extends GetxController {
   }
 
   void loadPolice() async {
-    policeNames.value = await EventPoliceCountAPI.getUnAssignedPoliceList(
-        API_Decision.Only_Failure, selectedEventId.value);
+    policeNames.value =
+        await EventPoliceCountAPI.getUnAssignedPoliceIdNameDesigNumbList(
+            API_Decision.Only_Failure, selectedEventId.value);
     update();
   }
 
@@ -80,5 +82,18 @@ class AssignedPoliceAddController extends GetxController {
   void changeSelectedPoint(num? value) {
     selectedPointId.value = value!.toInt();
     update();
+  }
+
+  Future<List<PoliceIdName>> getData(filter) async {
+    // var response = await Dio().get(
+    //   "https://5d85ccfb1e61af001471bf60.mockapi.io/user",
+    //   queryParameters: {"filter": filter},
+    // );
+
+    // final data = response.data;
+    // if (data != null) {
+    //   return UserModel.fromJsonList(data);
+    // }
+    return [];
   }
 }
