@@ -13,7 +13,7 @@ class AssignedPoliceDeleteView extends GetView<AssignedPoliceDeleteController> {
         title: const Text('AssignedPoliceView'),
         centerTitle: true,
       ),
-      body: Center(
+      body: const Center(
         child: Text(
           'AssignedPoliceView is working',
           style: TextStyle(fontSize: 20),

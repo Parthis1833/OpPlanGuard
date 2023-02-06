@@ -71,8 +71,8 @@ class AssignedPoliceAddView extends GetView<AssignedPoliceAddController> {
         showSelectedItems: true,
         disabledItemFn: (String s) => s.startsWith('I'),
       ),
-      items: ["Brazil", "Italia (Disabled)", "Tunisia", 'Canada'],
-      dropdownDecoratorProps: DropDownDecoratorProps(
+      items: const ["Brazil", "Italia (Disabled)", "Tunisia", 'Canada'],
+      dropdownDecoratorProps: const DropDownDecoratorProps(
         dropdownSearchDecoration: InputDecoration(
           labelText: "Menu mode",
           hintText: "country in menu mode",
