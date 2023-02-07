@@ -278,45 +278,55 @@ class OffficerDataGridSource extends DataGridSource {
   List<DataGridRow> get rows => dataGridRows;
 
   void buildDataGridRow() {
-    //   dataGridRows = contentList.map<DataGridRow>((dataGridRow) {
-    //     return DataGridRow(cells: [
-    //       DataGridCell<num>(columnName: 'ID', value: dataGridRow.id),
-    //       DataGridCell<String>(
-    //           columnName: 'Designation', value: dataGridRow.designation?.name),
-    //       DataGridCell<String>(
-    //           columnName: 'fullName', value: dataGridRow.fullName),
-    //       DataGridCell<String>(
-    //           columnName: 'BuckleNumber', value: dataGridRow.buckleNumber),
-    //       DataGridCell<String>(columnName: 'Number', value: dataGridRow.number),
-    //       DataGridCell<String>(
-    //           columnName: 'Police Station',
-    //           value: dataGridRow.policeStation?.policeStationName),
-    //       DataGridCell<String>(
-    //           columnName: 'District', value: dataGridRow.policeStation?.district),
-    //       DataGridCell<num>(columnName: 'Age', value: dataGridRow.age),
-    //       DataGridCell<String>(columnName: 'Gender', value: dataGridRow.gender),
-    //     ]);
-    //   }).toList(growable: false);
-    // }
-    contentList.asMap().forEach((index, police) {
-      DataGridRow gdr = DataGridRow(cells: [
-            DataGridCell<num>(columnName: 'ID', value: index),
-          DataGridCell<String>(
-              columnName: 'Designation', value: police.designation?.name),
-          DataGridCell<String>(
-              columnName: 'fullName', value: police.fullName),
-          DataGridCell<String>(
-              columnName: 'BuckleNumber', value: police.buckleNumber),
-          DataGridCell<String>(columnName: 'Number', value: police.number),
-          DataGridCell<String>(
-              columnName: 'Police Station',
-              value: police.policeStation?.policeStationName),
-          DataGridCell<String>(
-              columnName: 'District', value: police.policeStation?.district),
-          DataGridCell<num>(columnName: 'Age', value: police.age),
-          DataGridCell<String>(columnName: 'Gender', value: police.gender),
-      ]);
-      dataGridRows.add(gdr);
-    });
+    // dataGridRows = contentList.map<DataGridRow>((dataGridRow) {
+    //   return DataGridRow(cells: [
+    //     DataGridCell<num>(columnName: 'ID', value: dataGridRow.id),
+    //     DataGridCell<String>(
+    //         columnName: 'Designation', value: dataGridRow.designation?.name),
+    //     DataGridCell<String>(
+    //         columnName: 'fullName', value: dataGridRow.fullName),
+    //     DataGridCell<String>(
+    //         columnName: 'BuckleNumber', value: dataGridRow.buckleNumber),
+    //     DataGridCell<String>(columnName: 'Number', value: dataGridRow.number),
+    //     DataGridCell<String>(
+    //         columnName: 'Police Station',
+    //         value: dataGridRow.policeStation?.policeStationName),
+    //     DataGridCell<String>(
+    //         columnName: 'District', value: dataGridRow.policeStation?.district),
+    //     DataGridCell<num>(columnName: 'Age', value: dataGridRow.age),
+    //     DataGridCell<String>(columnName: 'Gender', value: dataGridRow.gender),
+    //   ]);
+    // }).toList(growable: false);
+
+    dataGridRows = mapIndexed(
+      contentList,
+      (index, police) => DataGridRow(cells: [
+        DataGridCell<num>(columnName: 'ID', value: index+1),
+        DataGridCell<String>(
+            columnName: 'Designation', value: police.designation?.name),
+        DataGridCell<String>(
+            columnName: 'fullName', value: police.fullName),
+        DataGridCell<String>(
+            columnName: 'BuckleNumber', value: police.buckleNumber),
+        DataGridCell<String>(columnName: 'Number', value: police.number),
+        DataGridCell<String>(
+            columnName: 'Police Station',
+            value: police.policeStation?.policeStationName),
+        DataGridCell<String>(
+            columnName: 'District', value: police.policeStation?.district),
+        DataGridCell<num>(columnName: 'Age', value: police.age),
+        DataGridCell<String>(columnName: 'Gender', value: police.gender),
+      ])
+    ).toList(growable: false);
+  }
+
+  Iterable<E> mapIndexed<E, T>(
+      Iterable<T> items, E Function(int index, T item) f) sync* {
+    var index = 0;
+
+    for (final item in items) {
+      yield f(index, item);
+      index = index + 1;
+    }
   }
 }
