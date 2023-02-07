@@ -1,4 +1,3 @@
-import 'package:e_bandobas/app/Exceptions/ValidationException.dart';
 import 'package:e_bandobas/app/jsondata/EventData/Event.dart';
 import 'package:e_bandobas/app/jsondata/EventData/EventApi.dart';
 import 'package:e_bandobas/app/jsondata/EventPointAssignmentData/eventPointAssignmentApi.dart';
@@ -24,16 +23,6 @@ class AssignedPoliceController extends GetxController {
     super.onInit();
     loadEvents();
     loadPoints();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
   }
 
   void increment() => count.value++;

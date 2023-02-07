@@ -1,12 +1,10 @@
 import 'package:e_bandobas/app/Api/API.dart';
 import 'package:e_bandobas/app/Exceptions/DataNotFoundException.dart';
-import 'package:e_bandobas/app/jsondata/EventPoliceCount/EventPolceCountModel.dart';
 import 'package:e_bandobas/constants/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'dart:convert' show utf8;
 
 import '../PoliceData/PoliceIdNameDesigNumbModel.dart';
 import '../PoliceData/PoliceIdNameModel.dart';
@@ -58,7 +56,6 @@ class EventPoliceCountAPI {
 
   static Future<List<PoliceIdName>> getUnAssignedPoliceList(
       API_Decision showStatus, num eventId) async {
-    print("inside getUnAssignedPoliceList $eventId");
     final response = await http.get(
       Uri.parse(APIConstants.EVENT_POLICE_COUNT_UNASSIGNED_POLICE_LIST +
           eventId.toString()),
@@ -102,7 +99,6 @@ class EventPoliceCountAPI {
         }
       }
     }
-    print(response.body);
     throw DataNotFoundException(
         "Data not found from server api hit : event_police_count/unassigned_police_list$eventId");
   }
@@ -110,9 +106,9 @@ class EventPoliceCountAPI {
   static Future<List<PoliceIdNameDesigNumb>>
       getUnAssignedPoliceIdNameDesigNumbList(
           API_Decision showStatus, num eventId, String searchName) async {
-    print("inside getUnAssignedPoliceIdNameDesigNumbList $eventId");
+
     final modelApiData = {'event-id': eventId, 'search-police': searchName};
-    print(modelApiData);
+
     final response = await http.post(
         Uri.parse(APIConstants
             .EVENT_POLICE_COUNT_UNASSIGNED_POLICE_ID_NAME_DESIG_NUMB_LIST),
@@ -157,7 +153,6 @@ class EventPoliceCountAPI {
         }
       }
     }
-    print(response.body);
     throw DataNotFoundException(
         "Data not found from server api hit : event_police_count/unassigned_police_list$eventId");
   }

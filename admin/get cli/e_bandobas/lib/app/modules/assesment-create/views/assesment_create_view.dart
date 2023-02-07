@@ -1,13 +1,10 @@
-import 'package:e_bandobas/app/resource/drawer/navigation_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:get/get.dart';
-
 import '../controllers/assesment_create_controller.dart';
 
 class AssesmentCreateView extends GetView<AssesmentCreateController> {
-  AssesmentCreateView({Key? key}) : super(key: key);
+  const AssesmentCreateView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +98,7 @@ class AssesmentCreateView extends GetView<AssesmentCreateController> {
                   )
                       : Container(),
                   (index * 2 + 1 < controller.designations.value!.length)
-                      ? Container(
+                      ? SizedBox(
                     width: 150,
                     height: 45,
                     child: TextField(
@@ -176,7 +173,7 @@ class AssesmentCreateView extends GetView<AssesmentCreateController> {
 
   Widget eventSelectionDropDownWidget() {
     print("length = ${controller.events.value!.length}");
-    return controller.events.value!.length > 0
+    return controller.events.value!.length >= 0
         ? Container(
           height: 75,
           width: 600,
@@ -196,7 +193,7 @@ class AssesmentCreateView extends GetView<AssesmentCreateController> {
                       fontSize: 38.0),
                 ),
               ),
-              Container(
+              SizedBox(
                 height: 55,
                 width: 300,
                 child: DropdownButton(

@@ -4,7 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
 class Navigation_Drawer extends StatelessWidget {
-  const Navigation_Drawer({super.key});
+   const Navigation_Drawer({super.key});
   @override
   Widget build(BuildContext context) {
     return Drawer(

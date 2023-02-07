@@ -1,6 +1,5 @@
 import 'package:e_bandobas/app/Api/API.dart';
 import 'package:e_bandobas/app/jsondata/PointData/Point.dart';
-import 'package:e_bandobas/app/jsondata/ZoneData/Zone.dart';
 import 'package:e_bandobas/constants/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,7 +23,7 @@ class PointApi {
           Get.snackbar(
             "Success",
             "Points Obtained successfully",
-            icon: Icon(Icons.add_task_sharp, color: Colors.white),
+            icon: const Icon(Icons.add_task_sharp, color: Colors.white),
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.green,
           );
@@ -81,7 +80,7 @@ class PointApi {
           Get.snackbar(
             "Success",
             "Point Created successfully",
-            icon: Icon(Icons.add_task_sharp, color: Colors.white),
+            icon: const Icon(Icons.add_task_sharp, color: Colors.white),
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.green,
           );
@@ -95,7 +94,7 @@ class PointApi {
           Get.snackbar(
             "Failed",
             responseJson['response']['message'],
-            icon: Icon(Icons.cancel_presentation_sharp, color: Colors.white),
+            icon: const Icon(Icons.cancel_presentation_sharp, color: Colors.white),
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.red,
           );

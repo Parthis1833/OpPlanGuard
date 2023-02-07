@@ -35,20 +35,19 @@ class PointPoliceAssementController extends GetxController {
 
   void loadEvents() async {
     events.value = await EventApi.obtainEvents(API_Decision.Only_Failure);
-    if (events.value != null && events.value!.length > 0) {
+    if (events.value != null && events.value!.length >= 0) {
       selectedEventId.value = events.value!.elementAt(0).id!.toInt();
     }
     update();
   }
 
   void loadPoints() async {
-    print("done");
+
     points.value = await PointApi.obtainPoints(API_Decision.Only_Failure);
-    if (points.value != null && points.value!.length > 0) {
+    if (points.value != null && points.value!.length >= 0) {
       selectedPointId.value = points.value!.elementAt(0).id!.toInt();
     }
 
-    print(points.value![0].zone);
     update();
   }
 
@@ -97,13 +96,5 @@ class PointPoliceAssementController extends GetxController {
     loadPoints();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
 }

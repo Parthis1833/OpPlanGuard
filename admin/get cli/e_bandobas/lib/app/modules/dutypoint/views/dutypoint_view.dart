@@ -26,9 +26,6 @@ class DutypointView extends GetView<DutypointController> {
               child: Text(''),
             ),
           ),
-          Container(
-            child: const Text('hey'),
-          ),
         ],
       ),
       floatingActionButton: const CollapseButton(),

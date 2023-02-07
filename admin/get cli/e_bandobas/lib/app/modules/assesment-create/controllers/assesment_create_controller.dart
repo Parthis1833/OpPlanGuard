@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:e_bandobas/app/jsondata/DesignationData/Designation.dart';
 import 'package:e_bandobas/app/jsondata/DesignationData/DesignationApi.dart';
 import 'package:e_bandobas/app/jsondata/EventData/Event.dart';
@@ -69,17 +67,6 @@ class AssesmentCreateController extends GetxController {
     loadDesignations();
     loadEvents();
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
   void changeSelectedEvent(num? value) {
     selectedEventId.value = value!.toInt();
     update();

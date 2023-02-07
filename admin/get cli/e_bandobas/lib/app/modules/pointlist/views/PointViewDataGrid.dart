@@ -1,4 +1,3 @@
-import 'package:e_bandobas/app/Api/models/Police/Officers.dart';
 import 'package:e_bandobas/app/Api/API.dart';
 import 'package:e_bandobas/app/jsondata/PointData/Point.dart';
 import 'package:flutter/material.dart';
@@ -172,13 +171,25 @@ class PointViewDataGridSource extends DataGridSource {
   List<DataGridRow> get rows => dataGridRows;
 
   void buildDataGridRow() {
-    dataGridRows = pointList.map<DataGridRow>((dataGridRow) {
-      return DataGridRow(cells: [
-        DataGridCell<num>(columnName: 'ID', value: dataGridRow.id),
-        DataGridCell<String>(columnName: 'Point Name', value: dataGridRow.pointName),
-        DataGridCell<String>(columnName: 'Accessories', value: dataGridRow.accessories),
-        DataGridCell<String>(columnName: 'Remarks', value: dataGridRow.remarks),
-      ]);
-    }).toList(growable: false);
+    Iterable<E> mapIndexed<E, T>(
+        Iterable<T> items, E Function(int index, T item) f) sync* {
+      var index = 0;
+
+      for (final item in items) {
+        yield f(index, item);
+        index = index + 1;
+      }
+    }
+
+    dataGridRows = mapIndexed(
+        pointList, (index, point) =>
+        DataGridRow(cells: [
+        DataGridCell<num>(columnName: 'ID', value: index+1),
+        DataGridCell<String>(columnName: 'Point Name', value:point.pointName),
+        DataGridCell<String>(columnName: 'Accessories', value: point.accessories),
+        DataGridCell<String>(columnName: 'Remarks', value: point.remarks),
+      ])
+    ).toList(growable: false);
+
   }
 }

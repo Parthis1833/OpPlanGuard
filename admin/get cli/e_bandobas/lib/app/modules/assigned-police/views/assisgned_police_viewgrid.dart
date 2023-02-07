@@ -1,4 +1,3 @@
-import 'package:e_bandobas/app/jsondata/AssignPolice/AssignPolice.dart';
 import 'package:flutter/cupertino.dart';
 
 class Assisgned_Police_view_Grid extends  StatelessWidget{

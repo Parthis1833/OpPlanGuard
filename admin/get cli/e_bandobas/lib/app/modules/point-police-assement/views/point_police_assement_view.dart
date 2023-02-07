@@ -18,8 +18,8 @@ class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
         centerTitle: true,
       ),
       body: Obx(() => (controller.designations.value!.isEmpty &&
-              controller.events.value !.length <= 0 &&
-              controller.points.value !.length <= 0)
+              controller.events.value !.length >= 0 &&
+              controller.points.value !.length >= 0)
           ? const CircularProgressIndicator()
           : eventPoliceAssementWidget()),
 
@@ -88,7 +88,7 @@ class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
                         fontSize: 26.0),
                   ),
                 ),
-                Container(
+                SizedBox(
                   width: 150,
                   height: 45,
                   child: TextField(
@@ -125,7 +125,7 @@ class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
                     : Container(),
 
                 (index * 2 + 1 < controller.designations.value!.length)
-                    ? Container(
+                    ? SizedBox(
                   width: 150,
                   height: 45,
                   child: TextField(
@@ -198,28 +198,26 @@ class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
   }
 
   Widget eventSelectionDropDownWidget() {
-    return Container(
-        child: DropdownButton(
-            value: controller.selectedEventId.value,
-            items: controller.events.value!.map((event) {
-              return DropdownMenuItem(
-                  value: event.id, child: Text(event.eventName.toString()));
-            }).toList(),
-            onChanged: (value) {
-              controller.changeSelectedEvent(value);
-            }));
+    return DropdownButton(
+        value: controller.selectedEventId.value,
+        items: controller.events.value!.map((event) {
+          return DropdownMenuItem(
+              value: event.id, child: Text(event.eventName.toString()));
+        }).toList(),
+        onChanged: (value) {
+          controller.changeSelectedEvent(value);
+        });
   }
 
   Widget pointSelectionDropDownWidget() {
-    return Container(
-        child: DropdownButton(
-            value: controller.selectedPointId.value,
-            items: controller.points.value!.map((point) {
-              return DropdownMenuItem(
-                  value: point.id, child: Text(point.pointName.toString()));
-            }).toList(),
-            onChanged: (value) {
-              controller.changeSelectedPoint(value);
-            }));
+    return DropdownButton(
+        value: controller.selectedPointId.value,
+        items: controller.points.value!.map((point) {
+          return DropdownMenuItem(
+              value: point.id, child: Text(point.pointName.toString()));
+        }).toList(),
+        onChanged: (value) {
+          controller.changeSelectedPoint(value);
+        });
   }
 }

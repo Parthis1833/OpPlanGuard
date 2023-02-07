@@ -32,7 +32,7 @@ class EventPointAssignmentModelApi {
           Get.snackbar(
             "Success",
             "police force Obtained successfully",
-            icon: Icon(Icons.add_task_sharp, color: Colors.white),
+            icon: const Icon(Icons.add_task_sharp, color: Colors.white),
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.green,
           );
@@ -40,9 +40,6 @@ class EventPointAssignmentModelApi {
 
         model = EventPointAssignmentModel.fromJson(responseJson['content']);
         // print(responseJson['content']);
-        print(model.eventId);
-        print(model.pointId);
-        print(model.assignedPoliceList?.length);
         return model;
         // for (int i = 0; i < responseJson['content'].length; i++) {
         //   Zone zone = Zone.fromJson(responseJson['content'][i]);
@@ -55,14 +52,13 @@ class EventPointAssignmentModelApi {
           Get.snackbar(
             "Failed",
             responseJson['response']['message'],
-            icon: Icon(Icons.cancel_presentation_sharp, color: Colors.white),
+            icon: const Icon(Icons.cancel_presentation_sharp, color: Colors.white),
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.red,
           );
         }
       }
     }
-    print(response.body);
     throw DataNotFoundException("Police assigned was not found from api")
         .errorSnackBar();
   }

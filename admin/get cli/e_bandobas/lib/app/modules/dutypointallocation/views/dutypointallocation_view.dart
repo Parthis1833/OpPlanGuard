@@ -25,9 +25,6 @@ class DutypointallocationView extends GetView<DutypointallocationController> {
               child: Text(''),
             ),
           ),
-          Container(
-            child: const Text('hey'),
-          ),
         ],
       ),
     );

@@ -1,3 +1,4 @@
+
 import 'package:e_bandobas/app/Api/API.dart';
 import 'package:e_bandobas/app/jsondata/ZoneData/Zone.dart';
 import 'package:e_bandobas/constants/enums.dart';
@@ -23,7 +24,7 @@ class ZoneApi {
           Get.snackbar(
             "Success",
             "Zone Obtained successfully",
-            icon: Icon(Icons.add_task_sharp, color: Colors.white),
+            icon: const Icon(Icons.add_task_sharp, color: Colors.white),
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.green,
           );
@@ -38,7 +39,7 @@ class ZoneApi {
           Get.snackbar(
             "Failed",
             responseJson['response']['message'],
-            icon: Icon(Icons.cancel_presentation_sharp, color: Colors.white),
+            icon: const Icon(Icons.cancel_presentation_sharp, color: Colors.white),
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.red,
           );

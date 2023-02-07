@@ -1,14 +1,11 @@
 import 'package:e_bandobas/app/jsondata/PoliceData/PoliceIdNameDesigNumbModel.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
-import '../../../Config/routes/app_pages.dart';
 import '../controllers/assigned_police_add_controller.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 
 class AssignedPoliceAddView extends GetView<AssignedPoliceAddController> {
-  AssignedPoliceAddView({Key? key}) : super(key: key);
+  const AssignedPoliceAddView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,38 +30,38 @@ class AssignedPoliceAddView extends GetView<AssignedPoliceAddController> {
           pointSelectionDropDownWidget(),
         ],
       ),
-      Container(child: Container(height: 500, child: MyHomePage()))
+      const SizedBox(height: 500, child: MyHomePage())
     ]);
   }
 
   Widget eventSelectionDropDownWidget() {
-    return Container(
-        child: DropdownButton(
-            value: controller.selectedEventId.value,
-            items: controller.events.value?.map((event) {
-              return DropdownMenuItem(
-                  value: event.id, child: Text(event.eventName.toString()));
-            }).toList(),
-            onChanged: (value) {
-              controller.changeSelectedEvent(value);
-            }));
+    return DropdownButton(
+        value: controller.selectedEventId.value,
+        items: controller.events.value?.map((event) {
+          return DropdownMenuItem(
+              value: event.id, child: Text(event.eventName.toString()));
+        }).toList(),
+        onChanged: (value) {
+          controller.changeSelectedEvent(value);
+        });
   }
 
   Widget pointSelectionDropDownWidget() {
-    return Container(
-        child: DropdownButton(
-            value: controller.selectedPointId.value,
-            items: controller.points.value?.map((point) {
-              return DropdownMenuItem(
-                  value: point.id, child: Text(point.pointName.toString()));
-            }).toList(),
-            onChanged: (value) {
-              controller.changeSelectedPoint(value);
-            }));
+    return DropdownButton(
+        value: controller.selectedPointId.value,
+        items: controller.points.value?.map((point) {
+          return DropdownMenuItem(
+              value: point.id, child: Text(point.pointName.toString()));
+        }).toList(),
+        onChanged: (value) {
+          controller.changeSelectedPoint(value);
+        });
   }
 }
 
 class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -112,12 +109,12 @@ class _MyHomePageState extends State<MyHomePage> {
       key: _formKey,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       child: ListView(
-        padding: EdgeInsets.all(4),
+        padding: const EdgeInsets.all(4),
         children: <Widget>[
           ///************************[Favorites examples]**********************************///
-          Padding(padding: EdgeInsets.all(8)),
-          Text("[Favorites examples]"),
-          Divider(),
+          const Padding(padding: EdgeInsets.all(8)),
+          const Text("[Favorites examples]"),
+          const Divider(),
           Row(
             children: [
               // ElevatedButton(
@@ -127,10 +124,10 @@ class _MyHomePageState extends State<MyHomePage> {
               //     },
               //     child: Text("ok")),
 
-              Padding(padding: EdgeInsets.all(4)),
+              const Padding(padding: EdgeInsets.all(4)),
               Expanded(
                 child: DropdownSearch<PoliceIdNameDesigNumb>.multiSelection(
-                  clearButtonProps: ClearButtonProps(
+                  clearButtonProps: const ClearButtonProps(
                     icon: Icon(Icons.cancel),
                     isVisible: true,
                     
@@ -163,7 +160,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         // print(item);
                         return Container(
                           padding:
-                              EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                              const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.grey),
                               borderRadius: BorderRadius.circular(10),
@@ -173,12 +170,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               Text(
                                 "${item.name}", // Todo policeName here
                                 textAlign: TextAlign.center,
-                                style: TextStyle(color: Colors.indigo),
+                                style: const TextStyle(color: Colors.indigo),
                               ),
-                              Padding(padding: EdgeInsets.only(left: 8)),
+                              const Padding(padding: EdgeInsets.only(left: 8)),
                               isSelected
-                                  ? Icon(Icons.check_box_outlined)
-                                  : SizedBox.shrink(),
+                                  ? const Icon(Icons.check_box_outlined)
+                                  : const SizedBox.shrink(),
                             ],
                           ),
                         );
@@ -197,7 +194,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget _customPopupItemBuilderForPolice(
       BuildContext context, PoliceIdNameDesigNumb? item, bool isSelected) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 8),
       decoration: !isSelected
           ? null
           : BoxDecoration(
@@ -211,7 +208,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             Text(item?.name ?? ''),
             Text(item?.designation ?? '',
-                style: TextStyle(color: Colors.amberAccent, fontSize: 16)),
+                style: const TextStyle(color: Colors.amberAccent, fontSize: 16)),
           ],
         ),
         subtitle: Row(
@@ -220,7 +217,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(item?.number ?? ''),
           ],
         ),
-        leading: CircleAvatar(
+        leading: const CircleAvatar(
             // this does not work - throws 404 error
             // backgroundImage: NetworkImage(item.avatar ?? ''),
             ),
@@ -248,7 +245,7 @@ class _CheckBoxWidget extends StatefulWidget {
   final bool? isSelected;
   final ValueChanged<bool?>? onChanged;
 
-  _CheckBoxWidget({required this.child, this.isSelected, this.onChanged});
+  const _CheckBoxWidget({required this.child, this.isSelected, this.onChanged});
 
   @override
   CheckBoxState createState() => CheckBoxState();
@@ -272,7 +269,7 @@ class CheckBoxState extends State<_CheckBoxWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
@@ -288,12 +285,12 @@ class CheckBoxState extends State<_CheckBoxWidget> {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Text('Select: '),
+              const Text('Select: '),
               Checkbox(
                   value: isSelected,
                   tristate: true,
                   onChanged: (bool? v) {
-                    if (v == null) v = false;
+                    v ??= false;
                     setState(() {
                       isSelected = v;
                       if (widget.onChanged != null) widget.onChanged!(v);

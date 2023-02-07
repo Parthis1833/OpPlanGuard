@@ -1,21 +1,16 @@
 import 'package:e_bandobas/app/Api/API.dart';
 import 'package:e_bandobas/app/Exceptions/DataNotFoundException.dart';
-import 'package:e_bandobas/app/jsondata/EventPoliceCount/EventPolceCountModel.dart';
 import 'package:e_bandobas/constants/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
-
 import 'PointPoliceCountAssignmentModel.dart';
 
 class PointPoliceCountApi {
   // static Future<List<EventPoliceCountModel>> obtainA
   static Future<bool> createAssignment(
       API_Decision showStatus, Map modelApiData) async {
-        
-    print(modelApiData);
     final response =
         await http.post(Uri.parse(APIConstants.POINT_POLICE_COUNT_CREATE),
             headers: <String, String>{
@@ -31,7 +26,7 @@ class PointPoliceCountApi {
           Get.snackbar(
             "Success",
             "Police Assignement noted for point successfully",
-            icon: Icon(Icons.add_task_sharp, color: Colors.white),
+            icon: const Icon(Icons.add_task_sharp, color: Colors.white),
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.green,
           );

@@ -1,4 +1,3 @@
-import '../../../Widgets/navigation_drawer.dart';
 import '../controllers/show_point_assignment_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -35,29 +34,27 @@ class ShowPointAssigment extends GetView<ShowPointPoliceAssementController> {
   }
 
   Widget eventSelectionDropDownWidget() {
-    return Container(
-        child: DropdownButton(
-            value: controller.selectedEventId.value,
-            items: controller.events.value!.map((event) {
-              return DropdownMenuItem(
-                  value: event.id, child: Text(event.eventName.toString()));
-            }).toList(),
-            onChanged: (value) {
-              controller.changeSelectedEvent(value);
-            }));
+    return DropdownButton(
+        value: controller.selectedEventId.value,
+        items: controller.events.value!.map((event) {
+          return DropdownMenuItem(
+              value: event.id, child: Text(event.eventName.toString()));
+        }).toList(),
+        onChanged: (value) {
+          controller.changeSelectedEvent(value);
+        });
   }
 
   Widget pointSelectionDropDownWidget() {
-    return Container(
-        child: DropdownButton(
-            value: controller.selectedPointId.value,
-            items: controller.points.value!.map((point) {
-              return DropdownMenuItem(
-                  value: point.id, child: Text(point.pointName.toString()));
-            }).toList(),
-            onChanged: (value) {
-              controller.changeSelectedPoint(value);
-            }));
+    return DropdownButton(
+        value: controller.selectedPointId.value,
+        items: controller.points.value!.map((point) {
+          return DropdownMenuItem(
+              value: point.id, child: Text(point.pointName.toString()));
+        }).toList(),
+        onChanged: (value) {
+          controller.changeSelectedPoint(value);
+        });
   }
 
   Widget designationListWidget() {

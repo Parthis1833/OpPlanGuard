@@ -7,6 +7,8 @@ import 'package:http/http.dart' as http;
 class DutyzonePOPPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final zoneName = TextEditingController();
+
+  DutyzonePOPPage({super.key});
   get myFocusNode => null;
   @override
   Widget build(BuildContext context) {
@@ -161,7 +163,6 @@ class DutyzonePOPPage extends StatelessWidget {
     );
     // print(response.body);
     final responseJson = jsonDecode(response.body);
-    print(responseJson['response']['message']);
 
     // successful response
     if (responseJson['response']['error'] == 0) {
@@ -169,7 +170,7 @@ class DutyzonePOPPage extends StatelessWidget {
       Get.snackbar(
         "Success",
         "Zone created successfully with name '" + responseJson['content']['name'],
-        icon: Icon(Icons.add_task_sharp, color: Colors.white),
+        icon: const Icon(Icons.add_task_sharp, color: Colors.white),
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.green,
       );
@@ -178,7 +179,7 @@ class DutyzonePOPPage extends StatelessWidget {
       Get.snackbar(
         "Failed",
         responseJson['response']['message'],
-        icon: Icon(Icons.cancel_presentation_sharp, color: Colors.white),
+        icon: const Icon(Icons.cancel_presentation_sharp, color: Colors.white),
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.red,
       );

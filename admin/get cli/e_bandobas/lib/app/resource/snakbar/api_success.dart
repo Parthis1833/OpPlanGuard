@@ -6,7 +6,7 @@ class CustomGetx {
   static final ApiSuccess = Get.snackbar(
               "Success",
                "Hello everyone",
-               icon: Icon(Icons.person, color: Colors.white),
+               icon: const Icon(Icons.person, color: Colors.white),
                snackPosition: SnackPosition.BOTTOM,
                backgroundColor: Colors.green,
                );

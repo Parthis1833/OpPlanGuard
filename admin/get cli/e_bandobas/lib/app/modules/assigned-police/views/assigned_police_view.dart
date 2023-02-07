@@ -30,9 +30,9 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
                     textStyle: MaterialStateProperty.resolveWith((states) {
                       // If the button is pressed, return size 40, otherwise 20
                       if (states.contains(MaterialState.pressed)) {
-                        return TextStyle(fontSize: 40);
+                        return const TextStyle(fontSize: 40);
                       }
-                      return TextStyle(fontSize: 20);
+                      return const TextStyle(fontSize: 20);
                     }),
                   ),
                   onPressed: () {
@@ -68,15 +68,13 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
           ],
         ),
         Obx(()=>controller.isAssignmentLoaded.value
-            ? Container(
-                child: Column(
-                  children: [
-                    Text(controller
-                            .eventPointAssignmentModel.value!.assignmentCount
-                            .toString())
-                  ],
-                ),
-              )
+            ? Column(
+              children: [
+                Text(controller
+                        .eventPointAssignmentModel.value!.assignmentCount
+                        .toString())
+              ],
+            )
             : Container()),
         Wrap(
           spacing: 5.0,
@@ -147,35 +145,32 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
   }
 
   Widget eventSelectionDropDownWidget() {
-    return Container(
-        child: DropdownButton(
-            value: controller.selectedEventId.value,
-            items: controller.events.value?.map((event) {
-              return DropdownMenuItem(
-                  value: event.id, child: Text(event.eventName.toString()));
-            }).toList(),
-            onChanged: (value) {
-              controller.changeSelectedEvent(value);
-            }));
+    return DropdownButton(
+        value: controller.selectedEventId.value,
+        items: controller.events.value?.map((event) {
+          return DropdownMenuItem(
+              value: event.id, child: Text(event.eventName.toString()));
+        }).toList(),
+        onChanged: (value) {
+          controller.changeSelectedEvent(value);
+        });
   }
 
   Widget pointSelectionDropDownWidget() {
-    return Container(
-        child: DropdownButton(
-            value: controller.selectedPointId.value,
-            items: controller.points.value?.map((point) {
-              return DropdownMenuItem(
-                  value: point.id, child: Text(point.pointName.toString()));
-            }).toList(),
-            onChanged: (value) {
-              controller.changeSelectedPoint(value);
-            }));
+    return DropdownButton(
+        value: controller.selectedPointId.value,
+        items: controller.points.value?.map((point) {
+          return DropdownMenuItem(
+              value: point.id, child: Text(point.pointName.toString()));
+        }).toList(),
+        onChanged: (value) {
+          controller.changeSelectedPoint(value);
+        });
   }
 
   Widget showAssignmentButton() {
-    return Container(
-        child: ElevatedButton(
-            onPressed: controller.showAssignments,
-            child: const Text("Show Assignments")));
+    return ElevatedButton(
+        onPressed: controller.showAssignments,
+        child: const Text("Show Assignments"));
   }
 }

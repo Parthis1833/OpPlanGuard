@@ -1,6 +1,4 @@
 import 'package:e_bandobas/app/Exceptions/ValidationException.dart';
-import 'package:e_bandobas/app/jsondata/EventData/EventApi.dart';
-import 'package:e_bandobas/constants/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -64,15 +62,7 @@ class _AssessmentPoPPageState extends State<AssessmentPOPPage>{
   }
   get myFocusNode => null;
   void savePoint() async{
-    bool result = false;
     if(eventNameTextEdit.text.isNotEmpty){
-      result = await EventApi.createEvent(
-          API_Decision.Only_Success,
-          eventNameTextEdit.text,
-          eventDetailsTextEditingController.text,
-          startDate.value,
-          endDate.value
-      );
     }else{
       ValidationException().validationSnackBar;
     }

@@ -1,5 +1,3 @@
-import 'package:e_bandobas/app/jsondata/DesignationData/Designation.dart';
-import 'package:e_bandobas/app/jsondata/DesignationData/DesignationApi.dart';
 import 'package:e_bandobas/app/jsondata/EventData/Event.dart';
 import 'package:e_bandobas/app/jsondata/EventData/EventApi.dart';
 import 'package:e_bandobas/app/jsondata/PointData/PointApi.dart';
@@ -33,13 +31,10 @@ class ShowPointPoliceAssementController extends GetxController {
   }
 
   void loadPoints() async {
-    print("done");
     points.value = await PointApi.obtainPoints(API_Decision.Only_Failure);
-    if (points.value != null && points.value!.length > 0) {
+    if (points.value != null && points.value!.length >= 0) {
       selectedPointId.value = points.value!.elementAt(0).id!.toInt();
     }
-
-    print(points.value?.length);
     update();
   }
 
@@ -81,13 +76,5 @@ class ShowPointPoliceAssementController extends GetxController {
     loadPoints();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
 }

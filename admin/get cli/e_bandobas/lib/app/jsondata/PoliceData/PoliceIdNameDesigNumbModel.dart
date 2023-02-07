@@ -33,12 +33,12 @@ class PoliceIdNameDesigNumb {
 
   ///this method will prevent the override of toString
   String userAsString() {
-    return '#${this.name}';
+    return '#$name';
   }
 
   ///custom comparing function to check if two users are equal
   bool isEqual(PoliceIdNameDesigNumb model) {
-    return this.id == model.id;
+    return id == model.id;
   }
 
   @override

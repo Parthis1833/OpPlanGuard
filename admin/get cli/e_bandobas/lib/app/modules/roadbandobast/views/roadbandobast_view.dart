@@ -26,9 +26,6 @@ class RoadbandobastView extends GetView<RoadbandobastController> {
               child: Text(''),
             ),
           ),
-          Container(
-            child: const Text('hey'),
-          ),
         ],
       ),
       floatingActionButton: const RoadbandobasButton(),

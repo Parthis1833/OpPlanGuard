@@ -4,12 +4,11 @@ import 'package:get/get.dart';
 import '../../../../constants/enums.dart';
 import '../../../jsondata/EventData/Event.dart';
 import '../../../jsondata/EventData/EventApi.dart';
-import '../../../jsondata/EventPointAssignmentData/eventPointAssignmentApi.dart';
 import '../../../jsondata/EventPointAssignmentData/eventPointAssignmentModel.dart';
 import '../../../jsondata/EventPoliceCount/EventPoliceCountAPI.dart';
 import '../../../jsondata/PointData/Point.dart';
 import '../../../jsondata/PointData/PointApi.dart';
-import '../../../jsondata/PoliceData/PoliceIdNameModel.dart';
+
 
 class AssignedPoliceAddController extends GetxController {
   //TODO: Implement AssignedPoliceController
@@ -30,17 +29,6 @@ class AssignedPoliceAddController extends GetxController {
     loadPoints();
     // loadPolice(); // police will be loaded once when events are loaded completely
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
   void increment() => count.value++;
 
   void loadPoints() async {

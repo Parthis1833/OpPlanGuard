@@ -2,9 +2,7 @@ import 'package:e_bandobas/app/Exceptions/ValidationException.dart';
 import 'package:e_bandobas/app/jsondata/EventData/EventApi.dart';
 import 'package:e_bandobas/constants/enums.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 class EventCreateController extends GetxController {
   //TODO: Implement EventController
@@ -14,21 +12,6 @@ class EventCreateController extends GetxController {
 
   final startDate = DateTime.now().obs;
   final endDate = DateTime.now().obs;
-
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
   void saveEvent() async {
     bool result = false;
     if (eventNameTextEditController.text.isNotEmpty &&
@@ -39,7 +22,6 @@ class EventCreateController extends GetxController {
           eventDetailsTextEditingController.text,
           startDate.value,
           endDate.value);
-      print(result);
     } else {
       // validationSnackBar;
       ValidationException().validationSnackBar;

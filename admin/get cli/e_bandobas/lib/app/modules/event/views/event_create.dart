@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 
 
 class EventCreateView extends GetView<EventCreateController> {
-  EventCreateView({Key? key}) : super(key: key);
+  const EventCreateView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
