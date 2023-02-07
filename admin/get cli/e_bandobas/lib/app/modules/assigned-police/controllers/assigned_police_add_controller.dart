@@ -101,4 +101,9 @@ class AssignedPoliceAddController extends GetxController {
     update();
     return [];
   }
+
+  void clearPolice() {
+    policeNames.value = [];
+    update();
+  }
 }
