@@ -278,29 +278,9 @@ class OffficerDataGridSource extends DataGridSource {
   List<DataGridRow> get rows => dataGridRows;
 
   void buildDataGridRow() {
-    // dataGridRows = contentList.map<DataGridRow>((dataGridRow) {
-    //   return DataGridRow(cells: [
-    //     DataGridCell<num>(columnName: 'ID', value: dataGridRow.id),
-    //     DataGridCell<String>(
-    //         columnName: 'Designation', value: dataGridRow.designation?.name),
-    //     DataGridCell<String>(
-    //         columnName: 'fullName', value: dataGridRow.fullName),
-    //     DataGridCell<String>(
-    //         columnName: 'BuckleNumber', value: dataGridRow.buckleNumber),
-    //     DataGridCell<String>(columnName: 'Number', value: dataGridRow.number),
-    //     DataGridCell<String>(
-    //         columnName: 'Police Station',
-    //         value: dataGridRow.policeStation?.policeStationName),
-    //     DataGridCell<String>(
-    //         columnName: 'District', value: dataGridRow.policeStation?.district),
-    //     DataGridCell<num>(columnName: 'Age', value: dataGridRow.age),
-    //     DataGridCell<String>(columnName: 'Gender', value: dataGridRow.gender),
-    //   ]);
-    // }).toList(growable: false);
-
     dataGridRows = mapIndexed(
       contentList,
-      (index, police) => DataGridRow(cells: [
+      (index, police) => DataGridRow(cells:[
         DataGridCell<num>(columnName: 'ID', value: index+1),
         DataGridCell<String>(
             columnName: 'Designation', value: police.designation?.name),

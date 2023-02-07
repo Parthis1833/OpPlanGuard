@@ -121,8 +121,8 @@ class EventView extends GetView<EventController> {
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         return snapshot.hasData ? Column(
         children: [
-        SizedBox(
-        height: 700,
+          SizedBox(
+        height: MediaQuery.of(context).size.height * 0.92,
         child: SfDataGridTheme(
         data: SfDataGridThemeData(
         headerColor:  Colors.lightBlueAccent),
@@ -212,15 +212,23 @@ class EventDataGridSource extends DataGridSource{
   @override
   List<DataGridRow> get rows => dataGridRows;
   void buildDataGridRow() {
-    dataGridRows = eventList.map<DataGridRow>((dataGridRow) {
-      return DataGridRow(cells: [
-        DataGridCell<num>(columnName: 'Event-ID', value: dataGridRow.id),
-        DataGridCell<String>(columnName: 'Event-Name', value: dataGridRow.eventName),
-        DataGridCell<String>(columnName: 'Event-Details', value: dataGridRow.eventDetails),
-        DataGridCell(columnName: 'Start-Date', value: dataGridRow.eventStartDate),
-        DataGridCell(columnName: 'End-Date', value: dataGridRow.eventEndDate),
-      ]);
+    dataGridRows = mapIndexed(
+        eventList,
+    (index, event) => DataGridRow(cells: [
+        DataGridCell<num>(columnName: 'ID', value: index+1),
+        DataGridCell<String>(columnName: 'Event-Name', value: event.eventName),
+        DataGridCell<String>(columnName: 'Event-Details', value: event.eventDetails),
+        DataGridCell(columnName: 'Start-Date', value: event.eventStartDate),
+        DataGridCell(columnName: 'End-Date', value: event.eventEndDate),
+      ])).toList(growable: false);
+  }
+  Iterable<E> mapIndexed<E, T>(
+      Iterable<T> items, E Function(int index, T item) f) sync* {
+    var index = 0;
 
-    }).toList(growable: false);
+    for (final item in items) {
+      yield f(index, item);
+      index = index + 1;
+    }
   }
 }
