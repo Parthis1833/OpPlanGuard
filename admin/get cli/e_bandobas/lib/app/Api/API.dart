@@ -72,6 +72,7 @@ class APIConstants {
   static const ASSIGNPOLICE_URL_CREATE = BASE_URL + ASSIGNPOLICE; // post req
   static const ASSIGNPOLICE_URL_CREATE_V2 =
       BASE_URL + ASSIGNPOLICE; // post Req,
+  static const ASSIGNPOLICE_URL_ASSIGN_MULTIPLE = BASE_URL + ASSIGNPOLICE + "assign_multiple"; // post
   static const ASSIGNPOLICE_URL_UPDATE =
       BASE_URL + ASSIGNPOLICE; // append id for put req
   static const ASSIGNPOLICE_URL_DELETE =

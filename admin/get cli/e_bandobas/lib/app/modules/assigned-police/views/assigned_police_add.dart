@@ -1,6 +1,7 @@
 import 'package:e_bandobas/app/jsondata/PoliceData/PoliceIdNameDesigNumbModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import '../controllers/assigned_police_add_controller.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 
@@ -31,8 +32,48 @@ class AssignedPoliceAddView extends GetView<AssignedPoliceAddController> {
         ],
       ),
       const SizedBox(height: 100, child: MyHomePage()),
+      datePickersOfEvent(),
       saveAndAssignPoliceWidget()
     ]);
+  }
+
+  Widget datePickersOfEvent() {
+    return Row(
+      children: [
+        Obx(() => Column(
+              children: [
+                Text(
+                  DateFormat("dd-MM-yyyy")
+                      .format(controller.startDate.value)
+                      .toString(),
+                  style: const TextStyle(fontSize: 25),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    controller.chooseStartDate();
+                  },
+                  child: const Text("Choose a start date"),
+                )
+              ],
+            )),
+        Obx(() => Column(
+              children: [
+                Text(
+                  DateFormat("dd-MM-yyyy")
+                      .format(controller.endDate.value)
+                      .toString(),
+                  style: const TextStyle(fontSize: 25),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    controller.chooseEndDate();
+                  },
+                  child: const Text("Choose a End date"),
+                )
+              ],
+            ))
+      ],
+    );
   }
 
   Widget saveAndAssignPoliceWidget() {

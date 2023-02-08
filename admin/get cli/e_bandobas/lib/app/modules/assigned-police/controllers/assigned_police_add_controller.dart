@@ -1,8 +1,10 @@
 import 'package:e_bandobas/app/Exceptions/ValidationException.dart';
 import 'package:e_bandobas/app/jsondata/PoliceData/PoliceIdNameDesigNumbModel.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../constants/enums.dart';
+import '../../../jsondata/AssignPolice/assignPoliceApi.dart';
 import '../../../jsondata/EventData/Event.dart';
 import '../../../jsondata/EventData/EventApi.dart';
 import '../../../jsondata/EventPointAssignmentData/eventPointAssignmentModel.dart';
@@ -18,6 +20,9 @@ class AssignedPoliceAddController extends GetxController {
   final points = Rxn<List<Point>>();
   final policeNames = Rxn<List<PoliceIdNameDesigNumb>>();
   List<PoliceIdNameDesigNumb> selectedPolice = [];
+
+  final startDate = DateTime.now().obs;
+  final endDate = DateTime.now().obs;
 
   final eventPointAssignmentModel = Rxn<EventPointAssignmentModel>();
   final isAssignmentLoaded = false.obs;
@@ -97,15 +102,64 @@ class AssignedPoliceAddController extends GetxController {
     update();
   }
 
-  void assignPolice() {
+  void assignPolice() async {
     if (selectedPolice.isEmpty) {
       throw ValidationException().showValidationSnackBar();
     }
-    
-    
+    List<num?> selectedPoliceIds = selectedPolice.map((e) => e.id).toList();
+    bool result = await AssignPoliceApi.assignMultiplePoliceManually(
+        API_Decision.BOTH,
+        selectedPoliceIds,
+        selectedPointId.value,
+        selectedEventId.value,
+        startDate.value,
+        endDate.value);
+    update();
   }
 
   void onChangeSelected(List<PoliceIdNameDesigNumb> selectedPolice) {
     this.selectedPolice = selectedPolice;
+  }
+
+  void chooseStartDate() async {
+    DateTime? pickedDate = await showDatePicker(
+      context: Get.context!,
+      initialDate: startDate.value,
+      firstDate: DateTime(2023),
+      lastDate: DateTime(2025),
+      //initialEntryMode: DatePickerEntryMode.input,
+      // initialDatePickerMode: DatePickerMode.year,
+      helpText: 'Select event start date',
+      cancelText: 'Close',
+      confirmText: 'Confirm',
+      errorFormatText: 'Enter valid date',
+      errorInvalidText: 'Enter valid date range',
+      fieldLabelText: 'Event Start Date',
+      fieldHintText: 'Month/Date/Year',
+    );
+    if (pickedDate != null && pickedDate != startDate.value) {
+      startDate.value = pickedDate;
+    }
+  }
+
+  void chooseEndDate() async {
+    DateTime? pickedDate = await showDatePicker(
+      context: Get.context!,
+      initialDate: endDate.value,
+      firstDate: DateTime(2023),
+      lastDate: DateTime(2025),
+      //initialEntryMode: DatePickerEntryMode.input,
+      // initialDatePickerMode: DatePickerMode.year,
+      helpText: 'Select event end date',
+      cancelText: 'Close',
+      confirmText: 'Confirm',
+      errorFormatText: 'Enter valid date',
+      errorInvalidText: 'Enter valid date range',
+      fieldLabelText: 'Event end Date',
+      fieldHintText: 'Month/Date/Year',
+    );
+    if (pickedDate != null && pickedDate != endDate.value) {
+      endDate.value = pickedDate;
+    }
   }
 }
