@@ -30,8 +30,22 @@ class AssignedPoliceAddView extends GetView<AssignedPoliceAddController> {
           pointSelectionDropDownWidget(),
         ],
       ),
-      const SizedBox(height: 500, child: MyHomePage())
+      const SizedBox(height: 100, child: MyHomePage()),
+      saveAndAssignPoliceWidget()
     ]);
+  }
+
+  Widget saveAndAssignPoliceWidget() {
+    // show yellow if no police is selected or show red if something went wrong or green if success
+    return ElevatedButton(
+      child: Text('Assign Police'),
+      style: ElevatedButton.styleFrom(
+        primary: Colors.green,
+        textStyle: const TextStyle(
+            color: Colors.white, fontSize: 10, fontStyle: FontStyle.normal),
+      ),
+      onPressed: controller.assignPolice,
+    );
   }
 
   Widget eventSelectionDropDownWidget() {
@@ -113,23 +127,19 @@ class _MyHomePageState extends State<MyHomePage> {
         children: <Widget>[
           ///************************[Favorites examples]**********************************///
           const Padding(padding: EdgeInsets.all(8)),
-          const Text("[Favorites examples]"),
+          const Text("select police and assign"),
           const Divider(),
           Row(
             children: [
               const Padding(padding: EdgeInsets.all(4)),
               Expanded(
                 child: DropdownSearch<PoliceIdNameDesigNumb>.multiSelection(
-                  clearButtonProps: const ClearButtonProps(
+                  clearButtonProps: ClearButtonProps(
                     icon: Icon(Icons.cancel),
                     isVisible: true,
+                    onPressed: () {},
                   ),
-                  onChanged: (List<PoliceIdNameDesigNumb>?
-                      selectedPoliceToBeAssigned) {
-                    selectedPoliceToBeAssigned?.forEach((element) {
-                      print(element);
-                    });
-                  },
+                  onChanged: controller.onChangeSelected,
                   asyncItems: (filter) {
                     return controller.getData(filter);
                   },
@@ -151,8 +161,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       favoriteItemBuilder: (context, item, isSelected) {
                         // print(item);
                         return Container(
-                          padding:
-                              const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 6),
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.grey),
                               borderRadius: BorderRadius.circular(10),
@@ -200,7 +210,8 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             Text(item?.name ?? ''),
             Text(item?.designation ?? '',
-                style: const TextStyle(color: Colors.amberAccent, fontSize: 16)),
+                style:
+                    const TextStyle(color: Colors.amberAccent, fontSize: 16)),
           ],
         ),
         subtitle: Row(

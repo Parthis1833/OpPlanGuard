@@ -1,3 +1,4 @@
+import 'package:e_bandobas/app/Exceptions/ValidationException.dart';
 import 'package:e_bandobas/app/jsondata/PoliceData/PoliceIdNameDesigNumbModel.dart';
 import 'package:get/get.dart';
 
@@ -9,7 +10,6 @@ import '../../../jsondata/EventPoliceCount/EventPoliceCountAPI.dart';
 import '../../../jsondata/PointData/Point.dart';
 import '../../../jsondata/PointData/PointApi.dart';
 
-
 class AssignedPoliceAddController extends GetxController {
   //TODO: Implement AssignedPoliceController
   late final selectedEventId = 0.obs;
@@ -17,6 +17,7 @@ class AssignedPoliceAddController extends GetxController {
   final events = Rxn<List<Event>>();
   final points = Rxn<List<Point>>();
   final policeNames = Rxn<List<PoliceIdNameDesigNumb>>();
+  List<PoliceIdNameDesigNumb> selectedPolice = [];
 
   final eventPointAssignmentModel = Rxn<EventPointAssignmentModel>();
   final isAssignmentLoaded = false.obs;
@@ -29,6 +30,7 @@ class AssignedPoliceAddController extends GetxController {
     loadPoints();
     // loadPolice(); // police will be loaded once when events are loaded completely
   }
+
   void increment() => count.value++;
 
   void loadPoints() async {
@@ -93,5 +95,17 @@ class AssignedPoliceAddController extends GetxController {
   void clearPolice() {
     policeNames.value = [];
     update();
+  }
+
+  void assignPolice() {
+    if (selectedPolice.isEmpty) {
+      throw ValidationException().showValidationSnackBar();
+    }
+    
+    
+  }
+
+  void onChangeSelected(List<PoliceIdNameDesigNumb> selectedPolice) {
+    this.selectedPolice = selectedPolice;
   }
 }
