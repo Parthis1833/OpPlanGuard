@@ -12,14 +12,14 @@ class DutypointView extends GetView<DutypointController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const  Navigation_Drawer(),
+      drawer: const Navigation_Drawer(),
       appBar: AppBar(
         title: const Text('DutypointView'),
         centerTitle: true,
       ),
-      body:ListView(
+      body: ListView(
         children: [
-          PolicCard(
+          PoliceCard(
             margin: const EdgeInsets.all(8),
             color: Colors.grey,
             child: const Align(

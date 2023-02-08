@@ -5,33 +5,30 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/officerdata_controller.dart';
 
-
 class OfficerdataView extends GetView<OfficerdataController> {
-   const OfficerdataView({Key? key}) : super(key: key);
-
+  const OfficerdataView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const  Navigation_Drawer(),
+      drawer: const Navigation_Drawer(),
       appBar: AppBar(
         title: const Text('OfficerdataView'),
         centerTitle: true,
       ),
-      body:ListView(
+      body: ListView(
         children: [
-          PolicCard(
+          PoliceCard(
             margin: const EdgeInsets.all(8),
             color: Colors.grey,
             child: const Align(
               child: Text(''),
             ),
           ),
-
           Container(
             alignment: Alignment.center,
-            margin: const EdgeInsets.only(left: 300 ,right: 300),
-            child:  const OfficerDataGrid(),
+            margin: const EdgeInsets.only(left: 300, right: 300),
+            child: const OfficerDataGrid(),
           ),
         ],
       ),

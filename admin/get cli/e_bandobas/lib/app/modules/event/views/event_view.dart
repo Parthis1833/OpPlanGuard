@@ -3,6 +3,7 @@ import 'package:e_bandobas/app/Api/API.dart';
 import 'package:e_bandobas/app/Config/routes/app_pages.dart';
 import 'package:e_bandobas/app/Widgets/Buttons/assessmentbutton.dart';
 import 'package:e_bandobas/app/jsondata/EventData/Event.dart';
+import 'package:e_bandobas/app/resource/card/PoliceCard.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
@@ -10,14 +11,10 @@ import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import '../controllers/event_controller.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 
-
 class EventView extends GetView<EventController> {
   const EventView({Key? key}) : super(key: key);
-  Future<List<Event>> generatecontentList() async{
-    var response = await http.get(Uri.parse(
-      // 'http://gujaratpolicebackend-env.eba-bpbkpxau.us-east-1.elasticbeanstalk.com/police/'
-        APIConstants.EVENT_URL)
-    );
+  Future<List<Event>> generatecontentList() async {
+    var response = await http.get(Uri.parse(APIConstants.EVENT_URL));
     var decodedOfficerss = jsonDecode(utf8.decode(response.bodyBytes));
     List<Event> policeListFromContent = [];
     if (decodedOfficerss['content'] != null) {
@@ -28,6 +25,7 @@ class EventView extends GetView<EventController> {
     policeListFromContent[0];
     return policeListFromContent;
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,10 +33,10 @@ class EventView extends GetView<EventController> {
         title: const Text('EventView'),
         centerTitle: true,
       ),
-      body: Obx(() => (controller.events.value != null &&
-          controller.events.value!.isEmpty)
-          ? const CircularProgressIndicator()
-          : Center(child: eventsPageData())),
+      body: Obx(() =>
+          (controller.events.value != null && controller.events.value!.isEmpty)
+              ? const CircularProgressIndicator()
+              : Center(child: eventsPageData())),
       floatingActionButton: AssesmentButton(),
     );
   }
@@ -68,6 +66,7 @@ class EventView extends GetView<EventController> {
       ),
     ]);
   }
+
   List<GridColumn> getColumns() {
     return <GridColumn>[
       GridColumn(
@@ -115,51 +114,71 @@ class EventView extends GetView<EventController> {
                   overflow: TextOverflow.clip, softWrap: true))),
     ];
   }
-  Widget eventsPageData() {
-    return  FutureBuilder<Object>(
+
+  Widget eventsLoadedWidget() {
+    return FutureBuilder<Object>(
       future: getEventDataSource(),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-        return snapshot.hasData ? Column(
-        children: [
-          SizedBox(
-        height: MediaQuery.of(context).size.height * 0.92,
-        child: SfDataGridTheme(
-        data: SfDataGridThemeData(
-        headerColor:  Colors.lightBlueAccent),
-        child: SfDataGrid(
-        source: snapshot.data,
-        showCheckboxColumn: true,
-        checkboxShape: const CircleBorder(),
-        allowSorting: true,
-        selectionMode: SelectionMode.multiple,
-        onQueryRowHeight: (details) {
-        return details.rowIndex == 0 ? 70.0 : 49.0;
-        },
-        columnWidthMode: ColumnWidthMode.auto,
-        shrinkWrapColumns: true,
-        columns: getColumns(),
-        ),
-        ),
-        ),
-        ],
-        )
+        return snapshot.hasData
+            ? Column(
+                children: [
+                  SizedBox(
+                    height: 700,
+                    child: SfDataGridTheme(
+                      data: SfDataGridThemeData(
+                          headerColor: Colors.lightBlueAccent),
+                      child: SfDataGrid(
+                        source: snapshot.data,
+                        showCheckboxColumn: true,
+                        checkboxShape: const CircleBorder(),
+                        allowSorting: true,
+                        selectionMode: SelectionMode.multiple,
+                        onQueryRowHeight: (details) {
+                          return details.rowIndex == 0 ? 70.0 : 49.0;
+                        },
+                        columnWidthMode: ColumnWidthMode.auto,
+                        shrinkWrapColumns: true,
+                        columns: getColumns(),
+                      ),
+                    ),
+                  ),
+                ],
+              )
             : const Center(
-             child: CircularProgressIndicator(
-             strokeWidth: 3,
-          ),
-        );
+                child: CircularProgressIndicator(
+                  strokeWidth: 3,
+                ),
+              );
       },
     );
   }
-  Future<EventDataGridSource>getEventDataSource() async {
+
+  Widget eventsPageData() {
+    return ListView(
+      children: [
+
+          PoliceCard(
+            margin: const EdgeInsets.all(8),
+            color: Colors.grey,
+            child: const Align(
+              child: Text(''),
+            ),
+          ),
+          eventsLoadedWidget()
+      ],
+    );
+  }
+
+  Future<EventDataGridSource> getEventDataSource() async {
     List<Event> eventList = await generatecontentList();
-    return  EventDataGridSource(eventList);
+    return EventDataGridSource(eventList);
   }
 }
-class EventDataGridSource extends DataGridSource{
+
+class EventDataGridSource extends DataGridSource {
   late List<DataGridRow> dataGridRows;
   late List<Event> eventList;
-  EventDataGridSource(this.eventList){
+  EventDataGridSource(this.eventList) {
     buildDataGridRow();
   }
 
@@ -206,29 +225,23 @@ class EventDataGridSource extends DataGridSource{
           overflow: TextOverflow.ellipsis,
         ),
       ),
-    ]
-    );
+    ]);
   }
+
   @override
   List<DataGridRow> get rows => dataGridRows;
   void buildDataGridRow() {
-    dataGridRows = mapIndexed(
-        eventList,
-    (index, event) => DataGridRow(cells: [
-        DataGridCell<num>(columnName: 'ID', value: index+1),
-        DataGridCell<String>(columnName: 'Event-Name', value: event.eventName),
-        DataGridCell<String>(columnName: 'Event-Details', value: event.eventDetails),
-        DataGridCell(columnName: 'Start-Date', value: event.eventStartDate),
-        DataGridCell(columnName: 'End-Date', value: event.eventEndDate),
-      ])).toList(growable: false);
-  }
-  Iterable<E> mapIndexed<E, T>(
-      Iterable<T> items, E Function(int index, T item) f) sync* {
-    var index = 0;
-
-    for (final item in items) {
-      yield f(index, item);
-      index = index + 1;
-    }
+    dataGridRows = eventList.map<DataGridRow>((dataGridRow) {
+      return DataGridRow(cells: [
+        DataGridCell<num>(columnName: 'Event-ID', value: dataGridRow.id),
+        DataGridCell<String>(
+            columnName: 'Event-Name', value: dataGridRow.eventName),
+        DataGridCell<String>(
+            columnName: 'Event-Details', value: dataGridRow.eventDetails),
+        DataGridCell(
+            columnName: 'Start-Date', value: dataGridRow.eventStartDate),
+        DataGridCell(columnName: 'End-Date', value: dataGridRow.eventEndDate),
+      ]);
+    }).toList(growable: false);
   }
 }

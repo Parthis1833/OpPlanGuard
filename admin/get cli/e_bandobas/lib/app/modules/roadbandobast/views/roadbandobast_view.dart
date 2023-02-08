@@ -12,14 +12,14 @@ class RoadbandobastView extends GetView<RoadbandobastController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const  Navigation_Drawer(),
+      drawer: const Navigation_Drawer(),
       appBar: AppBar(
         title: const Text('RoadbandobastView'),
         centerTitle: true,
       ),
       body: ListView(
         children: [
-          PolicCard(
+          PoliceCard(
             margin: const EdgeInsets.all(8),
             color: Colors.grey,
             child: const Align(

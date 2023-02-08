@@ -17,7 +17,7 @@ class ZonelistView extends GetView<ZonelistController> {
       ),
       body: ListView(
         children: [
-          PolicCard(
+          PoliceCard(
             margin: const EdgeInsets.all(8),
             color: Colors.grey,
             child: const Align(
