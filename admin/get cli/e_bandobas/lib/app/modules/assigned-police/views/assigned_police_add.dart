@@ -117,20 +117,12 @@ class _MyHomePageState extends State<MyHomePage> {
           const Divider(),
           Row(
             children: [
-              // ElevatedButton(
-              //     onPressed: () {
-              //       controller.clearPolice();
-                    
-              //     },
-              //     child: Text("ok")),
-
               const Padding(padding: EdgeInsets.all(4)),
               Expanded(
                 child: DropdownSearch<PoliceIdNameDesigNumb>.multiSelection(
                   clearButtonProps: const ClearButtonProps(
                     icon: Icon(Icons.cancel),
                     isVisible: true,
-                    
                   ),
                   onChanged: (List<PoliceIdNameDesigNumb>?
                       selectedPoliceToBeAssigned) {
