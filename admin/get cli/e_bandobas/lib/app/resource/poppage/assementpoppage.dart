@@ -73,6 +73,7 @@ class _AssessmentPoPPageState extends State<AssessmentPOPPage>{
           startDate.value,
           endDate.value
       );
+      Navigator.of(context).pop();
     }else{
       ValidationException().validationSnackBar;
     }
@@ -258,6 +259,7 @@ class _AssessmentPoPPageState extends State<AssessmentPOPPage>{
                         height: 36,
                         child: ElevatedButton(
                           onPressed: () {
+                            
                             savePoint();
                           },
                           style: ElevatedButton.styleFrom(

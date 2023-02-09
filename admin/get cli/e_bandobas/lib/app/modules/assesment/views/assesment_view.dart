@@ -78,7 +78,6 @@ class AssesmentView extends GetView<AssesmentController> {
             ],
           ),
         ),
-
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(

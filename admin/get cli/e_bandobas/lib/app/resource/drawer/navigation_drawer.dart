@@ -14,7 +14,6 @@ class Navigation_Drawer extends StatelessWidget {
           buildDrawerItem(
               text: 'એસેસર્સમેન્ટ',
               icon: Icons.app_registration,
-
               tileColor:Get.currentRoute == Routes.ASSESMENT ? Colors.blue : null,
               textIconColor: Get.currentRoute == Routes.ASSESMENT
                   ? Colors.white : Colors.black87,
@@ -133,7 +132,7 @@ class Navigation_Drawer extends StatelessWidget {
                   child: Text(
                     'ઈ બંદોબસ્ત ',
                     style: TextStyle(
-                      fontSize: 23.0,
+                      fontSize: 26.0,
                       color: Colors.white,
                     ),
                   ),

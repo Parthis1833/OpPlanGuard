@@ -101,9 +101,6 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
                     height: 50,
                     child: Wrap(
                       spacing: 5.0,
-                      // scrollDirection: Axis.horizontal,
-                      // shrinkWrap: true,
-
                       children: [
                         Text(controller.eventPointAssignmentModel.value
                                 ?.assignedPoliceList?[index].buckleNumber ??

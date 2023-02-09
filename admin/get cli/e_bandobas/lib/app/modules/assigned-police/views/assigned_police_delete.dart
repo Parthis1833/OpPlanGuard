@@ -10,7 +10,7 @@ class AssignedPoliceDeleteView extends GetView<AssignedPoliceDeleteController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AssignedPoliceView'),
+        title: const Text('Assigned Police View'),
         centerTitle: true,
       ),
       body: const Center(

@@ -10,7 +10,7 @@ class AssesmentCreateView extends GetView<AssesmentCreateController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AssesmentCreateView'),
+        title: const Text('Assesment Create View'),
         centerTitle: true,
       ),
         // controller.events.value !.length > 0 &&
@@ -35,7 +35,6 @@ class AssesmentCreateView extends GetView<AssesmentCreateController> {
   Widget designationListWidget() {
     return Container(
       margin: const EdgeInsets.only(bottom: 10 ,top:10, left:20),
-
       child: ListView.builder(
         padding: const EdgeInsets.all(25),
         scrollDirection: Axis.vertical,
