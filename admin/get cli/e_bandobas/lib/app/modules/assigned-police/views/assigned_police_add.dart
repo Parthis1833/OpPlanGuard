@@ -15,7 +15,6 @@ class AssignedPoliceAddView extends GetView<AssignedPoliceAddController> {
         title: const Text('AssignedPolice Add '),
         centerTitle: true,
       ),
-      // body: selectPoliceByTypingName()
       body: Obx(() =>
           (controller.events.value == null && controller.points.value == null)
               ? const CircularProgressIndicator()
@@ -117,16 +116,17 @@ class AssignedPoliceAddView extends GetView<AssignedPoliceAddController> {
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
+  
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final _formKey = GlobalKey<FormState>();
-  final _openDropDownProgKey = GlobalKey<DropdownSearchState<int>>();
-  final _multiKey = GlobalKey<DropdownSearchState<String>>();
-  final _popupBuilderKey = GlobalKey<DropdownSearchState<String>>();
-  final _popupCustomValidationKey = GlobalKey<DropdownSearchState<int>>();
+   final _formKey = GlobalKey<FormState>();
+   final _openDropDownProgKey = GlobalKey<DropdownSearchState<int>>();
+   final _multiKey = GlobalKey<DropdownSearchState<String>>();
+   final _popupBuilderKey = GlobalKey<DropdownSearchState<String>>();
+   final _popupCustomValidationKey = GlobalKey<DropdownSearchState<int>>();
   final _userEditTextController = TextEditingController(text: 'Mrs');
   final myKey = GlobalKey<DropdownSearchState<MultiLevelString>>();
   final controller = Get.put(AssignedPoliceAddController());
@@ -176,7 +176,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Expanded(
                 child: DropdownSearch<PoliceIdNameDesigNumb>.multiSelection(
                   clearButtonProps: ClearButtonProps(
-                    icon: Icon(Icons.cancel),
+                    icon: const Icon(Icons.cancel),
                     isVisible: true,
                     onPressed: () {},
                   ),
@@ -194,11 +194,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     itemBuilder: _customPopupItemBuilderForPolice,
                     favoriteItemProps: FavoriteItemProps(
                       showFavoriteItems: true,
-                      // favoriteItems: (us) {
-                      //   return us
-                      //       .where((e) => e.name.contains("Mrs"))
-                      //       .toList();
-                      // },
                       favoriteItemBuilder: (context, item, isSelected) {
                         // print(item);
                         return Container(
@@ -270,13 +265,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<List<PoliceIdNameDesigNumb>> getDataV2(filter) async {
-    // var response = await Dio().get(
-    //   "https://5d85ccfb1e61af001471bf60.mockapi.io/user",
-    //   queryParameters: {"filter": filter},
-    // );
-
-    // final data = response.data;
-
     if (controller.policeNames.value != null) {
       return controller.policeNames.value!;
     }

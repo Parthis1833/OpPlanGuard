@@ -11,50 +11,50 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('AssignedPoliceView'),
+          title: const Text('Assigne Police View'),
           centerTitle: true,
-          actions: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton(
-                  style: ButtonStyle(
-                    // iconColor: Colors.black,
-                    backgroundColor:
-                        MaterialStateProperty.resolveWith((states) {
-                      // If the button is pressed, return green, otherwise blue
-                      if (states.contains(MaterialState.pressed)) {
-                        return Colors.green;
-                      }
-                      return Colors.blue;
-                    }),
-                    textStyle: MaterialStateProperty.resolveWith((states) {
-                      // If the button is pressed, return size 40, otherwise 20
-                      if (states.contains(MaterialState.pressed)) {
-                        return const TextStyle(fontSize: 40);
-                      }
-                      return const TextStyle(fontSize: 20);
-                    }),
-                  ),
-                  onPressed: () {
-                    Get.toNamed(PATHS.ASSIGNED_POLICE_ADD);
-                  },
-                  child: Row(
-                    children: const [
-                      Icon(
-                        Icons.add_circle_outline,
-                        color: Colors.deepPurple,
-                        size: 25,
-                      ),
-                      Text("Add"),
-                    ],
-                  )),
-            ),
-          ],
         ),
         body: Obx(() => (controller.events.value!.isEmpty &&
                 controller.points.value!.isEmpty)
             ? const CircularProgressIndicator()
-            : assesmentDataWidget()));
+            : assesmentDataWidget()),
+        floatingActionButton: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SizedBox(
+            width: 100,
+            height: 50,
+            child: ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.resolveWith((states) {
+                    // If the button is pressed, return green, otherwise blue
+                    if (states.contains(MaterialState.pressed)) {
+                      return Colors.green;
+                    }
+                    return Colors.blue;
+                  }),
+                  textStyle: MaterialStateProperty.resolveWith((states) {
+                    if (states.contains(MaterialState.pressed)) {
+                      return const TextStyle(fontSize: 40);
+                    }
+                    return const TextStyle(fontSize: 20);
+                  }),
+                ),
+                onPressed: () {
+                  Get.toNamed(PATHS.ASSIGNED_POLICE_ADD);
+                },
+                child: Row(
+                  children: const [
+                    Icon(
+                      Icons.add_circle_outline,
+                      color: Colors.deepPurple,
+                      size: 25,
+                    ),
+                    Text("Add"),
+                  ],
+                )),
+          ),
+        ),
+    );
   }
 
   Widget assesmentDataWidget() {
