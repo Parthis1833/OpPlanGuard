@@ -24,7 +24,6 @@ class ZonelistView extends GetView<ZonelistController> {
               child: Text(''),
             ),
           ),
-          const Assisgned_Police_view_Grid(),
         ],
       ),
     );

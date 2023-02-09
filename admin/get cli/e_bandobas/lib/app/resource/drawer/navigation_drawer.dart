@@ -14,6 +14,7 @@ class Navigation_Drawer extends StatelessWidget {
           buildDrawerItem(
               text: 'એસેસર્સમેન્ટ',
               icon: Icons.app_registration,
+
               tileColor:Get.currentRoute == Routes.ASSESMENT ? Colors.blue : null,
               textIconColor: Get.currentRoute == Routes.ASSESMENT
                   ? Colors.white : Colors.black87,
@@ -37,9 +38,9 @@ class Navigation_Drawer extends StatelessWidget {
           ),
           ExpansionTile(
             title: const Text("યાદી",style: TextStyle(
-              fontWeight: FontWeight.w800,
+              fontWeight: FontWeight.w500,
               color: Colors.black87,
-              fontSize: 16.0,
+              fontSize: 20.0,
             ),),
             leading: const Icon(Icons.person), //add icon
             childrenPadding: const EdgeInsets.only(left: 60), //children padding
@@ -47,18 +48,16 @@ class Navigation_Drawer extends StatelessWidget {
               ListTile(
                 title: const Text("ડ્યુટી પોઈન્ટ યાદી",
                   style: TextStyle(
-                  fontWeight: FontWeight.w800,
-                  color: Colors.black87,
-                  fontSize: 16.0,
+                    fontSize: 22,
+                    fontWeight: FontWeight.w500,
                 ),),
                 onTap: () => navigate(3),
               ),
               ListTile(
                 title: const Text("ઝોન પોઈન્ટ યાદી",
                   style: TextStyle(
-                  fontWeight: FontWeight.w800,
-                  color: Colors.black87,
-                  fontSize: 16.0,
+                    fontSize: 22,
+                    fontWeight: FontWeight.w500,
                 ),
                 ),
                 onTap: () => navigate(4),
@@ -159,7 +158,8 @@ class Navigation_Drawer extends StatelessWidget {
         leading: Icon(icon, color: textIconColor),
         title: Text(text,
             style: TextStyle(color: textIconColor,
-            fontWeight: FontWeight.w800,),
+            fontSize: 22,
+            fontWeight: FontWeight.w500,),
         ),
         tileColor: tileColor,
         onTap: onTap,
