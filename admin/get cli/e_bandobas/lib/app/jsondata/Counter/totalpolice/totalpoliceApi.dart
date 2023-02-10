@@ -4,6 +4,7 @@ import 'package:e_bandobas/constants/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'dart:convert' show utf8;
 import 'dart:convert';
 
 class TotalpoliceApi {
@@ -17,7 +18,7 @@ class TotalpoliceApi {
       },
     );
     if (response.statusCode == 200) {
-      final responseJson = jsonDecode(response.body);
+      final responseJson = jsonDecode(utf8.decode(response.bodyBytes));
 
       if (responseJson['response']['error'] == 0) {
         if (showStatus == API_Decision.Only_Success) {

@@ -17,7 +17,7 @@ class ZoneApi {
       },
     );
     if (response.statusCode == 200) {
-      final responseJson = jsonDecode(response.body);
+      final responseJson = jsonDecode(utf8.decode(response.bodyBytes));
 
       if (responseJson['response']['error'] == 0) {
         if (showStatus == API_Decision.Only_Success) {
