@@ -10,7 +10,7 @@ class ShowPointAssigment extends GetView<ShowPointPoliceAssementController> {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 1), () {
       Get.dialog(
         Center(
           child: Container(
@@ -47,7 +47,6 @@ class ShowPointAssigment extends GetView<ShowPointPoliceAssementController> {
     });
 
     return Scaffold(
-      drawer: const Navigation_Drawer(),
       appBar: AppBar(
         title: const Text('Point assigments view'),
         centerTitle: true,
@@ -74,7 +73,6 @@ class ShowPointAssigment extends GetView<ShowPointPoliceAssementController> {
       ],
     );
   }
-
   Widget eventSelectionDropDownWidget() {
     return DropdownButton(
         value: controller.selectedEventId.value,
@@ -106,45 +104,86 @@ class ShowPointAssigment extends GetView<ShowPointPoliceAssementController> {
         : ListView.builder(
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
-            itemCount: controller
-                .pointPoliceCountAssignment.value?.assignments?.length,
+            itemCount: (controller.pointPoliceCountAssignment.value!.assignments!.length / 2).ceil(),
             itemBuilder: (context, index) {
-              return Row(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(left: 160.0),
-                    padding: const EdgeInsets.only(top: 25.0),
-                    child: Text(
-                      controller.pointPoliceCountAssignment.value
-                              ?.assignments?[index].designationName ??
-                          "No data",
-                      style: const TextStyle(
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black38,
-                          fontSize: 26.0),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 45,
-                    width: 120,
-                    child: TextField(
-                      enabled: false,
-                      keyboardType: TextInputType.number,
-                      inputFormatters: <TextInputFormatter>[
-                        FilteringTextInputFormatter.digitsOnly
-                      ], // Only numbers can be entered
-                      controller:
-                          controller.designationTextEditingControllers[index],
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              width: 3, color: Colors.lightBlueAccent),
-                        ),
-                        hintText: '',
+              return Container(
+                width: double.infinity,
+                height: 50,
+                margin: const EdgeInsets.only(left: 10,bottom: 10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: 200,
+                      height: 70,
+                      margin: const EdgeInsets.only(left: 40.0),
+                      padding: const EdgeInsets.only(top: 10.0),
+                      child: Text(
+                        // controller.designations.value![index * 2].name.toString()
+                         controller.pointPoliceCountAssignment.value!.assignments![index * 2 ].designationName.toString(),
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black38,
+                            fontSize: 26.0),
                       ),
                     ),
-                  ),
-                ],
+                    Container(
+                      margin: const EdgeInsets.only(left:10,right:10),
+                      width: 150,
+                      height: 45,
+                      child: TextField(
+                        keyboardType: TextInputType.number,
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.digitsOnly
+                        ], // Only numbers can be entered
+                        controller:
+                        controller.designationTextEditingControllers[index * 2],
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(
+                            borderSide:
+                            BorderSide(width: 3, color: Colors.lightBlueAccent),
+                          ),
+                          hintText: '',
+                        ),
+                      ),
+                    ), (index * 2 + 1 < controller.pointPoliceCountAssignment.value!.assignments!.length)
+                        ? Container(
+                      width: 200,
+                      height: 70,
+                      margin: const EdgeInsets.only(left: 40.0),
+                      padding: const EdgeInsets.only(top: 10.0),
+                      child: Text(//Text(controller.pointPoliceCountAssignment.value
+                          //                 ?.assignments?[index].designationName ??
+                        controller.pointPoliceCountAssignment.value!.assignments![index * 2 + 1].designationName.toString(),
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black38,
+                            fontSize: 26.0),
+                      ),
+                    )
+                        : Container(), (index * 2 + 1 < controller.pointPoliceCountAssignment.value!.assignments!.length)
+                        ? SizedBox(
+                      width: 150,
+                      height: 45,
+                      child: TextField(
+                        keyboardType: TextInputType.number,
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.digitsOnly
+                        ], // Only numbers can be entered
+                        controller: controller
+                            .designationTextEditingControllers[index * 2 + 1],
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 3, color: Colors.lightBlueAccent),
+                          ),
+                          hintText: '',
+                        ),
+                      ),
+                    )
+                        : Container(),
+                  ],
+                ),
               );
             },
           );

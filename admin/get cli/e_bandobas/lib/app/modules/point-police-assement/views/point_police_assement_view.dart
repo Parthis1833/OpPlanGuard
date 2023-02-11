@@ -45,7 +45,6 @@ class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
 
     });
     return Scaffold(
-      drawer: const Navigation_Drawer(),
       appBar: AppBar(
         title: const Text('Point Assesment CreateView'),
         centerTitle: true,
@@ -163,8 +162,7 @@ class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
                           hintText: '',
                         ),
                       ),
-                    ),
-                    (index * 2 + 1 < controller.designations.value!.length)
+                    ), (index * 2 + 1 < controller.designations.value!.length)
                         ? Container(
                             width: 200,
                             height: 70,
@@ -179,8 +177,7 @@ class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
                                   fontSize: 26.0),
                             ),
                           )
-                        : Container(),
-                    (index * 2 + 1 < controller.designations.value!.length)
+                        : Container(), (index * 2 + 1 < controller.designations.value!.length)
                         ? SizedBox(
                             width: 150,
                             height: 45,
@@ -254,7 +251,6 @@ class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
       ),
     );
   }
-
   Widget eventSelectionDropDownWidget() {
     return Container(
       padding: const EdgeInsets.all(8),
@@ -317,9 +313,11 @@ class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
           ),
           SizedBox(
             height: 55,
-            width: 300,
+            width: 350,
             child: DropdownButton(
                 value: controller.selectedPointId.value,
+                isExpanded: true,
+                itemHeight: 60,
                 items: controller.points.value!.map((point) {
                   return DropdownMenuItem(
                       value: point.id, child: Text(point.pointName.toString() ,

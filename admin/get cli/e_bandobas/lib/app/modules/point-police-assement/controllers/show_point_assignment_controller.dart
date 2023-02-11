@@ -26,7 +26,6 @@ class ShowPointPoliceAssementController extends GetxController {
     if (events.value != null && events.value!.length > 0) {
       selectedEventId.value = events.value!.elementAt(0).id!.toInt();
     }
-    print(events.value?.length);
     update();
   }
 
@@ -61,8 +60,7 @@ class ShowPointPoliceAssementController extends GetxController {
       }
     }
 
-    isPointPoliceCountAssigned.value =
-        pointPoliceCountAssignment.value?.assignments?.length != 0;
+    isPointPoliceCountAssigned.value = pointPoliceCountAssignment.value?.assignments?.length != 0;
     // if (isPointPoliceCountAssigned.value == false) {
     //   pointPoliceCountAssignment.value?.assignments = [];
     // }

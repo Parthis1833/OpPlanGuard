@@ -46,7 +46,6 @@ class AssesmentCreateView extends GetView<AssesmentCreateController> {
     });
 
     return Scaffold(
-      drawer: const Navigation_Drawer(),
 
       appBar: AppBar(
         title: const Text('Assesment Create In Event View'),

@@ -64,9 +64,7 @@ class EventView extends GetView<EventController> {
         barrierDismissible: false,
       );
     });
-
     return Scaffold(
-      drawer: const Navigation_Drawer(),
       appBar: AppBar(
         title: const Text('EventView'),
         centerTitle: true,
