@@ -1,3 +1,4 @@
+import '../../../Widgets/navigation_drawer.dart';
 import '../controllers/show_point_assignment_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,8 +10,44 @@ class ShowPointAssigment extends GetView<ShowPointPoliceAssementController> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    Future.delayed(const Duration(seconds: 3), () {
+      Get.dialog(
+        Center(
+          child: Container(
+            width: 300,
+            height: 200,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Explanation about this page",
+                      style: TextStyle(fontSize: 24)),
+                  SizedBox(height: 16),
+                  Text(
+                    "In this page, You can see assignments you asked for all designations ",
+                    style: TextStyle(fontSize: 12, color: Colors.black),
+                  ),
+                  SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () => Get.back(),
+                    child: Text("Close Dialog"),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        barrierDismissible: false,
+      );
+    });
+
     return Scaffold(
+      drawer: const Navigation_Drawer(),
       appBar: AppBar(
         title: const Text('Point assigments view'),
         centerTitle: true,
@@ -58,52 +95,53 @@ class ShowPointAssigment extends GetView<ShowPointPoliceAssementController> {
   }
 
   Widget designationListWidget() {
-     return controller.isPointPoliceCountAssigned.value
-        ? 
-    ListView.builder(
-      scrollDirection: Axis.vertical,
-      shrinkWrap: true,
-      itemCount:
-          controller.pointPoliceCountAssignment.value?.assignments?.length,
-      itemBuilder: (context, index) {
-        return Row(
-          children: [
-            Container(
-              margin: const EdgeInsets.only(left: 160.0),
-              padding: const EdgeInsets.only(top: 25.0),
-              child: Text(
-                controller.pointPoliceCountAssignment.value?.assignments?[index]
-                        .designationName ??
-                    "No data",
-                style: const TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black38,
-                    fontSize: 26.0),
-              ),
-            ),
-            SizedBox(
-              height: 45,
-              width: 120,
-              child: TextField(
-                enabled: false,
-                keyboardType: TextInputType.number,
-                inputFormatters: <TextInputFormatter>[
-                  FilteringTextInputFormatter.digitsOnly
-                ], // Only numbers can be entered
-                controller: controller.designationTextEditingControllers[index],
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(width: 3, color: Colors.lightBlueAccent),
+    return controller.isPointPoliceCountAssigned.value
+        ? ListView.builder(
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
+            itemCount: controller
+                .pointPoliceCountAssignment.value?.assignments?.length,
+            itemBuilder: (context, index) {
+              return Row(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(left: 160.0),
+                    padding: const EdgeInsets.only(top: 25.0),
+                    child: Text(
+                      controller.pointPoliceCountAssignment.value
+                              ?.assignments?[index].designationName ??
+                          "No data",
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black38,
+                          fontSize: 26.0),
+                    ),
                   ),
-                  hintText: '',
-                ),
-              ),
-            ),
-          ],
-        );
-      },
-    ) : Container();
+                  SizedBox(
+                    height: 45,
+                    width: 120,
+                    child: TextField(
+                      enabled: false,
+                      keyboardType: TextInputType.number,
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.digitsOnly
+                      ], // Only numbers can be entered
+                      controller:
+                          controller.designationTextEditingControllers[index],
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              width: 3, color: Colors.lightBlueAccent),
+                        ),
+                        hintText: '',
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
+          )
+        : Container();
   }
 
   Widget viewUpdateContainerRow() {

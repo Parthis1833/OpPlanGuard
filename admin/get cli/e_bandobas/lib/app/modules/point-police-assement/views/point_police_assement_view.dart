@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 
+import '../../../Widgets/navigation_drawer.dart';
 import '../controllers/point_police_assement_controller.dart';
 
 class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
@@ -21,16 +22,21 @@ class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text("Hello World!", style: TextStyle(fontSize: 24)),
-          SizedBox(height: 16),
-          ElevatedButton(
-            onPressed: () => Get.back(),
-            child: Text("Close Dialog"),
-          ),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("Explanation about this page", style: TextStyle(fontSize: 24)),
+            SizedBox(height: 16),
+            Text("In this page, you can enter your requirements about how many police you need on which point", style: TextStyle(fontSize: 12, color: Colors.black),),
+            SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () => Get.back(),
+              child: Text("Close Dialog"),
+            ),
+          ],
+        ),
       ),
     ),
   ),
@@ -39,6 +45,7 @@ class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
 
     });
     return Scaffold(
+      drawer: const Navigation_Drawer(),
       appBar: AppBar(
         title: const Text('Point Assesment CreateView'),
         centerTitle: true,
