@@ -11,8 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PointPoliceAssementController extends GetxController {
-  //TODO: Implement PointPoliceAssementController
-
+  
   var designationTextEditingControllers = <TextEditingController>[];
   late final selectedEventId = 0.obs;
   late final selectedPointId = 0.obs;

@@ -11,14 +11,41 @@ class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
 
   @override
   Widget build(BuildContext context) {
+     Future.delayed(Duration(seconds: 3), () {
+      Get.dialog(
+  Center(
+    child: Container(
+      width: 300,
+      height: 200,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text("Hello World!", style: TextStyle(fontSize: 24)),
+          SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: () => Get.back(),
+            child: Text("Close Dialog"),
+          ),
+        ],
+      ),
+    ),
+  ),
+  barrierDismissible: false,
+);
+
+    });
     return Scaffold(
       appBar: AppBar(
         title: const Text('Point Assesment CreateView'),
         centerTitle: true,
       ),
-      body: Obx(() => (controller.designations.value!.isEmpty &&
-              controller.events.value!.length <= 0 &&
-              controller.points.value!.length <= 0)
+      body: Obx(() => (controller.designations.value == null ||
+              controller.events.value == null  ||
+              controller.points.value == null )
           ? const CircularProgressIndicator()
           : eventPoliceAssementWidget()),
       floatingActionButton: Padding(
