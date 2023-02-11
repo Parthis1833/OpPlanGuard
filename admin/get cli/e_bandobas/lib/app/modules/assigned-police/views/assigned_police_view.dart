@@ -3,57 +3,101 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../Config/routes/app_pages.dart';
+import '../../../Widgets/navigation_drawer.dart';
 import '../controllers/assigned_police_controller.dart';
 
 class AssignedPoliceView extends GetView<AssignedPoliceController> {
   const AssignedPoliceView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text('Assigne Police View'),
-          centerTitle: true,
-        ),
-        body: Obx(() => (controller.events.value!.isEmpty &&
-                controller.points.value!.isEmpty)
-            ? const CircularProgressIndicator()
-            : assesmentDataWidget()),
-        floatingActionButton: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: SizedBox(
-            width: 100,
-            height: 50,
-            child: ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith((states) {
-                    // If the button is pressed, return green, otherwise blue
-                    if (states.contains(MaterialState.pressed)) {
-                      return Colors.green;
-                    }
-                    return Colors.blue;
-                  }),
-                  textStyle: MaterialStateProperty.resolveWith((states) {
-                    if (states.contains(MaterialState.pressed)) {
-                      return const TextStyle(fontSize: 40);
-                    }
-                    return const TextStyle(fontSize: 20);
-                  }),
-                ),
-                onPressed: () {
-                  Get.toNamed(PATHS.ASSIGNED_POLICE_ADD);
-                },
-                child: Row(
-                  children: const [
-                    Icon(
-                      Icons.add_circle_outline,
-                      color: Colors.deepPurple,
-                      size: 25,
-                    ),
-                    Text("Add"),
-                  ],
-                )),
+    Future.delayed(const Duration(seconds: 2), () {
+      Get.dialog(
+        Center(
+          child: Container(
+            width: 300,
+            height: 200,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("Explanation about this page",
+                      style: TextStyle(fontSize: 24)),
+                  const SizedBox(height: 16),
+                  const Text(
+                    "In this page, idk what what will happen",
+                    style: TextStyle(fontSize: 12, color: Colors.black),
+                  ),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () => Get.back(),
+                    child: const Text("Close Dialog"),
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
+        barrierDismissible: false,
+      );
+    });
+
+    return Scaffold(
+      drawer: const Navigation_Drawer(),
+      appBar: AppBar(
+        title: const Text(
+            'Please give new meaningful name to this page'), //TODO: new name
+        centerTitle: true,
+      ),
+      body: Obx(() =>
+          (controller.events.value == null || controller.points.value == null)
+              ? Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Center(child: CircularProgressIndicator.adaptive()),
+                  ],
+                )
+              : assesmentDataWidget()),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SizedBox(
+          width: 100,
+          height: 50,
+          child: ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.resolveWith((states) {
+                  // If the button is pressed, return green, otherwise blue
+                  if (states.contains(MaterialState.pressed)) {
+                    return Colors.green;
+                  }
+                  return Colors.blue;
+                }),
+                textStyle: MaterialStateProperty.resolveWith((states) {
+                  if (states.contains(MaterialState.pressed)) {
+                    return const TextStyle(fontSize: 40);
+                  }
+                  return const TextStyle(fontSize: 20);
+                }),
+              ),
+              onPressed: () {
+                Get.toNamed(PATHS.ASSIGNED_POLICE_ADD);
+              },
+              child: Row(
+                children: const [
+                  Icon(
+                    Icons.add_circle_outline,
+                    color: Colors.deepPurple,
+                    size: 25,
+                  ),
+                  Text("Add"),
+                ],
+              )),
+        ),
+      ),
     );
   }
 
@@ -67,15 +111,17 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
             showAssignmentButton(),
           ],
         ),
-        Obx(()=>controller.isAssignmentLoaded.value
-            ? Column(
-              children: [
-                Text(controller
-                        .eventPointAssignmentModel.value!.assignmentCount
-                        .toString())
-              ],
-            )
-            : Container()),
+        Obx(() => (controller.eventPointAssignmentModel.value == null ||
+                controller.eventPointAssignmentModel.value!.assignmentCount ==
+                    0)
+            ? Container()
+            : Column(
+                children: [
+                  Text(controller
+                      .eventPointAssignmentModel.value!.assignmentCount
+                      .toString())
+                ],
+              )),
         Wrap(
           spacing: 5.0,
           children: const [
@@ -90,8 +136,11 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
             Text("duty ending date"),
           ],
         ),
-        controller.isAssignmentLoaded.value
-            ? ListView.builder(
+        (controller.eventPointAssignmentModel.value == null ||
+                controller.eventPointAssignmentModel.value!.assignmentCount ==
+                    0)
+            ? Container()
+            : ListView.builder(
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 itemCount: controller.eventPointAssignmentModel.value
@@ -136,7 +185,6 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
                     ),
                   );
                 })
-            : Container()
       ],
     );
   }
