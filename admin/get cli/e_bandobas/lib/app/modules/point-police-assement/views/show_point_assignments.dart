@@ -47,6 +47,7 @@ class ShowPointAssigment extends GetView<ShowPointPoliceAssementController> {
     });
 
     return Scaffold(
+      drawer: const Navigation_Drawer(),
       appBar: AppBar(
         title: const Text('Point assigments view'),
         centerTitle: true,
