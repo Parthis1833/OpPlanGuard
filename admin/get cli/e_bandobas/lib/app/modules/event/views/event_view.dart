@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
+import '../../../Widgets/navigation_drawer.dart';
 import '../controllers/event_controller.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 
@@ -28,7 +29,44 @@ class EventView extends GetView<EventController> {
 
   @override
   Widget build(BuildContext context) {
+    Future.delayed(const Duration(seconds: 3), () {
+      Get.dialog(
+        Center(
+          child: Container(
+            width: 300,
+            height: 200,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("Explanation about this page",
+                      style: TextStyle(fontSize: 24)),
+                  const SizedBox(height: 16),
+                  const Text(
+                    "In this page, You can see all your past and current events created in the system",
+                    style: TextStyle(fontSize: 12, color: Colors.black),
+                  ),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () => Get.back(),
+                    child: const Text("Close Dialog"),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        barrierDismissible: false,
+      );
+    });
+
     return Scaffold(
+      drawer: const Navigation_Drawer(),
       appBar: AppBar(
         title: const Text('EventView'),
         centerTitle: true,
@@ -156,15 +194,14 @@ class EventView extends GetView<EventController> {
   Widget eventsPageData() {
     return ListView(
       children: [
-
-          PoliceCard(
-            margin: const EdgeInsets.all(8),
-            color: Colors.grey,
-            child: const Align(
-              child: Text(''),
-            ),
+        PoliceCard(
+          margin: const EdgeInsets.all(8),
+          color: Colors.grey,
+          child: const Align(
+            child: Text(''),
           ),
-          eventsLoadedWidget()
+        ),
+        eventsLoadedWidget()
       ],
     );
   }

@@ -25,17 +25,17 @@ class ShowPointAssigment extends GetView<ShowPointPoliceAssementController> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Explanation about this page",
+                  const Text("Explanation about this page",
                       style: TextStyle(fontSize: 24)),
-                  SizedBox(height: 16),
-                  Text(
+                  const SizedBox(height: 16),
+                  const Text(
                     "In this page, You can see assignments you asked for all designations ",
                     style: TextStyle(fontSize: 12, color: Colors.black),
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   ElevatedButton(
                     onPressed: () => Get.back(),
-                    child: Text("Close Dialog"),
+                    child: const Text("Close Dialog"),
                   ),
                 ],
               ),
