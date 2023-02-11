@@ -10,7 +10,9 @@ class EventAssignmentModel {
   EventAssignmentModel.fromJson(dynamic json) {
     eventId = json['event-id'];
     if (json['point-assignments'] != null) {
+      pointAssignments = [];
       json['point-assignments'].forEach((assignment) {
+        print(assignment);
         pointAssignments!.add(EventPointAssignmentModel.fromJson(assignment));
       });
     }
@@ -25,4 +27,3 @@ class EventAssignmentModel {
     return map;
   }
 }
-

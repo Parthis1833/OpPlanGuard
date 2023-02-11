@@ -1,3 +1,4 @@
+import 'package:e_bandobas/app/modules/assigned-police/controllers/assiged_police_view_by_event_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -6,8 +7,8 @@ import '../../../Config/routes/app_pages.dart';
 import '../../../Widgets/navigation_drawer.dart';
 import '../controllers/assigned_police_controller.dart';
 
-class AssignedPoliceView extends GetView<AssignedPoliceController> {
-  const AssignedPoliceView({Key? key}) : super(key: key);
+class AssignedPoliceByEventView extends GetView<AssignedPoliceByEventController> {
+  const AssignedPoliceByEventView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     Future.delayed(const Duration(seconds: 2), () {
@@ -49,19 +50,17 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
     return Scaffold(
       drawer: const Navigation_Drawer(),
       appBar: AppBar(
-        title: const Text(
-            'Please give new meaningful name to this page'), //TODO: new name
+        title: const Text('Assigned Police In Event'), //TODO: new name
         centerTitle: true,
       ),
-      body: Obx(() =>
-          (controller.events.value == null || controller.points.value == null)
-              ? Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Center(child: CircularProgressIndicator.adaptive()),
-                  ],
-                )
-              : assesmentDataWidget()),
+      body: Obx(() => (controller.events.value == null)
+          ? Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Center(child: CircularProgressIndicator.adaptive()),
+              ],
+            )
+          : assesmentDataWidget()),
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -72,7 +71,8 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
               height: 50,
               child: ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.resolveWith((states) {
+                    backgroundColor:
+                        MaterialStateProperty.resolveWith((states) {
                       // If the button is pressed, return green, otherwise blue
                       if (states.contains(MaterialState.pressed)) {
                         return Colors.green;
@@ -108,7 +108,8 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
               height: 50,
               child: ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.resolveWith((states) {
+                    backgroundColor:
+                        MaterialStateProperty.resolveWith((states) {
                       // If the button is pressed, return green, otherwise blue
                       if (states.contains(MaterialState.pressed)) {
                         return Colors.green;
@@ -137,98 +138,21 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
                   )),
             ),
           ),
-        
         ],
       ),
     );
   }
 
   Widget assesmentDataWidget() {
-    return ListView(
-      children: [
-        Row(
-          children: [
-            eventSelectionDropDownWidget(),
-            pointSelectionDropDownWidget(),
-            showAssignmentButton(),
-          ],
-        ),
-        Obx(() => (controller.eventPointAssignmentModel.value == null ||
-                controller.eventPointAssignmentModel.value!.assignmentCount ==
-                    0)
-            ? Container()
-            : Column(
-                children: [
-                  Text(controller
-                      .eventPointAssignmentModel.value!.assignmentCount
-                      .toString())
-                ],
-              )),
-        Wrap(
-          spacing: 5.0,
-          children: const [
-            Text("buckle number"),
-            Text("police name"),
-            Text("district"),
-            Text("police station name"),
-            Text("age"),
-            Text("gender"),
-            Text("number"),
-            Text("duty starting date"),
-            Text("duty ending date"),
-          ],
-        ),
-        (controller.eventPointAssignmentModel.value == null ||
-                controller.eventPointAssignmentModel.value!.assignmentCount ==
-                    0)
-            ? Container()
-            : ListView.builder(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                itemCount: controller.eventPointAssignmentModel.value
-                    ?.assignedPoliceList?.length,
-                itemBuilder: (context, index) {
-                  return SizedBox(
-                    height: 50,
-                    child: Wrap(
-                      spacing: 5.0,
-                      children: [
-                        Text(controller.eventPointAssignmentModel.value
-                                ?.assignedPoliceList?[index].buckleNumber ??
-                            ""),
-                        Text(controller.eventPointAssignmentModel.value
-                                ?.assignedPoliceList?[index].policeName ??
-                            ""),
-                        Text(controller.eventPointAssignmentModel.value
-                                ?.assignedPoliceList?[index].district ??
-                            ""),
-                        Text(controller
-                                .eventPointAssignmentModel
-                                .value
-                                ?.assignedPoliceList?[index]
-                                .policeStationName ??
-                            ""),
-                        Text(controller.eventPointAssignmentModel.value
-                                ?.assignedPoliceList?[index].age ??
-                            ""),
-                        Text(controller.eventPointAssignmentModel.value
-                                ?.assignedPoliceList?[index].gender ??
-                            ""),
-                        Text(controller.eventPointAssignmentModel.value
-                                ?.assignedPoliceList?[index].number ??
-                            ""),
-                        Text(controller.eventPointAssignmentModel.value
-                                ?.assignedPoliceList?[index].dutyStartDate ??
-                            ""),
-                        Text(controller.eventPointAssignmentModel.value
-                                ?.assignedPoliceList?[index].dutyEndDate ??
-                            ""),
-                      ],
-                    ),
-                  );
-                })
-      ],
-    );
+    return ListView(children: [
+      Row(
+        children: [
+          eventSelectionDropDownWidget(),
+          // pointSelectionDropDownWidget(),
+          showAssignmentButton(),
+        ],
+      ),
+    ]);
   }
 
   Widget eventSelectionDropDownWidget() {
@@ -243,17 +167,17 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
         });
   }
 
-  Widget pointSelectionDropDownWidget() {
-    return DropdownButton(
-        value: controller.selectedPointId.value,
-        items: controller.points.value?.map((point) {
-          return DropdownMenuItem(
-              value: point.id, child: Text(point.pointName.toString()));
-        }).toList(),
-        onChanged: (value) {
-          controller.changeSelectedPoint(value);
-        });
-  }
+  // Widget pointSelectionDropDownWidget() {
+  //   return DropdownButton(
+  //       value: controller.selectedPointId.value,
+  //       items: controller.points.value?.map((point) {
+  //         return DropdownMenuItem(
+  //             value: point.id, child: Text(point.pointName.toString()));
+  //       }).toList(),
+  //       onChanged: (value) {
+  //         controller.changeSelectedPoint(value);
+  //       });
+  // }
 
   Widget showAssignmentButton() {
     return ElevatedButton(

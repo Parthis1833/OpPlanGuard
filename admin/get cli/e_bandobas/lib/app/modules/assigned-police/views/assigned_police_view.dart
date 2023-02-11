@@ -62,43 +62,86 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
                   ],
                 )
               : assesmentDataWidget()),
-        floatingActionButton: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: SizedBox(
-            width: 100,
-            height: 50,
-            child: ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith((states) {
-                    // If the button is pressed, return green, otherwise blue
-                    if (states.contains(MaterialState.pressed)) {
-                      return Colors.green;
-                    }
-                    return Colors.blue;
-                  }),
-                  textStyle: MaterialStateProperty.resolveWith((states) {
-                    if (states.contains(MaterialState.pressed)) {
-                      return const TextStyle(fontSize: 40);
-                    }
-                    return const TextStyle(fontSize: 20);
-                  }),
-                ),
-                onPressed: () {
-                  Get.toNamed(PATHS.ASSIGNED_POLICE_ADD);
-                },
-                child: Row(
-                  children: const [
-                    Icon(
-                      Icons.add_circle_outline,
-                      color: Colors.deepPurple,
-                      size: 25,
-                    ),
-                    Text("Add"),
-                  ],
-                )),
+    floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: SizedBox(
+              width: 100,
+              height: 50,
+              child: ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.resolveWith((states) {
+                      // If the button is pressed, return green, otherwise blue
+                      if (states.contains(MaterialState.pressed)) {
+                        return Colors.green;
+                      }
+                      return Colors.blue;
+                    }),
+                    textStyle: MaterialStateProperty.resolveWith((states) {
+                      if (states.contains(MaterialState.pressed)) {
+                        return const TextStyle(fontSize: 40);
+                      }
+                      return const TextStyle(fontSize: 20);
+                    }),
+                  ),
+                  onPressed: () {
+                    Get.toNamed(PATHS.ASSIGNED_POLICE_ADD);
+                  },
+                  child: Row(
+                    children: const [
+                      Icon(
+                        Icons.add_circle_outline,
+                        color: Colors.deepPurple,
+                        size: 25,
+                      ),
+                      Text("Add"),
+                    ],
+                  )),
+            ),
           ),
-        ),
-    );
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: SizedBox(
+              width: 100,
+              height: 50,
+              child: ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.resolveWith((states) {
+                      // If the button is pressed, return green, otherwise blue
+                      if (states.contains(MaterialState.pressed)) {
+                        return Colors.green;
+                      }
+                      return Colors.blue;
+                    }),
+                    textStyle: MaterialStateProperty.resolveWith((states) {
+                      if (states.contains(MaterialState.pressed)) {
+                        return const TextStyle(fontSize: 40);
+                      }
+                      return const TextStyle(fontSize: 20);
+                    }),
+                  ),
+                  onPressed: () {
+                    Get.toNamed(PATHS.ASSIGNED_POLICE_VIEW_BY_EVENT);
+                  },
+                  child: Row(
+                    children: const [
+                      Icon(
+                        Icons.add_circle_outline,
+                        color: Colors.deepPurple,
+                        size: 25,
+                      ),
+                      Text("Show By Event"),
+                    ],
+                  )),
+            ),
+          ),
+        ],
+      ),
+      );
   }
 
   Widget assesmentDataWidget() {

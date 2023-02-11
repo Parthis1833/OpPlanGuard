@@ -19,6 +19,8 @@ abstract class Routes {
   static const ASSIGNED_POLICE_ADD = PATHS.ASSIGNED_POLICE_ADD;
   static const ASSIGNED_POLICE_UPDATE = PATHS.ASSIGNED_POLICE_UPDATE;
   static const ASSIGNED_POLICE_DELETE = PATHS.ASSIGNED_POLICE_DELETE;
+  static const ASSIGNED_POLICE_VIEW_BY_EVENT =
+      PATHS.ASSIGNED_POLICE_VIEW_BY_EVENT;
 }
 
 class PATHS {
@@ -43,4 +45,5 @@ class PATHS {
   static const ASSIGNED_POLICE_ADD = "/assigned-police-add";
   static const ASSIGNED_POLICE_UPDATE = "/assigned-police-update";
   static const ASSIGNED_POLICE_DELETE = "/assigned-police-delete";
+  static const ASSIGNED_POLICE_VIEW_BY_EVENT = '/assigned-police-view-by-event';
 }

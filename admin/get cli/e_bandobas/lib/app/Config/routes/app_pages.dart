@@ -8,8 +8,10 @@ import '../../modules/assesment-create/bindings/assesment_create_binding.dart';
 import '../../modules/assesment-create/views/assesment_create_view.dart';
 import '../../modules/assesment/bindings/assesment_binding.dart';
 import '../../modules/assesment/views/assesment_view.dart';
+import '../../modules/assigned-police/bindings/assiged_police_view_by_event_binding.dart';
 import '../../modules/assigned-police/bindings/assigned_police_add_binding.dart';
 import '../../modules/assigned-police/bindings/assigned_police_binding.dart';
+import '../../modules/assigned-police/views/assiged_police_view_by_event.dart';
 import '../../modules/assigned-police/views/assigned_police_add.dart';
 import '../../modules/assigned-police/views/assigned_police_view.dart';
 import '../../modules/counter/views/counter_view.dart';
@@ -150,5 +152,10 @@ class AppPages {
       page: () => const AssignedPoliceUpdateView(),
       binding: AssignedPoliceUpdateBinding(),
     ),
+
+    GetPage(
+      name: Routes.ASSIGNED_POLICE_VIEW_BY_EVENT, 
+      page: () => const AssignedPoliceByEventView(), 
+      binding: AssignedPoliceByEventBinding())
   ];
 }

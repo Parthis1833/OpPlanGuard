@@ -72,8 +72,6 @@ class PointPoliceAssementController extends GetxController {
 
     bool result = await PointPoliceCountApi.createAssignment(
         API_Decision.BOTH, eventPoliceCountData);
-    print(result);
-
     // print()
   }
 

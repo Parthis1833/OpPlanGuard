@@ -2,8 +2,8 @@ class EventPointAssignmentModel {
   EventPointAssignmentModel({this.eventId, this.pointId, this.assignmentCount, this.pointName, this.zoneName});
 
   EventPointAssignmentModel.fromJson(dynamic json) {
-    eventId = json['event-id'] ?? '';
-    pointId = json['point-id'] ?? '';
+    eventId = json['event-id'] ?? 0;
+    pointId = json['point-id'] ?? 0;
     pointName = json['point-name'] ?? '';
     zoneName = json['zone-name'] ?? '';
     assignmentCount = json['assignment-count'] ?? 0;
