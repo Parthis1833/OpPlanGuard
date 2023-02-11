@@ -66,35 +66,100 @@ class ShowPointAssigment extends GetView<ShowPointPoliceAssementController> {
   Widget showPointAssementDataWidget() {
     return ListView(
       children: [
-        eventSelectionDropDownWidget(),
-        pointSelectionDropDownWidget(),
+        Row(
+          children: [
+            eventSelectionDropDownWidget(),
+            pointSelectionDropDownWidget()
+          ],
+        ),
         designationListWidget(),
         viewUpdateContainerRow(),
       ],
     );
   }
   Widget eventSelectionDropDownWidget() {
-    return DropdownButton(
-        value: controller.selectedEventId.value,
-        items: controller.events.value!.map((event) {
-          return DropdownMenuItem(
-              value: event.id, child: Text(event.eventName.toString()));
-        }).toList(),
-        onChanged: (value) {
-          controller.changeSelectedEvent(value);
-        });
+    return Container(
+      padding: const EdgeInsets.all(8),
+      child: Row(
+          children: [
+            Container(
+              margin: const EdgeInsets.only(left: 160.0),
+              padding: const EdgeInsets.only(bottom: 2.0),
+              height: 55,
+              width: 250,
+              child: const Text(
+                'સોંપણીનું નામ  :-',
+                style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black38,
+                    fontSize: 38.0),
+              ),
+            ),
+            Container(
+              height: 55,
+              width: 300,
+              margin: const EdgeInsets.all(10),
+              child: DropdownButton(
+                  value: controller.selectedEventId.value,
+                  items: controller.events.value!.map((event) {
+                    return DropdownMenuItem(
+                      alignment: Alignment.center,
+                      value: event.id, child: Text(event.eventName.toString() ,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black38,
+                          fontSize: 25.0),),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    controller.changeSelectedEvent(value);
+                  }),
+            ),
+          ]),
+    );
   }
 
   Widget pointSelectionDropDownWidget() {
-    return DropdownButton(
-        value: controller.selectedPointId.value,
-        items: controller.points.value!.map((point) {
-          return DropdownMenuItem(
-              value: point.id, child: Text(point.pointName.toString()));
-        }).toList(),
-        onChanged: (value) {
-          controller.changeSelectedPoint(value);
-        });
+    return Container(
+      padding: const EdgeInsets.all(8),
+      child: Row(
+        children: [
+          Container(
+            margin: const EdgeInsets.only(left: 160.0),
+            padding: const EdgeInsets.only(bottom: 2.0),
+            height: 55,
+            width: 250,
+            child: const Text(
+              'પોઇન્ટનું નામ  :-',
+              style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black38,
+                  fontSize: 38.0),
+            ),
+          ),
+          SizedBox(
+            height: 55,
+            width: 350,
+            child: DropdownButton(
+                value: controller.selectedPointId.value,
+                isExpanded: true,
+                itemHeight: 60,
+                items: controller.points.value!.map((point) {
+                  return DropdownMenuItem(
+                    value: point.id, child: Text(point.pointName.toString() ,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black38,
+                        fontSize: 24.0),),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  controller.changeSelectedPoint(value);
+                }),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget designationListWidget() {
