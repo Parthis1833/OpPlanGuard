@@ -95,8 +95,10 @@ class ShowPointAssigment extends GetView<ShowPointPoliceAssementController> {
   }
 
   Widget designationListWidget() {
-    return controller.isPointPoliceCountAssigned.value
-        ? ListView.builder(
+    return (controller.isPointPoliceCountAssigned.value == null ||
+            controller.isPointPoliceCountAssigned.value == false)
+        ? Container()
+        : ListView.builder(
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
             itemCount: controller
@@ -140,8 +142,7 @@ class ShowPointAssigment extends GetView<ShowPointPoliceAssementController> {
                 ],
               );
             },
-          )
-        : Container();
+          );
   }
 
   Widget viewUpdateContainerRow() {
