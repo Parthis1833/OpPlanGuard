@@ -10,7 +10,7 @@ class ShowPointAssigment extends GetView<ShowPointPoliceAssementController> {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 2), () {
       Get.dialog(
         Center(
           child: Container(
@@ -53,8 +53,13 @@ class ShowPointAssigment extends GetView<ShowPointPoliceAssementController> {
         centerTitle: true,
       ),
       body: Obx(() =>
-          (controller.events.value == null && controller.points.value == null)
-              ? const CircularProgressIndicator()
+          (controller.events.value == null || controller.points.value == null)
+              ? Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Center(child: CircularProgressIndicator()),
+                ],
+              )
               : showPointAssementDataWidget()),
     );
   }

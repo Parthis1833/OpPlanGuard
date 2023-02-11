@@ -12,7 +12,7 @@ class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
 
   @override
   Widget build(BuildContext context) {
-     Future.delayed(Duration(seconds: 3), () {
+     Future.delayed(const Duration(seconds: 2), () {
       Get.dialog(
   Center(
     child: Container(
@@ -27,13 +27,13 @@ class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Explanation about this page", style: TextStyle(fontSize: 24)),
-            SizedBox(height: 16),
-            Text("In this page, you can enter your requirements about how many police you need on which point", style: TextStyle(fontSize: 12, color: Colors.black),),
-            SizedBox(height: 16),
+            const Text("Explanation about this page", style: TextStyle(fontSize: 24)),
+            const SizedBox(height: 16),
+            const Text("In this page, you can enter your requirements about how many police you need on which point", style: TextStyle(fontSize: 12, color: Colors.black),),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () => Get.back(),
-              child: Text("Close Dialog"),
+              child: const Text("Close Dialog"),
             ),
           ],
         ),
@@ -53,7 +53,12 @@ class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
       body: Obx(() => (controller.designations.value == null ||
               controller.events.value == null  ||
               controller.points.value == null )
-          ? const CircularProgressIndicator()
+          ? Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+               CircularProgressIndicator.adaptive(),
+            ],
+          )
           : eventPoliceAssementWidget()),
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -111,7 +116,7 @@ class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
     return Row(
       children: [
         Container(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           width: 880,
           height: 600,
           child: ListView.builder(

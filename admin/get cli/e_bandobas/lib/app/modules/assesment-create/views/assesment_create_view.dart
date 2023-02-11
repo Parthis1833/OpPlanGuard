@@ -9,7 +9,7 @@ class AssesmentCreateView extends GetView<AssesmentCreateController> {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 2), () {
       Get.dialog(
         Center(
           child: Container(
@@ -63,8 +63,8 @@ class AssesmentCreateView extends GetView<AssesmentCreateController> {
             controller.designations.value == null)
         ? Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Center(child: const CircularProgressIndicator.adaptive()),
+          children: const [
+            Center(child: CircularProgressIndicator.adaptive()),
           ],
         )
         : ListView(
