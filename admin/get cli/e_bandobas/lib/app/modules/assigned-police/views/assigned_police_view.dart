@@ -3,21 +3,65 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../Config/routes/app_pages.dart';
+import '../../../Widgets/navigation_drawer.dart';
 import '../controllers/assigned_police_controller.dart';
 
 class AssignedPoliceView extends GetView<AssignedPoliceController> {
   const AssignedPoliceView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    Future.delayed(const Duration(seconds: 2), () {
+      Get.dialog(
+        Center(
+          child: Container(
+            width: 300,
+            height: 200,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("Explanation about this page",
+                      style: TextStyle(fontSize: 24)),
+                  const SizedBox(height: 16),
+                  const Text(
+                    "In this page, This page show information, police assigned in particular event and point.",
+                    style: TextStyle(fontSize: 12, color: Colors.black),
+                  ),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () => Get.back(),
+                    child: const Text("Close Dialog"),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        barrierDismissible: false,
+      );
+    });
+
     return Scaffold(
+      drawer: const Navigation_Drawer(),
+
         appBar: AppBar(
           title: const Text('Assigne Police View'),
           centerTitle: true,
         ),
-        body: Obx(() => (controller.events.value!.isEmpty &&
-                controller.points.value!.isEmpty)
-            ? const CircularProgressIndicator()
-            : assesmentDataWidget()),
+        body: Obx(() =>
+        (controller.events.value == null || controller.points.value == null)
+              ? Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Center(child: CircularProgressIndicator.adaptive()),
+                  ],
+                )
+              : assesmentDataWidget()),
         floatingActionButton: Padding(
           padding: const EdgeInsets.all(8.0),
           child: SizedBox(
@@ -67,15 +111,17 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
             showAssignmentButton(),
           ],
         ),
-        Obx(()=>controller.isAssignmentLoaded.value
-            ? Column(
-              children: [
-                Text(controller
-                        .eventPointAssignmentModel.value!.assignmentCount
-                        .toString())
-              ],
-            )
-            : Container()),
+           Obx(() => (controller.eventPointAssignmentModel.value == null ||
+                controller.eventPointAssignmentModel.value!.assignmentCount ==
+                    0)
+            ? Container()
+            : Column(
+                children: [
+                  Text(controller
+                      .eventPointAssignmentModel.value!.assignmentCount
+                      .toString())
+                ],
+              )),
         Wrap(
           spacing: 5.0,
           children: const [
@@ -90,8 +136,10 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
             Text("duty ending date"),
           ],
         ),
-        controller.isAssignmentLoaded.value
-            ? ListView.builder(
+        (controller.eventPointAssignmentModel.value == null ||
+                controller.eventPointAssignmentModel.value!.assignmentCount ==
+                    0)
+            ? Container() : ListView.builder(
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 itemCount: controller.eventPointAssignmentModel.value
@@ -135,8 +183,7 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
                       ],
                     ),
                   );
-                })
-            : Container()
+                }),
       ],
     );
   }
