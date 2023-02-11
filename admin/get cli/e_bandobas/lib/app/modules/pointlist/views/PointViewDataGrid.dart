@@ -22,14 +22,13 @@ class PointViewDataGrid extends StatelessWidget {
                 data: SfDataGridThemeData(
                     headerColor:  Colors.lightBlueAccent),
                 child: SfDataGrid(
-
                   source: snapshot.data,
                   showCheckboxColumn: true,
                   checkboxShape: const CircleBorder(),
                   allowFiltering: true,
                   selectionMode: SelectionMode.multiple,
                   onQueryRowHeight: (details) {
-                    return details.rowIndex == 0 ? 70.0 : 49.0;
+                    return details.getIntrinsicRowHeight(details.rowIndex);
                   },
                   columnWidthMode: ColumnWidthMode.auto,
                   shrinkWrapColumns: true,
@@ -69,14 +68,14 @@ class PointViewDataGrid extends StatelessWidget {
                   overflow: TextOverflow.clip, softWrap: true))),
       GridColumn(
           columnName: 'Point Name',
-          width: 170,
+          width: 370,
           label: Container(
               padding: const EdgeInsets.all(8),
               margin:  const EdgeInsets.only(left:15.0),
               alignment: Alignment.center,
               child: const Text('Point Name',
                   style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 20,
                       color: Colors.white,
                       fontStyle: FontStyle.italic
                   ),
@@ -84,13 +83,13 @@ class PointViewDataGrid extends StatelessWidget {
       GridColumn(
           allowFiltering: false,
           columnName: 'Accessories',
-          width: 250,
+          width: 300,
           label: Container(
               padding: const EdgeInsets.all(8),
               alignment: Alignment.center,
               child: const Text('Accessories',
                   style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 20,
                       color: Colors.white,
                       fontStyle: FontStyle.italic
                   ),
@@ -98,13 +97,13 @@ class PointViewDataGrid extends StatelessWidget {
       GridColumn(
           allowFiltering: false,
           columnName: 'Remarks',
-          width: 150,
+          width: 350,
           label: Container(
               padding: const EdgeInsets.all(8),
               alignment: Alignment.center,
               child: const Text('Rermarks',
                   style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 20,
                       color: Colors.white,
                       fontStyle: FontStyle.italic
                   ),
