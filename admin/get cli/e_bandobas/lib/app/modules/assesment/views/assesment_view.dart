@@ -14,7 +14,7 @@ class AssesmentView extends GetView<AssesmentController> {
     return Scaffold(
       drawer: const Navigation_Drawer(),
       appBar: AppBar(
-        title: const Text('AssesmentView'),
+        title: const Text('Assesment View'),
         centerTitle: true,
       ),
       body: ListView(

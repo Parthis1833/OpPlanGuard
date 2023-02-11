@@ -28,7 +28,6 @@ class AssignedPoliceController extends GetxController {
   void increment() => count.value++;
 
   void loadPoints() async {
-    print("done");
     points.value = await PointApi.obtainPoints(API_Decision.Only_Failure);
     if (points.value != null && points.value!.length > 0) {
       selectedPointId.value = points.value!.elementAt(0).id!.toInt();
