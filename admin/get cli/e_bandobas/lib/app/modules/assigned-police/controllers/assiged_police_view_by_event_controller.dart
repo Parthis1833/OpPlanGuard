@@ -14,7 +14,7 @@ class AssignedPoliceByEventController extends GetxController {
 
   late final selectedEventId = 0.obs;
   final events = Rxn<List<Event>>();
-  final eventPointAssignmentModel = Rxn<EventAssignmentModel>();
+  final eventAssignmentModel = Rxn<EventAssignmentModel>();
 
   final count = 0.obs;
   @override
@@ -39,11 +39,9 @@ class AssignedPoliceByEventController extends GetxController {
   }
 
   showAssignments() async {
-    eventPointAssignmentModel.value =
+    eventAssignmentModel.value =
         await EventPointAssignmentModelApi.obtainEventWiseAssignments(
             API_Decision.BOTH, selectedEventId.value);
-    print("----------------------------");
-    print(eventPointAssignmentModel.value);
     update();
   }
 }

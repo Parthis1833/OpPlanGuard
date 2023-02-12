@@ -36,6 +36,8 @@ class EventPointAssignmentModel {
     map['event-id'] = eventId;
     map['point-id'] = pointId;
     map['point-name'] = pointName;
+    map['point-remarks'] = pointRemarks;
+    map['point-accessories'] = pointAccessories;
     map['zone-name'] = zoneName;
     map['assignment-count'] = assignmentCount;
     // map['assigned-Police-list'] = assignedPoliceList;

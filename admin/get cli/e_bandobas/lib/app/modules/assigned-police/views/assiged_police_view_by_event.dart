@@ -151,15 +151,102 @@ class AssignedPoliceByEventView
         children: [
           eventSelectionDropDownWidget(),
           // pointSelectionDropDownWidget(),
-          displayEventAssignment(),
+          showAssignmentButton(),
         ],
       ),
-      showAssignmentButton(),
+      displayEventAssignment(),
     ]);
   }
 
   Widget displayEventAssignment() {
-    return Container();
+    return Obx(() => controller.eventAssignmentModel.value == null
+        ? const CircularProgressIndicator.adaptive()
+        : eventAssignments());
+  }
+
+  Widget eventAssignments() {
+    return ListView.separated(
+      shrinkWrap: true,
+          physics: ClampingScrollPhysics(),
+        itemBuilder: (_, index) => pointLevelAssignment(index),
+        separatorBuilder: (_, index) => const Divider(),
+        itemCount: controller
+            .eventAssignmentModel.value!.pointAssignments!.length);
+    // controller.eventPointAssignmentModel.value!.pointAssignments!
+    //     .map((model) => pointLevelAssignment())
+    //     .toList();
+  }
+
+  Widget pointLevelAssignment(int index) {
+    return Column(
+      children: [
+        Wrap(
+          children: [
+          Text("Point Name : " + controller.eventAssignmentModel.value!.pointAssignments![index].pointName!),
+          SizedBox(width: 20),
+          Text("Zone Name : " + controller.eventAssignmentModel.value!.pointAssignments![index].zoneName!),
+          SizedBox(width: 20),
+          Text("Total Assigned police : " + controller.eventAssignmentModel.value!.pointAssignments![index].assignmentCount!.toString()),
+          SizedBox(width: 20),
+          Text("Accessories : " + controller.eventAssignmentModel.value!.pointAssignments![index].pointAccessories!),
+          SizedBox(width: 20),
+          Text("Accessories : " + controller.eventAssignmentModel.value!.pointAssignments![index].pointRemarks!),
+        ],),
+
+        Wrap(
+          spacing: 5.0,
+          children: const [
+            Text("buckle number"),
+            Text("police name"),
+            Text("district"),
+            Text("police station name"),
+            Text("age"),
+            Text("gender"),
+            Text("number"),
+            Text("duty starting date"),
+            Text("duty ending date"),
+          ],
+        ),
+
+        (controller.eventAssignmentModel.value == null ||
+                controller.eventAssignmentModel.value!.pointAssignments![index]
+                .assignedPoliceList!.length  ==  0)
+            ? Container() : 
+            ListView.builder(
+              shrinkWrap: true,
+          physics: ClampingScrollPhysics(),
+                scrollDirection: Axis.vertical,
+                itemCount: controller.eventAssignmentModel.value!.pointAssignments![index].assignedPoliceList!.length,
+                itemBuilder: (context, idx2) {
+                  return SizedBox(
+                    height: 50,
+                    child: Wrap(
+                      spacing: 5.0,
+                      children: [
+                        Text(controller.eventAssignmentModel.value!.pointAssignments![index].assignedPoliceList![idx2].buckleNumber ??
+                            ""),
+                        Text(controller.eventAssignmentModel.value!.pointAssignments![index].assignedPoliceList![idx2].policeName ??
+                            ""),
+                        Text(controller.eventAssignmentModel.value!.pointAssignments![index].assignedPoliceList![idx2].district ??
+                            ""),
+                        Text(controller.eventAssignmentModel.value!.pointAssignments![index].assignedPoliceList![idx2].policeStationName ??
+                            ""),
+                        Text(controller.eventAssignmentModel.value!.pointAssignments![index].assignedPoliceList![idx2].age ??
+                            ""),
+                        Text(controller.eventAssignmentModel.value!.pointAssignments![index].assignedPoliceList![idx2].gender ??
+                            ""),
+                        Text(controller.eventAssignmentModel.value!.pointAssignments![index].assignedPoliceList![idx2].number ??
+                            ""),
+                        Text(controller.eventAssignmentModel.value!.pointAssignments![index].assignedPoliceList![idx2].dutyStartDate ??
+                            ""),
+                        Text(controller.eventAssignmentModel.value!.pointAssignments![index].assignedPoliceList![idx2].dutyEndDate ??
+                            ""),
+                      ],
+                    ),
+                  );
+                }),
+      ],
+    );
   }
 
   Widget eventSelectionDropDownWidget() {
