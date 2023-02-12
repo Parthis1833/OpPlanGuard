@@ -6,8 +6,10 @@ import 'package:get/get.dart';
 import '../../../Config/routes/app_pages.dart';
 import '../../../Widgets/navigation_drawer.dart';
 import '../controllers/assigned_police_controller.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
-class AssignedPoliceByEventView extends GetView<AssignedPoliceByEventController> {
+class AssignedPoliceByEventView
+    extends GetView<AssignedPoliceByEventController> {
   const AssignedPoliceByEventView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -149,10 +151,15 @@ class AssignedPoliceByEventView extends GetView<AssignedPoliceByEventController>
         children: [
           eventSelectionDropDownWidget(),
           // pointSelectionDropDownWidget(),
-          showAssignmentButton(),
+          displayEventAssignment(),
         ],
       ),
+      showAssignmentButton(),
     ]);
+  }
+
+  Widget displayEventAssignment() {
+    return Container();
   }
 
   Widget eventSelectionDropDownWidget() {
