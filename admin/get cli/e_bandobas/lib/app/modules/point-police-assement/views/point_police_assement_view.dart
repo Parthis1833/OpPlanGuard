@@ -1,10 +1,7 @@
 import 'package:e_bandobas/app/Config/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:get/get.dart';
-
-import '../../../Widgets/navigation_drawer.dart';
 import '../controllers/point_police_assement_controller.dart';
 
 class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
@@ -12,53 +9,18 @@ class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
 
   @override
   Widget build(BuildContext context) {
-     Future.delayed(const Duration(seconds: 2), () {
-      Get.dialog(
-  Center(
-    child: Container(
-      width: 300,
-      height: 200,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text("Explanation about this page", style: TextStyle(fontSize: 24)),
-            const SizedBox(height: 16),
-            const Text("In this page, you can enter your requirements about how many police you need on which point", style: TextStyle(fontSize: 12, color: Colors.black),),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () => Get.back(),
-              child: const Text("Close Dialog"),
-            ),
-          ],
-        ),
-      ),
-    ),
-  ),
-  barrierDismissible: false,
-);
-
-    });
     return Scaffold(
       appBar: AppBar(
         title: const Text('Point Assesment CreateView'),
         centerTitle: true,
       ),
-      body: Obx(() => (controller.designations.value == null ||
-              controller.events.value == null  ||
-              controller.points.value == null )
+      body: Obx(() => (controller.designations.value == null || controller.events.value == null  || controller.points.value == null )
           ? Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
                CircularProgressIndicator.adaptive(),
             ],
-          )
-          : eventPoliceAssementWidget()),
+          ) : eventPoliceAssementWidget()),
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
@@ -85,7 +47,6 @@ class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
       ),
     );
   }
-
   Widget eventPoliceAssementWidget() {
     return ListView(
       children: [
@@ -110,7 +71,6 @@ class PointPoliceAssementView extends GetView<PointPoliceAssementController> {
       ],
     );
   }
-
   Widget designationListWidget() {
     return Row(
       children: [

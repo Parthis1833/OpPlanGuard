@@ -28,5 +28,4 @@ class AssesmentController extends GetxController {
       Get.toNamed(Routes.SETTING);
     }
   }
-
 }

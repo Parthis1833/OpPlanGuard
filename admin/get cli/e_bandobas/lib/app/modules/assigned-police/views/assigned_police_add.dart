@@ -115,7 +115,6 @@ class AssignedPoliceAddView extends GetView<AssignedPoliceAddController> {
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
-
   
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -123,11 +122,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
    final _formKey = GlobalKey<FormState>();
-   final _openDropDownProgKey = GlobalKey<DropdownSearchState<int>>();
-   final _multiKey = GlobalKey<DropdownSearchState<String>>();
    final _popupBuilderKey = GlobalKey<DropdownSearchState<String>>();
-   final _popupCustomValidationKey = GlobalKey<DropdownSearchState<int>>();
-  final _userEditTextController = TextEditingController(text: 'Mrs');
   final myKey = GlobalKey<DropdownSearchState<MultiLevelString>>();
   final controller = Get.put(AssignedPoliceAddController());
 
@@ -143,7 +138,6 @@ class _MyHomePageState extends State<MyHomePage> {
     ),
     MultiLevelString(level1: "4")
   ];
-  bool? _popupBuilderSelection = false;
 
   @override
   Widget build(BuildContext context) {
@@ -152,8 +146,6 @@ class _MyHomePageState extends State<MyHomePage> {
           _popupBuilderKey.currentState?.popupGetSelectedItems ?? [];
       var isAllSelected =
           _popupBuilderKey.currentState?.popupIsAllItemSelected ?? false;
-      _popupBuilderSelection =
-          selectedItem.isEmpty ? false : (isAllSelected ? true : null);
 
       if (updateState) setState(() {});
     }
@@ -358,7 +350,6 @@ class MultiLevelString {
         subLevel: subLevel ?? this.subLevel,
         isExpanded: isExpanded ?? this.isExpanded,
       );
-
   @override
   String toString() => level1;
 }

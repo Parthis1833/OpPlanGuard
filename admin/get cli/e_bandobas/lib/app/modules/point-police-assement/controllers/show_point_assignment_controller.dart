@@ -61,9 +61,6 @@ class ShowPointPoliceAssementController extends GetxController {
     }
 
     isPointPoliceCountAssigned.value = pointPoliceCountAssignment.value?.assignments?.length != 0;
-    // if (isPointPoliceCountAssigned.value == false) {
-    //   pointPoliceCountAssignment.value?.assignments = [];
-    // }
     update();
   }
 
@@ -73,6 +70,4 @@ class ShowPointPoliceAssementController extends GetxController {
     loadEvents();
     loadPoints();
   }
-
-
 }

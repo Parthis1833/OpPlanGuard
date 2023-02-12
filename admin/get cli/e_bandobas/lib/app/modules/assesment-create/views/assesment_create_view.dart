@@ -1,63 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import '../../../Widgets/navigation_drawer.dart';
 import '../controllers/assesment_create_controller.dart';
 
 class AssesmentCreateView extends GetView<AssesmentCreateController> {
   const AssesmentCreateView({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(seconds: 2), () {
-      Get.dialog(
-        Center(
-          child: Container(
-            width: 300,
-            height: 200,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text("Explanation about this page",
-                      style: TextStyle(fontSize: 24)),
-                  const SizedBox(height: 16),
-                  const Text(
-                    "In this page, You can create record about how many police you need according to designation",
-                    style: TextStyle(fontSize: 12, color: Colors.black),
-                  ),
-                  const SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: () => Get.back(),
-                    child: const Text("Close Dialog"),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-        barrierDismissible: false,
-      );
-    });
-
     return Scaffold(
-      drawer: const Navigation_Drawer(),
-
       appBar: AppBar(
         title: const Text('Assesment Create In Event View'),
         centerTitle: true,
       ),
-      // controller.events.value !.length > 0 &&
-      //     controller.points.value !.length > 0
       body: popUpPageDataWidget(),
     );
   }
-
   Widget popUpPageDataWidget() {
     return Obx(() => (controller.events.value == null ||
             controller.designations.value == null)

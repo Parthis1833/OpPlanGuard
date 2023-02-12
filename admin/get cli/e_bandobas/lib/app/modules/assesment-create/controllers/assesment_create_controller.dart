@@ -23,7 +23,6 @@ class AssesmentCreateController extends GetxController {
       for (var i in designations.value!) {
         var textEditingController = TextEditingController(text: "");
         designationTextEditingControllers.add(textEditingController);
-        // return textFields.add(new TextField(controller: textEditingController));
       }
     }
     update();
@@ -51,12 +50,9 @@ class AssesmentCreateController extends GetxController {
       "event-id": selectedEventId.value,
       "designations": designationsData
     };
-    print(eventPoliceCountData);
     EventPoliceCountModel e = EventPoliceCountModel(eventId: selectedEventId.value, designations: designationsData);
-    
     bool result = await EventPoliceCountAPI.createAssignment(
         API_Decision.BOTH, eventPoliceCountData);
-    // print()
   }
   @override
   void onInit() {
@@ -68,6 +64,4 @@ class AssesmentCreateController extends GetxController {
     selectedEventId.value = value!.toInt();
     update();
   }
-
-  // void increment() => count.value++;
 }

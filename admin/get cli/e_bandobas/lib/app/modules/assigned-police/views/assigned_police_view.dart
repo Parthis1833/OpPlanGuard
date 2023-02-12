@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
 import '../../../Config/routes/app_pages.dart';
 import '../../../Widgets/navigation_drawer.dart';
 import '../controllers/assigned_police_controller.dart';
@@ -272,7 +270,6 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
           ]),
     );
   }
-
   Widget pointSelectionDropDownWidget() {
      return Container(
       padding: const EdgeInsets.all(8),
@@ -315,7 +312,6 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
       ),
     );
   }
-
   Widget showAssignmentButton() {
     return Container(
       width: 150,

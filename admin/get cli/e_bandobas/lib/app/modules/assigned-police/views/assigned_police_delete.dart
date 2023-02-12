@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
 import '../controllers/assigned_police_delete_controller.dart';
 
 class AssignedPoliceDeleteView extends GetView<AssignedPoliceDeleteController> {

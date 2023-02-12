@@ -26,7 +26,6 @@ class PointPoliceAssementController extends GetxController {
       for (var i in designations.value!) {
         var textEditingController = TextEditingController(text: "");
         designationTextEditingControllers.add(textEditingController);
-        // return textFields.add(new TextField(controller: textEditingController));
       }
     }
     update();
@@ -52,7 +51,6 @@ class PointPoliceAssementController extends GetxController {
 
   void savePointAssignment() async {
     Map<String, String> designationsData = {};
-
     for (int i = 0; i < designations.value!.length; i++) {
       if (designationTextEditingControllers[i].text.isNotEmpty &&
           int.parse(designationTextEditingControllers[i].text) > 0) {
@@ -72,7 +70,6 @@ class PointPoliceAssementController extends GetxController {
 
     bool result = await PointPoliceCountApi.createAssignment(
         API_Decision.BOTH, eventPoliceCountData);
-    // print()
   }
 
   void changeSelectedEvent(num? value) {
@@ -92,6 +89,4 @@ class PointPoliceAssementController extends GetxController {
     loadEvents();
     loadPoints();
   }
-
-
 }

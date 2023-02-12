@@ -9,7 +9,6 @@ import 'package:get/get.dart';
 
 class AssignedPoliceController extends GetxController {
   //TODO: Implement AssignedPoliceController
-
   late final selectedEventId = 0.obs;
   late final selectedPointId = 0.obs;
   final events = Rxn<List<Event>>();
@@ -31,11 +30,6 @@ class AssignedPoliceController extends GetxController {
     if (points.value != null && points.value!.length > 0) {
       selectedPointId.value = points.value!.elementAt(0).id!.toInt();
     }
-    // points.value!.forEach((element) {
-    //   print(element.id);
-    //   print(element.pointName);
-    // });
-    // print(points.value![0].pointName);
     update();
   }
 

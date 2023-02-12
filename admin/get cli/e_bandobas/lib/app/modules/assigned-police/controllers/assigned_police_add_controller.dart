@@ -2,7 +2,6 @@ import 'package:e_bandobas/app/Exceptions/ValidationException.dart';
 import 'package:e_bandobas/app/jsondata/PoliceData/PoliceIdNameDesigNumbModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../constants/enums.dart';
 import '../../../jsondata/AssignPolice/assignPoliceApi.dart';
 import '../../../jsondata/EventData/Event.dart';
@@ -44,11 +43,6 @@ class AssignedPoliceAddController extends GetxController {
     if (points.value != null && points.value!.length > 0) {
       selectedPointId.value = points.value!.elementAt(0).id!.toInt();
     }
-    // points.value!.forEach((element) {
-    //   print(element.id);
-    //   print(element.pointName);
-    // });
-    // print(points.value![0].pointName);
     update();
   }
 
@@ -80,15 +74,6 @@ class AssignedPoliceAddController extends GetxController {
   }
 
   Future<List<PoliceIdNameDesigNumb>> getData(String filter) async {
-    // var response = await Dio().get(
-    //   "https://5d85ccfb1e61af001471bf60.mockapi.io/user",
-    //   queryParameters: {"filter": filter},
-    // );
-
-    // final data = response.data;
-    // if (data != null) {
-    //   return UserModel.fromJsonList(data);
-    // }
     loadPolice(searchTerm: filter);
     if (policeNames.value != null) {
       return policeNames.value!;
@@ -127,8 +112,6 @@ class AssignedPoliceAddController extends GetxController {
       initialDate: startDate.value,
       firstDate: DateTime(2023),
       lastDate: DateTime(2025),
-      //initialEntryMode: DatePickerEntryMode.input,
-      // initialDatePickerMode: DatePickerMode.year,
       helpText: 'Select event start date',
       cancelText: 'Close',
       confirmText: 'Confirm',

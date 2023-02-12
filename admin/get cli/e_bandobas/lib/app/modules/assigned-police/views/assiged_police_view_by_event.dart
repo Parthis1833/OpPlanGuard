@@ -1,12 +1,8 @@
 import 'package:e_bandobas/app/modules/assigned-police/controllers/assiged_police_view_by_event_controller.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
 import '../../../Config/routes/app_pages.dart';
 import '../../../Widgets/navigation_drawer.dart';
-import '../controllers/assigned_police_controller.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class AssignedPoliceByEventView
     extends GetView<AssignedPoliceByEventController> {
@@ -182,15 +178,15 @@ class AssignedPoliceByEventView
       children: [
         Wrap(
           children: [
-          Text("Point Name : " + controller.eventAssignmentModel.value!.pointAssignments![index].pointName!),
-          SizedBox(width: 20),
-          Text("Zone Name : " + controller.eventAssignmentModel.value!.pointAssignments![index].zoneName!),
-          SizedBox(width: 20),
-          Text("Total Assigned police : " + controller.eventAssignmentModel.value!.pointAssignments![index].assignmentCount!.toString()),
-          SizedBox(width: 20),
-          Text("Accessories : " + controller.eventAssignmentModel.value!.pointAssignments![index].pointAccessories!),
-          SizedBox(width: 20),
-          Text("Accessories : " + controller.eventAssignmentModel.value!.pointAssignments![index].pointRemarks!),
+          Text("Point Name : ${controller.eventAssignmentModel.value!.pointAssignments![index].pointName!}"),
+          const SizedBox(width: 20),
+          Text("Zone Name : ${controller.eventAssignmentModel.value!.pointAssignments![index].zoneName!}"),
+          const SizedBox(width: 20),
+          Text("Total Assigned police : ${controller.eventAssignmentModel.value!.pointAssignments![index].assignmentCount!}"),
+          const SizedBox(width: 20),
+          Text("Accessories : ${controller.eventAssignmentModel.value!.pointAssignments![index].pointAccessories!}"),
+          const SizedBox(width: 20),
+          Text("Accessories : ${controller.eventAssignmentModel.value!.pointAssignments![index].pointRemarks!}"),
         ],),
 
         Wrap(
@@ -208,13 +204,11 @@ class AssignedPoliceByEventView
           ],
         ),
 
-        (controller.eventAssignmentModel.value == null ||
-                controller.eventAssignmentModel.value!.pointAssignments![index]
-                .assignedPoliceList!.length  ==  0)
+        (controller.eventAssignmentModel.value == null || controller.eventAssignmentModel.value!.pointAssignments![index].assignedPoliceList!.length  ==  0)
             ? Container() : 
             ListView.builder(
               shrinkWrap: true,
-          physics: ClampingScrollPhysics(),
+          physics: const ClampingScrollPhysics(),
                 scrollDirection: Axis.vertical,
                 itemCount: controller.eventAssignmentModel.value!.pointAssignments![index].assignedPoliceList!.length,
                 itemBuilder: (context, idx2) {
@@ -260,18 +254,6 @@ class AssignedPoliceByEventView
           controller.changeSelectedEvent(value);
         });
   }
-
-  // Widget pointSelectionDropDownWidget() {
-  //   return DropdownButton(
-  //       value: controller.selectedPointId.value,
-  //       items: controller.points.value?.map((point) {
-  //         return DropdownMenuItem(
-  //             value: point.id, child: Text(point.pointName.toString()));
-  //       }).toList(),
-  //       onChanged: (value) {
-  //         controller.changeSelectedPoint(value);
-  //       });
-  // }
 
   Widget showAssignmentButton() {
     return ElevatedButton(

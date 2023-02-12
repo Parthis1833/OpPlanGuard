@@ -1,17 +1,12 @@
 import 'package:e_bandobas/app/jsondata/EventData/Event.dart';
 import 'package:e_bandobas/app/jsondata/EventData/EventApi.dart';
 import 'package:e_bandobas/app/jsondata/EventPointAssignmentData/eventPointAssignmentApi.dart';
-import 'package:e_bandobas/app/jsondata/EventPointAssignmentData/eventPointAssignmentModel.dart';
-import 'package:e_bandobas/app/jsondata/PointData/Point.dart';
-import 'package:e_bandobas/app/jsondata/PointData/PointApi.dart';
 import 'package:e_bandobas/constants/enums.dart';
 import 'package:get/get.dart';
-
 import '../../../jsondata/EventPointAssignmentData/eventAssignmentModel.dart';
 
 class AssignedPoliceByEventController extends GetxController {
   //TODO: Implement AssignedPoliceController
-
   late final selectedEventId = 0.obs;
   final events = Rxn<List<Event>>();
   final eventAssignmentModel = Rxn<EventAssignmentModel>();

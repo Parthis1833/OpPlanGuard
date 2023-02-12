@@ -40,8 +40,6 @@ class EventCreateController extends GetxController {
       initialDate: startDate.value,
       firstDate: DateTime(2023),
       lastDate: DateTime(2025),
-      //initialEntryMode: DatePickerEntryMode.input,
-      // initialDatePickerMode: DatePickerMode.year,
       helpText: 'Select event start date',
       cancelText: 'Close',
       confirmText: 'Confirm',
@@ -61,8 +59,6 @@ class EventCreateController extends GetxController {
       initialDate: endDate.value,
       firstDate: DateTime(2023),
       lastDate: DateTime(2025),
-      //initialEntryMode: DatePickerEntryMode.input,
-      // initialDatePickerMode: DatePickerMode.year,
       helpText: 'Select event end date',
       cancelText: 'Close',
       confirmText: 'Confirm',
@@ -76,11 +72,3 @@ class EventCreateController extends GetxController {
     }
   }
 }
-
-// now creating ui of 
-
-// assignedPolice in points.
-
-// UI parts:
-
-// 1. 
