@@ -35,8 +35,8 @@ class PassworManegerAPI {
             backgroundColor: Colors.green,
           );
         }
-        throw new SuccessException(
-            "Password : " + responseJson['response']['message']);
+        throw SuccessException(
+            "Password : " + responseJson['response']['message']).successSnackBar();
         // return responseJson['response']['message'];
       } // api error to be displayed
       else {
@@ -64,6 +64,7 @@ class PassworManegerAPI {
         'Content-Type': 'application/json; charset=UTF-8',
       },
     );
+    
     if (response.statusCode == 200) {
       final responseJson = jsonDecode(utf8.decode(response.bodyBytes));
 
