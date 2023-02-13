@@ -5,11 +5,11 @@ class PasswordHistoriesModel {
     histories = [];
     if (json['password-histories'] != null) {
       json['password-histories'].forEach((history) {
-        histories!.add(PasswordHistoriesModel.fromJson(history));
+        histories!.add(PasswordHistoryModel.fromJson(history));
       });
     }
   }
-  List<PasswordHistoriesModel>? histories;
+  List<PasswordHistoryModel>? histories;
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['password-histories'] = histories;

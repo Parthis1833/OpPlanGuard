@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -51,7 +53,7 @@ class PasswordManagerView extends GetView<PasswordManagerController> {
         title: const Text('Password History View'),
         centerTitle: true,
       ),
-      body: Obx(() => (controller.events.value == null)
+      body: Obx(() => (controller.events.value == null || controller.passwordHistories.value == null)
           ? const CircularProgressIndicator()
           : Center(child: passwordManagerWidget())),
     );
@@ -66,7 +68,8 @@ class PasswordManagerView extends GetView<PasswordManagerController> {
             eventSelectionDropDownWidget(),
             makePasswordWidgetButton()
           ],
-        )
+        ),
+        loadHistories(),
       ],
     );
   }
@@ -108,7 +111,7 @@ class PasswordManagerView extends GetView<PasswordManagerController> {
                   )),
             ),
           );
-  },
+  }
 
   Widget eventSelectionDropDownWidget() {
     return SizedBox(
@@ -138,4 +141,25 @@ class PasswordManagerView extends GetView<PasswordManagerController> {
           }),
     );
   }
+
+  Widget loadHistories(){
+    return ListView.separated(
+      itemBuilder: (context, index) => buildPasswordHistory(index), 
+      separatorBuilder: (context, index) => const Divider(), 
+      itemCount: controller.passwordHistories.value!.histories!.length);
+    // controller.passwordHistories.value.histories.map((History) => )
+  }
+
+  Widget buildPasswordHistory(int index){
+    return Row(
+      children: [
+        Text(controller.passwordHistories.value!.histories![index].eventName ?? ''),
+        Text(controller.passwordHistories.value!.histories![index].userName ?? ''),
+        Text(controller.passwordHistories.value!.histories![index].phoneNumber ?? ''),
+        Text(controller.passwordHistories.value!.histories![index].ip ?? ''),
+        Text(controller.passwordHistories.value!.histories![index].accessType ?? ''),
+      ],
+    );
+  }
+
 }

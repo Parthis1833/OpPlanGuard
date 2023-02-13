@@ -4,16 +4,19 @@ import 'package:get/get.dart';
 
 import '../../../../constants/enums.dart';
 import '../../../jsondata/EventData/EventApi.dart';
+import '../../../jsondata/Password-Manager/password_history_model.dart';
 import '../../../jsondata/Password-Manager/password_manager_api.dart';
 
 class PasswordManagerController extends GetxController {
   late final selectedEventId = 0.obs;
   final events = Rxn<List<Event>>();
+  final passwordHistories = Rxn<PasswordHistoriesModel>();
 
   @override
   void onInit() {
     super.onInit();
     loadEvents();
+    loadPasswordHistories();
   }
 
   @override
@@ -47,5 +50,11 @@ class PasswordManagerController extends GetxController {
       throw ValidationException(cause: "Some Fields are required")
           .validationSnackBar;
     }
+  }
+
+  void loadPasswordHistories() async {
+    passwordHistories.value =
+        await PassworManegerAPI.getPasswordHistories(API_Decision.BOTH);
+    update();
   }
 }
