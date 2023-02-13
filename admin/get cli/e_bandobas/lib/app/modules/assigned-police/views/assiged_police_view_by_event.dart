@@ -9,44 +9,7 @@ class AssignedPoliceByEventView
   const AssignedPoliceByEventView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(seconds: 2), () {
-      Get.dialog(
-        Center(
-          child: Container(
-            width: 300,
-            height: 200,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text("Explanation about this page",
-                      style: TextStyle(fontSize: 24)),
-                  const SizedBox(height: 16),
-                  const Text(
-                    "In this page, This page show information, police assigned in particular event and point.",
-                    style: TextStyle(fontSize: 12, color: Colors.black),
-                  ),
-                  const SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: () => Get.back(),
-                    child: const Text("Close Dialog"),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-        barrierDismissible: false,
-      );
-    });
-
     return Scaffold(
-      drawer: const Navigation_Drawer(),
       appBar: AppBar(
         title: const Text('Assigned Police In Event'), //TODO: new name
         centerTitle: true,
@@ -59,84 +22,87 @@ class AssignedPoliceByEventView
               ],
             )
           : assesmentDataWidget()),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: SizedBox(
-              width: 100,
-              height: 50,
-              child: ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.resolveWith((states) {
-                      // If the button is pressed, return green, otherwise blue
-                      if (states.contains(MaterialState.pressed)) {
-                        return Colors.green;
-                      }
-                      return Colors.blue;
-                    }),
-                    textStyle: MaterialStateProperty.resolveWith((states) {
-                      if (states.contains(MaterialState.pressed)) {
-                        return const TextStyle(fontSize: 40);
-                      }
-                      return const TextStyle(fontSize: 20);
-                    }),
-                  ),
-                  onPressed: () {
-                    Get.toNamed(PATHS.ASSIGNED_POLICE_ADD);
-                  },
-                  child: Row(
-                    children: const [
-                      Icon(
-                        Icons.add_circle_outline,
-                        color: Colors.deepPurple,
-                        size: 25,
-                      ),
-                      Text("Add"),
-                    ],
-                  )),
+      floatingActionButton: Container(
+        width: 400,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: SizedBox(
+                width: 100,
+                height: 50,
+                child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.resolveWith((states) {
+                        // If the button is pressed, return green, otherwise blue
+                        if (states.contains(MaterialState.pressed)) {
+                          return Colors.green;
+                        }
+                        return Colors.blue;
+                      }),
+                      textStyle: MaterialStateProperty.resolveWith((states) {
+                        if (states.contains(MaterialState.pressed)) {
+                          return const TextStyle(fontSize: 40);
+                        }
+                        return const TextStyle(fontSize: 20);
+                      }),
+                    ),
+                    onPressed: () {
+                      Get.toNamed(PATHS.ASSIGNED_POLICE_ADD);
+                    },
+                    child: Row(
+                      children: const [
+                        Icon(
+                          Icons.add_circle_outline,
+                          color: Colors.deepPurple,
+                          size: 25,
+                        ),
+                        Text("Add"),
+                      ],
+                    )),
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: SizedBox(
-              width: 100,
-              height: 50,
-              child: ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.resolveWith((states) {
-                      // If the button is pressed, return green, otherwise blue
-                      if (states.contains(MaterialState.pressed)) {
-                        return Colors.green;
-                      }
-                      return Colors.blue;
-                    }),
-                    textStyle: MaterialStateProperty.resolveWith((states) {
-                      if (states.contains(MaterialState.pressed)) {
-                        return const TextStyle(fontSize: 40);
-                      }
-                      return const TextStyle(fontSize: 20);
-                    }),
-                  ),
-                  onPressed: () {
-                    Get.toNamed(PATHS.ASSIGNED_POLICE_ADD);
-                  },
-                  child: Row(
-                    children: const [
-                      Icon(
-                        Icons.add_circle_outline,
-                        color: Colors.deepPurple,
-                        size: 25,
-                      ),
-                      Text("Show By Event"),
-                    ],
-                  )),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: SizedBox(
+                width: 200,
+                height: 50,
+                child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.resolveWith((states) {
+                        // If the button is pressed, return green, otherwise blue
+                        if (states.contains(MaterialState.pressed)) {
+                          return Colors.green;
+                        }
+                        return Colors.blue;
+                      }),
+                      textStyle: MaterialStateProperty.resolveWith((states) {
+                        if (states.contains(MaterialState.pressed)) {
+                          return const TextStyle(fontSize: 40);
+                        }
+                        return const TextStyle(fontSize: 20);
+                      }),
+                    ),
+                    onPressed: () {
+                      Get.toNamed(PATHS.ASSIGNED_POLICE_ADD);
+                    },
+                    child: Row(
+                      children: const [
+                        Icon(
+                          Icons.add_circle_outline,
+                          color: Colors.deepPurple,
+                          size: 25,
+                        ),
+                        Text("Show By Event"),
+                      ],
+                    )),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -146,7 +112,6 @@ class AssignedPoliceByEventView
       Row(
         children: [
           eventSelectionDropDownWidget(),
-          // pointSelectionDropDownWidget(),
           showAssignmentButton(),
         ],
       ),
@@ -168,9 +133,6 @@ class AssignedPoliceByEventView
         separatorBuilder: (_, index) => const Divider(),
         itemCount: controller
             .eventAssignmentModel.value!.pointAssignments!.length);
-    // controller.eventPointAssignmentModel.value!.pointAssignments!
-    //     .map((model) => pointLevelAssignment())
-    //     .toList();
   }
 
   Widget pointLevelAssignment(int index) {
