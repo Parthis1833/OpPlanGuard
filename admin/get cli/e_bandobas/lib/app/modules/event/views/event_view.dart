@@ -34,7 +34,7 @@ class EventView extends GetView<EventController> {
         centerTitle: true,
       ),
       body: Obx(() =>
-          (controller.events.value != null && controller.events.value!.isEmpty)
+          (controller.events.value == null)
               ? const CircularProgressIndicator()
               : Center(child: eventsPageData())),
       floatingActionButton: AssesmentButton(),
