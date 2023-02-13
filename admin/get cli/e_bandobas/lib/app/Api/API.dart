@@ -72,7 +72,8 @@ class APIConstants {
   static const ASSIGNPOLICE_URL_CREATE = BASE_URL + ASSIGNPOLICE; // post req
   static const ASSIGNPOLICE_URL_CREATE_V2 =
       BASE_URL + ASSIGNPOLICE; // post Req,
-  static const ASSIGNPOLICE_URL_ASSIGN_MULTIPLE = BASE_URL + ASSIGNPOLICE + "assign_multiple"; // post
+  static const ASSIGNPOLICE_URL_ASSIGN_MULTIPLE =
+      BASE_URL + ASSIGNPOLICE + "assign_multiple"; // post
   static const ASSIGNPOLICE_URL_UPDATE =
       BASE_URL + ASSIGNPOLICE; // append id for put req
   static const ASSIGNPOLICE_URL_DELETE =
@@ -113,9 +114,10 @@ class APIConstants {
   static const EVENT_POLICE_COUNT_UNASSIGNED_POLICE_LIST = BASE_URL +
       EVENT_POLICE_COUNT +
       "unassigned_police_list/"; // append event id
-      static const EVENT_POLICE_COUNT_UNASSIGNED_POLICE_ID_NAME_DESIG_NUMB_LIST = BASE_URL +
-      EVENT_POLICE_COUNT +
-      "unassigned_police_list_with_details"; // post api 
+  static const EVENT_POLICE_COUNT_UNASSIGNED_POLICE_ID_NAME_DESIG_NUMB_LIST =
+      BASE_URL +
+          EVENT_POLICE_COUNT +
+          "unassigned_police_list_with_details"; // post api
   static const EVENT_POLICE_COUNT_OF_POLICE_BY_DESIGNATION = BASE_URL +
       EVENT_POLICE_COUNT +
       "count_police_in_event_by_designation/"; // append event id
@@ -131,7 +133,13 @@ class APIConstants {
   static const POINT_POLICE_COUNT_DESIGNATION_COUNTS =
       BASE_URL + "/point_police_count/" + "designation-counts";
   // static const POINT_POLICE_COUNT_CREATE_ASSIGNMENTS = BASE_URL + "/point_police_count/" + "assignments";
+
+  // password manager
+  static const PASSWORD_MANAGER = "/password-manager";
+  static const PASSWORD_MANAGER_CREATE =
+      BASE_URL + PASSWORD_MANAGER + "/create-password";
+  static const PASSWORD_MANAGER_VERIFY =
+      BASE_URL + PASSWORD_MANAGER + "/verify-password";
+  static const PASSWORD_MANAGER_HISTORY =
+      BASE_URL + PASSWORD_MANAGER + "/history";
 }
-// class Police extends APIConstants {
-//   static const POLICE_URL = APIConstants.BASE_URL + "/police";
-// }

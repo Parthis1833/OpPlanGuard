@@ -21,6 +21,7 @@ abstract class Routes {
   static const ASSIGNED_POLICE_DELETE = PATHS.ASSIGNED_POLICE_DELETE;
   static const ASSIGNED_POLICE_VIEW_BY_EVENT =
       PATHS.ASSIGNED_POLICE_VIEW_BY_EVENT;
+  static const PASSWORD_MANAGER = '/password-manager';
 }
 
 class PATHS {

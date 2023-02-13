@@ -1,7 +1,3 @@
-import 'package:e_bandobas/app/modules/assigned-police/bindings/assigned_police_delete_binding.dart';
-import 'package:e_bandobas/app/modules/assigned-police/bindings/assigned_police_update_binding.dart';
-import 'package:e_bandobas/app/modules/assigned-police/views/assigned_police_delete.dart';
-import 'package:e_bandobas/app/modules/assigned-police/views/assigned_police_update.dart';
 import 'package:get/get.dart';
 
 import '../../modules/assesment-create/bindings/assesment_create_binding.dart';
@@ -11,8 +7,12 @@ import '../../modules/assesment/views/assesment_view.dart';
 import '../../modules/assigned-police/bindings/assiged_police_view_by_event_binding.dart';
 import '../../modules/assigned-police/bindings/assigned_police_add_binding.dart';
 import '../../modules/assigned-police/bindings/assigned_police_binding.dart';
+import '../../modules/assigned-police/bindings/assigned_police_delete_binding.dart';
+import '../../modules/assigned-police/bindings/assigned_police_update_binding.dart';
 import '../../modules/assigned-police/views/assiged_police_view_by_event.dart';
 import '../../modules/assigned-police/views/assigned_police_add.dart';
+import '../../modules/assigned-police/views/assigned_police_delete.dart';
+import '../../modules/assigned-police/views/assigned_police_update.dart';
 import '../../modules/assigned-police/views/assigned_police_view.dart';
 import '../../modules/counter/views/counter_view.dart';
 import '../../modules/dutypoint/bindings/dutypoint_binding.dart';
@@ -27,6 +27,8 @@ import '../../modules/event/views/event_update.dart';
 import '../../modules/event/views/event_view.dart';
 import '../../modules/officerdata/bindings/officerdata_binding.dart';
 import '../../modules/officerdata/views/officerdata_view.dart';
+import '../../modules/password-manager/bindings/password_manager_binding.dart';
+import '../../modules/password-manager/views/password_manager_view.dart';
 import '../../modules/point-police-assement/bindings/point_police_assement_binding.dart';
 import '../../modules/point-police-assement/bindings/show_point_assignment_binding.dart';
 import '../../modules/point-police-assement/views/point_police_assement_view.dart';
@@ -134,28 +136,29 @@ class AppPages {
       page: () => const AssignedPoliceView(),
       binding: AssignedPoliceBinding(),
     ),
-
     GetPage(
       name: PATHS.ASSIGNED_POLICE_ADD,
       page: () => AssignedPoliceAddView(),
       binding: AssignedPoliceAddBinding(),
     ),
-
     GetPage(
       name: Routes.ASSIGNED_POLICE_DELETE,
       page: () => const AssignedPoliceDeleteView(),
       binding: AssignedPoliceDeleteBinding(),
     ),
-
     GetPage(
       name: Routes.ASSIGNED_POLICE_UPDATE,
       page: () => const AssignedPoliceUpdateView(),
       binding: AssignedPoliceUpdateBinding(),
     ),
-
     GetPage(
-      name: Routes.ASSIGNED_POLICE_VIEW_BY_EVENT, 
-      page: () => const AssignedPoliceByEventView(), 
-      binding: AssignedPoliceByEventBinding())
+        name: Routes.ASSIGNED_POLICE_VIEW_BY_EVENT,
+        page: () => const AssignedPoliceByEventView(),
+        binding: AssignedPoliceByEventBinding()),
+    GetPage(
+      name: Routes.PASSWORD_MANAGER,
+      page: () => const PasswordManagerView(),
+      binding: PasswordManagerBinding(),
+    ),
   ];
 }
