@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -51,7 +53,8 @@ class PasswordManagerView extends GetView<PasswordManagerController> {
         title: const Text('Password History View'),
         centerTitle: true,
       ),
-      body: Obx(() => (controller.events.value == null)
+      body: Obx(() => (controller.events.value == null ||
+              controller.passwordHistories.value == null)
           ? const CircularProgressIndicator()
           : Center(child: passwordManagerWidget())),
     );
@@ -62,53 +65,57 @@ class PasswordManagerView extends GetView<PasswordManagerController> {
       shrinkWrap: true,
       children: [
         Row(
+          mainAxisSize: MainAxisSize.max,
           children: [
             eventSelectionDropDownWidget(),
             makePasswordWidgetButton()
           ],
-        )
+        ),
+        displayHistoryHeader(),
+        loadHistories(),
       ],
     );
   }
-  Widget makePasswordWidgetButton(){
+
+  Widget makePasswordWidgetButton() {
     return Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: SizedBox(
-              width: 100,
-              height: 50,
-              child: ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.resolveWith((states) {
-                      // If the button is pressed, return green, otherwise blue
-                      if (states.contains(MaterialState.pressed)) {
-                        return Colors.green;
-                      }
-                      return Colors.blue;
-                    }),
-                    textStyle: MaterialStateProperty.resolveWith((states) {
-                      if (states.contains(MaterialState.pressed)) {
-                        return const TextStyle(fontSize: 40);
-                      }
-                      return const TextStyle(fontSize: 20);
-                    }),
-                  ),
-                  onPressed: () {
-                    controller.createPassword();
-                  },
-                  child: Row(
-                    children: const [
-                      Icon(
-                        Icons.add_circle_outline,
-                        color: Colors.deepPurple,
-                        size: 25,
-                      ),
-                      Text("Create passwords"),
-                    ],
-                  )),
+      padding: const EdgeInsets.all(10.0),
+      child: SizedBox(
+        width: 100,
+        height: 50,
+        child: ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.resolveWith((states) {
+                // If the button is pressed, return green, otherwise blue
+                if (states.contains(MaterialState.pressed)) {
+                  return Colors.green;
+                }
+                return Colors.blue;
+              }),
+              textStyle: MaterialStateProperty.resolveWith((states) {
+                if (states.contains(MaterialState.pressed)) {
+                  return const TextStyle(fontSize: 40);
+                }
+                return const TextStyle(fontSize: 20);
+              }),
             ),
-          );
+            onPressed: () {
+              controller.createPassword();
+            },
+            child: Row(
+              children: const [
+                Icon(
+                  Icons.add_circle_outline,
+                  color: Colors.deepPurple,
+                  size: 25,
+                ),
+                Text("Create passwords"),
+              ],
+            )),
+      ),
+    );
   }
+
   Widget eventSelectionDropDownWidget() {
     return SizedBox(
       height: 55,
@@ -135,6 +142,44 @@ class PasswordManagerView extends GetView<PasswordManagerController> {
           onChanged: (value) {
             controller.changeSelectedEvent(value);
           }),
+    );
+  }
+
+  Widget loadHistories() {
+    return ListView.separated(
+        shrinkWrap: true,
+        itemBuilder: (context, index) => buildPasswordHistory(index),
+        separatorBuilder: (context, index) => const Divider(),
+        itemCount: controller.passwordHistories.value!.histories!.length);
+    // controller.passwordHistories.value.histories.map((History) => )
+  }
+
+  Widget buildPasswordHistory(int index) {
+    return Row(
+      children: [
+        Text(controller.passwordHistories.value!.histories![index].eventName ??
+            ''),
+        Text(controller.passwordHistories.value!.histories![index].userName ??
+            ''),
+        Text(
+            controller.passwordHistories.value!.histories![index].phoneNumber ??
+                ''),
+        Text(controller.passwordHistories.value!.histories![index].ip ?? ''),
+        Text(controller.passwordHistories.value!.histories![index].accessType ??
+            ''),
+      ],
+    );
+  }
+
+  Widget displayHistoryHeader() {
+    return Row(
+      children: [
+        Text("Event Name"),
+        Text("User name"),
+        Text("Phone Number"),
+        Text("Ip of user"),
+        Text("Access type of user"),
+      ],
     );
   }
 }

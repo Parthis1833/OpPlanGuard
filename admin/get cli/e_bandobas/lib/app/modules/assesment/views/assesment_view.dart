@@ -99,6 +99,27 @@ class AssesmentView extends GetView<AssesmentController> {
             ],
           ),
         ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              FloatingActionButton(
+                heroTag: const Text("Password Manager"),
+                backgroundColor: Colors.green,
+                onPressed: () {
+                  Get.toNamed(PATHS.PASSWORD_MANAGER);
+                },
+                child: const Icon(
+                  Icons.add_circle_outline,
+                  color: Colors.deepPurple,
+                  size: 56.4,
+                ),
+              ),
+              const Text("Password Manager")
+            ],
+          ),
+        ),
       ],
     );
   }
