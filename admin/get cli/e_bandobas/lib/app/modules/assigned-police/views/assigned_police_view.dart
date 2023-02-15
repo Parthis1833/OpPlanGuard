@@ -64,7 +64,7 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: SizedBox(
-              width: 100,
+              width: 200,
               height: 50,
               child: ElevatedButton(
                   style: ButtonStyle(

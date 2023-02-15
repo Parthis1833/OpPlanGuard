@@ -108,8 +108,7 @@ class PasswordManagerView extends GetView<PasswordManagerController> {
                   )),
             ),
           );
-  },
-
+  }
   Widget eventSelectionDropDownWidget() {
     return SizedBox(
       height: 55,

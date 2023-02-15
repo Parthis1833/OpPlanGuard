@@ -27,8 +27,6 @@ class _AssessmentPoPPageState extends State<AssessmentPOPPage>{
       initialDate: startDate.value,
       firstDate: DateTime(2023),
       lastDate: DateTime(2025),
-      //initialEntryMode: DatePickerEntryMode.input,
-      // initialDatePickerMode: DatePickerMode.year,
       helpText: 'Select event start date',
       cancelText: 'Close',
       confirmText: 'Confirm',
@@ -48,8 +46,6 @@ class _AssessmentPoPPageState extends State<AssessmentPOPPage>{
       initialDate: endDate.value,
       firstDate: DateTime(2023),
       lastDate: DateTime(2025),
-      //initialEntryMode: DatePickerEntryMode.input,
-      // initialDatePickerMode: DatePickerMode.year,
       helpText: 'Select event end date',
       cancelText: 'Close',
       confirmText: 'Confirm',
@@ -210,7 +206,7 @@ class _AssessmentPoPPageState extends State<AssessmentPOPPage>{
                           onPressed: () {
                             chooseStartDate();
                           },
-                          child: const Text("Choose a start date"),
+                          child: const Text("શરૂઆતની તારીખ"),
                         )
                       ],
                     )),
@@ -226,7 +222,7 @@ class _AssessmentPoPPageState extends State<AssessmentPOPPage>{
                           onPressed: () {
                             chooseEndDate();
                           },
-                          child: const Text("Choose a End date"),
+                          child: const Text(" સમાપ્તિ તારીખ"),
                         )
                       ],
                     ))
