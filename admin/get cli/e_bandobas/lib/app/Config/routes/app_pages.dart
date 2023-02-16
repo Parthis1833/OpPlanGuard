@@ -153,7 +153,7 @@ class AppPages {
     ),
     GetPage(
         name: Routes.ASSIGNED_POLICE_VIEW_BY_EVENT,
-        page: () => const AssignedPoliceByEventView(),
+        page: () => AssignedPoliceByEventView(),
         binding: AssignedPoliceByEventBinding()),
     GetPage(
       name: Routes.PASSWORD_MANAGER,

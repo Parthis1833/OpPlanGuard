@@ -2,11 +2,9 @@ import 'package:e_bandobas/app/modules/assigned-police/controllers/assiged_polic
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../Config/routes/app_pages.dart';
-import '../../../Widgets/navigation_drawer.dart';
 
-class AssignedPoliceByEventView
-    extends GetView<AssignedPoliceByEventController> {
-  const AssignedPoliceByEventView({Key? key}) : super(key: key);
+class AssignedPoliceByEventView extends GetView<AssignedPoliceByEventController> {
+   AssignedPoliceByEventView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,92 +18,98 @@ class AssignedPoliceByEventView
               children: const [
                 Center(child: CircularProgressIndicator.adaptive()),
               ],
-            )
-          : assesmentDataWidget()),
-      floatingActionButton: Container(
-        width: 400,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: SizedBox(
-                width: 100,
-                height: 50,
-                child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.resolveWith((states) {
-                        // If the button is pressed, return green, otherwise blue
-                        if (states.contains(MaterialState.pressed)) {
-                          return Colors.green;
-                        }
-                        return Colors.blue;
-                      }),
-                      textStyle: MaterialStateProperty.resolveWith((states) {
-                        if (states.contains(MaterialState.pressed)) {
-                          return const TextStyle(fontSize: 40);
-                        }
-                        return const TextStyle(fontSize: 20);
-                      }),
-                    ),
-                    onPressed: () {
-                      Get.toNamed(PATHS.ASSIGNED_POLICE_ADD);
-                    },
-                    child: Row(
-                      children: const [
-                        Icon(
-                          Icons.add_circle_outline,
-                          color: Colors.deepPurple,
-                          size: 25,
-                        ),
-                        Text("Add"),
-                      ],
-                    )),
-              ),
+            ) : assesmentDataWidget()),
+
+      //     : SfDataGrid(
+      //       source: _MyDataSource(pointAssignments),
+      //       columnWidthMode: ColumnWidthMode.fill,
+      //       headerRowHeight: 50,
+      //       rowHeight: 50,
+      //      columns: getColumns(),
+      // ),
+
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: SizedBox(
+              width: 100,
+              height: 50,
+              child: ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.resolveWith((states) {
+                      // If the button is pressed, return green, otherwise blue
+                      if (states.contains(MaterialState.pressed)) {
+                        return Colors.green;
+                      }
+                      return Colors.blue;
+                    }),
+                    textStyle: MaterialStateProperty.resolveWith((states) {
+                      if (states.contains(MaterialState.pressed)) {
+                        return const TextStyle(fontSize: 40);
+                      }
+                      return const TextStyle(fontSize: 20);
+                    }),
+                  ),
+                  onPressed: () {
+                    Get.toNamed(PATHS.ASSIGNED_POLICE_ADD);
+                  },
+                  child: Row(
+                    children: const [
+                      Icon(
+                        Icons.add_circle_outline,
+                        color: Colors.deepPurple,
+                        size: 25,
+                      ),
+                      Text("Add"),
+                    ],
+                  )),
             ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: SizedBox(
-                width: 200,
-                height: 50,
-                child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.resolveWith((states) {
-                        // If the button is pressed, return green, otherwise blue
-                        if (states.contains(MaterialState.pressed)) {
-                          return Colors.green;
-                        }
-                        return Colors.blue;
-                      }),
-                      textStyle: MaterialStateProperty.resolveWith((states) {
-                        if (states.contains(MaterialState.pressed)) {
-                          return const TextStyle(fontSize: 40);
-                        }
-                        return const TextStyle(fontSize: 20);
-                      }),
-                    ),
-                    onPressed: () {
-                      Get.toNamed(PATHS.ASSIGNED_POLICE_ADD);
-                    },
-                    child: Row(
-                      children: const [
-                        Icon(
-                          Icons.add_circle_outline,
-                          color: Colors.deepPurple,
-                          size: 25,
-                        ),
-                        Text("Show By Event"),
-                      ],
-                    )),
-              ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: SizedBox(
+              width: 200,
+              height: 50,
+              child: ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.resolveWith((states) {
+                      // If the button is pressed, return green, otherwise blue
+                      if (states.contains(MaterialState.pressed)) {
+                        return Colors.green;
+                      }
+                      return Colors.blue;
+                    }),
+                    textStyle: MaterialStateProperty.resolveWith((states) {
+                      if (states.contains(MaterialState.pressed)) {
+                        return const TextStyle(fontSize: 40);
+                      }
+                      return const TextStyle(fontSize: 20);
+                    }),
+                  ),
+                  onPressed: () {
+                    Get.toNamed(PATHS.ASSIGNED_POLICE_ADD);
+                  },
+                  child: Row(
+                    children: const [
+                      Icon(
+                        Icons.add_circle_outline,
+                        color: Colors.deepPurple,
+                        size: 25,
+                      ),
+                      Text("Show By Event"),
+                    ],
+                  )),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
+
 
   Widget assesmentDataWidget() {
     return ListView(children: [
@@ -140,70 +144,47 @@ class AssignedPoliceByEventView
       children: [
         Wrap(
           children: [
-          Text("Point Name : ${controller.eventAssignmentModel.value!.pointAssignments![index].pointName!}"),
-          const SizedBox(width: 20),
-          Text("Zone Name : ${controller.eventAssignmentModel.value!.pointAssignments![index].zoneName!}"),
-          const SizedBox(width: 20),
-          Text("Total Assigned police : ${controller.eventAssignmentModel.value!.pointAssignments![index].assignmentCount!}"),
-          const SizedBox(width: 20),
-          Text("Accessories : ${controller.eventAssignmentModel.value!.pointAssignments![index].pointAccessories!}"),
-          const SizedBox(width: 20),
-          Text("Accessories : ${controller.eventAssignmentModel.value!.pointAssignments![index].pointRemarks!}"),
-        ],),
-
-        Wrap(
-          spacing: 5.0,
-          children: const [
-            Text("buckle number"),
-            Text("police name"),
-            Text("district"),
-            Text("police station name"),
-            Text("age"),
-            Text("gender"),
-            Text("number"),
-            Text("duty starting date"),
-            Text("duty ending date"),
+            Text("Point Name : ${controller.eventAssignmentModel.value!.pointAssignments![index].pointName!}"),
+            const SizedBox(width: 20),
+            Text("Zone Name : ${controller.eventAssignmentModel.value!.pointAssignments![index].zoneName!}"),
+            const SizedBox(width: 20),
+            Text("Total Assigned police : ${controller.eventAssignmentModel.value!.pointAssignments![index].assignmentCount!}"),
+            const SizedBox(width: 20),
+            Text("Accessories : ${controller.eventAssignmentModel.value!.pointAssignments![index].pointAccessories!}"),
+            const SizedBox(width: 20),
+            Text("Accessories : ${controller.eventAssignmentModel.value!.pointAssignments![index].pointRemarks!}"),
           ],
         ),
 
-        (controller.eventAssignmentModel.value == null || controller.eventAssignmentModel.value!.pointAssignments![index].assignedPoliceList!.length  ==  0)
-            ? Container() : 
-            ListView.builder(
-              shrinkWrap: true,
-          physics: const ClampingScrollPhysics(),
-                scrollDirection: Axis.vertical,
-                itemCount: controller.eventAssignmentModel.value!.pointAssignments![index].assignedPoliceList!.length,
-                itemBuilder: (context, idx2) {
-                  return SizedBox(
-                    height: 50,
-                    child: Wrap(
-                      spacing: 5.0,
-                      children: [
-                        Text(controller.eventAssignmentModel.value!.pointAssignments![index].assignedPoliceList![idx2].buckleNumber ??
-                            ""),
-                        Text(controller.eventAssignmentModel.value!.pointAssignments![index].assignedPoliceList![idx2].policeName ??
-                            ""),
-                        Text(controller.eventAssignmentModel.value!.pointAssignments![index].assignedPoliceList![idx2].district ??
-                            ""),
-                        Text(controller.eventAssignmentModel.value!.pointAssignments![index].assignedPoliceList![idx2].policeStationName ??
-                            ""),
-                        Text(controller.eventAssignmentModel.value!.pointAssignments![index].assignedPoliceList![idx2].age ??
-                            ""),
-                        Text(controller.eventAssignmentModel.value!.pointAssignments![index].assignedPoliceList![idx2].gender ??
-                            ""),
-                        Text(controller.eventAssignmentModel.value!.pointAssignments![index].assignedPoliceList![idx2].number ??
-                            ""),
-                        Text(controller.eventAssignmentModel.value!.pointAssignments![index].assignedPoliceList![idx2].dutyStartDate ??
-                            ""),
-                        Text(controller.eventAssignmentModel.value!.pointAssignments![index].assignedPoliceList![idx2].dutyEndDate ??
-                            ""),
-                      ],
-                    ),
-                  );
-                }),
+        DataTable(
+          columns: const [
+            DataColumn(label: Text("Buckle Number")),
+            DataColumn(label: Text("Police Name")),
+            DataColumn(label: Text("District")),
+            DataColumn(label: Text("Police Station Name")),
+            DataColumn(label: Text("Age")),
+            DataColumn(label: Text("Gender")),
+            DataColumn(label: Text("Number")),
+            DataColumn(label: Text("Duty Starting Date")),
+            DataColumn(label: Text("Duty Ending Date")),
+          ],
+          rows: controller.eventAssignmentModel.value?.pointAssignments![index].assignedPoliceList!
+              .map((police) => DataRow(cells: [
+            DataCell(Text(police.buckleNumber ?? '')),
+            DataCell(Text(police.policeName ?? '')),
+            DataCell(Text(police.district ?? '')),
+            DataCell(Text(police.policeStationName ?? '')),
+            DataCell(Text(police.age ?? '')),
+            DataCell(Text(police.gender ?? '')),
+            DataCell(Text(police.number ?? '')),
+            DataCell(Text(police.dutyStartDate ?? '')),
+            DataCell(Text(police.dutyEndDate ?? '')),
+          ])).toList() ?? const [],
+        ),
       ],
     );
   }
+
 
   Widget eventSelectionDropDownWidget() {
     return DropdownButton(

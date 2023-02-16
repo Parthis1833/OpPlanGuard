@@ -40,14 +40,8 @@ class EventPointAssignmentModelApi {
             backgroundColor: Colors.green,
           );
         }
-
         model = EventPointAssignmentModel.fromJson(responseJson['content']);
-        // print(responseJson['content']);
         return model;
-        // for (int i = 0; i < responseJson['content'].length; i++) {
-        //   Zone zone = Zone.fromJson(responseJson['content'][i]);
-        //   zones.add(zone);
-        // }
       } // api error to be displayed
       else {
         if (showStatus == API_Decision.Only_Failure ||
@@ -93,18 +87,11 @@ class EventPointAssignmentModelApi {
             backgroundColor: Colors.green,
           );
         }
-
         model = EventAssignmentModel.fromJson(responseJson['content']);
-        // print(responseJson['content']);
         return model;
-        // for (int i = 0; i < responseJson['content'].length; i++) {
-        //   Zone zone = Zone.fromJson(responseJson['content'][i]);
-        //   zones.add(zone);
-        // }
       } // api error to be displayed
       else {
-        if (showStatus == API_Decision.Only_Failure ||
-            showStatus == API_Decision.BOTH) {
+        if (showStatus == API_Decision.Only_Failure || showStatus == API_Decision.BOTH) {
           Get.snackbar(
             "Failed",
             responseJson['response']['message'],
@@ -117,8 +104,6 @@ class EventPointAssignmentModelApi {
       }
     }
     throw DataNotFoundException(
-            "Police assigned was not found from api for event : " +
-                eventId.toString())
-        .errorSnackBar();
+            "Police assigned was not found from api for event : $eventId").errorSnackBar();
   }
 }

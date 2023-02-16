@@ -12,7 +12,6 @@ class EventAssignmentModel {
     pointAssignments = [];
     if (json['point-assignments'] != null) {
       json['point-assignments'].forEach((assignment) {
-        print(assignment);
         pointAssignments!.add(EventPointAssignmentModel.fromJson(assignment));
       });
     }
