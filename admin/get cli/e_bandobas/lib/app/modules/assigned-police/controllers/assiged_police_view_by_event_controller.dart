@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import '../../../jsondata/EventPointAssignmentData/eventAssignmentModel.dart';
 
 class AssignedPoliceByEventController extends GetxController {
-  //TODO: Implement AssignedPoliceController
   late final selectedEventId = 0.obs;
   final events = Rxn<List<Event>>();
   final eventAssignmentModel = Rxn<EventAssignmentModel>();

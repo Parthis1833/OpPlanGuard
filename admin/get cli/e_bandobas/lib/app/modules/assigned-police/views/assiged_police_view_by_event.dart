@@ -16,18 +16,9 @@ class AssignedPoliceByEventView extends GetView<AssignedPoliceByEventController>
           ? Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
-                Center(child: CircularProgressIndicator.adaptive()),
+                CircularProgressIndicator.adaptive( strokeWidth: 5.0),
               ],
             ) : assesmentDataWidget()),
-
-      //     : SfDataGrid(
-      //       source: _MyDataSource(pointAssignments),
-      //       columnWidthMode: ColumnWidthMode.fill,
-      //       headerRowHeight: 50,
-      //       rowHeight: 50,
-      //      columns: getColumns(),
-      // ),
-
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -109,8 +100,8 @@ class AssignedPoliceByEventView extends GetView<AssignedPoliceByEventController>
       ),
     );
   }
-
-
+//me ek brack  le rha hu ok
+// try solving b   //yess sir i know  tha terror i  slove in  15 min
   Widget assesmentDataWidget() {
     return ListView(children: [
       Row(
@@ -128,7 +119,15 @@ class AssignedPoliceByEventView extends GetView<AssignedPoliceByEventController>
         ? const CircularProgressIndicator.adaptive()
         : eventAssignments());
   }
+   Iterable<E> mapIndexed<E, T>(
+       Iterable<T> items, E Function(int index, T item) f) sync* {
+     var index1 = 0;
 
+     for (final item in items) {
+       yield f(index1, item);
+       index1 = index1 + 1;
+     }
+   }
   Widget eventAssignments() {
     return ListView.separated(
       shrinkWrap: true,
@@ -155,9 +154,10 @@ class AssignedPoliceByEventView extends GetView<AssignedPoliceByEventController>
             Text("Accessories : ${controller.eventAssignmentModel.value!.pointAssignments![index].pointRemarks!}"),
           ],
         ),
-
         DataTable(
           columns: const [
+            DataColumn(label: Text ("Index")),
+            DataColumn(label: Text("Designation")),
             DataColumn(label: Text("Buckle Number")),
             DataColumn(label: Text("Police Name")),
             DataColumn(label: Text("District")),
@@ -169,17 +169,25 @@ class AssignedPoliceByEventView extends GetView<AssignedPoliceByEventController>
             DataColumn(label: Text("Duty Ending Date")),
           ],
           rows: controller.eventAssignmentModel.value?.pointAssignments![index].assignedPoliceList!
-              .map((police) => DataRow(cells: [
-            DataCell(Text(police.buckleNumber ?? '')),
-            DataCell(Text(police.policeName ?? '')),
-            DataCell(Text(police.district ?? '')),
-            DataCell(Text(police.policeStationName ?? '')),
-            DataCell(Text(police.age ?? '')),
-            DataCell(Text(police.gender ?? '')),
-            DataCell(Text(police.number ?? '')),
-            DataCell(Text(police.dutyStartDate ?? '')),
-            DataCell(Text(police.dutyEndDate ?? '')),
-          ])).toList() ?? const [],
+              .asMap()
+              .map((index4, police) => MapEntry(
+              index4,
+              DataRow(cells: [
+                DataCell(Text((index4+1).toString())),
+                DataCell(Text(police.designation ?? '')),
+                DataCell(Text(police.buckleNumber ?? '')),
+                DataCell(Text(police.policeName ?? '')),
+                DataCell(Text(police.district ?? '')),
+                DataCell(Text(police.policeStationName ?? '')),
+                DataCell(Text(police.age ?? '')),
+                DataCell(Text(police.gender ?? '')),
+                DataCell(Text(police.number ?? '')),
+                DataCell(Text(police.dutyStartDate ?? '')),
+                DataCell(Text(police.dutyEndDate ?? '')),
+              ])
+          ))
+              .values
+              .toList() ?? const [],
         ),
       ],
     );
@@ -187,15 +195,45 @@ class AssignedPoliceByEventView extends GetView<AssignedPoliceByEventController>
 
 
   Widget eventSelectionDropDownWidget() {
-    return DropdownButton(
-        value: controller.selectedEventId.value,
-        items: controller.events.value?.map((event) {
-          return DropdownMenuItem(
-              value: event.id, child: Text(event.eventName.toString()));
-        }).toList(),
-        onChanged: (value) {
-          controller.changeSelectedEvent(value);
-        });
+    return  Container(
+      padding: const EdgeInsets.all(8),
+      child: Row(
+          children: [
+            Container(
+              margin: const EdgeInsets.only(left: 160.0),
+              padding: const EdgeInsets.only(bottom: 2.0),
+              height: 55,
+              width: 250,
+              child: const Text(
+                'સોંપણીનું નામ  :-',
+                style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black38,
+                    fontSize: 38.0),
+              ),
+            ),
+            Container(
+              height: 55,
+              width: 300,
+              margin: const EdgeInsets.all(10),
+              child: DropdownButton(
+                  value: controller.selectedEventId.value,
+                  items: controller.events.value!.map((event) {
+                    return DropdownMenuItem(
+                      alignment: Alignment.center,
+                      value: event.id, child: Text(event.eventName.toString() ,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black38,
+                          fontSize: 25.0),),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    controller.changeSelectedEvent(value);
+                  }),
+            ),
+          ]),
+    );
   }
 
   Widget showAssignmentButton() {
