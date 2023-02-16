@@ -1,10 +1,12 @@
+// this thinf have all data required in police
 class EventPointAssignmentModel {
   EventPointAssignmentModel(
       {this.eventId,
       this.pointId,
       this.assignmentCount,
       this.pointName,
-      this.zoneName});
+      this.zoneName, this.assignedPoliceList
+      });
 
   EventPointAssignmentModel.fromJson(dynamic json) {
     eventId = json['event-id'] ?? 0;
@@ -14,7 +16,8 @@ class EventPointAssignmentModel {
     pointRemarks = json['point-remarks'] ?? '';
     zoneName = json['zone-name'] ?? '';
     assignmentCount = json['assignment-count'] ?? 0;
-    // assignedPoliceList = json['assigned-Police-list'];
+    // assignedPoliceList = json['assigned-Police-list']; // I have made wrong implementation so commented this line
+    // see how internal loop works
     if (json['assigned-police-list'] != null) {
       assignedPoliceList = <Assignment>[];
       json['assigned-police-list'].forEach((assignment) {
@@ -49,6 +52,8 @@ class EventPointAssignmentModel {
   }
 }
 
+// wait wnow i have forgot where to add in assignment or in above model
+// the above designation shpuld be in assignment not in above model fuck
 class Assignment {
   Assignment(
       {this.policeId,
@@ -60,19 +65,20 @@ class Assignment {
       this.gender,
       this.number,
       this.age,
-      this.district});
+      this.district, this.designation});
 
   Assignment.fromJson(dynamic json) {
-    policeId = json['police-id'];
-    dutyStartDate = json['duty-start-date'];
-    dutyEndDate = json['duty-end-date'];
-    policeName = json['police-name'];
-    policeStationName = json['police-station-name'];
-    buckleNumber = json['buckle-number'];
-    gender = json['gender'];
-    number = json['number'];
-    age = json['age'];
-    district = json['district'];
+    policeId = json['police-id'] ?? 0;
+    dutyStartDate = json['duty-start-date'] ?? '';
+    dutyEndDate = json['duty-end-date'] ?? '';
+    policeName = json['police-name'] ?? '';
+    policeStationName = json['police-station-name'] ?? '';
+    buckleNumber = json['buckle-number'] ?? '';
+    gender = json['gender'] ?? '';
+    number = json['number'] ?? '';
+    age = json['age'] ?? '';
+    district = json['district'] ?? '';
+    designation = json['designation'] ?? '';
   }
   num? policeId;
   String? dutyStartDate;
@@ -84,6 +90,7 @@ class Assignment {
   String? number;
   String? age;
   String? district;
+  String? designation;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -97,6 +104,10 @@ class Assignment {
     map['number'] = number;
     map['age'] = age;
     map['district'] = district;
+    map['designation'] = designation;
     return map;
   }
 }
+//complete  ya or  kuch baki  hai
+ // integration comepletee ui ma bakai hai call karwana. show me ui
+// 10 min

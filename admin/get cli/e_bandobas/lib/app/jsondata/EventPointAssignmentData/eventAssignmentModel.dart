@@ -10,8 +10,11 @@ class EventAssignmentModel {
   EventAssignmentModel.fromJson(dynamic json) {
     eventId = json['event-id'];
     pointAssignments = [];
+    // we hhave loop here as we have apppppppppppppppppppi data coming in llllllloop
     if (json['point-assignments'] != null) {
+      // each assignment represennnt each objjjeeeeeeeect coming frrrrom api ex     array[0]
       json['point-assignments'].forEach((assignment) {
+        // to reduce code I havve made another model who can decode internal data of point-ass
         pointAssignments!.add(EventPointAssignmentModel.fromJson(assignment));
       });
     }

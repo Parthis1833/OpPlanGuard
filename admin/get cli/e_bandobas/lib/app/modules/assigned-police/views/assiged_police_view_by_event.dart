@@ -109,8 +109,8 @@ class AssignedPoliceByEventView extends GetView<AssignedPoliceByEventController>
       ),
     );
   }
-
-
+//me ek brack  le rha hu ok
+// try solving b   //yess sir i know  tha terror i  slove in  15 min
   Widget assesmentDataWidget() {
     return ListView(children: [
       Row(
@@ -128,7 +128,15 @@ class AssignedPoliceByEventView extends GetView<AssignedPoliceByEventController>
         ? const CircularProgressIndicator.adaptive()
         : eventAssignments());
   }
+   Iterable<E> mapIndexed<E, T>(
+       Iterable<T> items, E Function(int index, T item) f) sync* {
+     var index = 0;
 
+     for (final item in items) {
+       yield f(index, item);
+       index = index + 1;
+     }
+   }
   Widget eventAssignments() {
     return ListView.separated(
       shrinkWrap: true,
@@ -155,9 +163,10 @@ class AssignedPoliceByEventView extends GetView<AssignedPoliceByEventController>
             Text("Accessories : ${controller.eventAssignmentModel.value!.pointAssignments![index].pointRemarks!}"),
           ],
         ),
-
         DataTable(
           columns: const [
+            DataColumn(label: Text ("Index")),
+            DataColumn(label: Text("Designation")),
             DataColumn(label: Text("Buckle Number")),
             DataColumn(label: Text("Police Name")),
             DataColumn(label: Text("District")),
@@ -170,6 +179,8 @@ class AssignedPoliceByEventView extends GetView<AssignedPoliceByEventController>
           ],
           rows: controller.eventAssignmentModel.value?.pointAssignments![index].assignedPoliceList!
               .map((police) => DataRow(cells: [
+            DataCell(Text((index+1).toString())),
+            DataCell(Text(police.designation ?? '')),
             DataCell(Text(police.buckleNumber ?? '')),
             DataCell(Text(police.policeName ?? '')),
             DataCell(Text(police.district ?? '')),
