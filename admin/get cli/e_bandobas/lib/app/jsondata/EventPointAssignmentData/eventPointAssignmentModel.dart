@@ -16,8 +16,6 @@ class EventPointAssignmentModel {
     pointRemarks = json['point-remarks'] ?? '';
     zoneName = json['zone-name'] ?? '';
     assignmentCount = json['assignment-count'] ?? 0;
-    // assignedPoliceList = json['assigned-Police-list']; // I have made wrong implementation so commented this line
-    // see how internal loop works
     if (json['assigned-police-list'] != null) {
       assignedPoliceList = <Assignment>[];
       json['assigned-police-list'].forEach((assignment) {
@@ -43,7 +41,6 @@ class EventPointAssignmentModel {
     map['point-accessories'] = pointAccessories;
     map['zone-name'] = zoneName;
     map['assignment-count'] = assignmentCount;
-    // map['assigned-Police-list'] = assignedPoliceList;
     if (assignedPoliceList != null) {
       map['assigned-Police-list'] =
           assignedPoliceList!.map((a) => a.toJson()).toList();
@@ -52,20 +49,21 @@ class EventPointAssignmentModel {
   }
 }
 
-// wait wnow i have forgot where to add in assignment or in above model
-// the above designation shpuld be in assignment not in above model fuck
 class Assignment {
   Assignment(
-      {this.policeId,
-      this.dutyStartDate,
-      this.dutyEndDate,
-      this.policeName,
-      this.policeStationName,
-      this.buckleNumber,
-      this.gender,
-      this.number,
-      this.age,
-      this.district, this.designation});
+      {
+        this.policeId,
+        this.dutyStartDate,
+        this.dutyEndDate,
+        this.policeName,
+        this.policeStationName,
+        this.buckleNumber,
+        this.gender,
+        this.number,
+        this.age,
+        this.district,
+        this.designation
+      });
 
   Assignment.fromJson(dynamic json) {
     policeId = json['police-id'] ?? 0;
@@ -108,6 +106,3 @@ class Assignment {
     return map;
   }
 }
-//complete  ya or  kuch baki  hai
- // integration comepletee ui ma bakai hai call karwana. show me ui
-// 10 min

@@ -79,17 +79,17 @@ class AssignedPoliceAddView extends GetView<AssignedPoliceAddController> {
   Widget saveAndAssignPoliceWidget() {
     // show yellow if no police is selected or show red if something went wrong or green if success
     return Container(
-      height: 50,
+      height: 55,
       margin: const EdgeInsets.only(top:10),
       padding: const EdgeInsets.all(8),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           primary: Colors.green,
           textStyle: const TextStyle(
-              color: Colors.white, fontSize: 10, fontStyle: FontStyle.normal),
+              color: Colors.white, fontSize: 20, fontStyle: FontStyle.normal),
         ),
         onPressed: controller.assignPolice,
-        child: Text('Assign Police'),
+        child: const Text('Assign Police'),
       ),
     );
   }
@@ -220,8 +220,14 @@ class _MyHomePageState extends State<MyHomePage> {
       child: ListView(
         padding: const EdgeInsets.all(4),
         children: <Widget>[
-          const Padding(padding: EdgeInsets.all(8)),
-          const Text("select police and assign"),
+          const Padding(padding: EdgeInsets.all(4)),
+          const Center(
+            child: Text("select police and assign",
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                color: Colors.black38,
+                fontSize: 20.0),),
+          ),
           const Divider(),
           Row(
             children: [

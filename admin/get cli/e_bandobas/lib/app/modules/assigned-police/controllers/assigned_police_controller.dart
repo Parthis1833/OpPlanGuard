@@ -55,6 +55,7 @@ class AssignedPoliceController extends GetxController {
     eventPointAssignmentModel.value =
         await EventPointAssignmentModelApi.obtainEventPointAssignments(
             API_Decision.BOTH, selectedEventId.value, selectedPointId.value);
+    print(eventPointAssignmentModel);
     update();
   }
 }
