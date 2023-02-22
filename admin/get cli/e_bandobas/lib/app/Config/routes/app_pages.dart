@@ -1,3 +1,4 @@
+import 'package:e_bandobas/app/modules/counter/bindings/counter_binding.dart';
 import 'package:get/get.dart';
 
 import '../../modules/assesment-create/bindings/assesment_create_binding.dart';
@@ -29,9 +30,7 @@ import '../../modules/officerdata/bindings/officerdata_binding.dart';
 import '../../modules/officerdata/views/officerdata_view.dart';
 import '../../modules/password-manager/bindings/password_manager_binding.dart';
 import '../../modules/password-manager/views/password_manager_view.dart';
-import '../../modules/point-police-assement/bindings/point_police_assement_binding.dart';
 import '../../modules/point-police-assement/bindings/show_point_assignment_binding.dart';
-import '../../modules/point-police-assement/views/point_police_assement_view.dart';
 import '../../modules/point-police-assement/views/show_point_assignments.dart';
 import '../../modules/pointlist/bindings/pointlist_binding.dart';
 import '../../modules/pointlist/views/pointlist_view.dart';
@@ -58,6 +57,7 @@ class AppPages {
     GetPage(
       name: PATHS.COUNTER,
       page: () => const CounterView(),
+      binding: CounterBinding(),
     ),
     GetPage(
       name: PATHS.DUTYPOINT,
@@ -103,13 +103,8 @@ class AppPages {
     ),
     GetPage(
       name: PATHS.ASSESMENT_CREATE,
-      page: () => AssesmentCreateView(),
+      page: () => const AssesmentCreateView(),
       binding: AssesmentCreateBinding(),
-    ),
-    GetPage(
-      name: PATHS.POINT_POLICE_ASSESMENET,
-      page: () => const PointPoliceAssementView(),
-      binding: PointPoliceAssementBinding(),
     ),
     GetPage(
       name: PATHS.SHOW_POINTS_ASSESMENT,

@@ -20,7 +20,7 @@ class Navigation_Drawer extends StatelessWidget {
               onTap: () => navigate(0)),
 
           buildDrawerItem(
-            text: 'કાઉન્ટર',
+            text: 'પોઇન્ટ એસેસર્સમેન્ટ',
             icon: Icons.data_usage_rounded,
             tileColor:Get.currentRoute == Routes.COUNTER ? Colors.blue : null,
             textIconColor: Get.currentRoute == Routes.COUNTER
