@@ -11,6 +11,7 @@ class ShowPointAssigment extends GetView<ShowPointPoliceAssementController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const Navigation_Drawer(),
       appBar: AppBar(
         title: const Text('Point assigments view'),
         centerTitle: true,

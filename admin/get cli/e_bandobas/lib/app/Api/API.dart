@@ -41,6 +41,7 @@ class APIConstants {
   // static const POINT_URL_UPLOAD_FROM_EXCEL =
   static const POINT_READ_SPECIFIC =
       BASE_URL + POINT; // Need to Append id with get req
+  static const POINT_POLICE_ASSIGNED_POINT = BASE_URL + POINT + "police-assigned-points"; // append event id
 
   // EVENT APIS
   static const EVENT = "/event/";
