@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CounterController extends GetxController {
-
   var designationTextEditingControllers = <TextEditingController>[];
   late final selectedEventId = 0.obs;
   late final selectedPointId = 0.obs;
@@ -21,7 +20,7 @@ class CounterController extends GetxController {
 
   void loadDesignations() async {
     designations.value =
-    await DesignationApi.obtainDesignations(API_Decision.Only_Failure);
+        await DesignationApi.obtainDesignations(API_Decision.Only_Failure);
     if (designations.value != null) {
       for (var i in designations.value!) {
         var textEditingController = TextEditingController(text: "");
@@ -40,7 +39,6 @@ class CounterController extends GetxController {
   }
 
   void loadPoints() async {
-
     points.value = await PointApi.obtainPoints(API_Decision.Only_Failure);
     if (points.value != null && points.value!.length >= 0) {
       selectedPointId.value = points.value!.elementAt(0).id!.toInt();
@@ -70,6 +68,11 @@ class CounterController extends GetxController {
 
     bool result = await PointPoliceCountApi.createAssignment(
         API_Decision.BOTH, eventPoliceCountData);
+
+    for (int i = 0; i < designationTextEditingControllers.length; i++) {
+      designationTextEditingControllers[i].clear();
+    }
+    update();
   }
 
   void changeSelectedEvent(num? value) {
