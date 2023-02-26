@@ -91,7 +91,8 @@ class EventPointAssignmentModelApi {
         return model;
       } // api error to be displayed
       else {
-        if (showStatus == API_Decision.Only_Failure || showStatus == API_Decision.BOTH) {
+        if (showStatus == API_Decision.Only_Failure ||
+            showStatus == API_Decision.BOTH) {
           Get.snackbar(
             "Failed",
             responseJson['response']['message'],
@@ -104,6 +105,16 @@ class EventPointAssignmentModelApi {
       }
     }
     throw DataNotFoundException(
-            "Police assigned was not found from api for event : $eventId").errorSnackBar();
+            "Police assigned was not found from api for event : $eventId")
+        .errorSnackBar();
+  }
+
+  static obtainExcelFile(String url) async {
+    final response = await http.get(Uri.parse(url));
+    final bytes = response.bodyBytes;
+    if (bytes.isEmpty) {
+      throw DataNotFoundException("Downloaded file bytes not found from api ").errorSnackBar();
+    }
+    return bytes;
   }
 }

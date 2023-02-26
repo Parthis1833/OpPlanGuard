@@ -53,6 +53,7 @@ class DutypointallocationView extends GetView<DutypointallocationController> {
         children: [
           eventSelectionDropDownWidget(),
           showAssignmentButton(),
+          downloadExcelWidgetButton(),
         ],
       ),
       displayEventAssignment(),
@@ -222,5 +223,13 @@ class DutypointallocationView extends GetView<DutypointallocationController> {
     return ElevatedButton(
         onPressed: controller.showAssignments,
         child: const Text("Show Assignments"));
+  }
+
+  Widget downloadExcelWidgetButton(){
+    return Obx(() => controller.eventAssignmentModel.value == null
+        ? const SizedBox()
+        : ElevatedButton(
+        onPressed: controller.downloadExcel,
+        child: const Text("View in Excel")));
   }
 }

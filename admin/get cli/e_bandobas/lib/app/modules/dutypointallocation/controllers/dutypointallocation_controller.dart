@@ -1,9 +1,14 @@
+import 'package:e_bandobas/app/Exceptions/DataNotFoundException.dart';
 import 'package:e_bandobas/app/jsondata/EventData/Event.dart';
 import 'package:e_bandobas/app/jsondata/EventData/EventApi.dart';
 import 'package:e_bandobas/app/jsondata/EventPointAssignmentData/eventPointAssignmentApi.dart';
 import 'package:e_bandobas/constants/enums.dart';
 import 'package:get/get.dart';
+import 'package:path_provider/path_provider.dart';
 import '../../../jsondata/EventPointAssignmentData/eventAssignmentModel.dart';
+import 'dart:io';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:open_file_plus/open_file_plus.dart';
 
 class DutypointallocationController extends GetxController {
   late final selectedEventId = 0.obs;
@@ -34,8 +39,37 @@ class DutypointallocationController extends GetxController {
 
   showAssignments() async {
     eventAssignmentModel.value =
-    await EventPointAssignmentModelApi.obtainEventWiseAssignments(
-        API_Decision.BOTH, selectedEventId.value);
+        await EventPointAssignmentModelApi.obtainEventWiseAssignments(
+            API_Decision.BOTH, selectedEventId.value);
     update();
   }
+
+  // void downloadExcel() async {
+  //   if (eventAssignmentModel.value != null &&
+  //       eventAssignmentModel.value!.fileName!.length > 0) {
+  //     final url = eventAssignmentModel.value!.fileName!;
+  //     final bytes = EventPointAssignmentModelApi.obtainExcelFile(url);
+
+  //     final downloadsDirectory = await DownloadsPathProvider.downloadsDirectory;
+  //     final filename = url.split('/').last;
+  //     final file = File('${downloadsDirectory.path}/$filename');
+  //     await file.writeAsBytes(bytes);
+  //   } else {
+  //     throw DataNotFoundException("Download file not found").errorSnackBar();
+  //   }
+  // }
+
+  void downloadExcel() async {
+    final path = getApplicationDocumentsDirectory();
+    if (eventAssignmentModel.value != null &&
+        eventAssignmentModel.value!.fileName!.length > 0) {
+      final url = eventAssignmentModel.value!.fileName!;
+      print(url);
+      OpenFile.open(url);
+      // _launchUrl(url);
+    } else {
+      throw DataNotFoundException("Download file not found").errorSnackBar();
+    }
+  }
+
 }
