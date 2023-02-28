@@ -76,7 +76,10 @@ class DutypointallocationController extends GetxController {
       //     });
       //   }
       // });
-      // OpenFile.open(eventAssignmentModel.value!.fileName!);
+      final file = File(eventAssignmentModel.value!.fileName!);
+      final dir = await getApplicationDocumentsDirectory();
+      file.copy(dir.path);
+      OpenFile.open(eventAssignmentModel.value!.fileName!);
       // downloadFile(eventAssignmentModel.value!.fileName!);
       // processFile(eventAssignmentModel.value!.fileName!);
 
