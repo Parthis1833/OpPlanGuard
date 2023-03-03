@@ -28,8 +28,6 @@ import '../../modules/event/views/event_update.dart';
 import '../../modules/event/views/event_view.dart';
 import '../../modules/officerdata/bindings/officerdata_binding.dart';
 import '../../modules/officerdata/views/officerdata_view.dart';
-import '../../modules/password-manager/bindings/password_manager_binding.dart';
-import '../../modules/password-manager/views/password_manager_view.dart';
 import '../../modules/point-police-assement/bindings/show_point_assignment_binding.dart';
 import '../../modules/point-police-assement/views/show_point_assignments.dart';
 import '../../modules/pointlist/bindings/pointlist_binding.dart';
@@ -150,10 +148,5 @@ class AppPages {
         name: Routes.ASSIGNED_POLICE_VIEW_BY_EVENT,
         page: () => AssignedPoliceByEventView(),
         binding: AssignedPoliceByEventBinding()),
-    GetPage(
-      name: Routes.PASSWORD_MANAGER,
-      page: () => const PasswordManagerView(),
-      binding: PasswordManagerBinding(),
-    ),
   ];
 }

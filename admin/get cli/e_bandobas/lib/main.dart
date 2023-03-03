@@ -6,7 +6,7 @@ void main() {
   runApp(
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Application",
+      title: "E-Bandobas",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
     ),

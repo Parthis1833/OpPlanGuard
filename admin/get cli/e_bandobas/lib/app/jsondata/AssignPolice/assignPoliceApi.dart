@@ -1,5 +1,4 @@
 import 'package:e_bandobas/app/Api/API.dart';
-import 'package:e_bandobas/app/jsondata/ZoneData/Zone.dart';
 import 'package:e_bandobas/constants/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
