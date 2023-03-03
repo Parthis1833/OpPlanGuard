@@ -1,3 +1,4 @@
+import 'package:e_bandobas/app/resource/drawer/navigation_drawer.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -9,6 +10,7 @@ class SettingView extends GetView<SettingController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const Navigation_Drawer(),
       appBar: AppBar(
         title: const Text('SettingView'),
         centerTitle: true,
@@ -16,7 +18,7 @@ class SettingView extends GetView<SettingController> {
       body:  Obx(() => (controller.events.value == null ||
           controller.passwordHistories.value == null)
           ? const CircularProgressIndicator()
-          : Center(child: passwordManagerWidget())),
+          : passwordManagerWidget()),
     );
   }
   Widget passwordManagerWidget() {
@@ -24,14 +26,16 @@ class SettingView extends GetView<SettingController> {
       shrinkWrap: true,
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: [
             eventSelectionDropDownWidget(),
-            makePasswordWidgetButton()
+            makePasswordWidgetButton(),
+            loadHistories(),
           ],
         ),
-        displayHistoryHeader(),
-        loadHistories(),
+
       ],
     );
   }
@@ -40,7 +44,7 @@ class SettingView extends GetView<SettingController> {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: SizedBox(
-        width: 100,
+        width: 225,
         height: 50,
         child: ElevatedButton(
             style: ButtonStyle(
@@ -62,6 +66,7 @@ class SettingView extends GetView<SettingController> {
               controller.createPassword();
             },
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: const [
                 Icon(
                   Icons.add_circle_outline,
@@ -103,42 +108,27 @@ class SettingView extends GetView<SettingController> {
           }),
     );
   }
-
   Widget loadHistories() {
-    return ListView.separated(
-        shrinkWrap: true,
-        itemBuilder: (context, index) => buildPasswordHistory(index),
-        separatorBuilder: (context, index) => const Divider(),
-        itemCount: controller.passwordHistories.value!.histories!.length);
-    // controller.passwordHistories.value.histories.map((History) => )
-  }
-
-  Widget buildPasswordHistory(int index) {
-    return Row(
-      children: [
-        Text(controller.passwordHistories.value!.histories![index].eventName ??
-            ''),
-        Text(controller.passwordHistories.value!.histories![index].userName ??
-            ''),
-        Text(
-            controller.passwordHistories.value!.histories![index].phoneNumber ??
-                ''),
-        Text(controller.passwordHistories.value!.histories![index].ip ?? ''),
-        Text(controller.passwordHistories.value!.histories![index].accessType ??
-            ''),
+    return DataTable(
+      columns: const [
+        DataColumn(label: Text("Event Name")),
+        DataColumn(label: Text("User name")),
+        DataColumn(label: Text("Phone Number")),
+        DataColumn(label: Text("Ip of user")),
+        DataColumn(label: Text("Access type of user")),
       ],
+      rows: controller.passwordHistories.value!.histories!.map((history) {
+        return DataRow(
+          cells: [
+            DataCell(Text(history.eventName ?? '')),
+            DataCell(Text(history.userName ?? '')),
+            DataCell(Text(history.phoneNumber ?? '')),
+            DataCell(Text(history.ip ?? '')),
+            DataCell(Text(history.accessType ?? '')),
+          ],
+        );
+      }).toList(),
     );
   }
 
-  Widget displayHistoryHeader() {
-    return Row(
-      children: [
-        Text("Event Name"),
-        Text("User name"),
-        Text("Phone Number"),
-        Text("Ip of user"),
-        Text("Access type of user"),
-      ],
-    );
-  }
 }
