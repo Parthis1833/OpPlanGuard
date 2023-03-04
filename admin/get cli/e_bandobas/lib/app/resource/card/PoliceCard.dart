@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:responsive_grid_list/responsive_grid_list.dart';
 
+
 class PoliceCard extends StatelessWidget {
   double responsiveHeight(BuildContext context) {
     double width = MediaQuery.of(context).size.width;

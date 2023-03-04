@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 
 import '../PoliceData/PoliceIdNameDesigNumbModel.dart';
 import '../PoliceData/PoliceIdNameModel.dart';
+import 'EventPoliceCountOfAssignedTotalRequestedModel.dart';
 
 class EventPoliceCountAPI {
   // static Future<List<EventPoliceCountModel>> obtainA
@@ -106,7 +107,6 @@ class EventPoliceCountAPI {
   static Future<List<PoliceIdNameDesigNumb>>
       getUnAssignedPoliceIdNameDesigNumbList(
           API_Decision showStatus, num eventId, String searchName) async {
-
     final modelApiData = {'event-id': eventId, 'search-police': searchName};
 
     final response = await http.post(
@@ -155,5 +155,57 @@ class EventPoliceCountAPI {
     }
     throw DataNotFoundException(
         "Data not found from server api hit : event_police_count/unassigned_police_list$eventId");
+  }
+
+  static Future<List<EventPoliceCountAssignedTotalRequestedModel>>
+      obtainEventPoliceCountAssignments(
+          API_Decision showStatus, int eventId) async {
+    final response = await http.get(
+      Uri.parse(APIConstants.EVENT_POLICE_COUNT_OF_POLICE_BY_DESIGNATION +
+          eventId.toString()),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final responseJson = jsonDecode(utf8.decode(response.bodyBytes));
+
+      if (responseJson['response']['error'] == 0) {
+        if (showStatus == API_Decision.Only_Success ||
+            showStatus == API_Decision.BOTH) {
+          Get.snackbar(
+            "Success",
+            "Police Assigned Counts obtained for event successfully",
+            icon: const Icon(Icons.add_task_sharp, color: Colors.white),
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.green,
+          );
+        }
+        List<EventPoliceCountAssignedTotalRequestedModel> resp = [];
+        if (responseJson['content'] != null) {
+          for (int i = 0; i < responseJson['content'].length; i++) {
+            EventPoliceCountAssignedTotalRequestedModel policeAssignment =
+                EventPoliceCountAssignedTotalRequestedModel.fromJson(responseJson['content'][i]);
+                resp.add(policeAssignment);
+          }
+        }
+        return resp;
+      } // api error to be displayed
+      else {
+        if (showStatus == API_Decision.Only_Failure ||
+            showStatus == API_Decision.BOTH) {
+          Get.snackbar(
+            "Failed",
+            responseJson['response']['message'] ?? "No message available",
+            icon: const Icon(Icons.cancel_presentation_sharp,
+                color: Colors.white),
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.red,
+          );
+        }
+      }
+    }
+    return [];
   }
 }

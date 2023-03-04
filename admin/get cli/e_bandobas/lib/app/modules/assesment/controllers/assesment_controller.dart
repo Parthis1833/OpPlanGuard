@@ -1,31 +1,47 @@
 import 'package:e_bandobas/app/Config/routes/app_pages.dart';
 import 'package:get/get.dart';
+import 'package:e_bandobas/app/jsondata/EventData/Event.dart';
+import 'package:e_bandobas/app/jsondata/EventData/EventApi.dart';
+
+import '../../../../constants/enums.dart';
+import '../../../jsondata/EventPoliceCount/EventPoliceCountAPI.dart';
+import '../../../jsondata/EventPoliceCount/EventPoliceCountOfAssignedTotalRequestedModel.dart';
 
 class AssesmentController extends GetxController {
-  //TODO: Implement AssesmentController
+  late final selectedEventId = 0.obs;
+  final events = Rxn<List<Event>>();
+  final eventAssignmentCounts =
+      Rxn<List<EventPoliceCountAssignedTotalRequestedModel>>();
 
   final count = 0.obs;
   @override
   void onClose() {}
-  navigateToPage(int index) {
-    if (index == 0) {
-      Get.toNamed(Routes.ASSESMENT);
-    } else if (index == 1) {
-      Get.toNamed(Routes.COUNTER);
-    } else if (index == 2) {
-      Get.toNamed(Routes.DUTYPOINT);
-    } else if (index == 3) {
-      Get.toNamed(Routes.POINTLIST);
-    } else if (index == 4) {
-      Get.toNamed(Routes.ZONELIST);
-    } else if (index == 5) {
-      Get.toNamed(Routes.DUTYPOINTALLOCATION);
-    } else if (index == 6) {
-      Get.toNamed(Routes.OFFICERDATA);
-    } else if (index == 7) {
-      Get.toNamed(Routes.ROADBANDOBAST);
-    } else if (index == 8) {
-      Get.toNamed(Routes.SETTING);
+
+  void loadEvents() async {
+    events.value = await EventApi.obtainEvents(API_Decision.Only_Failure);
+    if (events.value != null && events.value!.isNotEmpty) {
+      selectedEventId.value = events.value!.elementAt(0).id!.toInt();
+      getEventAssignments();
     }
+    print(events.value);
+    update();
+  }
+
+  void changeSelectedEvent(num? value) {
+    selectedEventId.value = value!.toInt();
+    getEventAssignments();
+    update();
+  }
+
+  void getEventAssignments() async {
+    eventAssignmentCounts.value =
+        await EventPoliceCountAPI.obtainEventPoliceCountAssignments(
+            API_Decision.Only_Failure, selectedEventId.value);
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    loadEvents();
   }
 }

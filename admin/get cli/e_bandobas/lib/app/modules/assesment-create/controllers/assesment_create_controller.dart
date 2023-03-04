@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AssesmentCreateController extends GetxController {
-  //TODO: Implement AssesmentCreateController
 
   var designationTextEditingControllers = <TextEditingController>[];
   late final selectedEventId = 0.obs;

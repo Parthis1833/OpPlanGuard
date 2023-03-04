@@ -77,7 +77,7 @@ class DutypointallocationView extends GetView<DutypointallocationController> {
   Widget eventAssignments() {
     return ListView.separated(
         shrinkWrap: true,
-        physics: ClampingScrollPhysics(),
+        physics: const ClampingScrollPhysics(),
         itemBuilder: (_, index) => pointLevelAssignment(index),
         separatorBuilder: (_, index) => const Divider(),
         itemCount: controller

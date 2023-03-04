@@ -27,8 +27,8 @@ class AssesmentCreateView extends GetView<AssesmentCreateController> {
         : ListView(
             children: [
               eventSelectionDropDownWidget(),
+              saveCancelContainerRow(),
               designationListWidget(),
-              saveCancelContainerRow()
             ],
           ));
   }
