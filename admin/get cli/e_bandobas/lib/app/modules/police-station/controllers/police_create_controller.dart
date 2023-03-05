@@ -20,7 +20,6 @@ class PoliceCreateController extends GetxController {
   String filename = "";
   final password = "".obs;
 
-
   @override
   void onInit() {
     super.onInit();
@@ -60,14 +59,22 @@ class PoliceCreateController extends GetxController {
         throw CustomException("Error reading data").validationSnackBar;
       }
 
-      String outputFileLocation = await PoliceApi.insertPoliceUsingExcel(API_Decision.BOTH, selectedEventId.value,
-          fileBytes, filename, "ADMIN", "0000000000", "0", password.value);
-      
+      String outputFileLocation = await PoliceApi.insertPoliceUsingExcel(
+          API_Decision.BOTH,
+          selectedEventId.value,
+          fileBytes,
+          filename,
+          "ADMIN",
+          "9090909090",
+          "0",
+          password.value);
+
       // final file = File(outputFileLocation);
       // final dir = await getApplicationDocumentsDirectory();
       // file.copy(dir.path);
-      OpenFile.open(outputFileLocation);
-      
+      if (TextUtils.notBlankNotEmpty(outputFileLocation)) {
+        OpenFile.open(outputFileLocation);        
+      }
     } else {
       throw ValidationException(cause: "Some Fields are required to upload ")
           .showValidationSnackBar();

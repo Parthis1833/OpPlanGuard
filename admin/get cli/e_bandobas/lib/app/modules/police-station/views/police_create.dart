@@ -25,7 +25,8 @@ class PoliceCreateView extends GetView<PoliceCreateController> {
                   controller.passwordUpdated(passwordController.text);
                   controller.pickAndUploadFile();
                 },
-                child: Text("Pick & upload Polcies"))
+                child: Text("Pick & upload Polcies")),
+                passwordInputWidget()
           ],
         ));
   }
