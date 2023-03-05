@@ -155,7 +155,7 @@ class AssesmentView extends GetView<AssesmentController> {
                   size: 56.4,
                 ),
               ),
-              const Text("Event ")
+              const Text("Police stations")
             ],
           ),
         ),
