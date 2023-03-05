@@ -1,4 +1,3 @@
-import 'package:e_bandobas/app/modules/counter/bindings/counter_binding.dart';
 import 'package:get/get.dart';
 
 import '../../modules/assesment-create/bindings/assesment_create_binding.dart';
@@ -15,6 +14,7 @@ import '../../modules/assigned-police/views/assigned_police_add.dart';
 import '../../modules/assigned-police/views/assigned_police_delete.dart';
 import '../../modules/assigned-police/views/assigned_police_update.dart';
 import '../../modules/assigned-police/views/assigned_police_view.dart';
+import '../../modules/counter/bindings/counter_binding.dart';
 import '../../modules/counter/views/counter_view.dart';
 import '../../modules/dutypoint/bindings/dutypoint_binding.dart';
 import '../../modules/dutypoint/views/dutypoint_view.dart';
@@ -32,6 +32,12 @@ import '../../modules/point-police-assement/bindings/show_point_assignment_bindi
 import '../../modules/point-police-assement/views/show_point_assignments.dart';
 import '../../modules/pointlist/bindings/pointlist_binding.dart';
 import '../../modules/pointlist/views/pointlist_view.dart';
+import '../../modules/police-station/bindings/police_create_bindings.dart';
+import '../../modules/police-station/bindings/police_station_binding.dart';
+import '../../modules/police-station/bindings/police_station_create_binding.dart';
+import '../../modules/police-station/views/police_create.dart';
+import '../../modules/police-station/views/police_station_create.dart';
+import '../../modules/police-station/views/police_station_view.dart';
 import '../../modules/roadbandobast/bindings/roadbandobast_binding.dart';
 import '../../modules/roadbandobast/views/roadbandobast_view.dart';
 import '../../modules/setting/bindings/setting_binding.dart';
@@ -148,5 +154,20 @@ class AppPages {
         name: Routes.ASSIGNED_POLICE_VIEW_BY_EVENT,
         page: () => AssignedPoliceByEventView(),
         binding: AssignedPoliceByEventBinding()),
+    GetPage(
+      name: Routes.POLICE_STATION,
+      page: () => PoliceStationView(),
+      binding: PoliceStationBinding(),
+    ),
+    GetPage(
+      name: Routes.POLICE_STATION_CREATE,
+      page: () => PoliceStationCreateView(),
+      binding: PoliceStationCreateBinding(),
+    ),
+    GetPage(
+      name: Routes.POLICE_CREATE,
+      page: () => PoliceCreateView(),
+      binding: PoliceCreateBinding(),
+    ),
   ];
 }

@@ -117,6 +117,48 @@ class AssesmentView extends GetView<AssesmentController> {
             ],
           ),
         ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              FloatingActionButton(
+                heroTag: const Text("Add Police"),
+                backgroundColor: const Color.fromARGB(100, 28, 54, 105),
+                onPressed: () {
+                  Get.toNamed(Routes.POLICE_CREATE);
+                },
+                child: const Icon(
+                  Icons.add_circle_outline,
+                  color: Colors.deepPurple,
+                  size: 56.4,
+                ),
+              ),
+              const Text("Add Police")
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              FloatingActionButton(
+                heroTag: const Text("Police Station"),
+                backgroundColor: const Color.fromARGB(100, 28, 54, 105),
+                onPressed: () {
+                  Get.toNamed(Routes.POLICE_STATION);
+                },
+                child: const Icon(
+                  Icons.add_circle_outline,
+                  color: Colors.deepPurple,
+                  size: 56.4,
+                ),
+              ),
+              const Text("Event ")
+            ],
+          ),
+        ),
       ],
     );
   }

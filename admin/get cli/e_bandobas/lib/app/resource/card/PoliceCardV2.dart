@@ -1,6 +1,3 @@
-import 'package:e_bandobas/app/jsondata/Counter/totalpolice/totalpolice.dart';
-import 'package:e_bandobas/app/jsondata/Counter/totalpolice/totalpoliceApi.dart';
-import 'package:e_bandobas/constants/enums.dart';
 import 'package:flutter/material.dart';
 
 import 'package:responsive_grid_list/responsive_grid_list.dart';
@@ -30,17 +27,7 @@ class PoliceCardV2 extends StatelessWidget {
   }
 
   PoliceCardV2({required this.eventAssignments});
-  final List<String> entries = <String>[
-    'SP',
-    'DYSP',
-    'PI',
-    'PSI',
-    'MEN POLICE',
-    'WOMAN POLICE',
-    'HG',
-    'GRD',
-    'SRP'
-  ];
+  
   List<EventPoliceCountAssignedTotalRequestedModel> eventAssignments;
 
   @override
