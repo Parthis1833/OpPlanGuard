@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/police_station_controller.dart';
+import '../controllers/police_station_create_controller.dart';
 
-class PoliceStationCreateView extends GetView<PoliceStationController> {
+class PoliceStationCreateView extends GetView<PoliceStationCreateController> {
   const PoliceStationCreateView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
