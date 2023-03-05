@@ -1,6 +1,14 @@
+import 'dart:io';
+
+import 'package:e_bandobas/app/jsondata/Police/police_api.dart';
 import 'package:get/get.dart';
+import 'package:open_file_plus/open_file_plus.dart';
+import 'package:path_provider/path_provider.dart';
 
 import '../../../../constants/enums.dart';
+import '../../../../utils/text_utils.dart';
+import '../../../Exceptions/ValidationException.dart';
+import '../../../Exceptions/custom_exception.dart';
 import '../../../jsondata/EventData/Event.dart';
 import '../../../jsondata/EventData/EventApi.dart';
 import 'package:file_picker/file_picker.dart';
@@ -9,6 +17,9 @@ class PoliceCreateController extends GetxController {
   late final selectedEventId = 0.obs;
   final events = Rxn<List<Event>>();
   final policeFile = Rxn<FilePickerResult>();
+  String filename = "";
+  final password = "".obs;
+
 
   @override
   void onInit() {
@@ -42,21 +53,30 @@ class PoliceCreateController extends GetxController {
 
   void pickAndUploadFile() async {
     policeFile.value = await FilePicker.platform.pickFiles(withData: true);
-if (policeFile.value != null ||
-        TextUtils.notBlankNotEmpty(password.value)) {
+    if (policeFile.value != null) {
       final fileBytes = policeFile.value!.files.single.bytes;
       filename = policeFile.value!.files.single.name;
       if (fileBytes == null) {
         throw CustomException("Error reading data").validationSnackBar;
       }
 
-      PoliceApi.insertPoliceUsingExcel(API_Decision.BOTH, selectedEventId.value, fileBytes,
-          filename, username, phoneNumber, "0", password.value);
+      String outputFileLocation = await PoliceApi.insertPoliceUsingExcel(API_Decision.BOTH, selectedEventId.value,
+          fileBytes, filename, "ADMIN", "0000000000", "0", password.value);
+      
+      // final file = File(outputFileLocation);
+      // final dir = await getApplicationDocumentsDirectory();
+      // file.copy(dir.path);
+      OpenFile.open(outputFileLocation);
       
     } else {
-      throw ValidationException("Some Fields are required to upload ")
+      throw ValidationException(cause: "Some Fields are required to upload ")
           .showValidationSnackBar();
     }
+    update();
+  }
+
+  passwordUpdated(String text) {
+    password.value = text;
     update();
   }
 }

@@ -28,6 +28,7 @@ dependencies:
   url_launcher: ^6.1.10
   open_file_plus: ^3.4.0
   animated_text_kit: ^4.2.2
+  file_picker: ^5.2.5
 
 
 dev_dependencies:

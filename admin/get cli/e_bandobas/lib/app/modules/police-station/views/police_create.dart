@@ -5,20 +5,44 @@ import 'package:get/get.dart';
 import '../controllers/police_create_controller.dart';
 
 class PoliceCreateView extends GetView<PoliceCreateController> {
-  const PoliceCreateView({Key? key}) : super(key: key);
+  final passwordController = TextEditingController();
+
+  PoliceCreateView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('PoliceCreateView'),
-        centerTitle: true,
+        appBar: AppBar(
+          title: const Text('PoliceCreateView'),
+          centerTitle: true,
+        ),
+        body: Column(
+          children: [
+            Obx(() => controller.events.value == null
+                ? const CircularProgressIndicator.adaptive()
+                : eventSelectionDropDownWidget()),
+            ElevatedButton(
+                onPressed: () {
+                  controller.passwordUpdated(passwordController.text);
+                  controller.pickAndUploadFile();
+                },
+                child: Text("Pick & upload Polcies"))
+          ],
+        ));
+  }
+
+  Widget passwordInputWidget() {
+    return Container(
+      width: 250,
+      height: 200,
+      child: TextField(
+        controller: passwordController,
+        obscureText: true,
+        decoration: InputDecoration(
+          border: OutlineInputBorder(),
+          labelText: 'Password',
+          hintText: 'Enter Password',
+        ),
       ),
-      body: Column(children: [
-        Obx(() => controller.events.value == null ?
-        const CircularProgressIndicator.adaptive()
-        : eventSelectionDropDownWidget()),
-        ElevatedButton(onPressed: controller.pickAndUploadFile, child: Text("Pick & upload Polcies"))
-      ],)
     );
   }
 

@@ -88,43 +88,4 @@ class DutypointallocationController extends GetxController {
       throw DataNotFoundException("Download file not found").errorSnackBar();
     }
   }
-
-  // Future<File> _getTemporaryDirectory(String filePath) async {
-  //   // Directory tempDir = await getTemporaryDirectory();
-  //   // String _tempPath = tempDir.path;
-  //   // String _tempFilePath = '$_tempPath/${DateTime.now().millisecondsSinceEpoch}.xls';
-  //   // return await File(filePath).copy(_tempFilePath);
-  //   return File(filePath);
-  // }
-
-  // void downloadFile(String url) async {
-  //   final filename = url.split('/').last;
-  //   final fileBytes = await html.HttpRequest.request(url, responseType: 'blob')
-  //       .then((value) => value.response);
-  //   final file = html.File([fileBytes], filename);
-  //   print(file.relativePath);
-  //   print(file.size);
-  //   print(file.name);
-  //   final downloadUrl = html.Url.createObjectUrl(file);
-  //   print(downloadUrl);
-  //   final anchorElement = html.AnchorElement(href: downloadUrl);
-  //   anchorElement.setAttribute('download', filename);
-  //   html.document.body!.append(anchorElement);
-  //   anchorElement.click();
-  //   html.Url.revokeObjectUrl(downloadUrl);
-  //   anchorElement.remove();
-  // }
-
-  // void processFile(String url) async {
-  //   final file = js.JsObject(js.context['File'], [url]);
-
-  //   // Create a new Object URL for the local file.
-  //   final urlObject = js.context.callMethod('URL.createObjectURL', [file]);
-
-  //   // Download the file.
-  //   downloadFile(urlObject);
-
-  //   // Revoke the Object URL after the download is complete.
-  //   js.context.callMethod('URL.revokeObjectURL', [urlObject]);
-  // }
 }
