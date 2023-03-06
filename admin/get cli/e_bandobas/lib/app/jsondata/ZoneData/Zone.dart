@@ -6,8 +6,8 @@ class Zone {
   });
 
   Zone.fromJson(dynamic json) {
-    id = json['id'];
-    name = json['name'];
+    id = json['id'] ?? 0;
+    name = json['name'] ?? "";
   }
   num? id;
   String? name;

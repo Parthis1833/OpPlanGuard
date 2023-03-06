@@ -7,11 +7,13 @@ import 'package:get/get.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class ZoneApi {
-  static Future<List<Zone>> obtainZones(API_Decision showStatus) async {
-    List<Zone> zones = <Zone>[];
+import 'PoliceStationModel.dart';
+
+class PoliceStationModelApi {
+  static Future<List<PoliceStationModel>> obtainPoliceStationModel(API_Decision showStatus) async {
+    List<PoliceStationModel> policeStations = <PoliceStationModel>[];
     final response = await http.get(
-      Uri.parse(APIConstants.ZONE_READ_ALL),
+      Uri.parse(APIConstants.POLICESTATION_URL),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -23,15 +25,15 @@ class ZoneApi {
         if (showStatus == API_Decision.Only_Success || showStatus == API_Decision.BOTH) {
           Get.snackbar(
             "Success",
-            "Zone Obtained successfully",
+            "police stations Obtained successfully",
             icon: const Icon(Icons.add_task_sharp, color: Colors.white),
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.green,
           );
         }
         for (int i = 0; i < responseJson['content'].length; i++) {
-          Zone zone = Zone.fromJson(responseJson['content'][i]);
-          zones.add(zone);
+          PoliceStationModel policeStation = PoliceStationModel.fromJson(responseJson['content'][i]);
+          policeStations.add(policeStation);
         }
       } // api error to be displayed
       else {
@@ -46,7 +48,7 @@ class ZoneApi {
         }
       }
     }
-    return zones;
+    return policeStations;
   }
   
 }
