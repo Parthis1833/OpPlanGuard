@@ -3,6 +3,8 @@ import 'package:e_bandobas/app/jsondata/DesignationData/Designation.dart';
 import 'package:e_bandobas/app/jsondata/DesignationData/DesignationApi.dart';
 import 'package:e_bandobas/app/jsondata/EventData/Event.dart';
 import 'package:e_bandobas/app/jsondata/EventData/EventApi.dart';
+import 'package:e_bandobas/app/jsondata/EventPoliceCount/EventPoliceCountAPI.dart';
+import 'package:e_bandobas/app/jsondata/EventPoliceCount/EventPoliceCountOfAssignedTotalRequestedModel.dart';
 import 'package:e_bandobas/app/jsondata/PointData/PointApi.dart';
 import 'package:e_bandobas/app/jsondata/PointData/Point.dart';
 import 'package:e_bandobas/app/jsondata/PointPoliceCount/PointPoliceCountApi.dart';
@@ -17,6 +19,13 @@ class CounterController extends GetxController {
   final designations = Rxn<List<Designation>>();
   final events = Rxn<List<Event>>();
   final points = Rxn<List<Point>>();
+  final eventAssignmentCounts = Rxn<List<EventPoliceCountAssignedTotalRequestedModel>>();
+
+  void getEventAssignments() async {
+    eventAssignmentCounts.value =
+    await EventPoliceCountAPI.obtainEventPoliceCountAssignments(
+        API_Decision.Only_Failure, selectedEventId.value);
+  }
 
   void loadDesignations() async {
     designations.value =

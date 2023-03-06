@@ -1,5 +1,6 @@
 import 'package:e_bandobas/app/Config/routes/app_pages.dart';
 import 'package:e_bandobas/app/modules/counter/controllers/counter_controller.dart';
+import 'package:e_bandobas/app/resource/card/PoliceCardV2.dart';
 import 'package:e_bandobas/app/resource/drawer/navigation_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,7 +17,10 @@ class CounterView extends GetView<CounterController> {
         centerTitle: true,
       ),
       drawer: const Navigation_Drawer(),
-      body: Obx(() =>
+      body:ListView(children: [
+        Obx(() => controller.eventAssignmentCounts.value  == null ? const CircularProgressIndicator.adaptive() :
+         PoliceCardV2(eventAssignments: controller.eventAssignmentCounts.value!)),
+        Obx(() =>
       (controller.designations.value == null ||
           controller.events.value == null || controller.points.value == null)
           ? Column(
@@ -24,7 +28,7 @@ class CounterView extends GetView<CounterController> {
         children: const [
           CircularProgressIndicator.adaptive(),
         ],
-      ) : eventPoliceAssementWidget()),
+      ) : eventPoliceAssementWidget())],),
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(

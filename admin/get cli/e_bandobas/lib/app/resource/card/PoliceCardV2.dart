@@ -28,19 +28,7 @@ class PoliceCardV2 extends StatelessWidget {
       return 850;
     }
   }
-
-  PoliceCardV2({required this.eventAssignments});
-  final List<String> entries = <String>[
-    'SP',
-    'DYSP',
-    'PI',
-    'PSI',
-    'MEN POLICE',
-    'WOMAN POLICE',
-    'HG',
-    'GRD',
-    'SRP'
-  ];
+  PoliceCardV2({super.key, required this.eventAssignments});
   List<EventPoliceCountAssignedTotalRequestedModel> eventAssignments;
 
   @override
@@ -50,8 +38,8 @@ class PoliceCardV2 extends StatelessWidget {
       color: const Color.fromARGB(128, 73, 89, 110),
       child: ResponsiveGridList(
           horizontalGridMargin: 0,
-          verticalGridMargin: 10,
-          minItemWidth: 148,
+          verticalGridMargin: 6,
+          minItemWidth: 124,
           children: generateListOfAssignmentBox()),
     );
   }
@@ -59,15 +47,12 @@ class PoliceCardV2 extends StatelessWidget {
   List<Widget> generateListOfAssignmentBox() {
     return List.generate(
         eventAssignments.length,
-        // shrinkWrap: true,
-        // physics: const AlwaysScrollableScrollPhysics(),
-        // scrollDirection: Axis.horizontal,
         (index) => assignmentBoxWidget(index));
   }
 
   Widget assignmentBoxWidget(int index) {
     return SizedBox(
-      height: 180,
+      height: 150,
       child: Card(
         shape: RoundedRectangleBorder(
           side: const BorderSide(
@@ -81,13 +66,13 @@ class PoliceCardV2 extends StatelessWidget {
           children: [
             Container(
               padding: const EdgeInsets.all(2),
-              margin: const EdgeInsets.only(top: 80),
+              margin: const EdgeInsets.only(top: 65),
               child: Center(
                   child: Text(eventAssignments[index].designationName ?? "",
                       style: const TextStyle(fontSize: 16))),
             ),
             Container(
-              height: 65,
+              height: 45,
               padding: const EdgeInsets.only(top: 5),
               alignment: Alignment.bottomCenter,
               child: AnimatedTextKit(
