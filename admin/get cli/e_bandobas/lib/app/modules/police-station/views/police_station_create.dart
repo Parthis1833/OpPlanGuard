@@ -13,12 +13,10 @@ class PoliceStationCreateView extends GetView<PoliceStationCreateController> {
         title: const Text('PoliceStationCreateView'),
         centerTitle: true,
       ),
-      body: const Center(
-        child: Text(
-          'PoliceStationCreateView is working',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
+      body: Center(
+          child: ElevatedButton(
+              onPressed: controller.pickAndUploadFile,
+              child: Text("Pick & upload police station"))),
     );
   }
 }
