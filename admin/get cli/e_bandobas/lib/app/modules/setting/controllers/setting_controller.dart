@@ -12,6 +12,7 @@ class SettingController extends GetxController {
   final events = Rxn<List<Event>>();
   final passwordHistories = Rxn<PasswordHistoriesModel>();
 
+
   @override
   void onInit() {
     super.onInit();
