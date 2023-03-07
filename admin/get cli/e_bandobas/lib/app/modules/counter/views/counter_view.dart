@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-
 class CounterView extends GetView<CounterController> {
   const CounterView({Key? key}) : super(key: key);
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -17,18 +17,15 @@ class CounterView extends GetView<CounterController> {
         centerTitle: true,
       ),
       drawer: const Navigation_Drawer(),
-      body:ListView(children: [
-        Obx(() => controller.eventAssignmentCounts.value  == null ? const CircularProgressIndicator.adaptive() :
-         PoliceCardV2(eventAssignments: controller.eventAssignmentCounts.value!)),
-        Obx(() =>
+      body:Obx(() =>
       (controller.designations.value == null ||
-          controller.events.value == null || controller.points.value == null)
-          ? Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          CircularProgressIndicator.adaptive(),
-        ],
-      ) : eventPoliceAssementWidget())],),
+        controller.events.value == null || controller.points.value == null)
+        ? Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: const [
+        CircularProgressIndicator.adaptive(),
+      ],
+      ) : eventPoliceAssementWidget()),
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
