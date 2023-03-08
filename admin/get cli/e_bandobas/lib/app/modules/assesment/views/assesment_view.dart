@@ -1,7 +1,7 @@
 import 'package:e_bandobas/app/Config/routes/app_pages.dart';
-import 'package:e_bandobas/app/resource/card/PoliceCard.dart';
 import 'package:e_bandobas/app/resource/drawer/navigation_drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import '../../../resource/card/PoliceCardV2.dart';
 import '../controllers/assesment_controller.dart';
@@ -18,7 +18,13 @@ class AssesmentView extends GetView<AssesmentController> {
         actions: [
           Obx(() => controller.events.value == null
               ? const CircularProgressIndicator.adaptive()
-              : eventSelectionDropDownWidget())
+              : eventSelectionDropDownWidget()),
+          ElevatedButton(
+            onPressed: () {
+              SystemNavigator.pop();
+            },
+            child: const Text('Exit'),
+          ),
         ],
       ),
       body: ListView(
