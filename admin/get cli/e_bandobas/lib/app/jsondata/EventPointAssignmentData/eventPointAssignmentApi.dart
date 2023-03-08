@@ -61,7 +61,7 @@ class EventPointAssignmentModelApi {
         .errorSnackBar();
   }
 
-  static Future<EventAssignmentModel> obtainEventWiseAssignments(
+  static Future<EventAssignmentModel?> obtainEventWiseAssignments(
       API_Decision showStatus, int eventId) async {
     EventAssignmentModel model;
     Map modelApiData = {
@@ -91,6 +91,7 @@ class EventPointAssignmentModelApi {
         return model;
       } // api error to be displayed
       else {
+        print("why not");
         if (showStatus == API_Decision.Only_Failure ||
             showStatus == API_Decision.BOTH) {
           Get.snackbar(
@@ -102,6 +103,7 @@ class EventPointAssignmentModelApi {
             backgroundColor: Colors.red,
           );
         }
+        return null;
       }
     }
     throw DataNotFoundException(
@@ -113,7 +115,8 @@ class EventPointAssignmentModelApi {
     final response = await http.get(Uri.parse(url));
     final bytes = response.bodyBytes;
     if (bytes.isEmpty) {
-      throw DataNotFoundException("Downloaded file bytes not found from api ").errorSnackBar();
+      throw DataNotFoundException("Downloaded file bytes not found from api ")
+          .errorSnackBar();
     }
     return bytes;
   }

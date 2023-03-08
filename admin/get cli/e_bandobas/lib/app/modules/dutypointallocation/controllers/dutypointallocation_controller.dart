@@ -3,6 +3,7 @@ import 'package:e_bandobas/app/jsondata/EventData/Event.dart';
 import 'package:e_bandobas/app/jsondata/EventData/EventApi.dart';
 import 'package:e_bandobas/app/jsondata/EventPointAssignmentData/eventPointAssignmentApi.dart';
 import 'package:e_bandobas/constants/enums.dart';
+import 'package:e_bandobas/utils/text_utils.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import '../../../jsondata/EventPointAssignmentData/eventAssignmentModel.dart';
@@ -76,10 +77,12 @@ class DutypointallocationController extends GetxController {
       //     });
       //   }
       // });
-      final file = File(eventAssignmentModel.value!.fileName!);
-      final dir = await getApplicationDocumentsDirectory();
-      file.copy(dir.path);
-      OpenFile.open(eventAssignmentModel.value!.fileName!);
+      // final file = File(eventAssignmentModel.value!.fileName!);
+      // final dir = await getApplicationDocumentsDirectory();
+      // file.copy(dir.path);
+      if (TextUtils.notBlankNotEmpty(eventAssignmentModel.value!.fileName)) {
+        OpenFile.open(eventAssignmentModel.value!.fileName!);
+      }
       // downloadFile(eventAssignmentModel.value!.fileName!);
       // processFile(eventAssignmentModel.value!.fileName!);
 
