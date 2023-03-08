@@ -53,7 +53,8 @@ class AssignedPoliceAddView extends GetView<AssignedPoliceAddController> {
                     controller.chooseStartDate();
                   },
                   child: const Text("Choose a start date"),
-                )
+                ),
+                Text("Event Start Date" + controller.events.value!.where((event) => event.id == controller.selectedEventId.value).first.eventStartDate!),
               ],
             )),
         Obx(() => Column(
@@ -69,7 +70,9 @@ class AssignedPoliceAddView extends GetView<AssignedPoliceAddController> {
                     controller.chooseEndDate();
                   },
                   child: const Text("Choose a End date"),
-                )
+                ),
+              Text("Event End Date" + controller.events.value!.where((event) => event.id == controller.selectedEventId.value).first.eventEndDate!),
+
               ],
             ))
       ],
