@@ -17,16 +17,18 @@ class SettingController extends GetxController {
 
   @override
   void onInit() {
+    print("working ");
     super.onInit();
     loadEvents();
     loadPasswordHistories();
     print("something 2");
-
   }
 
   @override
   void onReady() {
     super.onReady();
+    print("working 2");
+
   }
 
   @override

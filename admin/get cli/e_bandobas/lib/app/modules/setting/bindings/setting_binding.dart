@@ -6,7 +6,7 @@ class SettingBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<SettingController>(
-      () => SettingController(),
+      () => SettingController(), fenix: true
     );
   }
 }

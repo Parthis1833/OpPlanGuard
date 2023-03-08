@@ -1,5 +1,6 @@
 import 'package:e_bandobas/app/Config/routes/app_pages.dart';
 import 'package:e_bandobas/app/resource/drawer/navigation_drawer.dart';
+import 'package:e_bandobas/app/route_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -29,10 +30,10 @@ class AssesmentView extends GetView<AssesmentController> {
       ),
       body: ListView(
         children: [
-          Obx(()=> controller.eventAssignmentCounts.value == null
-          ? const CircularProgressIndicator.adaptive() 
-          : PoliceCardV2(eventAssignments: controller.eventAssignmentCounts.value!)
-          )
+          Obx(() => controller.eventAssignmentCounts.value == null
+              ? const CircularProgressIndicator.adaptive()
+              : PoliceCardV2(
+                  eventAssignments: controller.eventAssignmentCounts.value!))
         ],
       ),
       floatingActionButton: assementButton(),
@@ -90,7 +91,7 @@ class AssesmentView extends GetView<AssesmentController> {
                 heroTag: const Text("Events"),
                 backgroundColor: Colors.cyanAccent,
                 onPressed: () {
-                  Get.toNamed(PATHS.EVENT_SHOW);
+                  CustomRouteManager.EVENT_SHOW();
                 },
                 child: const Icon(
                   Icons.add_circle_outline,
@@ -111,7 +112,7 @@ class AssesmentView extends GetView<AssesmentController> {
                 heroTag: const Text("Event Assement"),
                 backgroundColor: const Color.fromARGB(100, 28, 54, 105),
                 onPressed: () {
-                  Get.toNamed(PATHS.ASSESMENT_CREATE);
+                  CustomRouteManager.ASSESMENT_CREATE();
                 },
                 child: const Icon(
                   Icons.add_circle_outline,
@@ -132,7 +133,7 @@ class AssesmentView extends GetView<AssesmentController> {
                 heroTag: const Text("Add Police"),
                 backgroundColor: const Color.fromARGB(100, 28, 54, 105),
                 onPressed: () {
-                  Get.toNamed(Routes.POLICE_CREATE);
+                  CustomRouteManager.POLICE_CREATE();
                 },
                 child: const Icon(
                   Icons.add_circle_outline,
@@ -153,7 +154,7 @@ class AssesmentView extends GetView<AssesmentController> {
                 heroTag: const Text("Police Station"),
                 backgroundColor: const Color.fromARGB(100, 28, 54, 105),
                 onPressed: () {
-                  Get.toNamed(Routes.POLICE_STATION);
+                  CustomRouteManager.POLICE_STATION();
                 },
                 child: const Icon(
                   Icons.add_circle_outline,

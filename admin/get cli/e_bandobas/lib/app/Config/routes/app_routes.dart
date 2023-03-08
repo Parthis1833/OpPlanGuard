@@ -13,18 +13,24 @@ abstract class Routes {
   static const ROADBANDOBAST = PATHS.ROADBANDOBAST;
   static const SETTING = PATHS.SETTING;
   static const ASSESMENT_CREATE = PATHS.ASSESMENT_CREATE;
-  static const POINT_POLICE_ASSEMENT = PATHS.POINT_POLICE_ASSESMENET;
+  static const SHOW_POINTS_ASSESMENT = PATHS.SHOW_POINTS_ASSESMENT;
+
   static const EVENT_SHOW = PATHS.EVENT_SHOW;
+  static const EVENT_CREATE = PATHS.EVENT_CREATE;
+  static const EVENT_UPDATE = PATHS.EVENT_UPDATE;
+  
+
   static const ASSIGNED_POLICE = PATHS.ASSIGNED_POLICE;
   static const ASSIGNED_POLICE_ADD = PATHS.ASSIGNED_POLICE_ADD;
   static const ASSIGNED_POLICE_UPDATE = PATHS.ASSIGNED_POLICE_UPDATE;
   static const ASSIGNED_POLICE_DELETE = PATHS.ASSIGNED_POLICE_DELETE;
   static const ASSIGNED_POLICE_VIEW_BY_EVENT =
       PATHS.ASSIGNED_POLICE_VIEW_BY_EVENT;
-  static const PASSWORD_MANAGER = PATHS.PASSWORD_MANAGER;
-  static const POLICE_STATION = '/police-station';
-  static const POLICE_STATION_CREATE = '/police-station-create';
-  static const POLICE_CREATE = '/police-create';
+  
+  // static const PASSWORD_MANAGER = PATHS.PASSWORD_MANAGER;
+  static const POLICE_STATION = PATHS.POLICE_STATION;
+  static const POLICE_STATION_CREATE = PATHS.POLICE_STATION_CREATE;
+  static const POLICE_CREATE = PATHS.POLICE_CREATE;
 }
 
 class PATHS {
@@ -39,7 +45,7 @@ class PATHS {
   static const ROADBANDOBAST = '/roadbandobast';
   static const SETTING = '/setting';
   static const ASSESMENT_CREATE = '/assesment-create';
-  static const POINT_POLICE_ASSESMENET = '/point-police-assesment';
+  
   static const SHOW_POINTS_ASSESMENT = "/show-point-assesment";
   static const EVENT_SHOW = "/event";
   static const EVENT_CREATE = "/event-create";
@@ -51,5 +57,8 @@ class PATHS {
   static const ASSIGNED_POLICE_DELETE = "/assigned-police-delete";
   static const ASSIGNED_POLICE_VIEW_BY_EVENT = '/assigned-police-view-by-event';
 
-  static const PASSWORD_MANAGER = '/password-manager';
+  // static const PASSWORD_MANAGER = '/password-manager';
+  static const POLICE_STATION = '/police-station';
+  static const POLICE_STATION_CREATE = '/police-station-create';
+  static const POLICE_CREATE = '/police-create';
 }

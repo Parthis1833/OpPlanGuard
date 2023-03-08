@@ -4,6 +4,7 @@ import 'package:e_bandobas/app/Config/routes/app_pages.dart';
 import 'package:e_bandobas/app/Widgets/Buttons/assessmentbutton.dart';
 import 'package:e_bandobas/app/jsondata/EventData/Event.dart';
 import 'package:e_bandobas/app/resource/card/PoliceCard.dart';
+import 'package:e_bandobas/app/route_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
@@ -33,10 +34,9 @@ class EventView extends GetView<EventController> {
         title: const Text('EventView'),
         centerTitle: true,
       ),
-      body: Obx(() =>
-          (controller.events.value == null)
-              ? const CircularProgressIndicator()
-              : Center(child: eventsPageData())),
+      body: Obx(() => (controller.events.value == null)
+          ? const CircularProgressIndicator()
+          : Center(child: eventsPageData())),
       floatingActionButton: AssesmentButton(),
     );
   }
@@ -52,7 +52,7 @@ class EventView extends GetView<EventController> {
               heroTag: const Text("Create Event"),
               backgroundColor: const Color.fromARGB(100, 28, 54, 105),
               onPressed: () {
-                Get.toNamed(PATHS.EVENT_CREATE);
+                CustomRouteManager.EVENT_CREATE();
               },
               child: const Icon(
                 Icons.add_circle_outline,

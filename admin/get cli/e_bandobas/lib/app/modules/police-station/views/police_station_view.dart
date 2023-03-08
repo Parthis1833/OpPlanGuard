@@ -1,4 +1,5 @@
 import 'package:e_bandobas/app/Config/routes/app_pages.dart';
+import 'package:e_bandobas/app/route_manager.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -20,14 +21,14 @@ class PoliceStationView extends GetView<PoliceStationController> {
           actions: [
             ElevatedButton(
                 onPressed: () {
-                  Get.toNamed(Routes.POLICE_STATION_CREATE);
+                  CustomRouteManager.POLICE_STATION_CREATE();
                 },
                 child: Text("+ add police station")),
           ],
         ),
-        body: Obx(() => controller.policeStations.value == null ?
-          const CircularProgressIndicator.adaptive()
-          : policeStationListWidget()));
+        body: Obx(() => controller.policeStations.value == null
+            ? const CircularProgressIndicator.adaptive()
+            : policeStationListWidget()));
   }
 
   Widget policeStationListWidget() {
@@ -107,7 +108,6 @@ class PoliceStationView extends GetView<PoliceStationController> {
                       fontStyle: FontStyle.italic),
                   overflow: TextOverflow.clip,
                   softWrap: true))),
-
       GridColumn(
           allowFiltering: false,
           columnName: 'City/District',

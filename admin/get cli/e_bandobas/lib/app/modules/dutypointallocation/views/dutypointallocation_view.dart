@@ -1,6 +1,7 @@
 import 'package:e_bandobas/app/Config/routes/app_pages.dart';
 import 'package:e_bandobas/app/resource/card/PoliceCard.dart';
 import 'package:e_bandobas/app/resource/drawer/navigation_drawer.dart';
+import 'package:e_bandobas/app/route_manager.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -18,12 +19,13 @@ class DutypointallocationView extends GetView<DutypointallocationController> {
         centerTitle: true,
       ),
       body: Obx(() => (controller.events.value == null)
-              ? Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              CircularProgressIndicator.adaptive( strokeWidth: 5.0),
-            ],
-          ) : assesmentDataWidget()),
+          ? Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                CircularProgressIndicator.adaptive(strokeWidth: 5.0),
+              ],
+            )
+          : assesmentDataWidget()),
       floatingActionButton: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -33,7 +35,7 @@ class DutypointallocationView extends GetView<DutypointallocationController> {
                 heroTag: const Text("Assigned Police"),
                 backgroundColor: Colors.lightGreen,
                 onPressed: () {
-                  Get.toNamed(PATHS.ASSIGNED_POLICE);
+                  CustomRouteManager.ASSIGNED_POLICE();
                 },
                 child: const Icon(
                   Icons.add_circle_outline,
@@ -46,6 +48,7 @@ class DutypointallocationView extends GetView<DutypointallocationController> {
           )),
     );
   }
+
   Widget assesmentDataWidget() {
     return ListView(children: [
       Row(
@@ -65,6 +68,7 @@ class DutypointallocationView extends GetView<DutypointallocationController> {
         ? const CircularProgressIndicator.adaptive()
         : eventAssignments());
   }
+
   Iterable<E> mapIndexed<E, T>(
       Iterable<T> items, E Function(int index, T item) f) sync* {
     var index1 = 0;
@@ -74,14 +78,15 @@ class DutypointallocationView extends GetView<DutypointallocationController> {
       index1 = index1 + 1;
     }
   }
+
   Widget eventAssignments() {
     return ListView.separated(
         shrinkWrap: true,
         physics: const ClampingScrollPhysics(),
         itemBuilder: (_, index) => pointLevelAssignment(index),
         separatorBuilder: (_, index) => const Divider(),
-        itemCount: controller
-            .eventAssignmentModel.value!.pointAssignments!.length);
+        itemCount:
+            controller.eventAssignmentModel.value!.pointAssignments!.length);
   }
 
   Widget pointLevelAssignment(int index) {
@@ -139,7 +144,7 @@ class DutypointallocationView extends GetView<DutypointallocationController> {
         ),
         DataTable(
           columns: const [
-            DataColumn(label: Text ("Index")),
+            DataColumn(label: Text("Index")),
             DataColumn(label: Text("Designation")),
             DataColumn(label: Text("Buckle Number")),
             DataColumn(label: Text("Police Name")),
@@ -151,71 +156,73 @@ class DutypointallocationView extends GetView<DutypointallocationController> {
             DataColumn(label: Text("Duty Starting Date")),
             DataColumn(label: Text("Duty Ending Date")),
           ],
-          rows: controller.eventAssignmentModel.value?.pointAssignments![index].assignedPoliceList!
-              .asMap()
-              .map((index4, police) => MapEntry(
-              index4,
-              DataRow(cells: [
-                DataCell(Text((index4+1).toString())),
-                DataCell(Text(police.designation ?? '')),
-                DataCell(Text(police.buckleNumber ?? '')),
-                DataCell(Text(police.policeName ?? '')),
-                DataCell(Text(police.district ?? '')),
-                DataCell(Text(police.policeStationName ?? '')),
-                DataCell(Text(police.age ?? '')),
-                DataCell(Text(police.gender ?? '')),
-                DataCell(Text(police.number ?? '')),
-                DataCell(Text(police.dutyStartDate ?? '')),
-                DataCell(Text(police.dutyEndDate ?? '')),
-              ])
-          ))
-              .values
-              .toList() ?? const [],
+          rows: controller.eventAssignmentModel.value?.pointAssignments![index]
+                  .assignedPoliceList!
+                  .asMap()
+                  .map((index4, police) => MapEntry(
+                      index4,
+                      DataRow(cells: [
+                        DataCell(Text((index4 + 1).toString())),
+                        DataCell(Text(police.designation ?? '')),
+                        DataCell(Text(police.buckleNumber ?? '')),
+                        DataCell(Text(police.policeName ?? '')),
+                        DataCell(Text(police.district ?? '')),
+                        DataCell(Text(police.policeStationName ?? '')),
+                        DataCell(Text(police.age ?? '')),
+                        DataCell(Text(police.gender ?? '')),
+                        DataCell(Text(police.number ?? '')),
+                        DataCell(Text(police.dutyStartDate ?? '')),
+                        DataCell(Text(police.dutyEndDate ?? '')),
+                      ])))
+                  .values
+                  .toList() ??
+              const [],
         ),
       ],
     );
   }
 
-
   Widget eventSelectionDropDownWidget() {
-    return  Container(
+    return Container(
       padding: const EdgeInsets.all(8),
-      child: Row(
-          children: [
-            Container(
-              margin: const EdgeInsets.only(left: 160.0),
-              padding: const EdgeInsets.only(bottom: 2.0),
-              height: 55,
-              width: 250,
-              child: const Text(
-                'સોંપણીનું નામ  :-',
-                style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black38,
-                    fontSize: 38.0),
-              ),
-            ),
-            Container(
-              height: 55,
-              width: 300,
-              margin: const EdgeInsets.all(10),
-              child: DropdownButton(
-                  value: controller.selectedEventId.value,
-                  items: controller.events.value!.map((event) {
-                    return DropdownMenuItem(
-                      alignment: Alignment.center,
-                      value: event.id, child: Text(event.eventName.toString() ,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.w700,
-                          color: Colors.black38,
-                          fontSize: 25.0),),
-                    );
-                  }).toList(),
-                  onChanged: (value) {
-                    controller.changeSelectedEvent(value);
-                  }),
-            ),
-          ]),
+      child: Row(children: [
+        Container(
+          margin: const EdgeInsets.only(left: 160.0),
+          padding: const EdgeInsets.only(bottom: 2.0),
+          height: 55,
+          width: 250,
+          child: const Text(
+            'સોંપણીનું નામ  :-',
+            style: TextStyle(
+                fontWeight: FontWeight.w600,
+                color: Colors.black38,
+                fontSize: 38.0),
+          ),
+        ),
+        Container(
+          height: 55,
+          width: 300,
+          margin: const EdgeInsets.all(10),
+          child: DropdownButton(
+              value: controller.selectedEventId.value,
+              items: controller.events.value!.map((event) {
+                return DropdownMenuItem(
+                  alignment: Alignment.center,
+                  value: event.id,
+                  child: Text(
+                    event.eventName.toString(),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black38,
+                        fontSize: 25.0),
+                  ),
+                );
+              }).toList(),
+              onChanged: (value) {
+                controller.changeSelectedEvent(value);
+              }),
+        ),
+      ]),
     );
   }
 
@@ -225,11 +232,11 @@ class DutypointallocationView extends GetView<DutypointallocationController> {
         child: const Text("Show Assignments"));
   }
 
-  Widget downloadExcelWidgetButton(){
+  Widget downloadExcelWidgetButton() {
     return Obx(() => controller.eventAssignmentModel.value == null
         ? const SizedBox()
         : ElevatedButton(
-        onPressed: controller.downloadExcel,
-        child: const Text("View in Excel")));
+            onPressed: controller.downloadExcel,
+            child: const Text("View in Excel")));
   }
 }

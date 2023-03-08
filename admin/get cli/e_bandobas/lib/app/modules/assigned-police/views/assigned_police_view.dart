@@ -1,3 +1,4 @@
+import 'package:e_bandobas/app/route_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../Config/routes/app_pages.dart';
@@ -48,7 +49,7 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
                     }),
                   ),
                   onPressed: () {
-                    Get.toNamed(PATHS.ASSIGNED_POLICE_ADD);
+                    CustomRouteManager.ASSIGNED_POLICE_ADD();
                   },
                   child: Row(
                     children: const [
@@ -75,12 +76,16 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
             eventSelectionDropDownWidget(),
             pointSelectionDropDownWidget(),
             showAssignmentButton(),
-
           ],
         ),
-        Obx(() => (controller.eventPointAssignmentModel.value == null || controller.eventPointAssignmentModel.value!.assignmentCount == 0)
+        Obx(() => (controller.eventPointAssignmentModel.value == null ||
+                controller.eventPointAssignmentModel.value!.assignmentCount ==
+                    0)
             ? Container()
-            : (controller.eventPointAssignmentModel.value == null || controller.eventPointAssignmentModel.value!.assignmentCount == 0)
+            : (controller.eventPointAssignmentModel.value == null ||
+                    controller
+                            .eventPointAssignmentModel.value!.assignmentCount ==
+                        0)
                 ? Container()
                 : DataTable(
                     columns: const [
@@ -97,7 +102,9 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
                       DataColumn(label: Text('Duty End Date')),
                     ],
                     // controller.eventAssignmentModel.value?.pointAssignments![index].assignedPoliceList!
-                    rows: controller.eventPointAssignmentModel.value ?.assignedPoliceList!.asMap()
+                    rows: controller.eventPointAssignmentModel.value
+                            ?.assignedPoliceList!
+                            .asMap()
                             .map((index4, item) => MapEntry(
                                 index4,
                                 DataRow(cells: [

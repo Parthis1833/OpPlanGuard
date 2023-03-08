@@ -1,4 +1,5 @@
 import 'package:e_bandobas/app/modules/assigned-police/controllers/assiged_police_view_by_event_controller.dart';
+import 'package:e_bandobas/app/route_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../Config/routes/app_pages.dart';
@@ -35,7 +36,7 @@ class AssignedPoliceByEventView
                 }),
               ),
               onPressed: () {
-                Get.toNamed(PATHS.ASSIGNED_POLICE_ADD);
+                CustomRouteManager.ASSIGNED_POLICE_ADD();
               },
               child: Row(
                 children: const [
