@@ -1,5 +1,6 @@
 import 'package:e_bandobas/app/Exceptions/ValidationException.dart';
 import 'package:e_bandobas/app/jsondata/EventData/Event.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../constants/enums.dart';
@@ -9,15 +10,18 @@ import '../../../jsondata/Password-Manager/password_manager_api.dart';
 
 class SettingController extends GetxController {
   late final selectedEventId = 0.obs;
+  final darkTheme = false.obs;
+
   final events = Rxn<List<Event>>();
   final passwordHistories = Rxn<PasswordHistoriesModel>();
-
 
   @override
   void onInit() {
     super.onInit();
     loadEvents();
     loadPasswordHistories();
+    print("something 2");
+
   }
 
   @override
@@ -55,7 +59,14 @@ class SettingController extends GetxController {
 
   void loadPasswordHistories() async {
     passwordHistories.value =
-    await PassworManegerAPI.getPasswordHistories(API_Decision.BOTH);
+        await PassworManegerAPI.getPasswordHistories(API_Decision.BOTH);
+    update();
+  }
+
+  void toggleTheme() {
+    print(darkTheme.value);
+    Get.changeTheme(!darkTheme.value ? ThemeData.light() : ThemeData.dark());
+    darkTheme.value = !darkTheme.value;
     update();
   }
 }

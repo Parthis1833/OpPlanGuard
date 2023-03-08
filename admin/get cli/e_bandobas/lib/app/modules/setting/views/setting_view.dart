@@ -14,6 +14,9 @@ class SettingView extends GetView<SettingController> {
       appBar: AppBar(
         title: const Text('SettingView'),
         centerTitle: true,
+        actions: [
+          ElevatedButton.icon(onPressed: controller.toggleTheme, icon: controller.darkTheme.value ? const Icon(Icons.light_mode) : const Icon(Icons.dark_mode), label: const Text("toggle theme")),
+        ],
       ),
       body:  Obx(() => (controller.events.value == null ||
           controller.passwordHistories.value == null)

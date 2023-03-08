@@ -7,6 +7,9 @@ void main() {
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "E-Bandobas",
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      themeMode: ThemeMode.light,
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
     ),
