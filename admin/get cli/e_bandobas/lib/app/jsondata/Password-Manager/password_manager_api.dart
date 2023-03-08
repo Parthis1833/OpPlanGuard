@@ -35,9 +35,9 @@ class PassworManegerAPI {
             backgroundColor: Colors.green,
           );
         }
-        throw SuccessException(
-            "Password : " + responseJson['response']['message']).successSnackBar();
-        // return responseJson['response']['message'];
+        // throw SuccessException(
+        //     "Password : " + responseJson['response']['message']).successSnackBar();
+        return responseJson['response']['message'];
       } // api error to be displayed
       else {
         if (showStatus == API_Decision.Only_Failure) {

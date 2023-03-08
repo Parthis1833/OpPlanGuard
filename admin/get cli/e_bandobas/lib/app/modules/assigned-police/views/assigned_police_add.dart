@@ -71,7 +71,7 @@ class AssignedPoliceAddView extends GetView<AssignedPoliceAddController> {
                   },
                   child: const Text("Choose a End date"),
                 ),
-              Text("Event End Date" + controller.events.value!.where((event) => event.id == controller.selectedEventId.value).first.eventEndDate!),
+              Text("Event End Date" + controller.events.value!.where((event) => event.id == controller.selectedEventId.value).first.eventEndDate!), 
 
               ],
             ))

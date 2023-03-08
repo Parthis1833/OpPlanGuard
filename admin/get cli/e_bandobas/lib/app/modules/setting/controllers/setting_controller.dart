@@ -1,5 +1,7 @@
 import 'package:e_bandobas/app/Exceptions/ValidationException.dart';
 import 'package:e_bandobas/app/jsondata/EventData/Event.dart';
+import 'package:e_bandobas/app/resource/poppage/password_popup.dart';
+import 'package:e_bandobas/utils/text_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,7 +28,6 @@ class SettingController extends GetxController {
   void onReady() {
     super.onReady();
     print("working 2");
-
   }
 
   @override
@@ -49,8 +50,17 @@ class SettingController extends GetxController {
 
   void createPassword() async {
     if (selectedEventId.value != 0) {
-      await PassworManegerAPI.createPasswordFromApi(
-          API_Decision.BOTH, selectedEventId.value);
+      String password = await PassworManegerAPI.createPasswordFromApi(
+          API_Decision.Only_Failure, selectedEventId.value);
+      if (TextUtils.notBlankNotEmpty(password)) {
+        passwordPopup(
+            events.value!
+                    .where((element) => element.id == selectedEventId.value)
+                    .first
+                    .eventName ??
+                "",
+            password);
+      }
     } else {
       throw ValidationException(cause: "Some Fields are required")
           .validationSnackBar;
