@@ -16,6 +16,8 @@ import '../../modules/assigned-police/views/assigned_police_update.dart';
 import '../../modules/assigned-police/views/assigned_police_view.dart';
 import '../../modules/counter/bindings/counter_binding.dart';
 import '../../modules/counter/views/counter_view.dart';
+import '../../modules/designation-view/bindings/designation_view_binding.dart';
+import '../../modules/designation-view/views/designation_view_view.dart';
 import '../../modules/dutypoint/bindings/dutypoint_binding.dart';
 import '../../modules/dutypoint/views/dutypoint_view.dart';
 import '../../modules/dutypointallocation/bindings/dutypointallocation_binding.dart';
@@ -168,6 +170,11 @@ class AppPages {
       name: Routes.POLICE_CREATE,
       page: () => PoliceCreateView(),
       binding: PoliceCreateBinding(),
+    ),
+    GetPage(
+      name: Routes.DESIGNATION_VIEW,
+      page: () => const DesignationViewView(),
+      binding: DesignationViewBinding(),
     ),
   ];
 }

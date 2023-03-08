@@ -88,6 +88,27 @@ class AssesmentView extends GetView<AssesmentController> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               FloatingActionButton(
+                heroTag: const Text("Designations"),
+                backgroundColor: Colors.cyanAccent,
+                onPressed: () {
+                  CustomRouteManager.DESIGNATION_VIEW();
+                },
+                child: const Icon(
+                  Icons.add_circle_outline,
+                  color: Colors.deepPurple,
+                  size: 56.4,
+                ),
+              ),
+              const Text("Designations")
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              FloatingActionButton(
                 heroTag: const Text("Events"),
                 backgroundColor: Colors.cyanAccent,
                 onPressed: () {
