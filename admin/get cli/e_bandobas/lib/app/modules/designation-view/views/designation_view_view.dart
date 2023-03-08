@@ -80,7 +80,7 @@ class DesignationViewView extends GetView<DesignationViewController> {
                   flex: 3,
                   child: ListTile(
                     leading: CircleAvatar(
-                      child: Text(controller.designations.value![index].name![0])
+                      child: Text(controller.designations.value![index].name![0]ksdn)
                     ),
                     title: Text(
                       controller.designations.value![index].name ?? "",
