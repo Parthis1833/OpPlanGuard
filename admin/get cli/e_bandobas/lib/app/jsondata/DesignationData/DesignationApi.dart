@@ -11,7 +11,7 @@ import 'dart:convert';
 class DesignationApi {
   static Future<List<Designation>> obtainDesignations(
       API_Decision showStatus) async {
-    List<Designation> Designations = <Designation>[];
+    List<Designation> designations = <Designation>[];
     final response = await http.get(
       Uri.parse(APIConstants.DESIGNATION_URL),
       headers: <String, String>{
@@ -26,7 +26,7 @@ class DesignationApi {
           Get.snackbar(
             "Success",
             "Designation Obtained successfully",
-            icon: Icon(Icons.add_task_sharp, color: Colors.white),
+            icon: const Icon(Icons.add_task_sharp, color: Colors.white),
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.green,
           );
@@ -34,7 +34,7 @@ class DesignationApi {
         for (int i = 0; i < responseJson['content'].length; i++) {
           Designation designation =
               Designation.fromJson(responseJson['content'][i]);
-          Designations.add(designation);
+          designations.add(designation);
         }
       } // api error to be displayed
       else {
@@ -42,13 +42,13 @@ class DesignationApi {
           Get.snackbar(
             "Failed",
             responseJson['response']['message'],
-            icon: Icon(Icons.cancel_presentation_sharp, color: Colors.white),
+            icon: const Icon(Icons.cancel_presentation_sharp, color: Colors.white),
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.red,
           );
         }
       }
     }
-    return Designations;
+    return designations;
   }
 }

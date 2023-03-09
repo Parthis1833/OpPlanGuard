@@ -5,6 +5,7 @@ import 'package:e_bandobas/app/modules/assigned-police/controllers/assigned_poli
 import 'package:e_bandobas/app/modules/assigned-police/controllers/assigned_police_delete_controller.dart';
 import 'package:e_bandobas/app/modules/assigned-police/controllers/assigned_police_update_controller.dart';
 import 'package:e_bandobas/app/modules/counter/controllers/counter_controller.dart';
+import 'package:e_bandobas/app/modules/designation-view/controllers/designation_view_controller.dart';
 import 'package:e_bandobas/app/modules/dutypoint/controllers/dutypoint_controller.dart';
 import 'package:e_bandobas/app/modules/dutypointallocation/controllers/dutypointallocation_controller.dart';
 import 'package:e_bandobas/app/modules/event/controllers/event_controller.dart';
@@ -133,5 +134,10 @@ class CustomRouteManager {
   static void SHOW_POINTS_ASSESMENT({arguments}) {
     Get.delete<ShowPointPoliceAssementController>();
     Get.toNamed(Routes.SHOW_POINTS_ASSESMENT, arguments: arguments);
+  }
+
+  static void DESIGNATION_VIEW({arguments}) {
+    Get.delete<DesignationViewController>();
+    Get.toNamed(Routes.DESIGNATION_VIEW, arguments: arguments);
   }
 }
