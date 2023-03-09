@@ -5,8 +5,6 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
-import '../../modules/setting/controllers/setting_controller.dart';
-
 class Navigation_Drawer extends StatelessWidget {
   const Navigation_Drawer({super.key});
   @override
@@ -18,8 +16,7 @@ class Navigation_Drawer extends StatelessWidget {
           buildDrawerItem(
               text: 'એસેસર્સમેન્ટ',
               icon: Icons.app_registration,
-              tileColor:
-                  Get.currentRoute == Routes.ASSESMENT ? Colors.blue : null,
+              tileColor: Get.currentRoute == Routes.ASSESMENT ? Colors.blue : null,
               textIconColor: Get.currentRoute == Routes.ASSESMENT
                   ? Colors.white
                   : Colors.black87,
@@ -48,7 +45,6 @@ class Navigation_Drawer extends StatelessWidget {
               "યાદી",
               style: TextStyle(
                 fontWeight: FontWeight.w500,
-                color: Colors.black87,
                 fontSize: 20.0,
               ),
             ),
@@ -122,7 +118,7 @@ class Navigation_Drawer extends StatelessWidget {
                       Get.currentRoute == Routes.SETTING ? Colors.blue : null,
                   textIconColor: Get.currentRoute == Routes.SETTING
                       ? Colors.white
-                      : Colors.black87,
+                      : Colors.black,
                   onTap: () => navigate(8),
                 ),
               ),
@@ -179,10 +175,8 @@ class Navigation_Drawer extends StatelessWidget {
         visualDensity: const VisualDensity(vertical: -2),
         hoverColor: const Color.fromARGB(79, 126, 126, 190),
         leading: Icon(icon, color: textIconColor),
-        title: Text(
-          text,
-          style: TextStyle(
-            color: textIconColor,
+        title: Text(text,
+          style: const TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w500,
           ),
@@ -195,31 +189,22 @@ class Navigation_Drawer extends StatelessWidget {
 
   navigate(int index) {
     if (index == 0) {
-      // Get.toNamed(Routes.ASSESMENT);
       CustomRouteManager.ASSESMENT();
     } else if (index == 1) {
-      // Get.toNamed(Routes.COUNTER);
       CustomRouteManager.COUNTER();
     } else if (index == 2) {
-      // Get.toNamed(Routes.DUTYPOINT);
       CustomRouteManager.DUTYPOINT();
     } else if (index == 3) {
-      // Get.toNamed(Routes.POINTLIST);
       CustomRouteManager.POINTLIST();
     } else if (index == 4) {
-      // Get.toNamed(Routes.ZONELIST);
       CustomRouteManager.ZONELIST();
     } else if (index == 5) {
-      // Get.toNamed(Routes.DUTYPOINTALLOCATION);
       CustomRouteManager.DUTYPOINTALLOCATION();
     } else if (index == 6) {
-      // Get.toNamed(Routes.OFFICERDATA);
       CustomRouteManager.OFFICERDATA();
     } else if (index == 7) {
-      // Get.toNamed(Routes.ROADBANDOBAST);
       CustomRouteManager.ROADBANDOBAST();
     } else if (index == 8) {
-      // Get.offAndToNamed(Routes.SETTING);
       CustomRouteManager.SETTING();
     }
   }

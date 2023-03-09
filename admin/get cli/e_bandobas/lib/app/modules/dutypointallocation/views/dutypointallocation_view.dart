@@ -24,8 +24,7 @@ class DutypointallocationView extends GetView<DutypointallocationController> {
               children: const [
                 CircularProgressIndicator.adaptive(strokeWidth: 5.0),
               ],
-            )
-          : assesmentDataWidget()),
+            ) : assesmentDataWidget()),
       floatingActionButton: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -72,7 +71,6 @@ class DutypointallocationView extends GetView<DutypointallocationController> {
   Iterable<E> mapIndexed<E, T>(
       Iterable<T> items, E Function(int index, T item) f) sync* {
     var index1 = 0;
-
     for (final item in items) {
       yield f(index1, item);
       index1 = index1 + 1;
@@ -85,8 +83,7 @@ class DutypointallocationView extends GetView<DutypointallocationController> {
         physics: const ClampingScrollPhysics(),
         itemBuilder: (_, index) => pointLevelAssignment(index),
         separatorBuilder: (_, index) => const Divider(),
-        itemCount:
-            controller.eventAssignmentModel.value!.pointAssignments!.length);
+        itemCount: controller.eventAssignmentModel.value!.pointAssignments!.length);
   }
 
   Widget pointLevelAssignment(int index) {
@@ -104,7 +101,6 @@ class DutypointallocationView extends GetView<DutypointallocationController> {
                 style: const TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.normal,
-                  color: Colors.black,
                 ),
               ),
               Text(
@@ -112,7 +108,6 @@ class DutypointallocationView extends GetView<DutypointallocationController> {
                 style: const TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.normal,
-                  color: Colors.black,
                 ),
               ),
               Text(
@@ -120,7 +115,6 @@ class DutypointallocationView extends GetView<DutypointallocationController> {
                 style: const TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.normal,
-                  color: Colors.black,
                 ),
               ),
               Text(
@@ -128,7 +122,6 @@ class DutypointallocationView extends GetView<DutypointallocationController> {
                 style: const TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.normal,
-                  color: Colors.black,
                 ),
               ),
               Text(
@@ -136,7 +129,6 @@ class DutypointallocationView extends GetView<DutypointallocationController> {
                 style: const TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.normal,
-                  color: Colors.black,
                 ),
               ),
             ],
@@ -195,7 +187,6 @@ class DutypointallocationView extends GetView<DutypointallocationController> {
             'સોંપણીનું નામ  :-',
             style: TextStyle(
                 fontWeight: FontWeight.w600,
-                color: Colors.black38,
                 fontSize: 38.0),
           ),
         ),
@@ -213,7 +204,6 @@ class DutypointallocationView extends GetView<DutypointallocationController> {
                     event.eventName.toString(),
                     style: const TextStyle(
                         fontWeight: FontWeight.w700,
-                        color: Colors.black38,
                         fontSize: 25.0),
                   ),
                 );

@@ -14,9 +14,6 @@ class SettingView extends GetView<SettingController> {
       appBar: AppBar(
         title: const Text('SettingView'),
         centerTitle: true,
-        actions: [
-          ElevatedButton.icon(onPressed: controller.toggleTheme, icon: controller.darkTheme.value ? const Icon(Icons.light_mode) : const Icon(Icons.dark_mode), label: const Text("toggle theme")),
-        ],
       ),
       body:  Obx(() => (controller.events.value == null ||
           controller.passwordHistories.value == null)
@@ -27,6 +24,16 @@ class SettingView extends GetView<SettingController> {
   Widget SettingManagerWidget() {
     return ListView(
       children: [
+        SwitchListTile(
+          title: const Text('Toggle Theme'),
+          value: controller.darkTheme.value,
+          onChanged: (value) {
+            controller.toggleTheme();
+          },
+          secondary: controller.darkTheme.value
+              ? const Icon(Icons.light_mode)
+              : const Icon(Icons.dark_mode),
+        ),
         const Text('Password  management :-',style: TextStyle(
           fontSize: 21,
         ),),
@@ -111,15 +118,13 @@ Widget passwordMangement(){
       children: [
         Container(
           margin: const EdgeInsets.only(left: 160.0),
-          padding: const EdgeInsets.only(bottom: 2.0),
           height: 55,
           width: 250,
           child: const Text(
             'સોંપણીનું નામ  :-',
             style: TextStyle(
-                fontWeight: FontWeight.w600,
-                color: Colors.black38,
-                fontSize: 38.0),
+                fontWeight: FontWeight.w100,
+                fontSize: 32.0),
           ),
         ),
         SizedBox(
@@ -138,9 +143,8 @@ Widget passwordMangement(){
                       child: Text(
                         event.eventName.toString(),
                         style: const TextStyle(
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black38,
-                            fontSize: 28.0),
+                            fontWeight: FontWeight.w200,
+                            fontSize: 26.0),
                       ),
                     ));
               }).toList(),
@@ -180,6 +184,4 @@ Widget passwordMangement(){
       ),
     );
   }
-
-
 }

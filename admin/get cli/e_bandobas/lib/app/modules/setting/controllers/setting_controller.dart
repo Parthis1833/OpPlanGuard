@@ -74,7 +74,6 @@ class SettingController extends GetxController {
   }
 
   void toggleTheme() {
-    print(darkTheme.value);
     Get.changeTheme(!darkTheme.value ? ThemeData.light() : ThemeData.dark());
     darkTheme.value = !darkTheme.value;
     update();
