@@ -13,56 +13,56 @@ class DesignationViewView extends GetView<DesignationViewController> {
           title: const Text('DesignationViewView'),
           centerTitle: true,
         ),
-        body: Obx(() => controller.designations.value == null ?
-        const CircularProgressIndicator.adaptive() 
-        : Center(
-            child: ListView(
-          shrinkWrap: true,
-          children: [
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Expanded(
-                  flex: 4,
-                  child: Container(),
-                ),
-                Expanded(
-                  flex: 3,
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      child: Text("J"),
-                    ),
-                    title: Text(
-                      'English',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16.0,
+        body: Obx(() => controller.designations.value == null
+            ? const CircularProgressIndicator.adaptive()
+            : Center(
+                child: ListView(
+                shrinkWrap: true,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Expanded(
+                        flex: 4,
+                        child: Container(),
                       ),
-                    ),
-                    subtitle: Text(
-                      'Gujarati',
-                      style: TextStyle(
-                        fontSize: 14.0,
+                      Expanded(
+                        flex: 3,
+                        child: ListTile(
+                          leading: CircleAvatar(
+                            child: Text("J"),
+                          ),
+                          title: Text(
+                            'English',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16.0,
+                            ),
+                          ),
+                          subtitle: Text(
+                            'Gujarati',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                            ),
+                          ),
+                          trailing: Icon(
+                            Icons.edit_note_sharp,
+                            size: 20.0,
+                          ),
+                          onTap: () {
+                            // Do something when the tile is tapped
+                          },
+                        ),
                       ),
-                    ),
-                    trailing: Icon(
-                      Icons.edit_note_sharp,
-                      size: 20.0,
-                    ),
-                    onTap: () {
-                      // Do something when the tile is tapped
-                    },
+                      Expanded(
+                        flex: 4,
+                        child: Container(),
+                      ),
+                    ],
                   ),
-                ),
-                Expanded(
-                  flex: 4,
-                  child: Container(),
-                ),
-              ],
-            ),
-            ...generateDesignations(),
-          ],
-        ))));
+                  ...generateDesignations(),
+                ],
+              ))));
   }
 
   List<Widget> generateDesignations() {
@@ -80,8 +80,8 @@ class DesignationViewView extends GetView<DesignationViewController> {
                   flex: 3,
                   child: ListTile(
                     leading: CircleAvatar(
-                      child: Text(controller.designations.value![index].name![0]ksdn)
-                    ),
+                        child: Text(
+                            controller.designations.value![index].name![0])),
                     title: Text(
                       controller.designations.value![index].name ?? "",
                       style: TextStyle(
@@ -90,7 +90,8 @@ class DesignationViewView extends GetView<DesignationViewController> {
                       ),
                     ),
                     subtitle: Text(
-                      controller.designations.value![index].nameInGujarati ?? "",
+                      controller.designations.value![index].nameInGujarati ??
+                          "",
                       style: TextStyle(
                         fontSize: 14.0,
                       ),
