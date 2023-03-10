@@ -31,10 +31,18 @@ class DesignationViewController extends GetxController {
         await DesignationApi.obtainDesignations(API_Decision.BOTH);
   }
 
-  deleteDesignation(num? id) {}
+  deleteDesignation(num? id) async {
+    bool result = await DesignationApi.deleteDesignation(
+        API_Decision.BOTH, id);
+    if (result) {
+      designations.value!.removeWhere((d) => d.id == id);
+      update();
+    }
+  }
 
   void updateDesignation(String? name, String? nameInGuj, num? id) async {
-    if (!TextUtils.notBlankNotEmpty(name) || !TextUtils.notBlankNotEmpty(nameInGuj)) {
+    if (!TextUtils.notBlankNotEmpty(name) ||
+        !TextUtils.notBlankNotEmpty(nameInGuj)) {
       throw ValidationException(cause: "Some text fields is missing")
           .showValidationSnackBar();
     }
@@ -44,6 +52,7 @@ class DesignationViewController extends GetxController {
       throw ValidationException(cause: "Nothing to update")
           .showValidationSnackBar();
     }
+
     bool result = await DesignationApi.updateDesignation(
         API_Decision.BOTH, name, nameInGuj, id);
     if (result) {

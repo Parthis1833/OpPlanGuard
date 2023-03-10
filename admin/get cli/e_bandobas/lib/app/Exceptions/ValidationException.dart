@@ -14,6 +14,7 @@ class ValidationException implements Exception {
   );
 
   showValidationSnackBar() {
+    print(cause);
     Get.snackbar(
       "Warning",
       cause ?? "Some fields are missing",
