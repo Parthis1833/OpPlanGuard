@@ -1,5 +1,6 @@
 import 'package:e_bandobas/app/resource/drawer/navigation_drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 
@@ -24,17 +25,45 @@ class SettingView extends GetView<SettingController> {
   Widget SettingManagerWidget() {
     return ListView(
       children: [
-        SwitchListTile(
-          title: const Text('Toggle Theme'),
-          value: controller.darkTheme.value,
-          onChanged: (value) {
-            controller.toggleTheme();
-          },
-          secondary: controller.darkTheme.value
-              ? const Icon(Icons.light_mode)
-              : const Icon(Icons.dark_mode),
-        ),
-        const Text('Password  management :-',style: TextStyle(
+      GestureDetector(
+      behavior: HitTestBehavior.translucent,
+      onTap: () {},
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text('Toggle Theme'),
+          Switch(
+            value: controller.darkTheme.value,
+            onChanged: (value) {
+              controller.toggleTheme();
+              if (value) {
+                // Set the app's theme to dark mode when the toggle switch is turned on
+                Get.changeTheme(ThemeData.dark());
+                // Set the background color to dark when the toggle switch is turned on
+                SystemChrome.setSystemUIOverlayStyle(
+                  const SystemUiOverlayStyle(
+                    statusBarColor: Colors.black,
+                    systemNavigationBarColor: Colors.black,
+                  ),
+                );
+              } else {
+                // Set the app's theme back to light mode when the toggle switch is turned off
+                Get.changeTheme(ThemeData.light());
+                // Set the background color back to light when the toggle switch is turned off
+                SystemChrome.setSystemUIOverlayStyle(
+                  const SystemUiOverlayStyle(
+                    statusBarColor: Colors.white,
+                    systemNavigationBarColor: Colors.white,
+                  ),
+                );
+              }
+            },
+          ),
+        ],
+      ),
+    ),
+
+    const Text('Password  management :-',style: TextStyle(
           fontSize: 21,
         ),),
       Padding(
