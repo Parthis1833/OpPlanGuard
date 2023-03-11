@@ -4,6 +4,7 @@ class APIConstants {
   // POLICE APIS
   static const POLICE = "/police/";
   static const POLICE_URL = BASE_URL + POLICE; // FOR GET REQUEST
+  static const POLICE_IN_EVENT = BASE_URL + POLICE + "police-in-event/"; // for GET REQUEST append id
   static const POLICE_URL_CREATE = BASE_URL + POLICE; // FOR POST REQUEST
   static const POLICE_URL_UPDATE =
       BASE_URL + POLICE; // NEED TO APPEND POLICE ID

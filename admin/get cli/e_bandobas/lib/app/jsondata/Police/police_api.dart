@@ -6,6 +6,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../../../constants/enums.dart';
+import '../PoliceData/police_model.dart';
 
 class PoliceApi {
   static Future<String> insertPoliceUsingExcel(
@@ -72,5 +73,56 @@ class PoliceApi {
       }
     }
     return "";
+  }
+
+  static Future<List<PoliceModel>> getPoliceInEvent(
+      API_Decision showStatus, num eventId) async {
+    List<PoliceModel> policeList = <PoliceModel>[];
+
+    final request = http.get(
+      Uri.parse(APIConstants.POLICE_IN_EVENT + eventId.toString()),
+    );
+    final response = await http.get(
+      Uri.parse(APIConstants.POLICE_IN_EVENT + eventId.toString()),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+    
+    if (response.statusCode == 200) {
+      final responseJson = jsonDecode(utf8.decode(response.bodyBytes));
+
+      if (responseJson['response']['error'] == 0) {
+        if (showStatus == API_Decision.Only_Success ||
+            showStatus == API_Decision.BOTH) {
+          Get.snackbar(
+            "Success",
+            "Police Obtained successfully",
+            icon: const Icon(Icons.add_task_sharp, color: Colors.white),
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.green,
+          );
+        }
+        for (int i = 0; i < responseJson['content'].length; i++) {
+          PoliceModel police = PoliceModel.fromJson(responseJson['content'][i]);
+          policeList.add(police);
+        }
+        return policeList;
+      } // api error to be displayed
+      else {
+        if (showStatus == API_Decision.Only_Failure ||
+            showStatus == API_Decision.BOTH) {
+          Get.snackbar(
+            "Failed",
+            responseJson['response']['message'] ?? "no message from server",
+            icon: const Icon(Icons.cancel_presentation_sharp,
+                color: Colors.white),
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.red,
+          );
+        }
+      }
+    }
+    return policeList;
   }
 }

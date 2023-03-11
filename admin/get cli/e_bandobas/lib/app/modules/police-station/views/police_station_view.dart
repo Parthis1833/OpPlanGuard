@@ -38,23 +38,25 @@ class PoliceStationView extends GetView<PoliceStationController> {
           return snapshot.hasData
               ? ListView(
                   children: [
-                    SizedBox(
-                      height: 700,
-                      child: SfDataGridTheme(
-                        data: SfDataGridThemeData(
-                            headerColor: Colors.lightBlueAccent),
-                        child: SfDataGrid(
-                          source: snapshot.data,
-                          showCheckboxColumn: true,
-                          checkboxShape: const CircleBorder(),
-                          allowFiltering: true,
-                          selectionMode: SelectionMode.multiple,
-                          onQueryRowHeight: (details) {
-                            return details.rowIndex == 0 ? 70.0 : 49.0;
-                          },
-                          columnWidthMode: ColumnWidthMode.auto,
-                          shrinkWrapColumns: true,
-                          columns: getColumns(),
+                    Center(
+                      child: SizedBox(
+                        height: 700,
+                        child: SfDataGridTheme(
+                          data: SfDataGridThemeData(
+                              headerColor: Colors.lightBlueAccent),
+                          child: SfDataGrid(
+                            source: snapshot.data,
+                            showCheckboxColumn: true,
+                            checkboxShape: const CircleBorder(),
+                            allowFiltering: true,
+                            selectionMode: SelectionMode.multiple,
+                            onQueryRowHeight: (details) {
+                              return details.rowIndex == 0 ? 70.0 : 49.0;
+                            },
+                            columnWidthMode: ColumnWidthMode.auto,
+                            shrinkWrapColumns: true,
+                            columns: getColumns(),
+                          ),
                         ),
                       ),
                     ),
@@ -65,132 +67,32 @@ class PoliceStationView extends GetView<PoliceStationController> {
   }
 
   List<GridColumn> getColumns() {
+    final cols = [
+      "ID",
+      "Station Name",
+      "Name in Guj",
+      "City/ District",
+      "City in Guj",
+      "Number",
+      "Address",
+      "Taluko",
+      "Taluko in Guj"
+    ];
     return <GridColumn>[
-      GridColumn(
+      ...cols.map((col) => GridColumn(
           allowFiltering: false,
-          columnName: 'ID',
-          width: 60,
+          columnName: col,
+          // width: 100,
           label: Container(
               padding: const EdgeInsets.all(8),
               alignment: Alignment.centerLeft,
-              child: const Text('ID',
-                  style: TextStyle(
+              child: Text(col,
+                  style: const TextStyle(
                       fontSize: 16,
                       color: Colors.white,
                       fontStyle: FontStyle.italic),
                   overflow: TextOverflow.clip,
-                  softWrap: true))),
-      GridColumn(
-          columnName: 'Station Name',
-          width: 170,
-          label: Container(
-              padding: const EdgeInsets.all(8),
-              margin: const EdgeInsets.only(left: 15.0),
-              alignment: Alignment.center,
-              child: const Text('Station Name',
-                  style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
-                      fontStyle: FontStyle.italic),
-                  overflow: TextOverflow.clip,
-                  softWrap: true))),
-      GridColumn(
-          columnName: 'Name in Guj',
-          width: 170,
-          label: Container(
-              padding: const EdgeInsets.all(8),
-              margin: const EdgeInsets.only(left: 15.0),
-              alignment: Alignment.center,
-              child: const Text('Name in Guj',
-                  style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
-                      fontStyle: FontStyle.italic),
-                  overflow: TextOverflow.clip,
-                  softWrap: true))),
-      GridColumn(
-          allowFiltering: false,
-          columnName: 'City/District',
-          width: 250,
-          label: Container(
-              padding: const EdgeInsets.all(8),
-              alignment: Alignment.center,
-              child: const Text('City/District',
-                  style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
-                      fontStyle: FontStyle.italic),
-                  overflow: TextOverflow.clip,
-                  softWrap: true))),
-      GridColumn(
-          allowFiltering: false,
-          columnName: 'City in Guj',
-          width: 150,
-          label: Container(
-              padding: const EdgeInsets.all(8),
-              alignment: Alignment.center,
-              child: const Text('City in Guj',
-                  style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
-                      fontStyle: FontStyle.italic),
-                  overflow: TextOverflow.clip,
-                  softWrap: true))),
-      GridColumn(
-          allowFiltering: false,
-          columnName: 'Number',
-          width: 160,
-          label: Container(
-              padding: const EdgeInsets.all(8),
-              alignment: Alignment.center,
-              child: const Text('Number',
-                  style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
-                      fontStyle: FontStyle.italic),
-                  overflow: TextOverflow.clip,
-                  softWrap: true))),
-      GridColumn(
-          columnName: 'Address',
-          width: 160,
-          label: Container(
-              padding: const EdgeInsets.all(8),
-              alignment: Alignment.center,
-              child: const Text('Address',
-                  style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
-                      fontStyle: FontStyle.italic),
-                  overflow: TextOverflow.clip,
-                  softWrap: true))),
-      GridColumn(
-          allowFiltering: false,
-          columnName: 'Taluko',
-          width: 170,
-          label: Container(
-              padding: const EdgeInsets.all(8),
-              alignment: Alignment.center,
-              child: const Text('Taluko',
-                  style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
-                      fontStyle: FontStyle.italic),
-                  overflow: TextOverflow.clip,
-                  softWrap: true))),
-      GridColumn(
-          allowFiltering: false,
-          columnName: 'Taluko in Guj',
-          width: 60,
-          label: Container(
-              padding: const EdgeInsets.all(8),
-              alignment: Alignment.center,
-              child: const Text('Taluko in Guj',
-                  style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
-                      fontStyle: FontStyle.italic),
-                  overflow: TextOverflow.clip,
-                  softWrap: true))),
+                  softWrap: true)))),
     ];
   }
 
@@ -216,69 +118,15 @@ class PoliceStationGridSource extends DataGridSource {
   DataGridRowAdapter? buildRow(DataGridRow row) {
     // TODO: implement buildRow
     return DataGridRowAdapter(cells: [
-      Container(
-        alignment: Alignment.centerLeft,
-        padding: const EdgeInsets.all(8.0),
-        child: Text(
-          row.getCells()[0].value.toString(),
-          overflow: TextOverflow.ellipsis,
-        ),
-      ),
-      Container(
-        alignment: Alignment.center,
-        padding: const EdgeInsets.all(8.0),
-        child: Text(
-          row.getCells()[1].value,
-          overflow: TextOverflow.ellipsis,
-        ),
-      ),
-      Container(
-        alignment: Alignment.center,
-        padding: const EdgeInsets.all(8.0),
-        child: Text(
-          row.getCells()[2].value,
-        ),
-      ),
-      Container(
-        alignment: Alignment.center,
-        padding: const EdgeInsets.all(8.0),
-        child: Text(
-          row.getCells()[3].value,
-        ),
-      ),
-      Container(
-        alignment: Alignment.center,
-        padding: const EdgeInsets.all(8.0),
-        child: Text(
-          row.getCells()[4].value,
-        ),
-      ),
-      Container(
-        alignment: Alignment.center,
-        padding: const EdgeInsets.all(8.0),
-        child: Text(
-          row.getCells()[5].value,
-        ),
-      ),
-      Container(
-        alignment: Alignment.center,
-        padding: const EdgeInsets.all(8.0),
-        child: Text(
-          row.getCells()[6].value,
-        ),
-      ),
-      Container(
-        alignment: Alignment.center,
-        padding: const EdgeInsets.all(8.0),
-        child: Text(
-          row.getCells()[7].value.toString(),
-        ),
-      ),
-      Container(
-        alignment: Alignment.center,
-        padding: const EdgeInsets.all(8.0),
-        child: Text(
-          row.getCells()[8].value,
+      ...mapIndexed(
+        row.getCells(),
+        (index, item) => Container(
+          alignment: Alignment.centerLeft,
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            row.getCells()[index].value.toString(),
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
       ),
     ]);
