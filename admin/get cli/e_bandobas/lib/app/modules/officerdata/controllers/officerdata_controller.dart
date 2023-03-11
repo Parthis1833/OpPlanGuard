@@ -58,7 +58,6 @@ class OfficerdataController extends GetxController {
     if (policeList.value != null) {
       // policeGridSource = PoliceGridSource(policeList.value!);
     }
-    ;
   }
 
   Future<PoliceGridSource> getEventPoliceDataSource() async {
@@ -69,5 +68,17 @@ class OfficerdataController extends GetxController {
     }
     return PoliceGridSource(contentList);
     // return _policeGridSource;
+  }
+
+  void updateContentListRow(PoliceModel contentList) {
+    policeList.value = policeList.value!.map((obj) {
+      if (obj.id == contentList.id) {
+        return contentList;
+      } else {
+        return obj;
+      }
+    }).toList();
+    print(contentList);
+    update();
   }
 }

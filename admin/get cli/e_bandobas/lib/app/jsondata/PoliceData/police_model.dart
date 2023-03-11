@@ -49,4 +49,9 @@ class PoliceModel {
 
     return map;
   }
+
+  @override
+  String toString() {
+    return '$id $fullName $buckleNumber $number $age $district $gender $policeStationName $designationName $isAssigned';
+  }
 }

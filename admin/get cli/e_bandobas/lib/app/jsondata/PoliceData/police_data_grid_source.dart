@@ -1,5 +1,5 @@
-
 import 'package:e_bandobas/app/jsondata/PoliceData/police_model.dart';
+import 'package:e_bandobas/app/modules/officerdata/controllers/officerdata_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
@@ -13,12 +13,16 @@ class PoliceGridSource extends DataGridSource {
   late List<PoliceModel> contentList;
 
   dynamic newCellValue;
-    /// Help to control the editable text in [TextField] widget.
+
+  /// Help to control the editable text in [TextField] widget.
   TextEditingController editingController = TextEditingController();
 
   @override
   void onCellSubmit(DataGridRow dataGridRow, RowColumnIndex rowColumnIndex,
       GridColumn column) {
+    final OfficerdataController controller =
+        Get.find(); // retrieve the controller instance
+
     final dynamic oldValue = dataGridRow
             .getCells()
             .firstWhereOrNull((DataGridCell dataGridCell) =>
@@ -31,41 +35,51 @@ class PoliceGridSource extends DataGridSource {
     if (newCellValue == null || oldValue == newCellValue) {
       return;
     }
-    print(newCellValue + " " + oldValue);
+    // print(newCellValue + " " + oldValue);
+    rowColumnIndex.columnIndex -= 1;
 
     if (column.columnName == 'ID') {
       // keeping it as uneditable id should not be changed
     } else if (column.columnName == 'Name') {
       dataGridRows[dataRowIndex].getCells()[rowColumnIndex.columnIndex] =
           DataGridCell<String>(columnName: 'Name', value: newCellValue);
+      print("name");
       contentList[dataRowIndex].fullName = newCellValue.toString();
     } else if (column.columnName == 'Designation') {
       dataGridRows[dataRowIndex].getCells()[rowColumnIndex.columnIndex] =
           DataGridCell<String>(columnName: 'Designation', value: newCellValue);
+      print("designation");
       contentList[dataRowIndex].designationName = newCellValue.toString();
     } else if (column.columnName == 'Buckle number') {
       dataGridRows[dataRowIndex].getCells()[rowColumnIndex.columnIndex] =
-          DataGridCell<String>(columnName: 'Buckle number', value: newCellValue);
+          DataGridCell<String>(
+              columnName: 'Buckle number', value: newCellValue);
+      print("buckle");
       contentList[dataRowIndex].buckleNumber = newCellValue.toString();
     } else if (column.columnName == 'Age') {
       dataGridRows[dataRowIndex].getCells()[rowColumnIndex.columnIndex] =
-          DataGridCell<String>(columnName: 'Age', value: newCellValue);
+          DataGridCell<int>(columnName: 'Age', value: newCellValue);
+      print("age");
       contentList[dataRowIndex].age = newCellValue;
     } else if (column.columnName == 'District') {
       dataGridRows[dataRowIndex].getCells()[rowColumnIndex.columnIndex] =
           DataGridCell<String>(columnName: 'District', value: newCellValue);
+      print("district");
       contentList[dataRowIndex].district = newCellValue.toString();
     } else if (column.columnName == 'Station') {
       dataGridRows[dataRowIndex].getCells()[rowColumnIndex.columnIndex] =
           DataGridCell<String>(columnName: 'Station', value: newCellValue);
+      print("station");
+
       contentList[dataRowIndex].policeStationName = newCellValue.toString();
     } else {
       // dataGridRows[dataRowIndex].getCells()[rowColumnIndex.columnIndex] =
       //     DataGridCell<int>(columnName: 'salary', value: newCellValue);
       // _employees[dataRowIndex].salary = newCellValue as int;
     }
-  }
 
+    controller.updateContentListRow(contentList[dataRowIndex]);
+  }
 
   @override
   DataGridRowAdapter? buildRow(DataGridRow row) {
@@ -145,7 +159,7 @@ class PoliceGridSource extends DataGridSource {
     newCellValue = null;
 
     final bool isNumericType =
-        column.columnName == 'id' || column.columnName == 'salary';
+        column.columnName == 'ID' || column.columnName == 'Age';
 
     return Container(
       padding: const EdgeInsets.all(8.0),
@@ -178,7 +192,6 @@ class PoliceGridSource extends DataGridSource {
       ),
     );
   }
-
 
   Iterable<E> mapIndexed<E, T>(
       Iterable<T> items, E Function(int index, T item) f) sync* {
