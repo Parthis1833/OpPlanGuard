@@ -50,13 +50,20 @@ class PoliceGridSource extends DataGridSource {
           DataGridCell<String>(columnName: 'Designation', value: newCellValue);
       print("designation");
       contentList[dataRowIndex].designationName = newCellValue.toString();
-    } else if (column.columnName == 'Buckle number') {
+    } else if (column.columnName == 'Buckle Number') {
       dataGridRows[dataRowIndex].getCells()[rowColumnIndex.columnIndex] =
           DataGridCell<String>(
-              columnName: 'Buckle number', value: newCellValue);
+              columnName: 'Buckle Number', value: newCellValue);
       print("buckle");
       contentList[dataRowIndex].buckleNumber = newCellValue.toString();
-    } else if (column.columnName == 'Age') {
+    } else if (column.columnName == 'Number') {
+      dataGridRows[dataRowIndex].getCells()[rowColumnIndex.columnIndex] =
+          DataGridCell<String>(
+              columnName: 'Number', value: newCellValue);
+      print("Number");
+      contentList[dataRowIndex].number = newCellValue.toString();
+    }
+     else if (column.columnName == 'Age') {
       dataGridRows[dataRowIndex].getCells()[rowColumnIndex.columnIndex] =
           DataGridCell<int>(columnName: 'Age', value: newCellValue);
       print("age");
@@ -103,7 +110,6 @@ class PoliceGridSource extends DataGridSource {
   List<DataGridRow> get rows => dataGridRows;
 
   void buildDataGridRow() {
-    print(contentList.length);
     dataGridRows = mapIndexed(
         contentList,
         (index, police) => DataGridRow(cells: [
@@ -112,7 +118,7 @@ class PoliceGridSource extends DataGridSource {
               DataGridCell<String>(
                   columnName: 'Designation', value: police.designationName),
               DataGridCell<String>(
-                  columnName: 'Buckle number', value: police.buckleNumber),
+                  columnName: 'Buckle Number', value: police.buckleNumber),
               DataGridCell<String>(columnName: 'Number', value: police.number),
               DataGridCell<String>(
                   columnName: 'Age', value: police.age.toString()),

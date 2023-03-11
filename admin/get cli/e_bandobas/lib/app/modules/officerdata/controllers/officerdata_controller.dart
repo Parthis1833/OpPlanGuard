@@ -50,6 +50,8 @@ class OfficerdataController extends GetxController {
   void onInit() {
     super.onInit();
     loadEvents();
+    print("Am I loading again?\n");
+    
   }
 
   void getPoliceData() async {
@@ -64,7 +66,7 @@ class OfficerdataController extends GetxController {
     List<PoliceModel> contentList = [];
     if (policeList.value != null) {
       contentList = policeList.value!;
-      print("assigned ${contentList.length}");
+      // print("assigned ${contentList.length}");
     }
     return PoliceGridSource(contentList);
     // return _policeGridSource;
@@ -78,7 +80,7 @@ class OfficerdataController extends GetxController {
         return obj;
       }
     }).toList();
-    print(contentList);
+    // print(contentList);
     update();
   }
 }
