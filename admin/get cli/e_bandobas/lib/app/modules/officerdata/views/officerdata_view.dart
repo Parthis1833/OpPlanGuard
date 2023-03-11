@@ -56,7 +56,7 @@ class OfficerdataView extends GetView<OfficerdataController> {
   //   return SfDataGrid(
   //       source: controller.getEventPoliceDataSource(), columns: getColumns());
   // }
-  
+
   Widget policeListWidget() {
     return FutureBuilder(
         future: controller.getEventPoliceDataSource(),
@@ -76,12 +76,15 @@ class OfficerdataView extends GetView<OfficerdataController> {
                               showCheckboxColumn: true,
                               checkboxShape: const CircleBorder(),
                               allowFiltering: true,
-                              selectionMode: SelectionMode.multiple,
+                              // selectionMode: SelectionMode.multiple,
                               onQueryRowHeight: (details) {
                                 return details.rowIndex == 0 ? 70.0 : 49.0;
                               },
                               columnWidthMode: ColumnWidthMode.auto,
                               shrinkWrapColumns: true,
+                              allowEditing: true,
+                              selectionMode: SelectionMode.single,
+                              navigationMode: GridNavigationMode.cell,
                               columns: getColumns(),
                             ),
                           ),
@@ -93,7 +96,7 @@ class OfficerdataView extends GetView<OfficerdataController> {
               : const CircularProgressIndicator.adaptive();
         });
   }
-  
+
   Widget eventSelectionDropDownWidget() {
     return Container(
       height: 45,
@@ -162,6 +165,4 @@ class OfficerdataView extends GetView<OfficerdataController> {
                   softWrap: true)))),
     ];
   }
-
-
 }

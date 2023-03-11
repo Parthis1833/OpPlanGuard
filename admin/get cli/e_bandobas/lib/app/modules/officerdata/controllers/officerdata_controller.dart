@@ -67,7 +67,7 @@ class OfficerdataController extends GetxController {
       contentList = policeList.value!;
       print("assigned ${contentList.length}");
     }
-    return await PoliceGridSource(contentList);
+    return PoliceGridSource(contentList);
     // return _policeGridSource;
   }
 }
