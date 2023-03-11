@@ -16,6 +16,7 @@ class OfficerdataController extends GetxController {
   final eventAssignmentCounts =
       Rxn<List<EventPoliceCountAssignedTotalRequestedModel>>();
   late final selectedEventId = 0.obs;
+  final policeDataGridSource = Rxn<PoliceGridSource>();
   // late PoliceGridSource policeGridSource;
 
   final count = 0.obs;
@@ -51,24 +52,24 @@ class OfficerdataController extends GetxController {
     super.onInit();
     loadEvents();
     print("Am I loading again?\n");
-    
   }
 
   void getPoliceData() async {
     policeList.value = await PoliceApi.getPoliceInEvent(
         API_Decision.Only_Failure, selectedEventId.value);
     if (policeList.value != null) {
-      // policeGridSource = PoliceGridSource(policeList.value!);
+      policeDataGridSource.value = PoliceGridSource(policeList.value!);
     }
   }
 
-  Future<PoliceGridSource> getEventPoliceDataSource() async {
-    List<PoliceModel> contentList = [];
-    if (policeList.value != null) {
-      contentList = policeList.value!;
-      // print("assigned ${contentList.length}");
-    }
-    return PoliceGridSource(contentList);
+  Future<PoliceGridSource?> getEventPoliceDataSource() async {
+    // List<PoliceModel> contentList = [];
+    // if (policeList.value != null) {
+    //   contentList = policeList.value!;
+    //   // print("assigned ${contentList.length}");
+    // }
+    // Future.delayed(const Duration(seconds: 0));
+    return policeDataGridSource.value;
     // return _policeGridSource;
   }
 
@@ -80,7 +81,22 @@ class OfficerdataController extends GetxController {
         return obj;
       }
     }).toList();
+    PoliceApi.updatePolice(API_Decision.Only_Failure, contentList);
     // print(contentList);
     update();
+  }
+
+  void deletePoliceById(int index) async {
+    print(index);
+    index -= 1;
+    bool deleted = await PoliceApi()
+        .deletePolice(API_Decision.Only_Failure, policeList.value![index].id);
+    if (deleted) {
+      policeList.value!
+          .removeWhere((element) => element.id == policeList.value![index].id);
+
+      policeDataGridSource.value = PoliceGridSource(policeList.value!);
+      update();
+    }
   }
 }

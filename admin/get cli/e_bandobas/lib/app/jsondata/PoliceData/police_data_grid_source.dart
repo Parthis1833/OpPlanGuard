@@ -5,9 +5,26 @@ import 'package:get/get.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 class PoliceGridSource extends DataGridSource {
+  
   PoliceGridSource(this.contentList) {
     buildDataGridRow();
   }
+  
+  final OfficerdataController controller =
+        Get.find(); // retrieve the controller instance
+  
+  final cols = [
+      "ID",
+      "Name",
+      "Designation",
+      "Buckle Number",
+      "Number",
+      "Age",
+      "District",
+      "Gender",
+      "Station",
+      "Operations",
+    ];
 
   late List<DataGridRow> dataGridRows;
   late List<PoliceModel> contentList;
@@ -20,8 +37,6 @@ class PoliceGridSource extends DataGridSource {
   @override
   void onCellSubmit(DataGridRow dataGridRow, RowColumnIndex rowColumnIndex,
       GridColumn column) {
-    final OfficerdataController controller =
-        Get.find(); // retrieve the controller instance
 
     final dynamic oldValue = dataGridRow
             .getCells()
@@ -90,14 +105,22 @@ class PoliceGridSource extends DataGridSource {
 
   @override
   DataGridRowAdapter? buildRow(DataGridRow row) {
-    // TODO: implement buildRow
+    
+    /**
+     * 9th index is bool value which using to show delete button
+     * if we want to add/remove cols change this value
+     */
     return DataGridRowAdapter(cells: [
       ...mapIndexed(
         row.getCells(),
         (index, item) => Container(
           alignment: Alignment.centerLeft,
           padding: const EdgeInsets.all(8.0),
-          child: Text(
+          child: index == cols.length-1 ?
+            row.getCells()[9].value == false 
+            ? IconButton(onPressed: () => controller.deletePoliceById(row.getCells()[0].value), icon: const Icon(Icons.delete))
+            :  Container()
+          : Text(
             row.getCells()[index].value.toString(),
             overflow: TextOverflow.ellipsis,
           ),
@@ -127,23 +150,9 @@ class PoliceGridSource extends DataGridSource {
               DataGridCell<String>(columnName: 'Gender', value: police.gender),
               DataGridCell<String>(
                   columnName: 'Station', value: police.policeStationName),
-              DataGridCell<Widget>(
+              DataGridCell<bool>(
                   columnName: 'Operations',
-                  value: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: IconButton(
-                            onPressed: () {}, icon: Icon(Icons.delete_forever)),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: IconButton(
-                            onPressed: () {}, icon: Icon(Icons.edit)),
-                      ),
-                    ],
-                  )),
+                  value: police.isAssigned),
             ])).toList(growable: false);
   }
 

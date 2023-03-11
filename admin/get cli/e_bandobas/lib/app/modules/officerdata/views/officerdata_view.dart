@@ -12,7 +12,7 @@ import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 class OfficerdataView extends GetView<OfficerdataController> {
-  const OfficerdataView({Key? key}) : super(key: key);
+  OfficerdataView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -86,6 +86,10 @@ class OfficerdataView extends GetView<OfficerdataController> {
                               selectionMode: SelectionMode.single,
                               navigationMode: GridNavigationMode.cell,
                               columns: getColumns(),
+
+                              onSelectionChanged: (rows, newRows) {
+                                print(rows[0].getCells()[0].value);
+                              },
                             ),
                           ),
                         ),
