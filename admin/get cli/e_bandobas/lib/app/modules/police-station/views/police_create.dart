@@ -26,7 +26,9 @@ class PoliceCreateView extends GetView<PoliceCreateController> {
                   controller.pickAndUploadFile();
                 },
                 child: Text("Pick & upload Polcies")),
-                passwordInputWidget()
+            passwordInputWidget(),
+            Text("Download the sample & add data & save in your pc to upload"),
+            ElevatedButton(onPressed: controller.downloadPoliceSampleFile, child: Text("Download Sample"))
           ],
         ));
   }

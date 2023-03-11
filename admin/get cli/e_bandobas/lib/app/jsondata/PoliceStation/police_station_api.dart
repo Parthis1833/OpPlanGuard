@@ -104,4 +104,45 @@ class PoliceStationApi {
     }
     return "";
   }
+
+  static downloadSampleApi(API_Decision showStatus) async {
+    final response = await http.get(
+      Uri.parse(APIConstants.POLICESTATION_SAMPLE_EXCEL),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+    
+    if (response.statusCode == 200) {
+      final responseJson = jsonDecode(utf8.decode(response.bodyBytes));
+
+      if (responseJson['response']['error'] == 0) {
+        if (showStatus == API_Decision.Only_Success ||
+            showStatus == API_Decision.BOTH) {
+          Get.snackbar(
+            "Success",
+            "Police deleted successfully",
+            icon: const Icon(Icons.add_task_sharp, color: Colors.white),
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.green,
+          );
+        }
+        return responseJson['response']['message'];
+      } // api error to be displayed
+      else {
+        if (showStatus == API_Decision.Only_Failure ||
+            showStatus == API_Decision.BOTH) {
+          Get.snackbar(
+            "Failed",
+            responseJson['response']['message'] ?? "no message from server",
+            icon: const Icon(Icons.cancel_presentation_sharp,
+                color: Colors.white),
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.red,
+          );
+        }
+      }
+    }
+    return "";
+  }
 }

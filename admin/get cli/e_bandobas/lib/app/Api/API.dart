@@ -4,7 +4,8 @@ class APIConstants {
   // POLICE APIS
   static const POLICE = "/police/";
   static const POLICE_URL = BASE_URL + POLICE; // FOR GET REQUEST
-  static const POLICE_IN_EVENT = BASE_URL + POLICE + "police-in-event/"; // for GET REQUEST append id
+  static const POLICE_IN_EVENT =
+      BASE_URL + POLICE + "police-in-event/"; // for GET REQUEST append id
   static const POLICE_URL_CREATE = BASE_URL + POLICE; // FOR POST REQUEST
   static const POLICE_URL_UPDATE =
       BASE_URL + POLICE; // NEED TO APPEND POLICE ID
@@ -16,6 +17,8 @@ class APIConstants {
       BASE_URL + POLICE; // NEED TO APPEND POLICE ID
   static const POLICE_OFFICER_DATA =
       BASE_URL + POLICE + "officer-data"; // FOR GET REQ
+  static const POLICE_SAMPLE_EXCEL =
+      BASE_URL + POLICE + "download-sample-police-excel";
 
   // POLICE STATIONS APIS
   static const POLICESTATION = "/police-station/";
@@ -30,6 +33,7 @@ class APIConstants {
       BASE_URL + POLICESTATION + "upload-from-excel"; // get req
   static const POLICESTATION_READ_SPECIFIC =
       BASE_URL + POLICESTATION; // append id
+  static const POLICESTATION_SAMPLE_EXCEL = POLICESTATION_URL + "download-sample-station-excel"; // append id
 
   // POINT APIS
   static const POINT = "/point/";
@@ -42,7 +46,8 @@ class APIConstants {
   // static const POINT_URL_UPLOAD_FROM_EXCEL =
   static const POINT_READ_SPECIFIC =
       BASE_URL + POINT; // Need to Append id with get req
-  static const POINT_POLICE_ASSIGNED_POINT = BASE_URL + POINT + "police-assigned-points"; // append event id
+  static const POINT_POLICE_ASSIGNED_POINT =
+      BASE_URL + POINT + "police-assigned-points"; // append event id
 
   // EVENT APIS
   static const EVENT = "/event/";

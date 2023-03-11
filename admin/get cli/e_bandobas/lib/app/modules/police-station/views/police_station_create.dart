@@ -14,9 +14,17 @@ class PoliceStationCreateView extends GetView<PoliceStationCreateController> {
         centerTitle: true,
       ),
       body: Center(
-          child: ElevatedButton(
-              onPressed: controller.pickAndUploadFile,
-              child: Text("Pick & upload police station"))),
+          child: Column(
+            children: [
+              ElevatedButton(
+                  onPressed: controller.pickAndUploadFile,
+                  child: Text("Pick & upload police station")),
+
+              SizedBox(height: 40,),
+                  Text("Download the sample & add data & save in your pc to upload"),
+            ElevatedButton(onPressed: controller.downloadPoliceStationSampleFile, child: Text("Download Sample"))
+            ],
+          )),
     );
   }
 }

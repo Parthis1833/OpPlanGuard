@@ -73,7 +73,7 @@ class PoliceCreateController extends GetxController {
       // final dir = await getApplicationDocumentsDirectory();
       // file.copy(dir.path);
       if (TextUtils.notBlankNotEmpty(outputFileLocation)) {
-        OpenFile.open(outputFileLocation);        
+        OpenFile.open(outputFileLocation);
       }
     } else {
       throw ValidationException(cause: "Some Fields are required to upload ")
@@ -85,5 +85,16 @@ class PoliceCreateController extends GetxController {
   passwordUpdated(String text) {
     password.value = text;
     update();
+  }
+
+  void downloadPoliceSampleFile() async {
+    String sampleExcelFileLocation =
+        await PoliceApi.downloadSampleApi(API_Decision.Only_Failure);
+    if (TextUtils.notBlankNotEmpty(sampleExcelFileLocation)) {
+        OpenFile.open(sampleExcelFileLocation);
+    } else {
+      throw ValidationException(cause: "Sorry, download file not available")
+          .showValidationSnackBar();
+    }
   }
 }

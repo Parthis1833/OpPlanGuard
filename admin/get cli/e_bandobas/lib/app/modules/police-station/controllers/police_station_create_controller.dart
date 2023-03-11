@@ -58,4 +58,15 @@ class PoliceStationCreateController extends GetxController {
     }
     update();
   }
+
+  void downloadPoliceStationSampleFile() async {
+    String sampleExcelFileLocation =
+        await PoliceStationApi.downloadSampleApi(API_Decision.Only_Failure);
+    if (TextUtils.notBlankNotEmpty(sampleExcelFileLocation)) {
+        OpenFile.open(sampleExcelFileLocation);
+    } else {
+      throw ValidationException(cause: "Sorry, download file not available")
+          .showValidationSnackBar();
+    }
+  }
 }
