@@ -1,5 +1,4 @@
 import 'package:e_bandobas/app/modules/pointlist/views/PointViewDataGrid.dart';
-import 'package:e_bandobas/app/resource/card/PoliceCard.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../Widgets/navigation_drawer.dart';
@@ -17,13 +16,6 @@ class PointlistView extends GetView<PointlistController> {
       ),
       body: ListView(
         children: [
-          PoliceCard(
-            margin: const EdgeInsets.all(8),
-            color: Colors.grey,
-            child: const Align(
-              child: Text(''),
-            ),
-          ),
           const PointViewDataGrid()
         ],
       ),

@@ -1,15 +1,11 @@
-import 'package:e_bandobas/app/jsondata/officersdata/OfficersDataGrid.dart';
-import 'package:e_bandobas/app/resource/card/PoliceCard.dart';
 import 'package:e_bandobas/app/resource/drawer/navigation_drawer.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
-import '../../../jsondata/PoliceData/police_model.dart';
 import '../../../resource/card/PoliceCardV2.dart';
 import '../controllers/officerdata_controller.dart';
-import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
-import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 class OfficerdataView extends GetView<OfficerdataController> {
   OfficerdataView({Key? key}) : super(key: key);
@@ -33,29 +29,13 @@ class OfficerdataView extends GetView<OfficerdataController> {
               ? const CircularProgressIndicator.adaptive()
               : PoliceCardV2(
                   eventAssignments: controller.eventAssignmentCounts.value!)),
-          // Padding(
-          //   padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 8),
-          //   child: Container(
-          //     alignment: Alignment.center,
-          //     margin: const EdgeInsets.only(left: 300, right: 300),
-          //     child: const OfficerDataGrid(),
-          //   ),
-          // ),
           Obx(() => controller.policeList.value == null
               ? const CircularProgressIndicator.adaptive()
               : policeListWidget())
-          // Obx(() => controller.policeList == null
-          // ? const CircularProgressIndicator.adaptive()
-          // : policeListWidgetV2())
         ],
       ),
     );
   }
-
-  // Widget policeListWidgetV2() {
-  //   return SfDataGrid(
-  //       source: controller.getEventPoliceDataSource(), columns: getColumns());
-  // }
 
   Widget policeListWidget() {
     return FutureBuilder(
@@ -88,7 +68,9 @@ class OfficerdataView extends GetView<OfficerdataController> {
                               columns: getColumns(),
 
                               onSelectionChanged: (rows, newRows) {
-                                print(rows[0].getCells()[0].value);
+                                if (kDebugMode) {
+                                  print(rows[0].getCells()[0].value);
+                                }
                               },
                             ),
                           ),

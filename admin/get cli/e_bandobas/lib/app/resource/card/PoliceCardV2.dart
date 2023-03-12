@@ -1,10 +1,5 @@
-import 'package:e_bandobas/app/jsondata/Counter/totalpolice/totalpolice.dart';
-import 'package:e_bandobas/app/jsondata/Counter/totalpolice/totalpoliceApi.dart';
-import 'package:e_bandobas/constants/enums.dart';
 import 'package:flutter/material.dart';
-
 import 'package:responsive_grid_list/responsive_grid_list.dart';
-
 import '../../jsondata/EventPoliceCount/EventPoliceCountOfAssignedTotalRequestedModel.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 

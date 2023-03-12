@@ -1,5 +1,3 @@
-import 'package:e_bandobas/app/Config/routes/app_pages.dart';
-import 'package:e_bandobas/app/resource/card/PoliceCard.dart';
 import 'package:e_bandobas/app/resource/drawer/navigation_drawer.dart';
 import 'package:e_bandobas/app/route_manager.dart';
 import 'package:flutter/material.dart';
@@ -64,7 +62,7 @@ class DutypointallocationView extends GetView<DutypointallocationController> {
 
   Widget displayEventAssignment() {
     return Obx(() => controller.eventAssignmentModel.value == null
-        ? const CircularProgressIndicator.adaptive()
+        ? const CircularProgressIndicator()
         : eventAssignments());
   }
 

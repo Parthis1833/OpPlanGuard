@@ -1,9 +1,7 @@
 import 'dart:convert';
 import 'package:e_bandobas/app/Api/API.dart';
-import 'package:e_bandobas/app/Config/routes/app_pages.dart';
 import 'package:e_bandobas/app/Widgets/Buttons/assessmentbutton.dart';
 import 'package:e_bandobas/app/jsondata/EventData/Event.dart';
-import 'package:e_bandobas/app/resource/card/PoliceCard.dart';
 import 'package:e_bandobas/app/route_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -156,13 +154,6 @@ class EventView extends GetView<EventController> {
   Widget eventsPageData() {
     return ListView(
       children: [
-        PoliceCard(
-          margin: const EdgeInsets.all(8),
-          color: Colors.grey,
-          child: const Align(
-            child: Text(''),
-          ),
-        ),
         eventsLoadedWidget()
       ],
     );

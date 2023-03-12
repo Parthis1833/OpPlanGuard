@@ -1,5 +1,4 @@
 import 'package:e_bandobas/app/resource/button/roadbandobashbutton.dart';
-import 'package:e_bandobas/app/resource/card/PoliceCard.dart';
 import 'package:e_bandobas/app/resource/drawer/navigation_drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -18,15 +17,7 @@ class RoadbandobastView extends GetView<RoadbandobastController> {
         centerTitle: true,
       ),
       body: ListView(
-        children: [
-          PoliceCard(
-            margin: const EdgeInsets.all(8),
-            color: Colors.grey,
-            child: const Align(
-              child: Text(''),
-            ),
-          ),
-        ],
+
       ),
       floatingActionButton: const RoadbandobasButton(),
     );
