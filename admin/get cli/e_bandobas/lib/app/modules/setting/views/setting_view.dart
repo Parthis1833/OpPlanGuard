@@ -1,4 +1,5 @@
 import 'package:e_bandobas/app/resource/drawer/navigation_drawer.dart';
+import 'package:e_bandobas/app/route_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -22,9 +23,45 @@ class SettingView extends GetView<SettingController> {
           : SettingManagerWidget()),
     );
   }
+  Widget drawer() {
+    return SizedBox(
+      width: 200.0,
+      child: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            const SizedBox(
+              height: 65,
+              child: DrawerHeader(
+                child: Text('Setting',style: TextStyle(fontSize: 26),),
+              ),
+            ),
+            ListTile(
+              title: const Text('Add Police'),
+              onTap:(){CustomRouteManager.POLICE_CREATE();},
+            ),
+            ListTile(
+              title: const Text('Add Police-Station'),
+              onTap: () {
+                CustomRouteManager.POLICE_STATION();
+              },
+            ),
+            ListTile(
+              title: const Text(' Designation'),
+              onTap: () {
+                CustomRouteManager.DESIGNATION_VIEW();
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget SettingManagerWidget() {
-    return ListView(
+    return Row(
       children: [
+        drawer(),
       GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: () {},

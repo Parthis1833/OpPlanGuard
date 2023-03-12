@@ -31,7 +31,7 @@ abstract class Routes {
   static const POLICE_STATION_CREATE = PATHS.POLICE_STATION_CREATE;
   static const POLICE_CREATE = PATHS.POLICE_CREATE;
   static const DESIGNATION_VIEW = PATHS.DESIGNATION_VIEW;
-
+  static const SYSTEM = '/system';
 }
 
 class PATHS {
