@@ -44,8 +44,6 @@ import '../../modules/roadbandobast/bindings/roadbandobast_binding.dart';
 import '../../modules/roadbandobast/views/roadbandobast_view.dart';
 import '../../modules/setting/bindings/setting_binding.dart';
 import '../../modules/setting/views/setting_view.dart';
-import '../../modules/zonelist/bindings/zonelist_binding.dart';
-import '../../modules/zonelist/views/zonelist_view.dart';
 
 part 'app_routes.dart';
 
@@ -74,18 +72,6 @@ class AppPages {
       name: PATHS.POINTLIST,
       page: () => const PointlistView(),
       binding: PointlistBinding(),
-    ),
-    GetPage(
-      name: PATHS.ZONELIST,
-      page: () => const ZonelistView(),
-      binding: ZonelistBinding(),
-      children: [
-        GetPage(
-          name: PATHS.ZONELIST,
-          page: () => const ZonelistView(),
-          binding: ZonelistBinding(),
-        ),
-      ],
     ),
     GetPage(
       name: PATHS.DUTYPOINTALLOCATION,

@@ -2,8 +2,6 @@ import 'package:e_bandobas/app/Config/routes/app_pages.dart';
 import 'package:e_bandobas/app/route_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 
 class Navigation_Drawer extends StatelessWidget {
   const Navigation_Drawer({super.key});
@@ -40,40 +38,15 @@ class Navigation_Drawer extends StatelessWidget {
                 : Colors.black87,
             onTap: () => navigate(2),
           ),
-          ExpansionTile(
-            title: const Text(
-              "યાદી",
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 20.0,
-              ),
-            ),
-            leading: const Icon(Icons.person), //add icon
-            childrenPadding: const EdgeInsets.only(left: 60), //children padding
-            children: [
-              ListTile(
-                title: const Text(
-                  "ડ્યુટી પોઈન્ટ યાદી",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                onTap: () => navigate(3),
-              ),
-              ListTile(
-                title: const Text(
-                  "ઝોન પોઈન્ટ યાદી",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                onTap: () => navigate(4),
-              ),
-
-              //more child menu
-            ],
+          buildDrawerItem(
+            text: 'ડ્યુટી પોઈન્ટ યાદી',
+            icon: Icons.add_location_outlined,
+            tileColor:
+            Get.currentRoute == Routes.POINTLIST? Colors.blue : null,
+            textIconColor: Get.currentRoute == Routes.POINTLIST
+                ? Colors.white
+                : Colors.black87,
+            onTap: () => navigate(3),
           ),
           buildDrawerItem(
             text: 'ડ્યુટી પોઇન્ટ અલ્લોકાશન',
@@ -84,7 +57,7 @@ class Navigation_Drawer extends StatelessWidget {
             textIconColor: Get.currentRoute == Routes.DUTYPOINTALLOCATION
                 ? Colors.white
                 : Colors.black87,
-            onTap: () => navigate(5),
+            onTap: () => navigate(4),
           ),
           buildDrawerItem(
             text: 'અધિકારી ડેટા',
@@ -94,7 +67,7 @@ class Navigation_Drawer extends StatelessWidget {
             textIconColor: Get.currentRoute == Routes.OFFICERDATA
                 ? Colors.white
                 : Colors.black87,
-            onTap: () => navigate(6),
+            onTap: () => navigate(5),
           ),
           buildDrawerItem(
             text: 'રોડ બંદોબસ્ત',
@@ -104,7 +77,7 @@ class Navigation_Drawer extends StatelessWidget {
             textIconColor: Get.currentRoute == Routes.ROADBANDOBAST
                 ? Colors.white
                 : Colors.black87,
-            onTap: () => navigate(7),
+            onTap: () => navigate(6),
           ),
           Expanded(
             child: Padding(
@@ -119,7 +92,7 @@ class Navigation_Drawer extends StatelessWidget {
                   textIconColor: Get.currentRoute == Routes.SETTING
                       ? Colors.white
                       : Colors.black,
-                  onTap: () => navigate(8),
+                  onTap: () => navigate(7),
                 ),
               ),
             ),
@@ -197,14 +170,12 @@ class Navigation_Drawer extends StatelessWidget {
     } else if (index == 3) {
       CustomRouteManager.POINTLIST();
     } else if (index == 4) {
-      CustomRouteManager.ZONELIST();
-    } else if (index == 5) {
       CustomRouteManager.DUTYPOINTALLOCATION();
-    } else if (index == 6) {
+    } else if (index == 5) {
       CustomRouteManager.OFFICERDATA();
-    } else if (index == 7) {
+    } else if (index == 6) {
       CustomRouteManager.ROADBANDOBAST();
-    } else if (index == 8) {
+    } else if (index == 7) {
       CustomRouteManager.SETTING();
     }
   }

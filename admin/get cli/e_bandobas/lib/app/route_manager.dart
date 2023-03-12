@@ -18,9 +18,7 @@ import 'package:e_bandobas/app/modules/police-station/controllers/police_create_
 import 'package:e_bandobas/app/modules/police-station/controllers/police_station_controller.dart';
 import 'package:e_bandobas/app/modules/roadbandobast/controllers/roadbandobast_controller.dart';
 import 'package:e_bandobas/app/modules/setting/controllers/setting_controller.dart';
-import 'package:e_bandobas/app/modules/zonelist/controllers/zonelist_controller.dart';
 import 'package:get/get.dart';
-
 import 'modules/assesment-create/controllers/assesment_create_controller.dart';
 import 'modules/assesment/controllers/assesment_controller.dart';
 import 'modules/police-station/controllers/police_station_create_controller.dart';
@@ -126,10 +124,6 @@ class CustomRouteManager {
     Get.toNamed(Routes.SETTING, arguments: arguments);
   }
 
-  static void ZONELIST({arguments}) {
-    Get.delete<ZonelistController>();
-    Get.toNamed(Routes.ZONELIST, arguments: arguments);
-  }
 
   static void SHOW_POINTS_ASSESMENT({arguments}) {
     Get.delete<ShowPointPoliceAssementController>();

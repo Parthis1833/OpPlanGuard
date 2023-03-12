@@ -1,4 +1,4 @@
-import '../../../Widgets/navigation_drawer.dart';
+import '../../../resource/drawer/navigation_drawer.dart';
 import '../controllers/show_point_assignment_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
