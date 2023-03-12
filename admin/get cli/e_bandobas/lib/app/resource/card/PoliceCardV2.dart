@@ -94,9 +94,8 @@ class PoliceCardV2 extends StatelessWidget {
                   ),
                 ],
                 isRepeatingAnimation: true,
-                onTap: () {
-                  print("Tap Event");
-                },
+                repeatForever: true
+                
               ),
             ),
           ],

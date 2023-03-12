@@ -43,7 +43,7 @@ class OfficerdataController extends GetxController {
   void changeSelectedEvent(num? value) {
     selectedEventId.value = value!.toInt();
     getEventAssignments();
-    getPoliceData();
+    getPoliceData(); 
     update();
   }
 
