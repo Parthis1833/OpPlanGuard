@@ -39,16 +39,6 @@ class Navigation_Drawer extends StatelessWidget {
             onTap: () => navigate(2),
           ),
           buildDrawerItem(
-            text: 'ડ્યુટી પોઈન્ટ યાદી',
-            icon: Icons.add_location_outlined,
-            tileColor:
-            Get.currentRoute == Routes.POINTLIST? Colors.blue : null,
-            textIconColor: Get.currentRoute == Routes.POINTLIST
-                ? Colors.white
-                : Colors.black87,
-            onTap: () => navigate(3),
-          ),
-          buildDrawerItem(
             text: 'ડ્યુટી પોઇન્ટ અલ્લોકાશન',
             icon: Icons.add_card_outlined,
             tileColor: Get.currentRoute == Routes.DUTYPOINTALLOCATION
@@ -57,7 +47,7 @@ class Navigation_Drawer extends StatelessWidget {
             textIconColor: Get.currentRoute == Routes.DUTYPOINTALLOCATION
                 ? Colors.white
                 : Colors.black87,
-            onTap: () => navigate(4),
+            onTap: () => navigate(3),
           ),
           buildDrawerItem(
             text: 'અધિકારી ડેટા',
@@ -67,7 +57,7 @@ class Navigation_Drawer extends StatelessWidget {
             textIconColor: Get.currentRoute == Routes.OFFICERDATA
                 ? Colors.white
                 : Colors.black87,
-            onTap: () => navigate(5),
+            onTap: () => navigate(4),
           ),
           buildDrawerItem(
             text: 'રોડ બંદોબસ્ત',
@@ -77,7 +67,7 @@ class Navigation_Drawer extends StatelessWidget {
             textIconColor: Get.currentRoute == Routes.ROADBANDOBAST
                 ? Colors.white
                 : Colors.black87,
-            onTap: () => navigate(6),
+            onTap: () => navigate(5),
           ),
           Expanded(
             child: Padding(
@@ -92,7 +82,7 @@ class Navigation_Drawer extends StatelessWidget {
                   textIconColor: Get.currentRoute == Routes.SETTING
                       ? Colors.white
                       : Colors.black,
-                  onTap: () => navigate(7),
+                  onTap: () => navigate(6),
                 ),
               ),
             ),
@@ -168,14 +158,12 @@ class Navigation_Drawer extends StatelessWidget {
     } else if (index == 2) {
       CustomRouteManager.DUTYPOINT();
     } else if (index == 3) {
-      CustomRouteManager.POINTLIST();
-    } else if (index == 4) {
       CustomRouteManager.DUTYPOINTALLOCATION();
-    } else if (index == 5) {
+    } else if (index == 4) {
       CustomRouteManager.OFFICERDATA();
-    } else if (index == 6) {
+    } else if (index == 5) {
       CustomRouteManager.ROADBANDOBAST();
-    } else if (index == 7) {
+    } else if (index == 6) {
       CustomRouteManager.SETTING();
     }
   }

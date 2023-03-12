@@ -1,3 +1,4 @@
+import 'package:e_bandobas/app/modules/dutypoint/views/PointViewDataGrid.dart';
 import 'package:e_bandobas/app/resource/button/collapsebutton.dart';
 import 'package:e_bandobas/app/resource/drawer/navigation_drawer.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,8 @@ class DutypointView extends GetView<DutypointController> {
         centerTitle: true,
       ),
       body: ListView(
-        children: [
+        children: const [
+          PointViewDataGrid()
         ],
       ),
       floatingActionButton: const CollapseButton(),

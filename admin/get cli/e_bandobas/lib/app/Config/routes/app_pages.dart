@@ -32,8 +32,6 @@ import '../../modules/officerdata/bindings/officerdata_binding.dart';
 import '../../modules/officerdata/views/officerdata_view.dart';
 import '../../modules/point-police-assement/bindings/show_point_assignment_binding.dart';
 import '../../modules/point-police-assement/views/show_point_assignments.dart';
-import '../../modules/pointlist/bindings/pointlist_binding.dart';
-import '../../modules/pointlist/views/pointlist_view.dart';
 import '../../modules/police-station/bindings/police_create_bindings.dart';
 import '../../modules/police-station/bindings/police_station_binding.dart';
 import '../../modules/police-station/bindings/police_station_create_binding.dart';
@@ -67,11 +65,6 @@ class AppPages {
       name: PATHS.DUTYPOINT,
       page: () => const DutypointView(),
       binding: DutypointBinding(),
-    ),
-    GetPage(
-      name: PATHS.POINTLIST,
-      page: () => const PointlistView(),
-      binding: PointlistBinding(),
     ),
     GetPage(
       name: PATHS.DUTYPOINTALLOCATION,
