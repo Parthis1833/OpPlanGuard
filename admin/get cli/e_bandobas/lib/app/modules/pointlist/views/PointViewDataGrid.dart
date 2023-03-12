@@ -80,6 +80,20 @@ class PointViewDataGrid extends StatelessWidget {
                       fontStyle: FontStyle.italic
                   ),
                   overflow: TextOverflow.clip, softWrap: true))),
+                  GridColumn(
+          columnName: 'Zone Name',
+          width: 370,
+          label: Container(
+              padding: const EdgeInsets.all(8),
+              margin:  const EdgeInsets.only(left:15.0),
+              alignment: Alignment.center,
+              child: const Text('Point Name',
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                      fontStyle: FontStyle.italic
+                  ),
+                  overflow: TextOverflow.clip, softWrap: true))),
       GridColumn(
           allowFiltering: false,
           columnName: 'Accessories',
@@ -163,6 +177,13 @@ class PointViewDataGridSource extends DataGridSource {
           row.getCells()[3].value,
         ),
       ),
+      Container(
+        alignment: Alignment.center,
+        padding: const EdgeInsets.all(8.0),
+        child: Text(
+          row.getCells()[4].value,
+        ),
+      ),
     ]);
   }
 
@@ -185,6 +206,7 @@ class PointViewDataGridSource extends DataGridSource {
         DataGridRow(cells: [
         DataGridCell<num>(columnName: 'ID', value: index+1),
         DataGridCell<String>(columnName: 'Point Name', value:point.pointName),
+        DataGridCell<String>(columnName: 'Zone Name', value: point.zoneName),
         DataGridCell<String>(columnName: 'Accessories', value: point.accessories),
         DataGridCell<String>(columnName: 'Remarks', value: point.remarks),
       ])
