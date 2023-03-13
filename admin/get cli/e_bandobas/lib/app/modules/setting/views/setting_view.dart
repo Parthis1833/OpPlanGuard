@@ -1,4 +1,5 @@
 import 'package:e_bandobas/app/resource/drawer/navigation_drawer.dart';
+import 'package:e_bandobas/app/resource/drawer/settingdrawer.dart';
 import 'package:e_bandobas/app/route_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -23,125 +24,97 @@ class SettingView extends GetView<SettingController> {
           : SettingManagerWidget()),
     );
   }
-  Widget drawer() {
-    return SizedBox(
-      width: 200.0,
-      child: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            const SizedBox(
-              height: 65,
-              child: DrawerHeader(
-                child: Text('Setting',style: TextStyle(fontSize: 26),),
-              ),
-            ),
-            ListTile(
-              title: const Text('Add Police'),
-              onTap:(){CustomRouteManager.POLICE_CREATE();},
-            ),
-            ListTile(
-              title: const Text('Add Police-Station'),
-              onTap: () {
-                CustomRouteManager.POLICE_STATION();
-              },
-            ),
-            ListTile(
-              title: const Text(' Designation'),
-              onTap: () {
-                CustomRouteManager.DESIGNATION_VIEW();
-              },
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 
   Widget SettingManagerWidget() {
     return Row(
       children: [
-        drawer(),
-      GestureDetector(
-      behavior: HitTestBehavior.translucent,
-      onTap: () {},
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text('Toggle Theme'),
-          Switch(
-            value: controller.darkTheme.value,
-            onChanged: (value) {
-              controller.toggleTheme();
-              if (value) {
-                // Set the app's theme to dark mode when the toggle switch is turned on
-                Get.changeTheme(ThemeData.dark());
-                // Set the background color to dark when the toggle switch is turned on
-                SystemChrome.setSystemUIOverlayStyle(
-                  const SystemUiOverlayStyle(
-                    statusBarColor: Colors.black,
-                    systemNavigationBarColor: Colors.black,
+        SettingDrawer(),
+    //   GestureDetector(
+    //   behavior: HitTestBehavior.translucent,
+    //   onTap: () {},
+    //   child: Row(
+    //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //     children: [
+    //       const Text('Toggle Theme'),
+    //       Switch(
+    //         value: controller.darkTheme.value,
+    //         onChanged: (value) {
+    //           controller.toggleTheme();
+    //           if (value) {
+    //             // Set the app's theme to dark mode when the toggle switch is turned on
+    //             Get.changeTheme(ThemeData.dark());
+    //             // Set the background color to dark when the toggle switch is turned on
+    //             SystemChrome.setSystemUIOverlayStyle(
+    //               const SystemUiOverlayStyle(
+    //                 statusBarColor: Colors.black,
+    //                 systemNavigationBarColor: Colors.black,
+    //               ),
+    //             );
+    //           } else {
+    //             // Set the app's theme back to light mode when the toggle switch is turned off
+    //             Get.changeTheme(ThemeData.light());
+    //             // Set the background color back to light when the toggle switch is turned off
+    //             SystemChrome.setSystemUIOverlayStyle(
+    //               const SystemUiOverlayStyle(
+    //                 statusBarColor: Colors.white,
+    //                 systemNavigationBarColor: Colors.white,
+    //               ),
+    //             );
+    //           }
+    //         },
+    //       ),
+    //     ],
+    //   ),
+    // ),
+        Align(
+          alignment: AlignmentDirectional.topStart,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 2,
+                      blurRadius: 5,
+                      offset: Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.white,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          eventSelectionDropDownWidget(),
+                          makePasswordWidgetButton(),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: loadHistories(),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                );
-              } else {
-                // Set the app's theme back to light mode when the toggle switch is turned off
-                Get.changeTheme(ThemeData.light());
-                // Set the background color back to light when the toggle switch is turned off
-                SystemChrome.setSystemUIOverlayStyle(
-                  const SystemUiOverlayStyle(
-                    statusBarColor: Colors.white,
-                    systemNavigationBarColor: Colors.white,
-                  ),
-                );
-              }
-            },
-          ),
-        ],
-      ),
-    ),
+                ),
+              ),
+            ),
+        ),
 
-    const Text('Password  management :-',style: TextStyle(
-          fontSize: 21,
-        ),),
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Card(
-        elevation: 4,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child:  Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  eventSelectionDropDownWidget(),
-                  makePasswordWidgetButton(),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: loadHistories(),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-       ),
-      ),
-      ],
+    ],
     );
   }
-Widget passwordMangement(){
-    return Container();
-}
+
 
   Widget makePasswordWidgetButton() {
     return SizedBox(
