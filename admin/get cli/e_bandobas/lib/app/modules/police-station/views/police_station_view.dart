@@ -1,14 +1,10 @@
-import 'package:e_bandobas/app/Config/routes/app_pages.dart';
 import 'package:e_bandobas/app/route_manager.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
-
 import '../../../jsondata/PoliceStation/PoliceStationModel.dart';
 import '../controllers/police_station_controller.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
-import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 class PoliceStationView extends GetView<PoliceStationController> {
   const PoliceStationView({Key? key}) : super(key: key);

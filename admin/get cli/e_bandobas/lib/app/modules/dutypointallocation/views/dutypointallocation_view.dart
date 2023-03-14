@@ -88,53 +88,10 @@ class DutypointallocationView extends GetView<DutypointallocationController> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(
-          padding: const EdgeInsets.all(6),
-          child: Wrap(
-            spacing: 40,
-            crossAxisAlignment: WrapCrossAlignment.center,
-            children: [
-              Text(
-                "Point Name: ${controller.eventAssignmentModel.value!.pointAssignments![index].pointName!}",
-                style: const TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
-              Text(
-                "Zone Name: ${controller.eventAssignmentModel.value!.pointAssignments![index].zoneName!}",
-                style: const TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
-              Text(
-                "Total Assigned Police: ${controller.eventAssignmentModel.value!.pointAssignments![index].assignmentCount!}",
-                style: const TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
-              Text(
-                "Accessories: ${controller.eventAssignmentModel.value!.pointAssignments![index].pointAccessories!}",
-                style: const TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
-              Text(
-                "Remarks: ${controller.eventAssignmentModel.value!.pointAssignments![index].pointRemarks!}",
-                style: const TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
-            ],
-          ),
-        ),
         DataTable(
           columns: const [
-            DataColumn(label: Text("Index")),
+            DataColumn(label: Text("Zone")),
+            DataColumn(label: Text("Point")),
             DataColumn(label: Text("Designation")),
             DataColumn(label: Text("Buckle Number")),
             DataColumn(label: Text("Police Name")),
@@ -143,8 +100,8 @@ class DutypointallocationView extends GetView<DutypointallocationController> {
             DataColumn(label: Text("Age")),
             DataColumn(label: Text("Gender")),
             DataColumn(label: Text("Number")),
-            DataColumn(label: Text("Duty Starting Date")),
-            DataColumn(label: Text("Duty Ending Date")),
+            DataColumn(label: Text("Accessories")),
+            DataColumn(label: Text("Remarks"))
           ],
           rows: controller.eventAssignmentModel.value?.pointAssignments![index]
                   .assignedPoliceList!
@@ -152,7 +109,8 @@ class DutypointallocationView extends GetView<DutypointallocationController> {
                   .map((index4, police) => MapEntry(
                       index4,
                       DataRow(cells: [
-                        DataCell(Text((index4 + 1).toString())),
+                        DataCell(Text(controller.eventAssignmentModel.value!.pointAssignments![index].zoneName!)),
+                        DataCell(Text(controller.eventAssignmentModel.value!.pointAssignments![index].pointName!)),
                         DataCell(Text(police.designation ?? '')),
                         DataCell(Text(police.buckleNumber ?? '')),
                         DataCell(Text(police.policeName ?? '')),
@@ -161,8 +119,8 @@ class DutypointallocationView extends GetView<DutypointallocationController> {
                         DataCell(Text(police.age ?? '')),
                         DataCell(Text(police.gender ?? '')),
                         DataCell(Text(police.number ?? '')),
-                        DataCell(Text(police.dutyStartDate ?? '')),
-                        DataCell(Text(police.dutyEndDate ?? '')),
+                        DataCell(Text(controller.eventAssignmentModel.value!.pointAssignments![index].pointAccessories!)),
+                        DataCell(Text(controller.eventAssignmentModel.value!.pointAssignments![index].pointRemarks!)),
                       ])))
                   .values
                   .toList() ??
