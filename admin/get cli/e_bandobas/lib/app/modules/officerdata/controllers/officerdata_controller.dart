@@ -6,7 +6,7 @@ import '../../../jsondata/EventData/Event.dart';
 import '../../../jsondata/EventData/EventApi.dart';
 import '../../../jsondata/EventPoliceCount/EventPoliceCountAPI.dart';
 import '../../../jsondata/EventPoliceCount/EventPoliceCountOfAssignedTotalRequestedModel.dart';
-import '../../../jsondata/PoliceData/police_data_grid_source.dart';
+import '../views/police_data_grid_source.dart';
 import '../../../jsondata/PoliceData/police_model.dart';
 
 class OfficerdataController extends GetxController {
@@ -30,7 +30,7 @@ class OfficerdataController extends GetxController {
       getPoliceData();
     }
     print(events.value);
-    // print(policeList.value!.length);
+
     update();
   }
 
@@ -63,14 +63,7 @@ class OfficerdataController extends GetxController {
   }
 
   Future<PoliceGridSource?> getEventPoliceDataSource() async {
-    // List<PoliceModel> contentList = [];
-    // if (policeList.value != null) {
-    //   contentList = policeList.value!;
-    //   // print("assigned ${contentList.length}");
-    // }
-    // Future.delayed(const Duration(seconds: 0));
     return policeDataGridSource.value;
-    // return _policeGridSource;
   }
 
   void updateContentListRow(PoliceModel contentList) {
@@ -82,7 +75,6 @@ class OfficerdataController extends GetxController {
       }
     }).toList();
     PoliceApi.updatePolice(API_Decision.Only_Failure, contentList);
-    // print(contentList);
     update();
   }
 

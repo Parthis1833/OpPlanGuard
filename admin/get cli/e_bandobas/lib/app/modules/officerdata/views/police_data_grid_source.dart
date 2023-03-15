@@ -5,26 +5,25 @@ import 'package:get/get.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 class PoliceGridSource extends DataGridSource {
-  
   PoliceGridSource(this.contentList) {
     buildDataGridRow();
   }
-  
+
   final OfficerdataController controller =
-        Get.find(); // retrieve the controller instance
-  
+      Get.find(); // retrieve the controller instance
+
   final cols = [
-      "ID",
-      "Name",
-      "Designation",
-      "Buckle Number",
-      "Number",
-      "Age",
-      "District",
-      "Gender",
-      "Station",
-      "Operations",
-    ];
+    "ID",
+    "Name",
+    "Designation",
+    "Buckle Number",
+    "Number",
+    "Age",
+    "District",
+    "Gender",
+    "Station",
+    "Operations",
+  ];
 
   late List<DataGridRow> dataGridRows;
   late List<PoliceModel> contentList;
@@ -37,7 +36,6 @@ class PoliceGridSource extends DataGridSource {
   @override
   void onCellSubmit(DataGridRow dataGridRow, RowColumnIndex rowColumnIndex,
       GridColumn column) {
-
     final dynamic oldValue = dataGridRow
             .getCells()
             .firstWhereOrNull((DataGridCell dataGridCell) =>
@@ -73,12 +71,10 @@ class PoliceGridSource extends DataGridSource {
       contentList[dataRowIndex].buckleNumber = newCellValue.toString();
     } else if (column.columnName == 'Number') {
       dataGridRows[dataRowIndex].getCells()[rowColumnIndex.columnIndex] =
-          DataGridCell<String>(
-              columnName: 'Number', value: newCellValue);
+          DataGridCell<String>(columnName: 'Number', value: newCellValue);
       print("Number");
       contentList[dataRowIndex].number = newCellValue.toString();
-    }
-     else if (column.columnName == 'Age') {
+    } else if (column.columnName == 'Age') {
       dataGridRows[dataRowIndex].getCells()[rowColumnIndex.columnIndex] =
           DataGridCell<int>(columnName: 'Age', value: newCellValue);
       print("age");
@@ -105,7 +101,6 @@ class PoliceGridSource extends DataGridSource {
 
   @override
   DataGridRowAdapter? buildRow(DataGridRow row) {
-    
     /**
      * 9th index is bool value which using to show delete button
      * if we want to add/remove cols change this value
@@ -116,14 +111,41 @@ class PoliceGridSource extends DataGridSource {
         (index, item) => Container(
           alignment: Alignment.centerLeft,
           padding: const EdgeInsets.all(8.0),
-          child: index == cols.length-1 ?
-            row.getCells()[9].value == false 
-            ? IconButton(onPressed: () => controller.deletePoliceById(row.getCells()[0].value), icon: const Icon(Icons.delete))
-            :  Container()
-          : Text(
-            row.getCells()[index].value.toString(),
-            overflow: TextOverflow.ellipsis,
-          ),
+          child: index == cols.length - 1
+              ? row.getCells()[9].value == false
+                  ? IconButton(
+                      onPressed: () => Get.defaultDialog(
+                          titleStyle: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
+                          content: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text('Are You SUre'),
+                              TextButton(
+                                onPressed: () {
+                                  controller.deletePoliceById(
+                                      row.getCells()[0].value);
+                                  Get.back();
+                                },
+                                style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all(Colors.red),
+                                  foregroundColor:
+                                      MaterialStateProperty.all(Colors.white),
+                                ),
+                                child: const Text("Delete"),
+                              ),
+                            ],
+                          )),
+                      // controller.deletePoliceById(row.getCells()[0].value),
+                      icon: const Icon(Icons.delete))
+                  : Container()
+              : Text(
+                  row.getCells()[index].value.toString(),
+                  overflow: TextOverflow.ellipsis,
+                ),
         ),
       ),
     ]);
@@ -151,15 +173,13 @@ class PoliceGridSource extends DataGridSource {
               DataGridCell<String>(
                   columnName: 'Station', value: police.policeStationName),
               DataGridCell<bool>(
-                  columnName: 'Operations',
-                  value: police.isAssigned),
+                  columnName: 'Operations', value: police.isAssigned),
             ])).toList(growable: false);
   }
 
   @override
   Widget? buildEditWidget(DataGridRow dataGridRow,
       RowColumnIndex rowColumnIndex, GridColumn column, CellSubmit submitCell) {
-    // Text going to display on editable widget
     final String displayText = dataGridRow
             .getCells()
             .firstWhereOrNull((DataGridCell dataGridCell) =>
@@ -167,10 +187,6 @@ class PoliceGridSource extends DataGridSource {
             ?.value
             ?.toString() ??
         '';
-
-    // The new cell value must be reset.
-    // To avoid committing the [DataGridCell] value that was previously edited
-    // into the current non-modified [DataGridCell].
     newCellValue = null;
 
     final bool isNumericType =
@@ -199,9 +215,6 @@ class PoliceGridSource extends DataGridSource {
           }
         },
         onSubmitted: (String value) {
-          // In Mobile Platform.
-          // Call [CellSubmit] callback to fire the canSubmitCell and
-          // onCellSubmit to commit the new value in single place.
           submitCell();
         },
       ),
@@ -211,7 +224,6 @@ class PoliceGridSource extends DataGridSource {
   Iterable<E> mapIndexed<E, T>(
       Iterable<T> items, E Function(int index, T item) f) sync* {
     var index = 0;
-
     for (final item in items) {
       yield f(index, item);
       index = index + 1;
