@@ -29,12 +29,12 @@ class PoliceCardV2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: responsiveHeight(context),
+      height:360,
       color: const Color.fromARGB(128, 73, 89, 110),
       child: ResponsiveGridList(
           horizontalGridMargin: 0,
           verticalGridMargin: 6,
-          minItemWidth: 124,
+          minItemWidth: 130,
           children: generateListOfAssignmentBox()),
     );
   }
@@ -47,7 +47,7 @@ class PoliceCardV2 extends StatelessWidget {
 
   Widget assignmentBoxWidget(int index) {
     return SizedBox(
-      height: 150,
+      height: 160,
       child: Card(
         shape: RoundedRectangleBorder(
           side: const BorderSide(
