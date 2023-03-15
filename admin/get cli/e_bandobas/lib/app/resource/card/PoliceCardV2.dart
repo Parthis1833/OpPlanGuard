@@ -34,7 +34,7 @@ class PoliceCardV2 extends StatelessWidget {
       child: ResponsiveGridList(
           horizontalGridMargin: 0,
           verticalGridMargin: 6,
-          minItemWidth: 130,
+          minItemWidth: 145,
           children: generateListOfAssignmentBox()),
     );
   }
@@ -68,7 +68,7 @@ class PoliceCardV2 extends StatelessWidget {
             ),
             Container(
               height: 45,
-              padding: const EdgeInsets.only(top: 5),
+              padding: const EdgeInsets.only(top: 25),
               alignment: Alignment.bottomCenter,
               child: AnimatedTextKit(
                 animatedTexts: [
