@@ -2,7 +2,7 @@ import 'package:e_bandobas/app/modules/assigned-police/controllers/assiged_polic
 import 'package:e_bandobas/app/route_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../Config/routes/app_pages.dart';
+
 
 class AssignedPoliceByEventView
     extends GetView<AssignedPoliceByEventController> {

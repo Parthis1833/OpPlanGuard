@@ -1,7 +1,6 @@
 import 'package:e_bandobas/app/route_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../Config/routes/app_pages.dart';
 import '../controllers/assigned_police_controller.dart';
 
 class AssignedPoliceView extends GetView<AssignedPoliceController> {
