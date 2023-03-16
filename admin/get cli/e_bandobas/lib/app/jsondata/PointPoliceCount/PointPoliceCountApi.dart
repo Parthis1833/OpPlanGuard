@@ -116,4 +116,62 @@ class PointPoliceCountApi {
     }
     throw DataNotFoundException("Data not found for pointPoliceAssignment");
   }
+
+  static Future<List<PointPoliceCountAssignment>> obtainEntireEventAssignments(
+      API_Decision showStatus, num? eventId) async {
+    String eventName;
+    List<Assignment> assignments = [];
+    List<PointPoliceCountAssignment> resp = <PointPoliceCountAssignment>[];
+    final modelApiData = {
+      'event-id': eventId,
+    };
+
+    final response = await http.post(
+        Uri.parse(APIConstants.POINT_POLICE_COUNT_ALL_POINT_DESIGNATION_COUNTS),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(modelApiData));
+
+    if (response.statusCode == 200) {
+      final responseJson = jsonDecode(response.body);
+
+      if (responseJson['response']['error'] == 0) {
+        if (showStatus == API_Decision.Only_Success ||
+            showStatus == API_Decision.BOTH) {
+          Get.snackbar(
+            "Success",
+            "Police Assignement noted for point successfully",
+            icon: const Icon(Icons.add_task_sharp, color: Colors.white),
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.green,
+          );
+        }
+        // api data to model conversion
+        for (int i = 0; i < responseJson['content'].length; i++) {
+          // Assignment assignment =
+          //     Assignment.fromJson(responseJson['content']['assignments'][i]);
+          // assignments.add(assignment);
+          PointPoliceCountAssignment ppca =
+              PointPoliceCountAssignment.fromJson(responseJson['content'][i]);
+          resp.add(ppca);
+        }
+        return resp;
+      } // api error to be displayed
+      else {
+        if (showStatus == API_Decision.Only_Failure ||
+            showStatus == API_Decision.BOTH) {
+          Get.snackbar(
+            "Failed",
+            responseJson['response']['message'] ?? "No message available",
+            icon: const Icon(Icons.cancel_presentation_sharp,
+                color: Colors.white),
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.red,
+          );
+        }
+      }
+    }
+    throw DataNotFoundException("Data not found for pointPoliceAssignment");
+  }
 }

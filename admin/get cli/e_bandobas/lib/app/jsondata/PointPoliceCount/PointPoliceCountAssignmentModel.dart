@@ -2,15 +2,31 @@ class PointPoliceCountAssignment {
   int? eventId;
   int? pointId;
   String? eventName;
+  String? pointName;
   List<Assignment>? assignments;
 
-  PointPoliceCountAssignment({this.eventId, this.pointId, this.eventName, this.assignments});
+  PointPoliceCountAssignment(
+      {this.eventId,
+      this.pointId,
+      this.eventName,
+      this.pointName,
+      this.assignments});
 
   PointPoliceCountAssignment.fromJson(Map<String, dynamic> json) {
-    eventId = json['event-id'];
-    pointId = json['point-id'];
-    eventName = json['event-name'];
-    assignments = json['assignments'];
+    eventId = json['event-id'] ?? 0;
+    pointId = json['point-id'] ?? 0;
+    eventName = json['event-name'] ?? "";
+    pointName = json['point-name'] ?? "";
+    print("pointname = $pointName");
+    // assignments = json['assignments'];
+    assignments = [];
+    if (json['assignments'] != null) {
+      // each assignment represennnt each objjjeeeeeeeect coming frrrrom api ex     array[0]
+      json['assignments'].forEach((assignment) {
+        // to reduce code I havve made another model who can decode internal data of point-ass
+        assignments!.add(Assignment.fromJson(assignment));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -18,6 +34,7 @@ class PointPoliceCountAssignment {
     data['event-id'] = eventId;
     data['point-id'] = pointId;
     data['event-name'] = eventName;
+    data['point-name'] = pointName;
     data['assignments'] = assignments;
     return data;
   }

@@ -139,6 +139,8 @@ class APIConstants {
       BASE_URL + "/point_police_count/"; // APPEND POINT ID
   static const POINT_POLICE_COUNT_DESIGNATION_COUNTS =
       BASE_URL + "/point_police_count/" + "designation-counts";
+      static const POINT_POLICE_COUNT_ALL_POINT_DESIGNATION_COUNTS =
+      BASE_URL + "/point_police_count/" + "all-point-designation-counts-in-event";
   // static const POINT_POLICE_COUNT_CREATE_ASSIGNMENTS = BASE_URL + "/point_police_count/" + "assignments";
 
   // password manager
