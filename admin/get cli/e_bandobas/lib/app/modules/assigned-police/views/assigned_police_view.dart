@@ -1,7 +1,6 @@
 import 'package:e_bandobas/app/route_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../Config/routes/app_pages.dart';
 import '../controllers/assigned_police_controller.dart';
 
 class AssignedPoliceView extends GetView<AssignedPoliceController> {
@@ -101,7 +100,6 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
                       DataColumn(label: Text('Duty Start Date')),
                       DataColumn(label: Text('Duty End Date')),
                     ],
-                    // controller.eventAssignmentModel.value?.pointAssignments![index].assignedPoliceList!
                     rows: controller.eventPointAssignmentModel.value
                             ?.assignedPoliceList!
                             .asMap()
@@ -138,7 +136,7 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
           height: 55,
           width: 250,
           child: const Text(
-            'સોંપણીનું નામ  :-',
+            'બંદોબસનું નામ  :-',
             style: TextStyle(
                 fontWeight: FontWeight.w600,
                 color: Colors.black38,

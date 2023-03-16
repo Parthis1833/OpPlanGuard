@@ -71,8 +71,7 @@ class AssignedPoliceAddView extends GetView<AssignedPoliceAddController> {
                   },
                   child: const Text("Choose a End date"),
                 ),
-              Text("Event End Date" + controller.events.value!.where((event) => event.id == controller.selectedEventId.value).first.eventEndDate!), 
-
+              Text("Event End Date" + controller.events.value!.where((event) => event.id == controller.selectedEventId.value).first.eventEndDate!),
               ],
             ))
       ],
@@ -80,14 +79,13 @@ class AssignedPoliceAddView extends GetView<AssignedPoliceAddController> {
   }
 
   Widget saveAndAssignPoliceWidget() {
-    // show yellow if no police is selected or show red if something went wrong or green if success
     return Container(
       height: 55,
       margin: const EdgeInsets.only(top:10),
       padding: const EdgeInsets.all(8),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: Colors.green,
+          backgroundColor: Colors.green,
           textStyle: const TextStyle(
               color: Colors.white, fontSize: 20, fontStyle: FontStyle.normal),
         ),
@@ -108,7 +106,7 @@ class AssignedPoliceAddView extends GetView<AssignedPoliceAddController> {
               height: 55,
               width: 250,
               child: const Text(
-                'સોંપણીનું નામ  :-',
+                'બંદોબસનું નામ  :-',
                 style: TextStyle(
                     fontWeight: FontWeight.w600,
                     color: Colors.black38,

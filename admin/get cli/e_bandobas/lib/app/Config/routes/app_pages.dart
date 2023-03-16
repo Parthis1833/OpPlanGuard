@@ -14,8 +14,6 @@ import '../../modules/assigned-police/views/assigned_police_add.dart';
 import '../../modules/assigned-police/views/assigned_police_delete.dart';
 import '../../modules/assigned-police/views/assigned_police_update.dart';
 import '../../modules/assigned-police/views/assigned_police_view.dart';
-import '../../modules/counter/bindings/counter_binding.dart';
-import '../../modules/counter/views/counter_view.dart';
 import '../../modules/designation-view/bindings/designation_view_binding.dart';
 import '../../modules/designation-view/views/designation_view_view.dart';
 import '../../modules/dutypoint/bindings/dutypoint_binding.dart';
@@ -30,6 +28,8 @@ import '../../modules/event/views/event_update.dart';
 import '../../modules/event/views/event_view.dart';
 import '../../modules/officerdata/bindings/officerdata_binding.dart';
 import '../../modules/officerdata/views/officerdata_view.dart';
+import '../../modules/point-assesment/bindings/point_assesment_binding.dart';
+import '../../modules/point-assesment/views/point_assesment_view.dart';
 import '../../modules/point-police-assement/bindings/show_point_assignment_binding.dart';
 import '../../modules/point-police-assement/views/show_point_assignments.dart';
 import '../../modules/police-station/bindings/police_create_bindings.dart';
@@ -57,8 +57,8 @@ class AppPages {
       binding: AssesmentBinding(),
     ),
     GetPage(
-      name: PATHS.COUNTER,
-      page: () => const CounterView(),
+      name: PATHS.PointAssesment,
+      page: () => const PointAssesmentView(),
       binding: CounterBinding(),
     ),
     GetPage(

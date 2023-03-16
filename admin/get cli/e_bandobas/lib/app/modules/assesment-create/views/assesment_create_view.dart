@@ -206,7 +206,7 @@ class AssesmentCreateView extends GetView<AssesmentCreateController> {
               height: 55,
               width: 250,
               child: const Text(
-                'સોંપણીનું નામ  :-',
+                'બંદોબસનું નામ  :-',
                 style: TextStyle(
                     fontWeight: FontWeight.w600,
                     color: Colors.black38,

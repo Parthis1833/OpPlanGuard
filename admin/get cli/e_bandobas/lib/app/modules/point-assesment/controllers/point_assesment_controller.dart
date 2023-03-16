@@ -12,7 +12,7 @@ import 'package:e_bandobas/constants/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CounterController extends GetxController {
+class PointAssesmentController extends GetxController {
   var designationTextEditingControllers = <TextEditingController>[];
   late final selectedEventId = 0.obs;
   late final selectedPointId = 0.obs;

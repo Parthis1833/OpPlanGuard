@@ -91,9 +91,6 @@ class PoliceGridSource extends DataGridSource {
 
       contentList[dataRowIndex].policeStationName = newCellValue.toString();
     } else {
-      // dataGridRows[dataRowIndex].getCells()[rowColumnIndex.columnIndex] =
-      //     DataGridCell<int>(columnName: 'salary', value: newCellValue);
-      // _employees[dataRowIndex].salary = newCellValue as int;
     }
 
     controller.updateContentListRow(contentList[dataRowIndex]);
@@ -109,45 +106,43 @@ class PoliceGridSource extends DataGridSource {
       ...mapIndexed(
         row.getCells(),
         (index, item) => Container(
+          height: 280,
           alignment: Alignment.centerLeft,
           padding: const EdgeInsets.all(8.0),
           child: index == cols.length - 1
               ? row.getCells()[9].value == false
-                  ? IconButton(
-                      onPressed: () => Get.defaultDialog(
-                          titleStyle: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
-                          content: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text('Are You SUre'),
-                              TextButton(
-                                onPressed: () {
-                                  controller.deletePoliceById(
-                                      row.getCells()[0].value);
-                                  Get.back();
-                                },
-                                style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all(Colors.red),
-                                  foregroundColor:
-                                      MaterialStateProperty.all(Colors.white),
-                                ),
-                                child: const Text("Delete"),
-                              ),
-                            ],
-                          )),
-                      // controller.deletePoliceById(row.getCells()[0].value),
-                      icon: const Icon(Icons.delete))
-                  : Container()
-              : Text(
-                  row.getCells()[index].value.toString(),
-                  overflow: TextOverflow.ellipsis,
+              ? IconButton(
+            onPressed: () {
+              Get.defaultDialog(
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text('Are you sure?'),
+                    const SizedBox(height: 16),
+                    ElevatedButton.icon(
+                      onPressed: () {
+                        controller.deletePoliceById(row.getCells()[0].value);
+                        Get.back();
+                      },
+                      icon: const Icon(Icons.delete),
+                      label: const Text('Delete'),
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(Colors.red),
+                      ),
+                    ),
+                  ],
                 ),
-        ),
-      ),
+              );
+            },
+            icon: const Icon(Icons.delete),
+          )
+              : Container()
+              : Text(
+            row.getCells()[index].value.toString(),
+            overflow: TextOverflow.ellipsis,
+          ),
+        )
+      )
     ]);
   }
 

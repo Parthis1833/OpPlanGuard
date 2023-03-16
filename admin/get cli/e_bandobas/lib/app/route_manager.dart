@@ -4,7 +4,6 @@ import 'package:e_bandobas/app/modules/assigned-police/controllers/assigned_poli
 import 'package:e_bandobas/app/modules/assigned-police/controllers/assigned_police_controller.dart';
 import 'package:e_bandobas/app/modules/assigned-police/controllers/assigned_police_delete_controller.dart';
 import 'package:e_bandobas/app/modules/assigned-police/controllers/assigned_police_update_controller.dart';
-import 'package:e_bandobas/app/modules/counter/controllers/counter_controller.dart';
 import 'package:e_bandobas/app/modules/designation-view/controllers/designation_view_controller.dart';
 import 'package:e_bandobas/app/modules/dutypoint/controllers/dutypoint_controller.dart';
 import 'package:e_bandobas/app/modules/dutypointallocation/controllers/dutypointallocation_controller.dart';
@@ -20,6 +19,7 @@ import 'package:e_bandobas/app/modules/setting/controllers/setting_controller.da
 import 'package:get/get.dart';
 import 'modules/assesment-create/controllers/assesment_create_controller.dart';
 import 'modules/assesment/controllers/assesment_controller.dart';
+import 'modules/point-assesment/controllers/point_assesment_controller.dart';
 import 'modules/police-station/controllers/police_station_create_controller.dart';
 
 class CustomRouteManager {
@@ -51,9 +51,9 @@ class CustomRouteManager {
     Get.delete<AssignedPoliceByEventController>();
     Get.toNamed(Routes.ASSIGNED_POLICE_VIEW_BY_EVENT, arguments: arguments);
   }
-  static void COUNTER({arguments}) {
-    Get.delete<CounterController>();
-    Get.toNamed(Routes.COUNTER, arguments: arguments);
+  static void PointAssesment({arguments}) {
+    Get.delete<PointAssesmentController>();
+    Get.toNamed(Routes.PointAssesment, arguments: arguments);
   }
   static void DUTYPOINT({arguments}) {
     Get.delete<DutypointController>();
