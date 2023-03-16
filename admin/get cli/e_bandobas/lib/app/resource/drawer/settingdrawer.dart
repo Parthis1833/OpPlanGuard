@@ -1,8 +1,9 @@
 import 'package:e_bandobas/app/route_manager.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SettingDrawer extends StatelessWidget{
+  const SettingDrawer({super.key});
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
