@@ -1,4 +1,5 @@
 import 'package:e_bandobas/app/jsondata/PointData/Point.dart';
+import 'package:e_bandobas/app/modules/dutypoint/views/selected_point_assignment_grid.dart';
 import 'package:get/get.dart';
 import '../../../../constants/enums.dart';
 import '../../../jsondata/EventData/Event.dart';
@@ -15,21 +16,36 @@ class DutypointController extends GetxController {
   late final selectedEventId = 0.obs;
   late final selectedPointId = 0.obs;
   final events = Rxn<List<Event>>();
-  final eventAssignmentCounts = Rxn<List<EventPoliceCountAssignedTotalRequestedModel>>();
+  final eventAssignmentCounts =
+      Rxn<List<EventPoliceCountAssignedTotalRequestedModel>>();
   final pointPoliceAssignments = Rxn<List<PointPoliceCountAssignment>>();
+  
+  final selectedPointAssignment = Rxn<PointPoliceCountAssignment>();
+  final selectedPointAssignmentDataGridSource =
+      Rxn<SelectedPointViewAssignmentDataGridSource>();
+
   final pointList = Rxn<List<Point>>();
   final pointViewDataGridSource = Rxn<PointViewDataGridSource>();
   final pointViewDataGridCols = ["ID", "Point Name"];
   List<Assignment> designations = <Assignment>[];
 
   Future<PointViewDataGridSource?> getPointViewDataGridSource() async {
-
     if (pointPoliceAssignments.value != null) {
       pointViewDataGridSource.value =
           PointViewDataGridSource(pointPoliceAssignments.value!);
       return pointViewDataGridSource.value;
     }
-    return PointViewDataGridSource(pointPoliceAssignments.value!);
+    return PointViewDataGridSource([]);
+  }
+
+  Future<SelectedPointViewAssignmentDataGridSource?>
+      getCreateUpdatePointAssignmentDataGridSource() async {
+    if (selectedPointAssignment.value != null) {
+      selectedPointAssignmentDataGridSource.value =
+          SelectedPointViewAssignmentDataGridSource([selectedPointAssignment.value!]);
+      return selectedPointAssignmentDataGridSource.value;
+    }
+    return SelectedPointViewAssignmentDataGridSource([]);
   }
 
   void changeSelectedEvent(num? value) {
@@ -64,10 +80,26 @@ class DutypointController extends GetxController {
           await PointPoliceCountApi.obtainEntireEventAssignments(
               API_Decision.Only_Failure, selectedEventId.value);
       if (pointPoliceAssignments.value != null) {
+        if (pointPoliceAssignments.value!.length > 0) {
+          selectedPointAssignment.value = pointPoliceAssignments.value![0];
+        } else {
+          loadSelectedPointAssignmentCount();
+        }
         loadDesignationFromAssignments();
       }
     }
     update();
+  }
+
+  void loadSelectedPointAssignmentCount() async {
+    if (selectedEventId.value != null && selectedPointId.value != null) {
+      selectedPointAssignment.value =
+          await PointPoliceCountApi.obtainPointPoliceAssignments(
+              API_Decision.Only_Failure,
+              selectedEventId.value,
+              selectedPointId.value);
+      update();
+    }
   }
 
   void loadPoints() async {

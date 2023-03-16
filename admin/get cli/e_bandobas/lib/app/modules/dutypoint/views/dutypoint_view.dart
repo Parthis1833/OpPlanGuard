@@ -30,6 +30,11 @@ class DutypointView extends GetView<DutypointController> {
               ? const CircularProgressIndicator.adaptive()
               : PoliceCardV2(
                   eventAssignments: controller.eventAssignmentCounts.value!)),
+
+          Obx(() => controller.selectedPointAssignment.value == null 
+          ? const CircularProgressIndicator.adaptive()
+          : createUpdatePointAssignmentWidget(),),
+          
           Obx(() => controller.pointList.value == null &&
                   controller.pointPoliceAssignments.value == null
               ? const CircularProgressIndicator.adaptive()
@@ -40,25 +45,50 @@ class DutypointView extends GetView<DutypointController> {
     );
   }
 
+  Widget createUpdatePointAssignmentWidget() {
+    return FutureBuilder(
+        future: controller.getCreateUpdatePointAssignmentDataGridSource(),
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          return snapshot.hasData
+              ? Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SfDataGridTheme(
+                      data: SfDataGridThemeData(
+                          headerColor: Colors.lime),
+                      child: SfDataGrid(
+                        source: snapshot.data,
+                        columns: getColumns(),
+                      ),
+                    ),
+                  ),
+                )
+              : const Center(
+                  child: CircularProgressIndicator(
+                    strokeWidth: 3,
+                  ),
+                );
+        });
+  }
+
   Widget pointGridWidget() {
     return FutureBuilder(
       future: controller.getPointViewDataGridSource(),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         return snapshot.hasData
             ? Center(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SfDataGridTheme(
-                  data: SfDataGridThemeData(
-                      headerColor: Colors.lightBlueAccent),
-                  child: SfDataGrid(
-                    source: snapshot.data,
-                   
-                    columns: getColumns(),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SfDataGridTheme(
+                    data: SfDataGridThemeData(
+                        headerColor: Colors.lightBlueAccent),
+                    child: SfDataGrid(
+                      source: snapshot.data,
+                      columns: getColumns(),
+                    ),
                   ),
                 ),
-              ),
-            )
+              )
             : const Center(
                 child: CircularProgressIndicator(
                   strokeWidth: 3,
