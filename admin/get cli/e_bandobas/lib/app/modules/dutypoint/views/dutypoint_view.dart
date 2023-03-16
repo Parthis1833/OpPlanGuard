@@ -53,7 +53,7 @@ class DutypointView extends GetView<DutypointController> {
                       headerColor: Colors.lightBlueAccent),
                   child: SfDataGrid(
                     source: snapshot.data,
-                    allowFiltering: true,
+                   
                     columns: getColumns(),
                   ),
                 ),
