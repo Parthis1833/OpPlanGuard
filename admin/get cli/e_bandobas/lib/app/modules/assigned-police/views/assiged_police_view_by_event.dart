@@ -22,7 +22,6 @@ class AssignedPoliceByEventView
           child: ElevatedButton(
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.resolveWith((states) {
-                  // If the button is pressed, return green, otherwise blue
                   if (states.contains(MaterialState.pressed)) {
                     return Colors.green;
                   }

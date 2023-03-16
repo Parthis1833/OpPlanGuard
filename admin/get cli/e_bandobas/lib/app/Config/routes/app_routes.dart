@@ -1,10 +1,9 @@
 part of 'app_pages.dart';
-// DO NOT EDIT. This is code generated via package:get_cli/get_cli.dart
 
 abstract class Routes {
   Routes._();
   static const ASSESMENT = PATHS.ASSESMENT;
-  static const COUNTER = PATHS.COUNTER;
+  static const PointAssesment = PATHS.PointAssesment;
   static const DUTYPOINT = PATHS.DUTYPOINT;
   static const POINTLIST = PATHS.POINTLIST;
   static const ZONELIST = PATHS.ZONELIST;
@@ -37,7 +36,7 @@ abstract class Routes {
 class PATHS {
   PATHS._();
   static const ASSESMENT = '/assesment';
-  static const COUNTER = '/counter';
+  static const PointAssesment = '/point-assesment';
   static const DUTYPOINT = '/dutypoint';
   static const POINTLIST = '/pointlist';
   static const ZONELIST = '/zonelist';
@@ -46,19 +45,15 @@ class PATHS {
   static const ROADBANDOBAST = '/roadbandobast';
   static const SETTING = '/setting';
   static const ASSESMENT_CREATE = '/assesment-create';
-
   static const SHOW_POINTS_ASSESMENT = "/show-point-assesment";
   static const EVENT_SHOW = "/event";
   static const EVENT_CREATE = "/event-create";
   static const EVENT_UPDATE = "/event-update";
-
   static const ASSIGNED_POLICE = "/assigned-police";
   static const ASSIGNED_POLICE_ADD = "/assigned-police-add";
   static const ASSIGNED_POLICE_UPDATE = "/assigned-police-update";
   static const ASSIGNED_POLICE_DELETE = "/assigned-police-delete";
   static const ASSIGNED_POLICE_VIEW_BY_EVENT = '/assigned-police-view-by-event';
-
-  // static const PASSWORD_MANAGER = '/password-manager';
   static const POLICE_STATION = '/police-station';
   static const POLICE_STATION_CREATE = '/police-station-create';
   static const POLICE_CREATE = '/police-create';

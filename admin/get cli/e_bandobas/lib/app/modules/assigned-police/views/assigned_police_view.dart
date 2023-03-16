@@ -101,7 +101,6 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
                       DataColumn(label: Text('Duty Start Date')),
                       DataColumn(label: Text('Duty End Date')),
                     ],
-                    // controller.eventAssignmentModel.value?.pointAssignments![index].assignedPoliceList!
                     rows: controller.eventPointAssignmentModel.value
                             ?.assignedPoliceList!
                             .asMap()
@@ -138,7 +137,7 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
           height: 55,
           width: 250,
           child: const Text(
-            'સોંપણીનું નામ  :-',
+            'બંદોબસનું નામ  :-',
             style: TextStyle(
                 fontWeight: FontWeight.w600,
                 color: Colors.black38,

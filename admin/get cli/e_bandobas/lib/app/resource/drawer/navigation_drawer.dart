@@ -22,8 +22,8 @@ class Navigation_Drawer extends StatelessWidget {
           buildDrawerItem(
             text: 'પોઇન્ટ એસેસર્સમેન્ટ',
             icon: Icons.data_usage_rounded,
-            tileColor: Get.currentRoute == Routes.COUNTER ? Colors.blue : null,
-            textIconColor: Get.currentRoute == Routes.COUNTER
+            tileColor: Get.currentRoute == Routes.PointAssesment ? Colors.blue : null,
+            textIconColor: Get.currentRoute == Routes.PointAssesment
                 ? Colors.white
                 : Colors.black87,
             onTap: () => navigate(1),
@@ -154,7 +154,7 @@ class Navigation_Drawer extends StatelessWidget {
     if (index == 0) {
       CustomRouteManager.ASSESMENT();
     } else if (index == 1) {
-      CustomRouteManager.COUNTER();
+      CustomRouteManager.PointAssesment();
     } else if (index == 2) {
       CustomRouteManager.DUTYPOINT();
     } else if (index == 3) {

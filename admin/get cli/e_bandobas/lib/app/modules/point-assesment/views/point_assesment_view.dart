@@ -1,14 +1,12 @@
-import 'package:e_bandobas/app/Config/routes/app_pages.dart';
-import 'package:e_bandobas/app/modules/counter/controllers/counter_controller.dart';
-import 'package:e_bandobas/app/resource/card/PoliceCardV2.dart';
 import 'package:e_bandobas/app/resource/drawer/navigation_drawer.dart';
 import 'package:e_bandobas/app/route_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import '../controllers/point_assesment_controller.dart';
 
-class CounterView extends GetView<CounterController> {
-  const CounterView({Key? key}) : super(key: key);
+class PointAssesmentView extends GetView<PointAssesmentController> {
+  const PointAssesmentView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
