@@ -9,65 +9,6 @@ import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import '../../../jsondata/PointPoliceCount/PointPoliceCountAssignmentModel.dart';
 import '../controllers/dutypoint_controller.dart';
 
-class PointViewDataGrid extends StatelessWidget {
-  final DutypointController pointController = Get.find();
-
-  PointViewDataGrid({super.key});
-  @override
-  Widget build(Object context) {
-    return FutureBuilder(
-      future: pointController.getPointViewDataGridSource(),
-      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-        return snapshot.hasData
-            ? SfDataGridTheme(
-          data: SfDataGridThemeData(
-            headerColor: Colors.lightBlueAccent,
-          ),
-          child: SfDataGrid(
-            source: snapshot.data,
-            defaultColumnWidth: double.nan,
-            onQueryRowHeight: (details) {
-              return details.getIntrinsicRowHeight(details.rowIndex);
-            },
-            columns: getColumns(),
-          ),
-        ) : const Center(
-                child: CircularProgressIndicator(
-                  strokeWidth: 3,
-                ),
-              );
-      },
-    );
-  }
-
-  List<GridColumn> getColumns() {
-    return <GridColumn>[
-      ...pointController.pointViewDataGridCols.map((col) => GridColumn(
-          columnName: col,
-          label: Container(
-              alignment: Alignment.center,
-              child: Text(col,
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontStyle: FontStyle.italic),
-                  softWrap: true)))),
-    ];
-  }
-
-  Future<List<Point>> generatecontentList() async {
-    var response = await http.get(Uri.parse(APIConstants.POINT_URL));
-    var decodedPoint = jsonDecode(utf8.decode(response.bodyBytes));
-    List<Point> pointListFromContent = [];
-    if (decodedPoint['content'] != null) {
-      decodedPoint['content'].forEach((pointData) {
-        pointListFromContent.add(Point.fromJson(pointData));
-      });
-    }
-    pointListFromContent[0];
-    return pointListFromContent;
-  }
-}
-
 class PointViewDataGridSource extends DataGridSource {
   PointViewDataGridSource(this.assignments) {
     buildDataGridRow();
