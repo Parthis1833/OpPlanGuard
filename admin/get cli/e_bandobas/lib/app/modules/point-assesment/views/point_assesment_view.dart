@@ -234,7 +234,7 @@ class PointAssesmentView extends GetView<PointAssesmentController> {
           height: 55,
           width: 250,
           child: const Text(
-            'સોંપણીનું નામ  :-',
+            'બંદોબસ્તનું નામ  :-',
             style: TextStyle(
                 fontWeight: FontWeight.w600,
                 color: Colors.black38,

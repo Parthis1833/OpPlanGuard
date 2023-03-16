@@ -136,7 +136,7 @@ class AssignedPoliceView extends GetView<AssignedPoliceController> {
           height: 55,
           width: 250,
           child: const Text(
-            'બંદોબસનું નામ  :-',
+            'બંદોબસ્તનું નામ  :-',
             style: TextStyle(
                 fontWeight: FontWeight.w600,
                 color: Colors.black38,

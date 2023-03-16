@@ -127,7 +127,7 @@ class _AssessmentPoPPageState extends State<AssessmentPOPPage>{
                         margin: const EdgeInsets.only(left: 160.0),
                         padding: const EdgeInsets.only(top: 25.0),
                         child: const Text(
-                          'સોંપણીનું નામ',
+                          'બંદોબસ્તનું નામ',
                           style: TextStyle(
                               fontWeight: FontWeight.w600,
                               color: Colors.black38,
@@ -135,7 +135,7 @@ class _AssessmentPoPPageState extends State<AssessmentPOPPage>{
                         ),
                       ),
                       Container(
-                        margin: const EdgeInsets.only(left: 55.0),
+                        margin: const EdgeInsets.only(left: 40.0),
                         padding: const EdgeInsets.only(top: 25.0),
                         child: SizedBox(
                           height: 40,

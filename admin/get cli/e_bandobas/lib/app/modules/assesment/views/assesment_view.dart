@@ -78,52 +78,56 @@ class AssesmentView extends GetView<AssesmentController> {
   }
 
   Widget assementButton() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              FloatingActionButton(
-                heroTag: const Text("Events"),
-                backgroundColor: Colors.cyanAccent,
-                onPressed: () {
-                  CustomRouteManager.EVENT_SHOW();
-                },
-                child: const Icon(
-                  Icons.add_circle_outline,
-                  color: Colors.deepPurple,
-                  size: 56.4,
+    return SizedBox(
+      height: 100,
+      width: 400,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                FloatingActionButton(
+                  heroTag: const Text("Events"),
+                  backgroundColor: Colors.cyanAccent,
+                  onPressed: () {
+                    CustomRouteManager.EVENT_SHOW();
+                  },
+                  child: const Icon(
+                    Icons.add_circle_outline,
+                    color: Colors.deepPurple,
+                    size: 56.4,
+                  ),
                 ),
-              ),
-              const Text("Event page")
-            ],
+                const Text("Event page")
+              ],
+            ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              FloatingActionButton(
-                heroTag: const Text("Event Assement"),
-                backgroundColor: const Color.fromARGB(100, 28, 54, 105),
-                onPressed: () {
-                  CustomRouteManager.ASSESMENT_CREATE();
-                },
-                child: const Icon(
-                  Icons.add_circle_outline,
-                  color: Colors.deepPurple,
-                  size: 56.4,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                FloatingActionButton(
+                  heroTag: const Text("Event Assement"),
+                  backgroundColor: const Color.fromARGB(100, 28, 54, 105),
+                  onPressed: () {
+                    CustomRouteManager.ASSESMENT_CREATE();
+                  },
+                  child: const Icon(
+                    Icons.add_circle_outline,
+                    color: Colors.deepPurple,
+                    size: 56.4,
+                  ),
                 ),
-              ),
-              const Text("Event Assement")
-            ],
+                const Text("Event Assement")
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
