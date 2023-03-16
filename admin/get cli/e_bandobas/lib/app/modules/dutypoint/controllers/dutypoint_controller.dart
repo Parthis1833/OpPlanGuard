@@ -16,20 +16,16 @@ class DutypointController extends GetxController {
   late final selectedEventId = 0.obs;
   late final selectedPointId = 0.obs;
   final events = Rxn<List<Event>>();
-  final eventAssignmentCounts =
-      Rxn<List<EventPoliceCountAssignedTotalRequestedModel>>();
+  final eventAssignmentCounts = Rxn<List<EventPoliceCountAssignedTotalRequestedModel>>();
   final pointPoliceAssignments = Rxn<List<PointPoliceCountAssignment>>();
-
   final pointList = Rxn<List<Point>>();
   final pointViewDataGridSource = Rxn<PointViewDataGridSource>();
   final pointViewDataGridCols = ["ID", "Point Name"];
   List<Assignment> designations = <Assignment>[];
 
   Future<PointViewDataGridSource?> getPointViewDataGridSource() async {
-    // List<Point> pointList = await generatecontentList();
+
     if (pointPoliceAssignments.value != null) {
-      print("inside getPointViewDataGridSource");
-      print(pointPoliceAssignments.value![0].assignments!.length);
       pointViewDataGridSource.value =
           PointViewDataGridSource(pointPoliceAssignments.value!);
       return pointViewDataGridSource.value;
@@ -65,12 +61,6 @@ class DutypointController extends GetxController {
 
   void loadPointAssignmentCount() async {
     if (events.value != null) {
-      print("${selectedEventId.value} ${selectedPointId.value}");
-      // pointPoliceAssignments.value =
-      //     await PointPoliceCountApi.obtainPointPoliceAssignments(
-      //         API_Decision.Only_Failure,
-      //         selectedEventId.value,
-      //         selectedPointId.value);
       pointPoliceAssignments.value =
           await PointPoliceCountApi.obtainEntireEventAssignments(
               API_Decision.Only_Failure, selectedEventId.value);
@@ -86,10 +76,6 @@ class DutypointController extends GetxController {
     if (pointList.value != null && pointList.value!.isNotEmpty) {
       selectedPointId.value = pointList.value!.elementAt(0).id!.toInt();
       loadPointAssignmentCount();
-      // if (pointPoliceAssignments.value != null) {
-      //   pointViewDataGridCols.addAll(pointPoliceAssignments.value!.assignments!
-      //       .map((assignment) => assignment.designationName ?? ""));
-      // }
     }
     update();
   }

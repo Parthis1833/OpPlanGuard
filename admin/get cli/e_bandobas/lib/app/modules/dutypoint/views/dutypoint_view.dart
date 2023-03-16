@@ -1,4 +1,3 @@
-import 'package:e_bandobas/app/modules/dutypoint/views/PointViewDataGrid.dart';
 import 'package:e_bandobas/app/resource/button/collapsebutton.dart';
 import 'package:e_bandobas/app/resource/drawer/navigation_drawer.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +31,7 @@ class DutypointView extends GetView<DutypointController> {
               : PoliceCardV2(
                   eventAssignments: controller.eventAssignmentCounts.value!)),
           const SizedBox(
-            height: 30,
+            height: 10,
           ),
           Obx(() => controller.pointList.value == null &&
                   controller.pointPoliceAssignments.value == null
@@ -47,7 +46,6 @@ class DutypointView extends GetView<DutypointController> {
   Widget pointGridWidget() {
     return FutureBuilder(
       future: controller.getPointViewDataGridSource(),
-      // future: getPointViewDataGridSource(),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         return snapshot.hasData
             ? Column(
