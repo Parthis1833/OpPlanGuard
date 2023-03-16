@@ -30,9 +30,6 @@ class DutypointView extends GetView<DutypointController> {
               ? const CircularProgressIndicator.adaptive()
               : PoliceCardV2(
                   eventAssignments: controller.eventAssignmentCounts.value!)),
-          const SizedBox(
-            height: 10,
-          ),
           Obx(() => controller.pointList.value == null &&
                   controller.pointPoliceAssignments.value == null
               ? const CircularProgressIndicator.adaptive()
@@ -48,31 +45,20 @@ class DutypointView extends GetView<DutypointController> {
       future: controller.getPointViewDataGridSource(),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         return snapshot.hasData
-            ? Column(
-                children: [
-                  SizedBox(
-                    height: 700,
-                    child: SfDataGridTheme(
-                      data: SfDataGridThemeData(
-                          headerColor: Colors.lightBlueAccent),
-                      child: SfDataGrid(
-                        source: snapshot.data,
-                        showCheckboxColumn: true,
-                        checkboxShape: const CircleBorder(),
-                        allowFiltering: true,
-                        selectionMode: SelectionMode.multiple,
-                        onQueryRowHeight: (details) {
-                          return details
-                              .getIntrinsicRowHeight(details.rowIndex);
-                        },
-                        columnWidthMode: ColumnWidthMode.auto,
-                        shrinkWrapColumns: true,
-                        columns: getColumns(),
-                      ),
-                    ),
+            ? Center(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SfDataGridTheme(
+                  data: SfDataGridThemeData(
+                      headerColor: Colors.lightBlueAccent),
+                  child: SfDataGrid(
+                    source: snapshot.data,
+                    allowFiltering: true,
+                    columns: getColumns(),
                   ),
-                ],
-              )
+                ),
+              ),
+            )
             : const Center(
                 child: CircularProgressIndicator(
                   strokeWidth: 3,
@@ -100,15 +86,12 @@ class DutypointView extends GetView<DutypointController> {
                 items: controller.events.value?.map((event) {
                   return DropdownMenuItem(
                       value: event.id,
-                      child: Padding(
-                        padding: const EdgeInsets.all(6.0),
-                        child: Text(
-                          event.eventName.toString(),
-                          style: const TextStyle(
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black38,
-                              fontSize: 18.0),
-                        ),
+                      child: Text(
+                        event.eventName.toString(),
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black38,
+                            fontSize: 18.0),
                       ));
                 }).toList(),
                 onChanged: (value) {
@@ -121,12 +104,9 @@ class DutypointView extends GetView<DutypointController> {
   }
 
   List<GridColumn> getColumns() {
-    print("col size : ${controller.pointViewDataGridCols.length}");
     return <GridColumn>[
       ...controller.pointViewDataGridCols.map((col) => GridColumn(
-          allowFiltering: false,
           columnName: col,
-          // width: 100,
           label: Container(
               padding: const EdgeInsets.all(8),
               alignment: Alignment.centerLeft,

@@ -1,6 +1,5 @@
 import 'package:e_bandobas/app/jsondata/PointData/Point.dart';
 import 'package:get/get.dart';
-
 import '../../../../constants/enums.dart';
 import '../../../jsondata/EventData/Event.dart';
 import '../../../jsondata/EventData/EventApi.dart';
