@@ -13,7 +13,12 @@ class SelectedPointViewAssignmentDataGridSource extends DataGridSource {
   SelectedPointViewAssignmentDataGridSource(this.assignments) {
     buildDataGridRow();
   }
+  dynamic newCellValue;
+
+  /// Help to control the editable text in [TextField] widget.
+  TextEditingController editingController = TextEditingController();
   late List<DataGridRow> dataGridRows;
+
   final List<PointPoliceCountAssignment> assignments;
   final DutypointController controller = Get.find();
 
@@ -22,17 +27,16 @@ class SelectedPointViewAssignmentDataGridSource extends DataGridSource {
     return DataGridRowAdapter(cells: [
       ...mapIndexed(
           row.getCells(),
-          (index, item) => 
-          index == 1 ?
-          Obx(() => controller.selectedPointId.value == null ?
-          const CircularProgressIndicator.adaptive()
-          : pointSelectionDropDownWidget())
-          : Container(
-            alignment: Alignment.center,
-                child: Text(
-                  row.getCells()[index].value.toString(),
-                ),
-              )),
+          (index, item) => index == 1
+              ? Obx(() => controller.selectedPointId.value == null
+                  ? const CircularProgressIndicator.adaptive()
+                  : pointSelectionDropDownWidget())
+              : Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                    row.getCells()[index].value.toString(),
+                  ),
+                )),
     ]);
   }
 
@@ -57,10 +61,10 @@ class SelectedPointViewAssignmentDataGridSource extends DataGridSource {
                   columnName: 'Point Name',
                   value: assignments[index].pointName ?? ""),
               ...assignments[index].assignments!.map(
-                (assignment) => DataGridCell<int>(
-                    columnName: assignment.designationName ?? "",
-                    value: assignment.designationCount),
-              )
+                    (assignment) => DataGridCell<int>(
+                        columnName: assignment.designationName ?? "",
+                        value: assignment.designationCount),
+                  )
             ])).toList(growable: false);
   }
 
@@ -79,19 +83,22 @@ class SelectedPointViewAssignmentDataGridSource extends DataGridSource {
       child: Row(
         children: [
           SizedBox(
-            height: 55,
-            width: 350,
+            height: 45,
+            width: 150,
             child: DropdownButton(
                 value: controller.selectedPointId.value,
                 isExpanded: true,
-                itemHeight: 60,
+                itemHeight: 50,
                 items: controller.pointList.value!.map((point) {
                   return DropdownMenuItem(
-                    value: point.id, child: Text(point.pointName.toString() ,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black38,
-                        fontSize: 24.0),),
+                    value: point.id,
+                    child: Text(
+                      point.pointName.toString(),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black38,
+                          fontSize: 18.0),
+                    ),
                   );
                 }).toList(),
                 onChanged: (value) {
@@ -99,6 +106,92 @@ class SelectedPointViewAssignmentDataGridSource extends DataGridSource {
                 }),
           ),
         ],
+      ),
+    );
+  }
+
+  @override
+  void onCellSubmit(DataGridRow dataGridRow, RowColumnIndex rowColumnIndex,
+      GridColumn column) {
+    print("wtf");
+    final dynamic oldValue = dataGridRow
+            .getCells()
+            .firstWhereOrNull((DataGridCell dataGridCell) =>
+                dataGridCell.columnName == column.columnName)
+            ?.value ??
+        '';
+    final int dataRowIndex = dataGridRows.indexOf(dataGridRow);
+
+    if (newCellValue == null || oldValue == newCellValue) {
+      return;
+    }
+
+    print("oldvalue & new value = $oldValue : $newCellValue");
+    // rowColumnIndex.columnIndex -= 2;
+    print(rowColumnIndex.columnIndex);
+    print(
+        "${dataGridRows[dataRowIndex].getCells()[rowColumnIndex.columnIndex].columnName} : ${dataGridRows[dataRowIndex].getCells()[rowColumnIndex.columnIndex].value} : ${rowColumnIndex.columnIndex}");
+    dataGridRows[dataRowIndex].getCells().forEach((rowCell) {
+      if (rowCell.columnName == column.columnName) {
+        print("my name is sheela");
+        dataGridRows[dataRowIndex].getCells()[rowColumnIndex.columnIndex] =
+            DataGridCell<String>(
+                columnName: rowCell.columnName, value: newCellValue);
+        assignments[dataRowIndex].assignments![rowColumnIndex.columnIndex - 2] =
+            newCellValue;
+      }
+    });
+    // controller.updateAssignments(assignments[dataRowIndex]);
+  }
+
+  @override
+  Widget? buildEditWidget(DataGridRow dataGridRow,
+      RowColumnIndex rowColumnIndex, GridColumn column, CellSubmit submitCell) {
+    // Text going to display on editable widget
+    final String displayText = dataGridRow
+            .getCells()
+            .firstWhereOrNull((DataGridCell dataGridCell) =>
+                dataGridCell.columnName == column.columnName)
+            ?.value
+            ?.toString() ??
+        '';
+
+    // The new cell value must be reset.
+    // To avoid committing the [DataGridCell] value that was previously edited
+    // into the current non-modified [DataGridCell].
+    newCellValue = null;
+
+    final bool isNumericType =
+        column.columnName == 'id' || column.columnName == 'salary';
+
+    return Container(
+      padding: const EdgeInsets.all(8.0),
+      alignment: isNumericType ? Alignment.centerRight : Alignment.centerLeft,
+      child: TextField(
+        autofocus: true,
+        controller: editingController..text = displayText,
+        textAlign: isNumericType ? TextAlign.right : TextAlign.left,
+        decoration: InputDecoration(
+          contentPadding: const EdgeInsets.fromLTRB(0, 0, 0, 16.0),
+        ),
+        keyboardType: isNumericType ? TextInputType.number : TextInputType.text,
+        onChanged: (String value) {
+          if (value.isNotEmpty) {
+            if (isNumericType) {
+              newCellValue = int.parse(value);
+            } else {
+              newCellValue = value;
+            }
+          } else {
+            newCellValue = null;
+          }
+        },
+        onSubmitted: (String value) {
+          // In Mobile Platform.
+          // Call [CellSubmit] callback to fire the canSubmitCell and
+          // onCellSubmit to commit the new value in single place.
+          submitCell();
+        },
       ),
     );
   }

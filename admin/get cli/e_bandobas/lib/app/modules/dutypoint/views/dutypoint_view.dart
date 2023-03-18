@@ -24,19 +24,21 @@ class DutypointView extends GetView<DutypointController> {
               : eventSelectionDropDownWidget()),
         ],
       ),
-      body: ListView(
+      body: Column(
         children: [
           Obx(() => controller.eventAssignmentCounts.value == null
               ? const CircularProgressIndicator.adaptive()
               : PoliceCardV2(
                   eventAssignments: controller.eventAssignmentCounts.value!)),
-
-          Obx(() => controller.selectedPointAssignment.value == null 
-          ? const CircularProgressIndicator.adaptive()
-          : createUpdatePointAssignmentWidget(),),
-          
-          Obx(() => controller.pointList.value == null &&
-                  controller.pointPoliceAssignments.value == null
+          Obx(
+            // () => controller.pointPoliceAssignments.value == null || controller.selectedPointAssignment.value == null
+            () => controller.selectedPointAssignmentDataGridSource.value == null
+                ? const CircularProgressIndicator.adaptive()
+                : createUpdatePointAssignmentWidget(),
+          ),
+          // Obx(() => controller.pointList.value == null ||
+          //         controller.pointPoliceAssignments.value == null
+          Obx( () => controller.pointViewDataGridSource.value == null
               ? const CircularProgressIndicator.adaptive()
               : pointGridWidget())
         ],
@@ -50,17 +52,29 @@ class DutypointView extends GetView<DutypointController> {
         future: controller.getCreateUpdatePointAssignmentDataGridSource(),
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           return snapshot.hasData
-              ? Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SfDataGridTheme(
-                      data: SfDataGridThemeData(
-                          headerColor: Colors.lime),
-                      child: SfDataGrid(
-                        source: snapshot.data,
-                        columns: getColumns(),
+              ? Expanded(
+                  child: ListView(
+                    children: [
+                      Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: SfDataGridTheme(
+                            data: SfDataGridThemeData(headerColor: Colors.lime),
+                            child: SfDataGrid(
+                              source: snapshot.data,
+                              allowEditing: true,
+                              selectionMode: SelectionMode.single,
+                              navigationMode: GridNavigationMode.cell,
+                              shrinkWrapColumns: true,
+                              onSelectionChanged: (rows, newRows) {
+                                print(rows[0].getCells()[0].value);
+                              },
+                              columns: getColumns(),
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                 )
               : const Center(

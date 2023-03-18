@@ -19,7 +19,7 @@ class DutypointController extends GetxController {
   final eventAssignmentCounts =
       Rxn<List<EventPoliceCountAssignedTotalRequestedModel>>();
   final pointPoliceAssignments = Rxn<List<PointPoliceCountAssignment>>();
-  
+
   final selectedPointAssignment = Rxn<PointPoliceCountAssignment>();
   final selectedPointAssignmentDataGridSource =
       Rxn<SelectedPointViewAssignmentDataGridSource>();
@@ -35,17 +35,20 @@ class DutypointController extends GetxController {
           PointViewDataGridSource(pointPoliceAssignments.value!);
       return pointViewDataGridSource.value;
     }
-    return PointViewDataGridSource([]);
+    // return PointViewDataGridSource([]);
+    return null;
   }
 
   Future<SelectedPointViewAssignmentDataGridSource?>
       getCreateUpdatePointAssignmentDataGridSource() async {
     if (selectedPointAssignment.value != null) {
       selectedPointAssignmentDataGridSource.value =
-          SelectedPointViewAssignmentDataGridSource([selectedPointAssignment.value!]);
+          SelectedPointViewAssignmentDataGridSource(
+              [selectedPointAssignment.value!]);
       return selectedPointAssignmentDataGridSource.value;
     }
-    return SelectedPointViewAssignmentDataGridSource([]);
+    return null;
+    // return SelectedPointViewAssignmentDataGridSource([]);
   }
 
   void changeSelectedEvent(num? value) {
@@ -98,6 +101,10 @@ class DutypointController extends GetxController {
               API_Decision.Only_Failure,
               selectedEventId.value,
               selectedPointId.value);
+      selectedPointAssignmentDataGridSource.value =
+          SelectedPointViewAssignmentDataGridSource(
+              [selectedPointAssignment.value!]);
+      loadDesignationFromAssignments();
       update();
     }
   }
@@ -120,10 +127,18 @@ class DutypointController extends GetxController {
   }
 
   void loadDesignationFromAssignments() {
-    if (pointPoliceAssignments.value != null) {
-      designations = pointPoliceAssignments.value![0].assignments!;
+    if (selectedPointAssignment.value != null) {
+      // designations = pointPoliceAssignments.value![0].assignments!;
+      designations = selectedPointAssignment.value!.assignments!;
       pointViewDataGridCols
           .addAll(designations.map((d) => d.designationName ?? ""));
     }
+    print(pointViewDataGridCols);
+  }
+
+  void updateAssignments(PointPoliceCountAssignment assignment) {
+    selectedPointAssignment.value = assignment;
+
+    update();
   }
 }
