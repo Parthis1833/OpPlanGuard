@@ -157,6 +157,7 @@ class PointAssesmentController extends GetxController {
       pointViewDataGridCols.addAll(["ID", "Point Name"]);
       pointViewDataGridCols
           .addAll(designations.map((d) => d.designationName ?? ""));
+    print(pointViewDataGridCols);
     }
     print(pointViewDataGridCols);
   }

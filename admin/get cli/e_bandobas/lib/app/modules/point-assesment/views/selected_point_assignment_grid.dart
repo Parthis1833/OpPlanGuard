@@ -8,6 +8,7 @@ import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import '../../../jsondata/PointPoliceCount/PointPoliceCountAssignmentModel.dart';
 import '../../dutypoint/controllers/dutypoint_controller.dart';
+import '../controllers/point_assesment_controller.dart';
 
 class SelectedPointViewAssignmentDataGridSource extends DataGridSource {
   SelectedPointViewAssignmentDataGridSource(this.assignments) {
@@ -18,7 +19,9 @@ class SelectedPointViewAssignmentDataGridSource extends DataGridSource {
   TextEditingController editingController = TextEditingController();
   late List<DataGridRow> dataGridRows;
   final List<PointPoliceCountAssignment> assignments;
-  final DutypointController controller = Get.find();
+  // final DutypointController controller = Get.find();
+  final PointAssesmentController controller = Get.find();
+  
 
   @override
   DataGridRowAdapter? buildRow(DataGridRow row) {
