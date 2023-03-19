@@ -1,3 +1,4 @@
+import 'package:e_bandobas/app/Exceptions/custom_exception.dart';
 import 'package:e_bandobas/app/jsondata/PointData/Point.dart';
 import 'package:e_bandobas/app/modules/point-assesment/views/selected_point_assignment_grid.dart';
 import 'package:get/get.dart';
@@ -164,8 +165,12 @@ class DutypointController extends GetxController {
 
   void savePointAssignment() async {
     if (selectedPointAssignment.value != null) {
-      await PointPoliceCountApi.saveUpdatePointAssignment(
+      bool result = await PointPoliceCountApi.saveUpdatePointAssignment(
           API_Decision.Only_Failure, selectedPointAssignment.value);
+      // if (!result) {
+      //   throw new CustomException("Operation could not be executed");
+      // }
+      
     }
     // add in list and reduce in policev2 list andreload data source
     // pointPoliceAssignments.value =
