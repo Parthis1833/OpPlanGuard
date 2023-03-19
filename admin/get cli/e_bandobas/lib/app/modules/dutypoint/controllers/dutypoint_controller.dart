@@ -159,12 +159,24 @@ class DutypointController extends GetxController {
           API_Decision.Only_Failure, selectedPointAssignment.value);
     }
     // add in list and reduce in policev2 list andreload data source
-    pointPoliceAssignments.value =
-        pointPoliceAssignments.value!.map((assignment) {
-      return assignment.pointId == selectedPointAssignment.value!.pointId
-          ? selectedPointAssignment.value!
-          : assignment;
-    }).toList();
+    // pointPoliceAssignments.value =
+    //     pointPoliceAssignments.value!.map((assignment) {
+    //   return assignment.pointId == selectedPointAssignment.value!.pointId
+    //       ? selectedPointAssignment.value!
+    //       : assignment;
+    // }).toList();
+    bool isExists = false;
+    for (int i = 0; i < pointPoliceAssignments.value!.length; i++) {
+      if (pointPoliceAssignments.value![i].pointId ==
+          selectedPointAssignment.value!.pointId) {
+        pointPoliceAssignments.value![i] = selectedPointAssignment.value!;
+        isExists = true;
+      }
+    }
+    if (!isExists) {
+      pointPoliceAssignments.value!.add(selectedPointAssignment.value!);
+    }
+    print(pointPoliceAssignments.value!.length);
     pointViewDataGridSource.value =
         PointViewDataGridSource(pointPoliceAssignments.value!);
     pointPoliceAssignments.refresh();
