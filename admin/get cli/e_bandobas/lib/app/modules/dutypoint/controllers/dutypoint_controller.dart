@@ -95,6 +95,7 @@ class DutypointController extends GetxController {
                   [selectedPointAssignment.value!]);
           pointViewDataGridSource.value =
               PointViewDataGridSource(pointPoliceAssignments.value!);
+          pointViewDataGridSource.refresh();
         } else {
           loadSelectedPointAssignmentCount();
         }
@@ -111,9 +112,15 @@ class DutypointController extends GetxController {
               API_Decision.Only_Failure,
               selectedEventId.value,
               selectedPointId.value);
+
+      selectedPointAssignment.value!.pointName = pointList.value!
+          .firstWhere((element) => element.id == selectedPointId.value)
+          .pointName;
+
       selectedPointAssignmentDataGridSource.value =
           SelectedPointViewAssignmentDataGridSource(
               [selectedPointAssignment.value!]);
+      selectedPointAssignmentDataGridSource.refresh();
       loadDesignationFromAssignments();
       update();
     }
