@@ -137,11 +137,12 @@ class SelectedPointViewAssignmentDataGridSource extends DataGridSource {
         dataGridRows[dataRowIndex].getCells()[rowColumnIndex.columnIndex] =
             DataGridCell<String>(
                 columnName: rowCell.columnName, value: newCellValue);
-        assignments[dataRowIndex].assignments![rowColumnIndex.columnIndex - 2] =
-            newCellValue;
+        assignments[dataRowIndex]
+            .assignments![rowColumnIndex.columnIndex - 2]
+            .designationCount = int.tryParse(newCellValue);
       }
     });
-    // controller.updateAssignments(assignments[dataRowIndex]);
+    controller.updateAssignments(assignments[dataRowIndex]);
   }
 
   @override

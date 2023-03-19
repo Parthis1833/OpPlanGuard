@@ -85,6 +85,11 @@ class DutypointController extends GetxController {
       if (pointPoliceAssignments.value != null) {
         if (pointPoliceAssignments.value!.length > 0) {
           selectedPointAssignment.value = pointPoliceAssignments.value![0];
+          selectedPointAssignmentDataGridSource.value =
+              SelectedPointViewAssignmentDataGridSource(
+                  [selectedPointAssignment.value!]);
+          pointViewDataGridSource.value =
+              PointViewDataGridSource(pointPoliceAssignments.value!);
         } else {
           loadSelectedPointAssignmentCount();
         }
@@ -138,7 +143,14 @@ class DutypointController extends GetxController {
 
   void updateAssignments(PointPoliceCountAssignment assignment) {
     selectedPointAssignment.value = assignment;
-
     update();
+  }
+
+  void savePointAssignment() async {
+    if (selectedPointAssignment.value != null) {
+      await PointPoliceCountApi.saveUpdatePointAssignment(
+          API_Decision.Only_Failure, selectedPointAssignment.value);
+      
+    }
   }
 }

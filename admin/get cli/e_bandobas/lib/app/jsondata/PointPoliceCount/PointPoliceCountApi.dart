@@ -174,4 +174,45 @@ class PointPoliceCountApi {
     }
     throw DataNotFoundException("Data not found for pointPoliceAssignment");
   }
+
+  static saveUpdatePointAssignment(API_Decision showStatus, PointPoliceCountAssignment? modelApiData) async {
+    final response =
+        await http.post(Uri.parse(APIConstants.POINT_POLICE_COUNT_SAVE_UPDATE),
+            headers: <String, String>{
+              'Content-Type': 'application/json; charset=UTF-8',
+            },
+            body: jsonEncode(modelApiData));
+    if (response.statusCode == 200) {
+      final responseJson = jsonDecode(utf8.decode(response.bodyBytes));
+
+      if (responseJson['response']['error'] == 0) {
+        if (showStatus == API_Decision.Only_Success ||
+            showStatus == API_Decision.BOTH) {
+          Get.snackbar(
+            "Success",
+            "Police Assignement noted for point successfully",
+            icon: const Icon(Icons.add_task_sharp, color: Colors.white),
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.green,
+          );
+        }
+        // TODO: we are not saving it in json format as we need it, will code it further
+        return true;
+      } // api error to be displayed
+      else {
+        if (showStatus == API_Decision.Only_Failure ||
+            showStatus == API_Decision.BOTH) {
+          Get.snackbar(
+            "Failed",
+            responseJson['response']['message'] ?? "No message available",
+            icon: const Icon(Icons.cancel_presentation_sharp,
+                color: Colors.white),
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.red,
+          );
+        }
+      }
+    }
+    return false;
+  }
 }

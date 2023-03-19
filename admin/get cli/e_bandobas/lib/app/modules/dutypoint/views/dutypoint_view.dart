@@ -36,6 +36,7 @@ class DutypointView extends GetView<DutypointController> {
                 ? const CircularProgressIndicator.adaptive()
                 : createUpdatePointAssignmentWidget(),
           ),
+          ElevatedButton(onPressed: controller.savePointAssignment, child: Text("Save/ Update Point Assignment")),
           // Obx(() => controller.pointList.value == null ||
           //         controller.pointPoliceAssignments.value == null
           Obx( () => controller.pointViewDataGridSource.value == null
