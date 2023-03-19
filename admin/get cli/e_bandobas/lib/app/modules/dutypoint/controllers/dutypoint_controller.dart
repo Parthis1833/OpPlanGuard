@@ -59,6 +59,11 @@ class DutypointController extends GetxController {
 
   void changeSelectedPoint(num? value) {
     selectedPointId.value = value!.toInt();
+    loadSelectedPointAssignmentCount();
+    loadDesignationFromAssignments();
+    selectedPointAssignmentDataGridSource.value =
+        SelectedPointViewAssignmentDataGridSource(
+            [selectedPointAssignment.value!]);
     update();
   }
 
@@ -135,6 +140,8 @@ class DutypointController extends GetxController {
     if (selectedPointAssignment.value != null) {
       // designations = pointPoliceAssignments.value![0].assignments!;
       designations = selectedPointAssignment.value!.assignments!;
+      pointViewDataGridCols.clear();
+      pointViewDataGridCols.addAll(["ID", "Point Name"]);
       pointViewDataGridCols
           .addAll(designations.map((d) => d.designationName ?? ""));
     }
@@ -150,7 +157,18 @@ class DutypointController extends GetxController {
     if (selectedPointAssignment.value != null) {
       await PointPoliceCountApi.saveUpdatePointAssignment(
           API_Decision.Only_Failure, selectedPointAssignment.value);
-      
     }
+    // add in list and reduce in policev2 list andreload data source
+    pointPoliceAssignments.value =
+        pointPoliceAssignments.value!.map((assignment) {
+      return assignment.pointId == selectedPointAssignment.value!.pointId
+          ? selectedPointAssignment.value!
+          : assignment;
+    }).toList();
+    pointViewDataGridSource.value =
+        PointViewDataGridSource(pointPoliceAssignments.value!);
+    pointPoliceAssignments.refresh();
+    pointViewDataGridSource.refresh();
+    update();
   }
 }

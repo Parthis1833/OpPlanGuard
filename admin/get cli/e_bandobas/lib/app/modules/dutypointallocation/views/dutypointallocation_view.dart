@@ -62,7 +62,7 @@ class DutypointallocationView extends GetView<DutypointallocationController> {
 
   Widget displayEventAssignment() {
     return Obx(() => controller.eventAssignmentModel.value == null
-        ? const CircularProgressIndicator()
+        ? const SizedBox()
         : eventAssignments());
   }
 
