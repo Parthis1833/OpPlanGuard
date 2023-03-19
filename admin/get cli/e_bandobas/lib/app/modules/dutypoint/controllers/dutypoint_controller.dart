@@ -170,6 +170,7 @@ class DutypointController extends GetxController {
       // if (!result) {
       //   throw new CustomException("Operation could not be executed");
       // }
+      
     }
     // add in list and reduce in policev2 list andreload data source
     // pointPoliceAssignments.value =
