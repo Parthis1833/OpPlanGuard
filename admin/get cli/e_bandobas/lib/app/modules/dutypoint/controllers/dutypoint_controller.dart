@@ -1,5 +1,5 @@
 import 'package:e_bandobas/app/jsondata/PointData/Point.dart';
-import 'package:e_bandobas/app/modules/dutypoint/views/selected_point_assignment_grid.dart';
+import 'package:e_bandobas/app/modules/point-assesment/views/selected_point_assignment_grid.dart';
 import 'package:get/get.dart';
 import '../../../../constants/enums.dart';
 import '../../../jsondata/EventData/Event.dart';
@@ -9,7 +9,7 @@ import '../../../jsondata/EventPoliceCount/EventPoliceCountOfAssignedTotalReques
 import '../../../jsondata/PointData/PointApi.dart';
 import '../../../jsondata/PointPoliceCount/PointPoliceCountApi.dart';
 import '../../../jsondata/PointPoliceCount/PointPoliceCountAssignmentModel.dart';
-import '../views/PointViewDataGrid.dart';
+import '../../point-assesment/views/PointViewDataGrid.dart';
 
 class DutypointController extends GetxController {
   //TODO: Implement DutypointController

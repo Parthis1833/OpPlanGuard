@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import '../../../jsondata/PointPoliceCount/PointPoliceCountAssignmentModel.dart';
-import '../controllers/dutypoint_controller.dart';
+import '../../dutypoint/controllers/dutypoint_controller.dart';
 
 class PointViewDataGridSource extends DataGridSource {
   PointViewDataGridSource(this.assignments) {
@@ -57,7 +57,6 @@ class PointViewDataGridSource extends DataGridSource {
               )
             ])).toList(growable: false);
   }
-
   Iterable<E> mapIndexed<E, T>(
       Iterable<T> items, E Function(int index, T item) f) sync* {
     var index = 0;

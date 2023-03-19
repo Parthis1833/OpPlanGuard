@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import '../../../jsondata/PointPoliceCount/PointPoliceCountAssignmentModel.dart';
-import '../controllers/dutypoint_controller.dart';
+import '../../dutypoint/controllers/dutypoint_controller.dart';
 
 class SelectedPointViewAssignmentDataGridSource extends DataGridSource {
   SelectedPointViewAssignmentDataGridSource(this.assignments) {
@@ -15,10 +15,8 @@ class SelectedPointViewAssignmentDataGridSource extends DataGridSource {
   }
   dynamic newCellValue;
 
-  /// Help to control the editable text in [TextField] widget.
   TextEditingController editingController = TextEditingController();
   late List<DataGridRow> dataGridRows;
-
   final List<PointPoliceCountAssignment> assignments;
   final DutypointController controller = Get.find();
 
@@ -113,7 +111,6 @@ class SelectedPointViewAssignmentDataGridSource extends DataGridSource {
   @override
   void onCellSubmit(DataGridRow dataGridRow, RowColumnIndex rowColumnIndex,
       GridColumn column) {
-    print("wtf");
     final dynamic oldValue = dataGridRow
             .getCells()
             .firstWhereOrNull((DataGridCell dataGridCell) =>
@@ -172,8 +169,8 @@ class SelectedPointViewAssignmentDataGridSource extends DataGridSource {
         autofocus: true,
         controller: editingController..text = displayText,
         textAlign: isNumericType ? TextAlign.right : TextAlign.left,
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.fromLTRB(0, 0, 0, 16.0),
+        decoration: const InputDecoration(
+          contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 16.0),
         ),
         keyboardType: isNumericType ? TextInputType.number : TextInputType.text,
         onChanged: (String value) {
@@ -188,9 +185,6 @@ class SelectedPointViewAssignmentDataGridSource extends DataGridSource {
           }
         },
         onSubmitted: (String value) {
-          // In Mobile Platform.
-          // Call [CellSubmit] callback to fire the canSubmitCell and
-          // onCellSubmit to commit the new value in single place.
           submitCell();
         },
       ),
