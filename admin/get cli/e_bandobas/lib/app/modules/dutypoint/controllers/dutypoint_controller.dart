@@ -54,6 +54,7 @@ class DutypointController extends GetxController {
   void changeSelectedEvent(num? value) {
     selectedEventId.value = value!.toInt();
     getEventAssignments();
+    loadPointAssignmentCount();
     update();
   }
 
