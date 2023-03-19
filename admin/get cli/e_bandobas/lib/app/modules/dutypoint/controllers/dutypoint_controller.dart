@@ -185,6 +185,7 @@ class DutypointController extends GetxController {
       pointPoliceAssignments.value!.add(selectedPointAssignment.value!);
     }
     print(pointPoliceAssignments.value!.length);
+    getEventAssignments();
     pointViewDataGridSource.value =
         PointViewDataGridSource(pointPoliceAssignments.value!);
     pointPoliceAssignments.refresh();
