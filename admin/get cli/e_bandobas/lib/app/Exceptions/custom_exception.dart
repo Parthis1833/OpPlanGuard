@@ -6,7 +6,7 @@ class CustomException implements Exception {
 
   CustomException(String s) {
     this.cause = s;
-    showValidationSnackBar();
+    // showValidationSnackBar();
   }
 
   final validationSnackBar = Get.snackbar(
