@@ -82,7 +82,7 @@ class DutypointController extends GetxController {
     update();
   }
 
-  void loadPointAssignmentCount() async {
+  Future<void> loadPointAssignmentCount() async {
     if (events.value != null) {
       pointPoliceAssignments.value =
           await PointPoliceCountApi.obtainEntireEventAssignments(
@@ -95,13 +95,14 @@ class DutypointController extends GetxController {
                   [selectedPointAssignment.value!]);
           pointViewDataGridSource.value =
               PointViewDataGridSource(pointPoliceAssignments.value!);
-          pointViewDataGridSource.refresh();
         } else {
           loadSelectedPointAssignmentCount();
         }
         loadDesignationFromAssignments();
       }
     }
+    selectedPointAssignmentDataGridSource.refresh();
+    pointViewDataGridSource.refresh();
     update();
   }
 
@@ -130,7 +131,7 @@ class DutypointController extends GetxController {
     pointList.value = await PointApi.obtainPoints(API_Decision.Only_Failure);
     if (pointList.value != null && pointList.value!.isNotEmpty) {
       selectedPointId.value = pointList.value!.elementAt(0).id!.toInt();
-      loadPointAssignmentCount();
+      await loadPointAssignmentCount();
     }
     update();
   }
