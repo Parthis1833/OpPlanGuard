@@ -1,6 +1,5 @@
 import 'package:e_bandobas/app/jsondata/Police/police_api.dart';
 import 'package:get/get.dart';
-
 import '../../../../constants/enums.dart';
 import '../../../jsondata/EventData/Event.dart';
 import '../../../jsondata/EventData/EventApi.dart';
@@ -13,12 +12,10 @@ class OfficerdataController extends GetxController {
   //TODO: Implement OfficerdataController
   final policeList = Rxn<List<PoliceModel>>();
   final events = Rxn<List<Event>>();
-  final eventAssignmentCounts =
-      Rxn<List<EventPoliceCountAssignedTotalRequestedModel>>();
+  final eventAssignmentCounts = Rxn<List<EventPoliceCountAssignedTotalRequestedModel>>();
   late final selectedEventId = 0.obs;
   final policeDataGridSource = Rxn<PoliceGridSource>();
   // late PoliceGridSource policeGridSource;
-
   final count = 0.obs;
   void increment() => count.value++;
 
@@ -30,20 +27,18 @@ class OfficerdataController extends GetxController {
       getPoliceData();
     }
     print(events.value);
-
     update();
   }
 
   void getEventAssignments() async {
     eventAssignmentCounts.value =
-        await EventPoliceCountAPI.obtainEventPoliceCountAssignments(
-            API_Decision.Only_Failure, selectedEventId.value);
+        await EventPoliceCountAPI.obtainEventPoliceCountAssignments(API_Decision.Only_Failure, selectedEventId.value);
   }
 
   void changeSelectedEvent(num? value) {
     selectedEventId.value = value!.toInt();
     getEventAssignments();
-    getPoliceData(); 
+    getPoliceData();
     update();
   }
 
@@ -51,12 +46,10 @@ class OfficerdataController extends GetxController {
   void onInit() {
     super.onInit();
     loadEvents();
-    print("Am I loading again?\n");
   }
 
   void getPoliceData() async {
-    policeList.value = await PoliceApi.getPoliceInEvent(
-        API_Decision.Only_Failure, selectedEventId.value);
+    policeList.value = await PoliceApi.getPoliceInEvent(API_Decision.Only_Failure, selectedEventId.value);
     if (policeList.value != null) {
       policeDataGridSource.value = PoliceGridSource(policeList.value!);
     }

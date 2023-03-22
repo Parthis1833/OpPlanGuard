@@ -34,8 +34,7 @@ class PoliceGridSource extends DataGridSource {
   TextEditingController editingController = TextEditingController();
 
   @override
-  void onCellSubmit(DataGridRow dataGridRow, RowColumnIndex rowColumnIndex,
-      GridColumn column) {
+  void onCellSubmit(DataGridRow dataGridRow, RowColumnIndex rowColumnIndex, GridColumn column) {
     final dynamic oldValue = dataGridRow
             .getCells()
             .firstWhereOrNull((DataGridCell dataGridCell) =>
@@ -117,7 +116,6 @@ class PoliceGridSource extends DataGridSource {
                 content: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Text('Are you sure?'),
                     const SizedBox(height: 16),
                     ElevatedButton.icon(
                       onPressed: () {

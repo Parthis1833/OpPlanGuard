@@ -1,14 +1,12 @@
-import 'package:e_bandobas/app/Api/API.dart';
 import 'package:e_bandobas/app/jsondata/PointData/Point.dart';
 import 'package:flutter/material.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
+import '../controllers/dutypoint_controller.dart';
 
 
-
-class PointDataGrid extends StatelessWidget {
+class PointDataGrid extends GetView<DutypointController> {
   const PointDataGrid({super.key});
 
   @override
@@ -51,10 +49,9 @@ class PointDataGrid extends StatelessWidget {
   }
 
   Future<PointViewDataGridSource> getPointViewDataGridSource() async {
-    List<Point> pointList = await generatecontentList();
+    List<Point> pointList = await controller.getPointDataSource();
     return PointViewDataGridSource(pointList);
   }
-
   List<GridColumn> getColumns() {
     return <GridColumn>[
       GridColumn(
@@ -72,13 +69,13 @@ class PointDataGrid extends StatelessWidget {
                   ),
                   overflow: TextOverflow.clip, softWrap: true))),
       GridColumn(
-          columnName: 'Point Name',
+          columnName: 'Zone Name',
           width: 370,
           label: Container(
               padding: const EdgeInsets.all(8),
               margin: const EdgeInsets.only(left: 15.0),
               alignment: Alignment.center,
-              child: const Text('Point Name',
+              child: const Text('Zone Name',
                   style: TextStyle(
                       fontSize: 20,
                       color: Colors.white,
@@ -86,7 +83,7 @@ class PointDataGrid extends StatelessWidget {
                   ),
                   overflow: TextOverflow.clip, softWrap: true))),
       GridColumn(
-          columnName: 'Zone Name',
+          columnName: 'Point Name',
           width: 370,
           label: Container(
               padding: const EdgeInsets.all(8),
@@ -130,18 +127,6 @@ class PointDataGrid extends StatelessWidget {
     ];
   }
 
-  Future<List<Point>> generatecontentList() async {
-    var response = await http.get(Uri.parse(APIConstants.POINT_URL));
-    var decodedPoint = jsonDecode(utf8.decode(response.bodyBytes));
-    List<Point> pointListFromContent = [];
-    if (decodedPoint['content'] != null) {
-      decodedPoint['content'].forEach((pointData) {
-        pointListFromContent.add(Point.fromJson(pointData));
-      });
-    }
-    pointListFromContent[0];
-    return pointListFromContent;
-  }
 }
 class PointViewDataGridSource extends DataGridSource {
   PointViewDataGridSource(this.pointList) {
@@ -208,8 +193,8 @@ class PointViewDataGridSource extends DataGridSource {
         pointList, (index, point) =>
         DataGridRow(cells: [
           DataGridCell<num>(columnName: 'ID', value: index+1),
-          DataGridCell<String>(columnName: 'Point Name', value:point.pointName),
           DataGridCell<String>(columnName: 'Zone Name', value: point.zoneName),
+          DataGridCell<String>(columnName: 'Point Name', value:point.pointName),
           DataGridCell<String>(columnName: 'Accessories', value: point.accessories),
           DataGridCell<String>(columnName: 'Remarks', value: point.remarks),
         ])
