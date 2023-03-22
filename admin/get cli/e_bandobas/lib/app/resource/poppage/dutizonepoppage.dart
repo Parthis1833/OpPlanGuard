@@ -128,7 +128,7 @@ class DutyzonePOPPage extends StatelessWidget {
                             if(zoneName.text.isNotEmpty){
                               Navigator.of(context).pop();
                             }else{
-                              ValidationException().validationSnackBar;
+                              ValidationException().showValidationSnackBar();
                             }
                           },
                           style: ElevatedButton.styleFrom(

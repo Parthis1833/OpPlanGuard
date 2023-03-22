@@ -71,7 +71,7 @@ class _AssessmentPoPPageState extends State<AssessmentPOPPage>{
       );
       Navigator.of(context).pop();
     }else{
-      ValidationException().validationSnackBar;
+      ValidationException().showValidationSnackBar();
     }
   }
   @override

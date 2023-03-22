@@ -24,7 +24,7 @@ class EventCreateController extends GetxController {
           endDate.value);
     } else {
       // validationSnackBar;
-      ValidationException().validationSnackBar;
+      ValidationException().showValidationSnackBar();
     }
 
     if (result) {

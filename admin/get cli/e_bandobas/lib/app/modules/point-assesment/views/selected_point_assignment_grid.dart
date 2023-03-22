@@ -21,7 +21,6 @@ class SelectedPointViewAssignmentDataGridSource extends DataGridSource {
   final List<PointPoliceCountAssignment> assignments;
   // final DutypointController controller = Get.find();
   final PointAssesmentController controller = Get.find();
-  
 
   @override
   DataGridRowAdapter? buildRow(DataGridRow row) {

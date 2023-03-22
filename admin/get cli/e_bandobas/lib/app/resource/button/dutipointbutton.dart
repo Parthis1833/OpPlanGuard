@@ -39,7 +39,7 @@ class _DutiPointButtonState extends State<DutiPointButton> {
               context: context,
               builder: (BuildContext context) {
                 return AlertDialog(
-                  content: DutipointPOPPage(zones),
+                  content: DutipointPOPPage(),
                 );
               });
         } else {

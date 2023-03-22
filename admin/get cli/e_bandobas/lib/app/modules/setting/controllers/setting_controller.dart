@@ -63,7 +63,7 @@ class SettingController extends GetxController {
       }
     } else {
       throw ValidationException(cause: "Some Fields are required")
-          .validationSnackBar;
+          .showValidationSnackBar();
     }
   }
 

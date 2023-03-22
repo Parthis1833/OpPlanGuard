@@ -1,135 +1,13 @@
 import 'package:e_bandobas/app/jsondata/PointData/Point.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import '../controllers/dutypoint_controller.dart';
 
-
-class PointDataGrid extends GetView<DutypointController> {
-  const PointDataGrid({super.key});
-
-  @override
-  Widget build(Object context) {
-    return FutureBuilder<Object>(
-      future: getPointViewDataGridSource(),
-      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-        return snapshot.hasData
-            ? Column(
-          children: [
-            SizedBox(
-              height: 700,
-              child: SfDataGridTheme(
-                data: SfDataGridThemeData(
-                    headerColor: Colors.lightBlueAccent),
-                child: SfDataGrid(
-                  source: snapshot.data,
-                  showCheckboxColumn: true,
-                  checkboxShape: const CircleBorder(),
-                  allowFiltering: true,
-                  selectionMode: SelectionMode.multiple,
-                  onQueryRowHeight: (details) {
-                    return details.getIntrinsicRowHeight(details.rowIndex);
-                  },
-                  columnWidthMode: ColumnWidthMode.auto,
-                  shrinkWrapColumns: true,
-                  columns: getColumns(),
-                ),
-              ),
-            ),
-          ],
-        )
-            : const Center(
-          child: CircularProgressIndicator(
-            strokeWidth: 3,
-          ),
-        );
-      },
-    );
-  }
-
-  Future<PointViewDataGridSource> getPointViewDataGridSource() async {
-    List<Point> pointList = await controller.getPointDataSource();
-    return PointViewDataGridSource(pointList);
-  }
-  List<GridColumn> getColumns() {
-    return <GridColumn>[
-      GridColumn(
-          allowFiltering: false,
-          columnName: 'ID',
-          width: 60,
-          label: Container(
-              padding: const EdgeInsets.all(8),
-              alignment: Alignment.centerLeft,
-              child: const Text('ID',
-                  style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
-                      fontStyle: FontStyle.italic
-                  ),
-                  overflow: TextOverflow.clip, softWrap: true))),
-      GridColumn(
-          columnName: 'Zone Name',
-          width: 370,
-          label: Container(
-              padding: const EdgeInsets.all(8),
-              margin: const EdgeInsets.only(left: 15.0),
-              alignment: Alignment.center,
-              child: const Text('Zone Name',
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                      fontStyle: FontStyle.italic
-                  ),
-                  overflow: TextOverflow.clip, softWrap: true))),
-      GridColumn(
-          columnName: 'Point Name',
-          width: 370,
-          label: Container(
-              padding: const EdgeInsets.all(8),
-              margin: const EdgeInsets.only(left: 15.0),
-              alignment: Alignment.center,
-              child: const Text('Point Name',
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                      fontStyle: FontStyle.italic
-                  ),
-                  overflow: TextOverflow.clip, softWrap: true))),
-      GridColumn(
-          allowFiltering: false,
-          columnName: 'Accessories',
-          width: 300,
-          label: Container(
-              padding: const EdgeInsets.all(8),
-              alignment: Alignment.center,
-              child: const Text('Accessories',
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                      fontStyle: FontStyle.italic
-                  ),
-                  overflow: TextOverflow.clip, softWrap: true))),
-      GridColumn(
-          allowFiltering: false,
-          columnName: 'Remarks',
-          width: 350,
-          label: Container(
-              padding: const EdgeInsets.all(8),
-              alignment: Alignment.center,
-              child: const Text('Rermarks',
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                      fontStyle: FontStyle.italic
-                  ),
-                  overflow: TextOverflow.clip, softWrap: true))),
-    ];
-  }
-
-}
-class PointViewDataGridSource extends DataGridSource {
-  PointViewDataGridSource(this.pointList) {
+class PointDetailViewDataGridSource extends DataGridSource {
+  PointDetailViewDataGridSource(this.pointList) {
     buildDataGridRow();
   }
   late List<DataGridRow> dataGridRows;
@@ -177,6 +55,7 @@ class PointViewDataGridSource extends DataGridSource {
       ),
     ]);
   }
+
   @override
   List<DataGridRow> get rows => dataGridRows;
 
@@ -189,15 +68,18 @@ class PointViewDataGridSource extends DataGridSource {
         index = index + 1;
       }
     }
+
     dataGridRows = mapIndexed(
-        pointList, (index, point) =>
-        DataGridRow(cells: [
-          DataGridCell<num>(columnName: 'ID', value: index+1),
-          DataGridCell<String>(columnName: 'Zone Name', value: point.zoneName),
-          DataGridCell<String>(columnName: 'Point Name', value:point.pointName),
-          DataGridCell<String>(columnName: 'Accessories', value: point.accessories),
-          DataGridCell<String>(columnName: 'Remarks', value: point.remarks),
-        ])
-    ).toList(growable: false);
+        pointList,
+        (index, point) => DataGridRow(cells: [
+              DataGridCell<num>(columnName: 'ID', value: index + 1),
+              DataGridCell<String>(
+                  columnName: 'Zone Name', value: point.zoneName),
+              DataGridCell<String>(
+                  columnName: 'Point Name', value: point.pointName),
+              DataGridCell<String>(
+                  columnName: 'Accessories', value: point.accessories),
+              DataGridCell<String>(columnName: 'Remarks', value: point.remarks),
+            ])).toList(growable: false);
   }
 }

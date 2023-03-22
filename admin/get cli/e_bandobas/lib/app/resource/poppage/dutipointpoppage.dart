@@ -3,17 +3,22 @@ import 'package:e_bandobas/app/jsondata/PointData/PointApi.dart';
 import 'package:e_bandobas/app/jsondata/ZoneData/Zone.dart';
 import 'package:e_bandobas/constants/enums.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../modules/dutypoint/controllers/dutypoint_controller.dart';
 
 // ignore: must_be_immutable
 class DutipointPOPPage extends StatefulWidget {
-  DutipointPOPPage(this.zones, {super.key});
-  List<Zone> zones;
+  // DutipointPOPPage(this.zones, {super.key});
+  List<Zone> zones = [];
 
   @override
   State<DutipointPOPPage> createState() => _DutipointPOPPageState();
 }
 
 class _DutipointPOPPageState extends State<DutipointPOPPage> {
+  final DutypointController dutyPointController = Get.find();
+
   final _formKey = GlobalKey<FormState>();
   final talukaController = TextEditingController();
   final districtController = TextEditingController();
@@ -27,25 +32,30 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _dropDownValue = widget.zones[0].id;
-  }
-  void savePoint() async{
-    bool result = false;
-    if(pointNameController.text.isNotEmpty){
-      result = await PointApi.createPoint(
-          API_Decision.Only_Success,
-          talukaController.text,
-          districtController.text,
-          pointNameController.text,
-          accessoriesController.text,
-          remarksController.text,
-          _dropDownValue);
-      // ignore: use_build_context_synchronously
-      Navigator.of(context).pop();
-    }else{
-      ValidationException().validationSnackBar;
+    if (dutyPointController.zoneList.value != null &&
+        dutyPointController.zoneList.value!.length > 0) {
+      widget.zones = dutyPointController.zoneList.value!;
+      _dropDownValue = widget.zones[0].id;
     }
   }
+
+  // void savePoint() async {
+  //   bool result = false;
+  //   if (pointNameController.text.isNotEmpty) {
+  //     result = await PointApi.createPoint(
+  //         API_Decision.Only_Success,
+  //         talukaController.text,
+  //         districtController.text,
+  //         pointNameController.text,
+  //         accessoriesController.text,
+  //         remarksController.text,
+  //         _dropDownValue);
+  //     // ignore: use_build_context_synchronously
+  //     Navigator.of(context).pop();
+  //   } else {
+  //     ValidationException().validationSnackBar;
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +92,8 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                   margin: const EdgeInsets.only(left: 95.0),
                   child: const Align(
                     alignment: Alignment.topLeft,
-                    child: Text('એડિટ પોઇન્ટ',
+                    child: Text(
+                      'એડિટ પોઇન્ટ',
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
                         color: Colors.black54,
@@ -101,7 +112,8 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                         children: [
                           Container(
                             margin: const EdgeInsets.only(top: 10.0),
-                            child: const Text('તાલુકો',
+                            child: const Text(
+                              'તાલુકો',
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   color: Colors.black38,
@@ -109,7 +121,8 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                             ),
                           ),
                           Container(
-                            padding: const EdgeInsets.only(top:10.0,left: 50.0),
+                            padding:
+                                const EdgeInsets.only(top: 10.0, left: 50.0),
                             child: SizedBox(
                               height: 40,
                               width: MediaQuery.of(context).size.width * 0.50,
@@ -134,7 +147,8 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                         children: [
                           Container(
                             margin: const EdgeInsets.only(top: 10.0),
-                            child: const Text('જિલ્લો',
+                            child: const Text(
+                              'જિલ્લો',
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   color: Colors.black38,
@@ -142,7 +156,8 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                             ),
                           ),
                           Container(
-                            padding: const EdgeInsets.only(top:10.0,left: 50.0),
+                            padding:
+                                const EdgeInsets.only(top: 10.0, left: 50.0),
                             child: SizedBox(
                               height: 40,
                               width: MediaQuery.of(context).size.width * 0.50,
@@ -165,14 +180,15 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          const Text('પોઈન્ટનું નામ',
+                          const Text(
+                            'પોઈન્ટનું નામ',
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 color: Colors.black38,
                                 fontSize: 26.0),
                           ),
                           Container(
-                            padding: const EdgeInsets.only(top:10.0),
+                            padding: const EdgeInsets.only(top: 10.0),
                             child: SizedBox(
                               height: 40,
                               width: MediaQuery.of(context).size.width * 0.50,
@@ -197,7 +213,8 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                         children: [
                           Container(
                             margin: const EdgeInsets.only(top: 10.0),
-                            child: const Text('એક્સેસરીઝ',
+                            child: const Text(
+                              'એક્સેસરીઝ',
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   color: Colors.black38,
@@ -205,7 +222,7 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                             ),
                           ),
                           Container(
-                            padding: const EdgeInsets.only(top:10.0),
+                            padding: const EdgeInsets.only(top: 10.0),
                             child: SizedBox(
                               height: 40,
                               width: MediaQuery.of(context).size.width * 0.50,
@@ -230,7 +247,8 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                         children: [
                           Container(
                             margin: const EdgeInsets.only(top: 10.0),
-                            child: const Text('રિમાર્કસ',
+                            child: const Text(
+                              'રિમાર્કસ',
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   color: Colors.black38,
@@ -238,7 +256,8 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                             ),
                           ),
                           Container(
-                            padding: const EdgeInsets.only(top:10.0,left: 30.0),
+                            padding:
+                                const EdgeInsets.only(top: 10.0, left: 30.0),
                             child: SizedBox(
                               height: 40,
                               width: MediaQuery.of(context).size.width * 0.50,
@@ -263,7 +282,8 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                         children: [
                           Container(
                             margin: const EdgeInsets.only(top: 10.0),
-                            child: const Text('ઝોન',
+                            child: const Text(
+                              'ઝોન',
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   color: Colors.black38,
@@ -271,7 +291,8 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                             ),
                           ),
                           Container(
-                            padding: const EdgeInsets.only(top: 10.0, left: 65.0),
+                            padding:
+                                const EdgeInsets.only(top: 10.0, left: 65.0),
                             child: SizedBox(
                               height: 40,
                               width: MediaQuery.of(context).size.width * 0.50,
@@ -310,7 +331,8 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                           },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white),
-                          child: const Text("Cancel",
+                          child: const Text(
+                            "Cancel",
                             style: TextStyle(color: Colors.black87),
                           ),
                         ),
@@ -319,13 +341,22 @@ class _DutipointPOPPageState extends State<DutipointPOPPage> {
                         width: 150,
                         height: 36,
                         child: ElevatedButton(
-                          onPressed: () {
-                            savePoint();
+                          onPressed: () async {
+                            bool result = await dutyPointController.savePoint(
+                                talukaController.text,
+                                districtController.text,
+                                pointNameController.text,
+                                accessoriesController.text,
+                                remarksController.text);
+                            if (result) {
+                              Navigator.of(context).pop();
+                            }
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.black87,
                           ),
-                          child: const Text("Save",
+                          child: const Text(
+                            "Save",
                             style: TextStyle(color: Colors.white),
                           ),
                         ),

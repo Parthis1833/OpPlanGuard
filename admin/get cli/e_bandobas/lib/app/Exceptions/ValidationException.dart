@@ -5,13 +5,13 @@ class ValidationException implements Exception {
   String? cause;
   ValidationException({this.cause});
 
-  final validationSnackBar = Get.snackbar(
-    "warning",
-    "Some fields are required",
-    icon: const Icon(Icons.pending, color: Colors.white),
-    snackPosition: SnackPosition.BOTTOM,
-    backgroundColor: Colors.yellow,
-  );
+  // final validationSnackBar = Get.snackbar(
+  //   "warning",
+  //   "Some fields are required",
+  //   icon: const Icon(Icons.pending, color: Colors.white),
+  //   snackPosition: SnackPosition.BOTTOM,
+  //   backgroundColor: Colors.yellow,
+  // );
 
   showValidationSnackBar() {
     print(cause);
@@ -21,6 +21,6 @@ class ValidationException implements Exception {
       icon: const Icon(Icons.pending, color: Colors.white),
       snackPosition: SnackPosition.BOTTOM,
       backgroundColor: Colors.yellow,
-    );
+    ).show();
   }
 }
