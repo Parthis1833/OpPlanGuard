@@ -7,23 +7,36 @@ import 'dart:convert';
 
 void main() async {
   // String path = "/Users/apple/Desktop/projects/gujarat_police_backend/";
-  String path = "/Users/apple/Desktop/projects/gujarat_police_backend/";
-  Process.run('curl', ['-X', 'POST', 'localhost:8080/actuator/shutdown'],
-          workingDirectory: path)
-      .then((ProcessResult results) {
-    print(results.stdout);
-    Process.run('git', ['checkout', 'development'], workingDirectory: path)
-        .then((ProcessResult results) {
-      Process.run('git', ['pull'], workingDirectory: path)
-          .then((ProcessResult results) {
-        Process.run('mvn', ['spring-boot:run'], workingDirectory: path)
-            .then((ProcessResult results) {
-          print(results.stdout);
-          startApp();
-        });
-      });
-    });
-  });
+  // String path = "/Users/apple/Desktop/projects/gujarat_police_backend/";
+  // await Process.run('curl', ['-X', 'POST', 'localhost:8080/actuator/shutdown'],
+  //         workingDirectory: path)
+  //     .then((ProcessResult results) {
+  //   print(results.stdout);
+  //   Process.run('git', ['checkout', 'development'], workingDirectory: path)
+  //       .then((ProcessResult results) {
+  //     Process.run('git', ['pull'], workingDirectory: path)
+  //         .then((ProcessResult results) {
+  //       Process.run('mvn', ['spring-boot:run'], workingDirectory: path)
+  //           .then((ProcessResult results) {
+  //         print(results.stdout);
+  //         startApp();
+  //       });
+  //     });
+  //   });
+  // });
+  // Process.run('curl', ['-X', 'POST', 'localhost:8080/actuator/shutdown'],
+  //         workingDirectory: path)
+  //     .then((ProcessResult results) {
+  //       Process.run('java', ['-jar', 'target/gujarat-police-backend.jar'],
+  //                 workingDirectory: path)
+  //             .then((ProcessResult results) {
+  //         print(results.stdout);
+
+  //           startApp();
+  //         });
+  //     });
+
+  startApp();
 }
 
 void startApp() async {
