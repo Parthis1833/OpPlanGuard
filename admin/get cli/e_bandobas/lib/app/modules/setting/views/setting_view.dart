@@ -28,7 +28,7 @@ class SettingView extends GetView<SettingController> {
   Widget SettingManagerWidget() {
     return Row(
       children: [
-        SettingDrawer(),
+        const SettingDrawer(),
     //   GestureDetector(
     //   behavior: HitTestBehavior.translucent,
     //   onTap: () {},
@@ -67,17 +67,18 @@ class SettingView extends GetView<SettingController> {
     //   ),
     // ),
         Align(
-          alignment: AlignmentDirectional.topStart,
+          alignment: AlignmentDirectional.topCenter,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
+                width: 1700,
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.5),
                       spreadRadius: 2,
                       blurRadius: 5,
-                      offset: Offset(0, 3), // changes position of shadow
+                      offset: const Offset(0, 3), // changes position of shadow
                     ),
                   ],
                   borderRadius: BorderRadius.circular(12),

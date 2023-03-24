@@ -19,7 +19,7 @@ class PoliceStationView extends GetView<PoliceStationController> {
                 onPressed: () {
                   CustomRouteManager.POLICE_STATION_CREATE();
                 },
-                child: Text("+ add police station")),
+                child: const Text("+ add police station")),
           ],
         ),
         body: Obx(() => controller.policeStations.value == null
@@ -34,6 +34,7 @@ class PoliceStationView extends GetView<PoliceStationController> {
           return snapshot.hasData
               ? ListView(
                   children: [
+
                     Center(
                       child: SizedBox(
                         height: 700,
