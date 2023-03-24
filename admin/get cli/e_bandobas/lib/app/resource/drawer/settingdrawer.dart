@@ -38,6 +38,12 @@ class SettingDrawer extends StatelessWidget{
                 CustomRouteManager.DESIGNATION_VIEW();
               },
             ),
+            ListTile(
+              title: const Text('System'),
+              onTap: () {
+                CustomRouteManager.DESIGNATION_VIEW();
+              },
+            ),
           ],
         ),
       ),
