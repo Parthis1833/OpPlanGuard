@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class DutiPointButton extends StatelessWidget {
   const DutiPointButton({super.key});
+
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton.extended(
@@ -22,7 +23,7 @@ class DutiPointButton extends StatelessWidget {
             context: context,
             builder: (BuildContext context) {
               return   AlertDialog(
-                content:DutipointPOPPage(),
+                content:DutipointPOPPage([]),
               );
             });
       },// Text()

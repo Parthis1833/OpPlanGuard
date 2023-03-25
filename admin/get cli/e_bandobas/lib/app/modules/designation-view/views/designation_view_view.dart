@@ -29,17 +29,17 @@ class DesignationViewView extends GetView<DesignationViewController> {
                       Expanded(
                         flex: 3,
                         child: ListTile(
-                          leading: const CircleAvatar(
+                          leading: CircleAvatar(
                             child: Text("J"),
                           ),
-                          title: const Text(
+                          title: Text(
                             'English',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16.0,
                             ),
                           ),
-                          subtitle: const Text(
+                          subtitle: Text(
                             'Gujarati',
                             style: TextStyle(
                               fontSize: 14.0,
