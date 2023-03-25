@@ -1,0 +1,1 @@
+web: java -jar target/gujarat_police-0.0.1-SNAPSHOT.jar

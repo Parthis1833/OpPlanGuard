@@ -1,0 +1,14 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - echo Entered the build phase
+      - mvn clean package spring-boot:repackage
+  post_build:
+    commands:
+      - echo Completed the build phasen successfully
+artifacts:
+  files:
+    - target/gujarat-police-backend.jar
+  discard-paths: yes
