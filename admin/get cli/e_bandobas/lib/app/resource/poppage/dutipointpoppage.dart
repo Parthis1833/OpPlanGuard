@@ -12,6 +12,8 @@ class DutipointPOPPage extends StatefulWidget {
   // DutipointPOPPage(this.zones, {super.key});
   List<Zone> zones = [];
 
+  DutipointPOPPage( list);
+
   @override
   State<DutipointPOPPage> createState() => _DutipointPOPPageState();
 }
