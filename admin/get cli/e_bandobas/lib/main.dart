@@ -6,37 +6,52 @@ import 'package:window_manager/window_manager.dart';
 import 'dart:convert';
 
 void main() async {
-  // String path = "/Users/apple/Desktop/projects/gujarat_police_backend/";
-  // String path = "/Users/apple/Desktop/projects/gujarat_police_backend/";
-  // await Process.run('curl', ['-X', 'POST', 'localhost:8080/actuator/shutdown'],
-  //         workingDirectory: path)
-  //     .then((ProcessResult results) {
-  //   print(results.stdout);
-  //   Process.run('git', ['checkout', 'development'], workingDirectory: path)
-  //       .then((ProcessResult results) {
-  //     Process.run('git', ['pull'], workingDirectory: path)
-  //         .then((ProcessResult results) {
-  //       Process.run('mvn', ['spring-boot:run'], workingDirectory: path)
-  //           .then((ProcessResult results) {
-  //         print(results.stdout);
-  //         startApp();
-  //       });
-  //     });
-  //   });
-  // });
-  // Process.run('curl', ['-X', 'POST', 'localhost:8080/actuator/shutdown'],
-  //         workingDirectory: path)
-  //     .then((ProcessResult results) {
-  //       Process.run('java', ['-jar', 'target/gujarat-police-backend.jar'],
-  //                 workingDirectory: path)
-  //             .then((ProcessResult results) {
-  //         print(results.stdout);
+  const path = "/mnt/3C34684F34680E68/GP-Police/gujarat_police_backend";
+  try {
+    await shutDownServer(path);
+    await gitCheckout(path);
+    await gitPull(path);
+    await runSpringBoot(path);
+    startApp();
+  } catch (e) {
+    print('Error: $e');
+  }
+}
 
-  //           startApp();
-  //         });
-  //     });
+Future<void> shutDownServer(String path) async {
+  final processResult = await Process.run(
+    'curl',
+    ['-X', 'POST', 'localhost:8080/actuator/shutdown'],
+    workingDirectory: path,
+  );
+  print(processResult.stdout);
+}
 
-  startApp();
+Future<void> gitCheckout(String path) async {
+  final processResult = await Process.run(
+    'git',
+    ['checkout', 'development'],
+    workingDirectory: path,
+  );
+  print(processResult.stdout);
+}
+
+Future<void> gitPull(String path) async {
+  final processResult = await Process.run(
+    'git',
+    ['pull'],
+    workingDirectory: path,
+  );
+  print(processResult.stdout);
+}
+
+Future<void> runSpringBoot(String path) async {
+  final processResult = await Process.run(
+    'mvn',
+    ['spring-boot:run'],
+    workingDirectory: path,
+  );
+  print(processResult.stdout);
 }
 
 void startApp() async {
