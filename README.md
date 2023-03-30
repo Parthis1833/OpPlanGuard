@@ -1,6 +1,6 @@
 # OpPlanGuard
 
-
+The OpPlanGuard development environment requires both a backend and a frontend component. The backend component is built using Java and the Spring Boot framework, and it uses a PostgreSQL database. The frontend component is built using the Flutter framework.
 # Development Environment (Local)
 
 ## System Requirements
@@ -26,13 +26,15 @@ back end  :-
 
 **Step 1 :**
 
-create a database named gujarat_police in postgres with username gujarat_police and password 1234
+Create a PostgreSQL database named "gujarat_police" with a username of "gujarat_police" and a password of "1234". This can be done by running the following commands:
 
 ```
 psql -U postgres
+
 ```
 ```
 CREATE USER gujarat_police WITH PASSWORD '1234';
+
 ```
 ```
 CREATE DATABASE gujarat_police;
@@ -40,27 +42,34 @@ GRANT ALL PRIVILEGES ON DATABASE gujarat_police TO gujarat_police;
 ```
 ```
 \q
+
 ```
 **Step 2 :**
 
-Download or clone this repo by using the link below:
+Clone the OpPlanGuard Git repository by running the following command:
 
 ```
 https://github.com/Parthis1833/OpPlanGuard.git
+
 ```
 
 ***Step 3 :***
+Navigate to the "gujarat_police_backend" directory within the cloned repository:
 ```
 cd OpPlanGuard/gujarat_police_backend
+
 ```
 
 ***Step 4 :***
+Build the backend component by running the following command:
 
 ```
-mvn  clean package 
+mvn  install package 
+
 ```
 
-***Step 5 :***
+***Step 5 :***Run the backend component by running the following command:
+
 
 ```
 mvnw spring-boot:run
@@ -69,25 +78,19 @@ mvnw spring-boot:run
 after that you run flutter destop application
 
 ***Step1:***
-
+Navigate to the "admin/e_bandobas" directory within the cloned repository:
 ```
 cd .. &&  cd   admin/e_bandobas 
 ```
-**Step 2:**
 
-Go to project root and execute the following command in console to get the required dependencies: 
-
-```
-flutter pub clean
-```
 
 **Step 3:**
-
+Install the dependencies of the Flutter project:
 ```
 flutter pub get
 ```
 **Step 4:**
-
+Run the frontend component on desktop:
 ```
-flutter run 
+flutter run -d desktop
 ```
