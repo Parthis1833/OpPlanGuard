@@ -30,11 +30,9 @@ create a database named gujarat_police in postgres with username gujarat_police 
 
 ```
 psql -U postgres
-
 ```
 ```
 CREATE USER gujarat_police WITH PASSWORD '1234';
-
 ```
 ```
 CREATE DATABASE gujarat_police;
@@ -42,7 +40,6 @@ GRANT ALL PRIVILEGES ON DATABASE gujarat_police TO gujarat_police;
 ```
 ```
 \q
-
 ```
 **Step 2 :**
 
@@ -50,20 +47,17 @@ Download or clone this repo by using the link below:
 
 ```
 https://github.com/Parthis1833/OpPlanGuard.git
-
 ```
 
 ***Step 3 :***
 ```
 cd OpPlanGuard/gujarat_police_backend
-
 ```
 
 ***Step 4 :***
 
 ```
 mvn  clean package 
-
 ```
 
 ***Step 5 :***
