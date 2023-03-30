@@ -89,5 +89,5 @@ flutter pub get
 **Step 4:**
 
 ```
-flutter run -d desktop
+flutter run 
 ```
