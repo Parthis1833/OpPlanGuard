@@ -5,54 +5,13 @@ import 'package:get/get.dart';
 import 'package:window_manager/window_manager.dart';
 import 'dart:convert';
 
+
 void main() async {
-  const path = "/mnt/3C34684F34680E68/GP-Police/gujarat_police_backend";
-  try {
-    await shutDownServer(path);
-    await gitCheckout(path);
-    await gitPull(path);
-    await runSpringBoot(path);
-    startApp();
-  } catch (e) {
-    print('Error: $e');
-  }
+
+     startApp();
+   
 }
 
-Future<void> shutDownServer(String path) async {
-  final processResult = await Process.run(
-    'curl',
-    ['-X', 'POST', 'localhost:8080/actuator/shutdown'],
-    workingDirectory: path,
-  );
-  print(processResult.stdout);
-}
-
-Future<void> gitCheckout(String path) async {
-  final processResult = await Process.run(
-    'git',
-    ['checkout', 'development'],
-    workingDirectory: path,
-  );
-  print(processResult.stdout);
-}
-
-Future<void> gitPull(String path) async {
-  final processResult = await Process.run(
-    'git',
-    ['pull'],
-    workingDirectory: path,
-  );
-  print(processResult.stdout);
-}
-
-Future<void> runSpringBoot(String path) async {
-  final processResult = await Process.run(
-    'mvn',
-    ['spring-boot:run'],
-    workingDirectory: path,
-  );
-  print(processResult.stdout);
-}
 
 void startApp() async {
   WidgetsFlutterBinding.ensureInitialized();
