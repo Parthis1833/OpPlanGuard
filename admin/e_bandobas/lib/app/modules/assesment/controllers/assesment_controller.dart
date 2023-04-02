@@ -1,10 +1,6 @@
-import 'dart:convert';
-import 'package:e_bandobas/app/Api/API.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
 import 'package:e_bandobas/app/jsondata/EventData/Event.dart';
 import 'package:e_bandobas/app/jsondata/EventData/EventApi.dart';
-
 import '../../../../constants/enums.dart';
 import '../../../jsondata/EventPoliceCount/EventPoliceCountAPI.dart';
 import '../../../jsondata/EventPoliceCount/EventPoliceCountOfAssignedTotalRequestedModel.dart';
