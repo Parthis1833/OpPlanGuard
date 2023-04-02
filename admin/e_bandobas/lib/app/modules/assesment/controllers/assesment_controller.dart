@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:e_bandobas/app/jsondata/EventData/Event.dart';
 import 'package:e_bandobas/app/jsondata/EventData/EventApi.dart';
+
 import '../../../../constants/enums.dart';
 import '../../../jsondata/EventPoliceCount/EventPoliceCountAPI.dart';
 import '../../../jsondata/EventPoliceCount/EventPoliceCountOfAssignedTotalRequestedModel.dart';
@@ -40,7 +41,6 @@ class AssesmentController extends GetxController {
     events.value = await EventApi.obtainEvents(API_Decision.Only_Failure);
     if(events.value != null && events.value!.isNotEmpty){
       // eventDataSource.value = EventViewDataGridSource(events.value!);
-
     }
     events.refresh();
     eventDataSource.refresh();
@@ -58,22 +58,9 @@ class AssesmentController extends GetxController {
     loadEvents();
     loaddataEvents();
   }
-
-  Future<List<Event>> generatecontentList() async {
-    var response = await http.get(Uri.parse(APIConstants.EVENT_URL));
-    var decodedOfficerss = jsonDecode(utf8.decode(response.bodyBytes));
-    List<Event> policeListFromContent = [];
-    if (decodedOfficerss['content'] != null) {
-      decodedOfficerss['content'].forEach((EventData) {
-        policeListFromContent.add(Event.fromJson(EventData));
-      });
-    }
-    policeListFromContent[0];
-    return policeListFromContent;
-  }
   Future<EventViewDataGridSource> getEventViewDataGridSource() async {
-    List<Event> eventList = await generatecontentList();
-    return EventViewDataGridSource(eventList);
+    List<Event>? eventList = await events();
+    return EventViewDataGridSource(eventList!);
   }
 
 }
