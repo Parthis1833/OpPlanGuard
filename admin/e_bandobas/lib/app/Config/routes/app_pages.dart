@@ -20,12 +20,10 @@ import '../../modules/dutypoint/bindings/dutypoint_binding.dart';
 import '../../modules/dutypoint/views/dutypoint_view.dart';
 import '../../modules/dutypointallocation/bindings/dutypointallocation_binding.dart';
 import '../../modules/dutypointallocation/views/dutypointallocation_view.dart';
-import '../../modules/event/bindings/event_binding.dart';
 import '../../modules/event/bindings/event_create_binding.dart';
 import '../../modules/event/bindings/event_update_binding.dart';
 import '../../modules/event/views/event_create.dart';
 import '../../modules/event/views/event_update.dart';
-import '../../modules/event/views/event_view.dart';
 import '../../modules/officerdata/bindings/officerdata_binding.dart';
 import '../../modules/officerdata/views/officerdata_view.dart';
 import '../../modules/point-assesment/bindings/point_assesment_binding.dart';
@@ -95,11 +93,6 @@ class AppPages {
       name: PATHS.SHOW_POINTS_ASSESMENT,
       page: () => const ShowPointAssigment(),
       binding: ShowPointPoliceAssementBinding(),
-    ),
-    GetPage(
-      name: Routes.EVENT_SHOW,
-      page: () => const EventView(),
-      binding: EventBinding(),
     ),
     GetPage(
       name: PATHS.EVENT_CREATE,
