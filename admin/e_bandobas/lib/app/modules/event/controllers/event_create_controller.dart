@@ -31,9 +31,9 @@ class EventCreateController extends GetxController {
       eventDetailsTextEditingController.text = "";
       eventNameTextEditController.text = "";
     }
+
     update();
   }
-
   void chooseStartDate() async {
     DateTime? pickedDate = await showDatePicker(
       context: Get.context!,

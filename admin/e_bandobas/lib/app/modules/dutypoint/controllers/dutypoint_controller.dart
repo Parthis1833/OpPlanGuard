@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:e_bandobas/app/Exceptions/DataNotFoundException.dart';
 import 'package:e_bandobas/app/Exceptions/ValidationException.dart';
 import 'package:e_bandobas/app/jsondata/PointData/Point.dart';
 import 'package:e_bandobas/app/jsondata/PointData/PointApi.dart';
@@ -94,7 +93,6 @@ class DutypointController extends GetxController {
 
   Future<PointDetailViewDataGridSource?> getPointViewDataGridSource() async {
     print(pointList.value?.length ?? "0");
-
     if (pointList.value != null && pointList.value!.isNotEmpty) {
       pointDataSource.value = PointDetailViewDataGridSource(pointList.value!);
       print(pointList.value!.length);

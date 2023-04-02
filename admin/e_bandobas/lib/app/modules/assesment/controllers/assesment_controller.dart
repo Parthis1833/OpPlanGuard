@@ -1,17 +1,19 @@
-import 'package:e_bandobas/app/Config/routes/app_pages.dart';
+import 'dart:convert';
+import 'package:e_bandobas/app/Api/API.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 import 'package:e_bandobas/app/jsondata/EventData/Event.dart';
 import 'package:e_bandobas/app/jsondata/EventData/EventApi.dart';
-
 import '../../../../constants/enums.dart';
 import '../../../jsondata/EventPoliceCount/EventPoliceCountAPI.dart';
 import '../../../jsondata/EventPoliceCount/EventPoliceCountOfAssignedTotalRequestedModel.dart';
+import '../../event/views/event_view.dart';
 
 class AssesmentController extends GetxController {
   late final selectedEventId = 0.obs;
   final events = Rxn<List<Event>>();
-  final eventAssignmentCounts =
-      Rxn<List<EventPoliceCountAssignedTotalRequestedModel>>();
+  final eventAssignmentCounts = Rxn<List<EventPoliceCountAssignedTotalRequestedModel>>();
+  final eventDataSource = Rxn<EventViewDataGridSource>();
 
   final count = 0.obs;
   @override
@@ -23,6 +25,8 @@ class AssesmentController extends GetxController {
       selectedEventId.value = events.value!.elementAt(0).id!.toInt();
       getEventAssignments();
     }
+    events.refresh();
+    eventDataSource.refresh();
     print(events.value);
     update();
   }
@@ -32,16 +36,44 @@ class AssesmentController extends GetxController {
     getEventAssignments();
     update();
   }
+  void loaddataEvents() async{
+    events.value = await EventApi.obtainEvents(API_Decision.Only_Failure);
+    if(events.value != null && events.value!.isNotEmpty){
+      // eventDataSource.value = EventViewDataGridSource(events.value!);
+
+    }
+    events.refresh();
+    eventDataSource.refresh();
+    update();
+  }
 
   void getEventAssignments() async {
     eventAssignmentCounts.value =
-        await EventPoliceCountAPI.obtainEventPoliceCountAssignments(
-            API_Decision.Only_Failure, selectedEventId.value);
+    await EventPoliceCountAPI.obtainEventPoliceCountAssignments(API_Decision.Only_Failure, selectedEventId.value);
   }
 
   @override
   void onInit() {
     super.onInit();
     loadEvents();
+    loaddataEvents();
   }
+
+  Future<List<Event>> generatecontentList() async {
+    var response = await http.get(Uri.parse(APIConstants.EVENT_URL));
+    var decodedOfficerss = jsonDecode(utf8.decode(response.bodyBytes));
+    List<Event> policeListFromContent = [];
+    if (decodedOfficerss['content'] != null) {
+      decodedOfficerss['content'].forEach((EventData) {
+        policeListFromContent.add(Event.fromJson(EventData));
+      });
+    }
+    policeListFromContent[0];
+    return policeListFromContent;
+  }
+  Future<EventViewDataGridSource> getEventViewDataGridSource() async {
+    List<Event> eventList = await generatecontentList();
+    return EventViewDataGridSource(eventList);
+  }
+
 }

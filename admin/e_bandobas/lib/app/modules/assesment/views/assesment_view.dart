@@ -3,8 +3,11 @@ import 'package:e_bandobas/app/route_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:syncfusion_flutter_datagrid/datagrid.dart';
+import '../../../Widgets/Buttons/assessmentbutton.dart';
 import '../../../resource/card/PoliceCardV2.dart';
 import '../controllers/assesment_controller.dart';
+import 'package:syncfusion_flutter_core/theme.dart';
 
 class AssesmentView extends GetView<AssesmentController> {
   const AssesmentView({Key? key}) : super(key: key);
@@ -32,7 +35,10 @@ class AssesmentView extends GetView<AssesmentController> {
           Obx(() => controller.eventAssignmentCounts.value == null
               ? const CircularProgressIndicator.adaptive()
               : PoliceCardV2(
-                  eventAssignments: controller.eventAssignmentCounts.value!))
+              eventAssignments: controller.eventAssignmentCounts.value!)),
+         Obx(() => controller.eventDataSource.value  != null
+              ? const CircularProgressIndicator.adaptive():
+              eventDataSource())
         ],
       ),
       floatingActionButton: assementButton(),
@@ -76,6 +82,41 @@ class AssesmentView extends GetView<AssesmentController> {
       ),
     );
   }
+  Widget eventDataSource(){
+    return FutureBuilder(
+      future: controller.getEventViewDataGridSource(),
+      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+        return snapshot.hasData
+            ? Column(
+          children: [
+            SizedBox(
+              height:750,
+              child: SfDataGridTheme(
+                data: SfDataGridThemeData(
+                    headerColor: Colors.lightBlueAccent),
+                child: SfDataGrid(
+                  source: snapshot.data,
+                  selectionMode: SelectionMode.multiple,
+                  onQueryRowHeight: (details) {
+                    return details
+                        .getIntrinsicRowHeight(details.rowIndex);
+                  },
+                  columnWidthMode: ColumnWidthMode.auto,
+                  shrinkWrapColumns: true,
+                  columns: getColumns(),
+                ),
+              ),
+            ),
+          ],
+        )
+            : const Center(
+          child: CircularProgressIndicator(
+            strokeWidth: 3,
+          ),
+        );
+      },
+    );
+  }
 
   Widget assementButton() {
     return SizedBox(
@@ -89,18 +130,7 @@ class AssesmentView extends GetView<AssesmentController> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                FloatingActionButton(
-                  heroTag: const Text("Events"),
-                  backgroundColor: Colors.cyanAccent,
-                  onPressed: () {
-                    CustomRouteManager.EVENT_SHOW();
-                  },
-                  child: const Icon(
-                    Icons.add_circle_outline,
-                    color: Colors.deepPurple,
-                    size: 56.4,
-                  ),
-                ),
+                AssesmentButton(),
                 const Text("Event page")
               ],
             ),
@@ -129,5 +159,52 @@ class AssesmentView extends GetView<AssesmentController> {
         ],
       ),
     );
+  }
+  List<GridColumn> getColumns() {
+    return <GridColumn>[
+      GridColumn(
+          allowSorting: false,
+          columnName: 'Event-Id',
+          width: 70,
+          label: Container(
+              padding: const EdgeInsets.all(8),
+              alignment: Alignment.centerLeft,
+              child: const Text('ID',
+                  overflow: TextOverflow.clip, softWrap: true))),
+      GridColumn(
+          allowSorting: false,
+          columnName: 'Event-Name',
+          width: 200,
+          label: Container(
+              padding: const EdgeInsets.all(8),
+              alignment: Alignment.centerLeft,
+              child: const Text('Event-Name',
+                  overflow: TextOverflow.clip, softWrap: true))),
+      GridColumn(
+          allowSorting: false,
+          columnName: 'Event-Details',
+          width: 200,
+          label: Container(
+              padding: const EdgeInsets.all(8),
+              alignment: Alignment.centerLeft,
+              child: const Text('Event-Details',
+                  overflow: TextOverflow.clip, softWrap: true))),
+      GridColumn(
+          columnName: 'Event-Start-Date',
+          width: 200,
+          label: Container(
+              padding: const EdgeInsets.all(8),
+              alignment: Alignment.centerLeft,
+              child: const Text('Event-Start-Date',
+                  overflow: TextOverflow.clip, softWrap: true))),
+      GridColumn(
+          columnName: 'Event-End-Date',
+          width: 200,
+          label: Container(
+              padding: const EdgeInsets.all(8),
+              alignment: Alignment.centerLeft,
+              child: const Text('Event-End-Date',
+                  overflow: TextOverflow.clip, softWrap: true))),
+    ];
   }
 }

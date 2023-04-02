@@ -1,10 +1,6 @@
 import 'package:e_bandobas/app/jsondata/PointData/Point.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
-import '../controllers/dutypoint_controller.dart';
 
 class PointDetailViewDataGridSource extends DataGridSource {
   PointDetailViewDataGridSource(this.pointList) {

@@ -79,18 +79,21 @@ class PointAssesmentView extends GetView<PointAssesmentController> {
                 Center(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: SfDataGridTheme(
-                      data: SfDataGridThemeData(headerColor: Colors.lime),
-                      child: SfDataGrid(
-                        source: snapshot.data,
-                        allowEditing: true,
-                        selectionMode: SelectionMode.single,
-                        navigationMode: GridNavigationMode.cell,
-                        shrinkWrapColumns: true,
-                        onSelectionChanged: (rows, newRows) {
-                          print(rows[0].getCells()[0].value);
-                        },
-                        columns: getColumns(),
+                    child: SizedBox(
+                      height: 100,
+                      child: SfDataGridTheme(
+                        data: SfDataGridThemeData(headerColor: Colors.lime),
+                        child: SfDataGrid(
+                          source: snapshot.data,
+                          allowEditing: true,
+                          selectionMode: SelectionMode.single,
+                          navigationMode: GridNavigationMode.cell,
+                          shrinkWrapColumns: true,
+                          onSelectionChanged: (rows, newRows) {
+                            print(rows[0].getCells()[0].value);
+                          },
+                          columns: getColumns(),
+                        ),
                       ),
                     ),
                   ),
@@ -107,8 +110,6 @@ class PointAssesmentView extends GetView<PointAssesmentController> {
   }
   Widget eventSelectionDropDownWidget() {
     return Container(
-      height: 45,
-      width: 600,
       margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
       child: Row(
         children: [
