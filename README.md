@@ -42,7 +42,6 @@ GRANT ALL PRIVILEGES ON DATABASE gujarat_police TO gujarat_police;
 ```
 ```
 \q
-
 ```
 **Step 2 :**
 
@@ -50,14 +49,12 @@ Clone the OpPlanGuard Git repository by running the following command:
 
 ```
 https://github.com/Parthis1833/OpPlanGuard.git
-
 ```
 
 ***Step 3 :***
 Navigate to the "gujarat_police_backend" directory within the cloned repository:
 ```
 cd OpPlanGuard/gujarat_police_backend
-
 ```
 
 ***Step 4 :***
@@ -65,7 +62,6 @@ Build the backend component by running the following command:
 
 ```
 mvn  install package 
-
 ```
 
 ***Step 5 :***Run the backend component by running the following command:
